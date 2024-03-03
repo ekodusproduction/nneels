@@ -104,13 +104,8 @@
                             Service</a></li>
                     <li class="sub-menu__item"><a href="{{route('website.account.myaccount')}}" class="menu-link menu-link_us-s">My
                             Account</a></li>
-                    <li class="sub-menu__item"><a href="store_location.html" class="menu-link menu-link_us-s">Find a
-                            Store</a></li>
-                    <li class="sub-menu__item"><a href="terms.html" class="menu-link menu-link_us-s">Legal &
-                            Privacy</a></li>
-                    <li class="sub-menu__item"><a href="{{route('website.nav.contact.index')}}" class="menu-link menu-link_us-s">Contact</a>
-                    </li>
-                    <li class="sub-menu__item"><a href="about.html" class="menu-link menu-link_us-s">Gift Card</a>
+                    <li class="sub-menu__item"><a href="terms.html" class="menu-link menu-link_us-s">Terms & Conditions</a></li>
+                    <li class="sub-menu__item"><a href="{{route('website.nav.contact.index')}}" class="menu-link menu-link_us-s">Privacy Policy</a>
                     </li>
                 </ul>
             </div><!-- /.footer-column -->
@@ -132,19 +127,8 @@
             <div class="footer-settings d-md-flex align-items-center">
                 <select id="footerSettingsLanguage" class="form-select form-select-sm bg-transparent border-0"
                     aria-label="Default select example" name="store-language">
-                    {{-- <option class="footer-select__option" selected>United Kingdom | English</option> --}}
                     <option class="footer-select__option" value="1">United States | English</option>
-                    {{-- <option class="footer-select__option" value="2">German</option>
-                    <option class="footer-select__option" value="3">French</option>
-                    <option class="footer-select__option" value="4">Swedish</option> --}}
                 </select>
-
-                {{-- <select id="footerSettingsCurrency" class="form-select form-select-sm bg-transparent border-0"
-                    aria-label="Default select example" name="store-language">
-                    <option class="footer-select__option" selected>$ USD</option>
-                    <option class="footer-select__option" value="1">£ GBP</option>
-                    <option class="footer-select__option" value="2">€ EURO</option>
-                </select> --}}
             </div><!-- /.footer-settings -->
         </div><!-- /.container d-flex align-items-center -->
     </div><!-- /.footer-bottom container -->
