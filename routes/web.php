@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('website.home.home');
 });
 
-Route::group(['prefix' => 'home'], function(){
-    Route::get('', [HomeController::class, 'index'])->name('website.home.index');
+Route::group(['prefix' => 'website'], function(){
+    Route::group(['prefix' => 'home'], function(){
+        Route::get('', [HomeController::class, 'index'])->name('website.home.index');
+    });
 });
+
