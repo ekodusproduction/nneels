@@ -55,7 +55,7 @@
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use href="#icon_next_sm" />
                             </svg></a>
-                        <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
+                        {{-- <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
                             <a href="#"
                                 class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-2"><svg
                                     class="me-2" width="7" height="11" viewBox="0 0 7 11"
@@ -109,8 +109,9 @@
                                         class="menu-link menu-link_us-s">Home 22</a></li>
                                 <li class="sub-menu__item"><a href="../Demo23/index.html"
                                         class="menu-link menu-link_us-s">Home 23</a></li>
-                            </ul><!-- /.box-menu -->
-                        </div>
+                            </ul>
+                            <!-- /.box-menu -->
+                        </div> --}}
                     </li>
                     <li class="navigation__item">
                         <a href="#" class="navigation__link js-nav-right d-flex align-items-center">Shop<svg
@@ -118,7 +119,7 @@
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use href="#icon_next_sm" />
                             </svg></a>
-                        <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
+                        {{-- <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
                             <a href="#"
                                 class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-3"><svg
                                     class="me-2" width="7" height="11" viewBox="0 0 7 11"
@@ -241,7 +242,8 @@
                                     </ul>
                                 </div><!-- /.sub-menu__wrapper -->
                             </div><!-- /.sub-menu__wrapper -->
-                        </div><!-- /.sub-menu -->
+                        </div> --}}
+                        <!-- /.sub-menu -->
                     </li>
 
                     <li class="navigation__item">
@@ -250,7 +252,7 @@
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use href="#icon_next_sm" />
                             </svg></a>
-                        <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
+                        {{-- <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
                             <a href="#"
                                 class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-2"><svg
                                     class="me-2" width="7" height="11" viewBox="0 0 7 11"
@@ -267,41 +269,7 @@
                                 <li class="sub-menu__item"><a href="blog_single.html"
                                         class="menu-link menu-link_us-s">Blog Detail</a></li>
                             </ul>
-                        </div>
-                    </li>
-
-                    <li class="navigation__item">
-                        <a href="#" class="navigation__link js-nav-right d-flex align-items-center">Pages<svg
-                                class="ms-auto" width="7" height="11" viewBox="0 0 7 11"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <use href="#icon_next_sm" />
-                            </svg></a>
-                        <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
-                            <a href="#"
-                                class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-2"><svg
-                                    class="me-2" width="7" height="11" viewBox="0 0 7 11"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <use href="#icon_prev_sm" />
-                                </svg>Pages</a>
-                            <ul class="list-unstyled">
-                                <li class="sub-menu__item"><a href="account_dashboard.html"
-                                        class="menu-link menu-link_us-s">My Account</a></li>
-                                <li class="sub-menu__item"><a href="login_register.html"
-                                        class="menu-link menu-link_us-s">Login / Register</a></li>
-                                <li class="sub-menu__item"><a href="store_location.html"
-                                        class="menu-link menu-link_us-s">Store Locator</a></li>
-                                <li class="sub-menu__item"><a href="lookbook.html"
-                                        class="menu-link menu-link_us-s">Lookbook</a></li>
-                                <li class="sub-menu__item"><a href="faq.html"
-                                        class="menu-link menu-link_us-s">Faq</a></li>
-                                <li class="sub-menu__item"><a href="terms.html"
-                                        class="menu-link menu-link_us-s">Terms</a></li>
-                                <li class="sub-menu__item"><a href="404.html" class="menu-link menu-link_us-s">404
-                                        Error</a></li>
-                                <li class="sub-menu__item"><a href="coming_soon.html"
-                                        class="menu-link menu-link_us-s">Coming Soon</a></li>
-                            </ul>
-                        </div>
+                        </div> --}}
                     </li>
 
                     <li class="navigation__item">
@@ -328,15 +296,15 @@
                 <label for="footerSettingsLanguage_mobile" class="me-2 text-secondary">Language</label>
                 <select id="footerSettingsLanguage_mobile" class="form-select form-select-sm bg-transparent border-0"
                     aria-label="Default select example" name="store-language">
-                    <option class="footer-select__option" selected>United Kingdom | English</option>
+                    {{-- <option class="footer-select__option" selected>United Kingdom | English</option> --}}
                     <option class="footer-select__option" value="1">United States | English</option>
-                    <option class="footer-select__option" value="2">German</option>
+                    {{-- <option class="footer-select__option" value="2">German</option>
                     <option class="footer-select__option" value="3">French</option>
-                    <option class="footer-select__option" value="4">Swedish</option>
+                    <option class="footer-select__option" value="4">Swedish</option> --}}
                 </select>
             </div>
 
-            <div class="container d-flex align-items-center">
+            {{-- <div class="container d-flex align-items-center">
                 <label for="footerSettingsCurrency_mobile" class="me-2 text-secondary">Currency</label>
                 <select id="footerSettingsCurrency_mobile" class="form-select form-select-sm bg-transparent border-0"
                     aria-label="Default select example" name="store-language">
@@ -344,7 +312,7 @@
                     <option value="1">£ GBP</option>
                     <option value="2">€ EURO</option>
                 </select>
-            </div>
+            </div> --}}
 
             <ul class="container social-links list-unstyled d-flex flex-wrap mb-0">
                 <li>
@@ -441,15 +409,15 @@
             </ul>
             <select class="form-select form-select-sm bg-transparent color-white" name="store-language">
                 <option value="english" selected>English</option>
-                <option value="german">German</option>
+                {{-- <option value="german">German</option>
                 <option value="french">French</option>
-                <option value="swedish">Swedish</option>
+                <option value="swedish">Swedish</option> --}}
             </select>
-            <select class="form-select form-select-sm bg-transparent color-white" name="store-currency">
+            {{-- <select class="form-select form-select-sm bg-transparent color-white" name="store-currency">
                 <option value="usd" selected>$ USD</option>
                 <option value="gbp">£ GBP</option>
                 <option value="eur">€ EURO</option>
-            </select>
+            </select> --}}
         </div>
     </div>
     <div class="header-desk header-desk_type_2">
@@ -464,77 +432,10 @@
             <ul class="navigation__list list-unstyled d-flex">
                 <li class="navigation__item">
                     <a href="#" class="navigation__link">Home</a>
-                    <div class="box-menu" style="width: 800px;">
-                        <div class="col pe-4">
-                            <ul class="sub-menu__list list-unstyled">
-                                <li class="sub-menu__item"><a href="../Demo1/index.html"
-                                        class="menu-link menu-link_us-s">Home 1</a></li>
-                                <li class="sub-menu__item"><a href="index.html" class="menu-link menu-link_us-s">Home
-                                        2</a></li>
-                                <li class="sub-menu__item"><a href="../Demo3/index.html"
-                                        class="menu-link menu-link_us-s">Home 3</a></li>
-                                <li class="sub-menu__item"><a href="../Demo4/index.html"
-                                        class="menu-link menu-link_us-s">Home 4</a></li>
-                                <li class="sub-menu__item"><a href="../Demo5/index.html"
-                                        class="menu-link menu-link_us-s">Home 5</a></li>
-                                <li class="sub-menu__item"><a href="../Demo6/index.html"
-                                        class="menu-link menu-link_us-s">Home 6</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="col pe-4">
-                            <ul class="sub-menu__list list-unstyled">
-                                <li class="sub-menu__item"><a href="../Demo7/index.html"
-                                        class="menu-link menu-link_us-s">Home 7</a></li>
-                                <li class="sub-menu__item"><a href="../Demo8/index.html"
-                                        class="menu-link menu-link_us-s">Home 8</a></li>
-                                <li class="sub-menu__item"><a href="../Demo9/index.html"
-                                        class="menu-link menu-link_us-s">Home 9</a></li>
-                                <li class="sub-menu__item"><a href="../Demo10/index.html"
-                                        class="menu-link menu-link_us-s">Home 10</a></li>
-                                <li class="sub-menu__item"><a href="../Demo11/index.html"
-                                        class="menu-link menu-link_us-s">Home 11</a></li>
-                                <li class="sub-menu__item"><a href="../Demo12/index.html"
-                                        class="menu-link menu-link_us-s">Home 12</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="col pe-4">
-                            <ul class="sub-menu__list list-unstyled">
-                                <li class="sub-menu__item"><a href="../Demo13/index.html"
-                                        class="menu-link menu-link_us-s">Home 13</a></li>
-                                <li class="sub-menu__item"><a href="../Demo14/index.html"
-                                        class="menu-link menu-link_us-s">Home 14</a></li>
-                                <li class="sub-menu__item"><a href="../Demo15/index.html"
-                                        class="menu-link menu-link_us-s">Home 15</a></li>
-                                <li class="sub-menu__item"><a href="../Demo16/index.html"
-                                        class="menu-link menu-link_us-s">Home 16</a></li>
-                                <li class="sub-menu__item"><a href="../Demo17/index.html"
-                                        class="menu-link menu-link_us-s">Home 17</a></li>
-                                <li class="sub-menu__item"><a href="../Demo18/index.html"
-                                        class="menu-link menu-link_us-s">Home 18</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="col">
-                            <ul class="sub-menu__list list-unstyled">
-                                <li class="sub-menu__item"><a href="../Demo19/index.html"
-                                        class="menu-link menu-link_us-s">Home 19</a></li>
-                                <li class="sub-menu__item"><a href="../Demo20/index.html"
-                                        class="menu-link menu-link_us-s">Home 20</a></li>
-                                <li class="sub-menu__item"><a href="../Demo21/index.html"
-                                        class="menu-link menu-link_us-s">Home 21</a></li>
-                                <li class="sub-menu__item"><a href="../Demo22/index.html"
-                                        class="menu-link menu-link_us-s">Home 22</a></li>
-                                <li class="sub-menu__item"><a href="../Demo23/index.html"
-                                        class="menu-link menu-link_us-s">Home 23</a></li>
-                            </ul>
-                        </div>
-                    </div><!-- /.box-menu -->
                 </li>
                 <li class="navigation__item">
                     <a href="#" class="navigation__link">Shop</a>
-                    <div class="mega-menu">
+                    {{-- <div class="mega-menu">
                         <div class="container d-flex">
                             <div class="col pe-4">
                                 <a href="#" class="sub-menu__title">Shop List</a>
@@ -632,11 +533,11 @@
                                 </div>
                             </div>
                         </div><!-- /.container d-flex -->
-                    </div>
+                    </div> --}}
                 </li>
                 <li class="navigation__item">
                     <a href="#" class="navigation__link">Blog</a>
-                    <ul class="default-menu list-unstyled">
+                    {{-- <ul class="default-menu list-unstyled">
                         <li class="sub-menu__item"><a href="blog_list1.html" class="menu-link menu-link_us-s">Blog
                                 V1</a></li>
                         <li class="sub-menu__item"><a href="blog_list2.html" class="menu-link menu-link_us-s">Blog
@@ -645,27 +546,8 @@
                                 V3</a></li>
                         <li class="sub-menu__item"><a href="blog_single.html" class="menu-link menu-link_us-s">Blog
                                 Detail</a></li>
-                    </ul><!-- /.box-menu -->
-                </li>
-                <li class="navigation__item">
-                    <a href="#" class="navigation__link">Pages</a>
-                    <ul class="default-menu list-unstyled">
-                        <li class="sub-menu__item"><a href="account_dashboard.html"
-                                class="menu-link menu-link_us-s">My Account</a></li>
-                        <li class="sub-menu__item"><a href="login_register.html"
-                                class="menu-link menu-link_us-s">Login / Register</a></li>
-                        <li class="sub-menu__item"><a href="store_location.html"
-                                class="menu-link menu-link_us-s">Store Locator</a></li>
-                        <li class="sub-menu__item"><a href="lookbook.html"
-                                class="menu-link menu-link_us-s">Lookbook</a></li>
-                        <li class="sub-menu__item"><a href="faq.html" class="menu-link menu-link_us-s">Faq</a></li>
-                        <li class="sub-menu__item"><a href="terms.html" class="menu-link menu-link_us-s">Terms</a>
-                        </li>
-                        <li class="sub-menu__item"><a href="404.html" class="menu-link menu-link_us-s">404 Error</a>
-                        </li>
-                        <li class="sub-menu__item"><a href="coming_soon.html" class="menu-link menu-link_us-s">Coming
-                                Soon</a></li>
-                    </ul><!-- /.box-menu -->
+                    </ul> --}}
+                    <!-- /.box-menu -->
                 </li>
                 <li class="navigation__item">
                     <a href="about.html" class="navigation__link">About</a>
@@ -673,8 +555,10 @@
                 <li class="navigation__item">
                     <a href="contact.html" class="navigation__link">Contact</a>
                 </li>
-            </ul><!-- /.navigation__list -->
-        </nav><!-- /.navigation -->
+            </ul>
+            <!-- /.navigation__list -->
+        </nav>
+        <!-- /.navigation -->
 
         <div class="logo">
             <a href="../index.html">

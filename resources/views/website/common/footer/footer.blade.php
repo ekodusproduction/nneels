@@ -128,23 +128,23 @@
 
     <div class="footer-bottom">
         <div class="container d-md-flex align-items-center">
-            <span class="footer-copyright me-auto">©2023 Uomo</span>
+            <span class="footer-copyright me-auto">©<?php echo Date('Y'); ?> Nneels</span>
             <div class="footer-settings d-md-flex align-items-center">
                 <select id="footerSettingsLanguage" class="form-select form-select-sm bg-transparent border-0"
                     aria-label="Default select example" name="store-language">
-                    <option class="footer-select__option" selected>United Kingdom | English</option>
+                    {{-- <option class="footer-select__option" selected>United Kingdom | English</option> --}}
                     <option class="footer-select__option" value="1">United States | English</option>
-                    <option class="footer-select__option" value="2">German</option>
+                    {{-- <option class="footer-select__option" value="2">German</option>
                     <option class="footer-select__option" value="3">French</option>
-                    <option class="footer-select__option" value="4">Swedish</option>
+                    <option class="footer-select__option" value="4">Swedish</option> --}}
                 </select>
 
-                <select id="footerSettingsCurrency" class="form-select form-select-sm bg-transparent border-0"
+                {{-- <select id="footerSettingsCurrency" class="form-select form-select-sm bg-transparent border-0"
                     aria-label="Default select example" name="store-language">
                     <option class="footer-select__option" selected>$ USD</option>
                     <option class="footer-select__option" value="1">£ GBP</option>
                     <option class="footer-select__option" value="2">€ EURO</option>
-                </select>
+                </select> --}}
             </div><!-- /.footer-settings -->
         </div><!-- /.container d-flex align-items-center -->
     </div><!-- /.footer-bottom container -->
