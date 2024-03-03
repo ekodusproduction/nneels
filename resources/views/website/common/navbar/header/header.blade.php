@@ -72,7 +72,7 @@
                         </div> --}}
                     </li>
                     <li class="navigation__item">
-                        <a href="#" class="navigation__link js-nav-right d-flex align-items-center">Shop<svg
+                        <a href="{{route('website.nav.shop.index')}}" class="navigation__link js-nav-right d-flex align-items-center">Shop<svg
                                 class="ms-auto" width="7" height="11" viewBox="0 0 7 11"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use href="#icon_next_sm" />
@@ -100,26 +100,6 @@
                                     <ul class="sub-menu__list list-unstyled">
                                         <li class="sub-menu__item"><a href="shop1.html"
                                                 class="menu-link menu-link_us-s">Shop List V1</a></li>
-                                        <li class="sub-menu__item"><a href="shop2.html"
-                                                class="menu-link menu-link_us-s">Shop List V2</a></li>
-                                        <li class="sub-menu__item"><a href="shop3.html"
-                                                class="menu-link menu-link_us-s">Shop List V3</a></li>
-                                        <li class="sub-menu__item"><a href="shop4.html"
-                                                class="menu-link menu-link_us-s">Shop List V4</a></li>
-                                        <li class="sub-menu__item"><a href="shop5.html"
-                                                class="menu-link menu-link_us-s">Shop List V5</a></li>
-                                        <li class="sub-menu__item"><a href="shop6.html"
-                                                class="menu-link menu-link_us-s">Shop List V6</a></li>
-                                        <li class="sub-menu__item"><a href="shop7.html"
-                                                class="menu-link menu-link_us-s">Shop List V7</a></li>
-                                        <li class="sub-menu__item"><a href="shop8.html"
-                                                class="menu-link menu-link_us-s">Shop List V8</a></li>
-                                        <li class="sub-menu__item"><a href="shop9.html"
-                                                class="menu-link menu-link_us-s">Shop List V9</a></li>
-                                        <li class="sub-menu__item"><a href="shop10.html"
-                                                class="menu-link menu-link_us-s">Shop Item Style</a></li>
-                                        <li class="sub-menu__item"><a href="shop11.html"
-                                                class="menu-link menu-link_us-s">Horizontal Scroll</a></li>
                                     </ul>
                                 </div><!-- /.sub-menu__wrapper -->
 
@@ -138,26 +118,6 @@
                                     <ul class="sub-menu__list list-unstyled">
                                         <li class="sub-menu__item"><a href="product2_variable.html"
                                                 class="menu-link menu-link_us-s">Shop Detail V1</a></li>
-                                        <li class="sub-menu__item"><a href="product7_v2.html"
-                                                class="menu-link menu-link_us-s">Shop Detail V2</a></li>
-                                        <li class="sub-menu__item"><a href="product8_v3.html"
-                                                class="menu-link menu-link_us-s">Shop Detail V3</a></li>
-                                        <li class="sub-menu__item"><a href="product9_v4.html"
-                                                class="menu-link menu-link_us-s">Shop Detail V4</a></li>
-                                        <li class="sub-menu__item"><a href="product10_v5.html"
-                                                class="menu-link menu-link_us-s">Shop Detail V5</a></li>
-                                        <li class="sub-menu__item"><a href="product11_v6.html"
-                                                class="menu-link menu-link_us-s">Shop Detail V6</a></li>
-                                        <li class="sub-menu__item"><a href="product12_v7.html"
-                                                class="menu-link menu-link_us-s">Shop Detail V7</a></li>
-                                        <li class="sub-menu__item"><a href="product13_v8.html"
-                                                class="menu-link menu-link_us-s">Shop Detail V8</a></li>
-                                        <li class="sub-menu__item"><a href="product14_v9.html"
-                                                class="menu-link menu-link_us-s">Shop Detail V9</a></li>
-                                        <li class="sub-menu__item"><a href="product15_v10.html"
-                                                class="menu-link menu-link_us-s">Shop Detail V10</a></li>
-                                        <li class="sub-menu__item"><a href="product16_v11.html"
-                                                class="menu-link menu-link_us-s">Shop Detail V11</a></li>
                                     </ul>
                                 </div><!-- /.sub-menu__wrapper -->
 
@@ -392,7 +352,7 @@
                     <a href="{{route('website.nav.home.index')}}" class="navigation__link">Home</a>
                 </li>
                 <li class="navigation__item">
-                    <a href="#" class="navigation__link">Shop</a>
+                    <a href="{{route('website.nav.shop.index')}}" class="navigation__link">Shop</a>
                     {{-- <div class="mega-menu">
                         <div class="container d-flex">
                             <div class="col pe-4">

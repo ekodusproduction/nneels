@@ -4,6 +4,7 @@ use App\Http\Controllers\Website\AboutController;
 use App\Http\Controllers\Website\AccountController;
 use App\Http\Controllers\Website\ContactController;
 use App\Http\Controllers\Website\HomeController;
+use App\Http\Controllers\Website\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,7 @@ Route::group(['prefix' => 'website'], function(){
         Route::get('home', [HomeController::class, 'index'])->name('website.nav.home.index');
         Route::get('about', [AboutController::class, 'index'])->name('website.nav.about.index');
         Route::get('contact', [ContactController::class, 'index'])->name('website.nav.contact.index');
+        Route::get('shop', [ShopController::class, 'index'])->name('website.nav.shop.index');
     });
 
     Route::group(['prefix' => 'account'], function(){
