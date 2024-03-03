@@ -10,7 +10,7 @@
 
         <div class="logo">
             <a href="../index.html">
-                <img src="../images/logo.png" alt="Uomo" class="logo__image d-block">
+                <img src="{{asset('images/logo.png')}}" alt="Uomo" class="logo__image d-block">
             </a>
         </div><!-- /.logo -->
 
@@ -50,7 +50,7 @@
             <div class="overflow-hidden">
                 <ul class="navigation__list list-unstyled position-relative">
                     <li class="navigation__item">
-                        <a href="#" class="navigation__link js-nav-right d-flex align-items-center">Home<svg
+                        <a href="{{route('website.home.index')}}" class="navigation__link js-nav-right d-flex align-items-center">Home<svg
                                 class="ms-auto" width="7" height="11" viewBox="0 0 7 11"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use href="#icon_next_sm" />
@@ -63,52 +63,10 @@
                                     <use href="#icon_prev_sm" />
                                 </svg>Home</a>
                             <ul class="list-unstyled">
-                                <li class="sub-menu__item"><a href="../Demo1/index.html"
-                                        class="menu-link menu-link_us-s">Home 1</a></li>
-                                <li class="sub-menu__item"><a href="index.html" class="menu-link menu-link_us-s">Home
-                                        2</a></li>
-                                <li class="sub-menu__item"><a href="../Demo3/index.html"
-                                        class="menu-link menu-link_us-s">Home 3</a></li>
-                                <li class="sub-menu__item"><a href="../Demo4/index.html"
-                                        class="menu-link menu-link_us-s">Home 4</a></li>
-                                <li class="sub-menu__item"><a href="../Demo5/index.html"
-                                        class="menu-link menu-link_us-s">Home 5</a></li>
-                                <li class="sub-menu__item"><a href="../Demo6/index.html"
-                                        class="menu-link menu-link_us-s">Home 6</a></li>
-                                <li class="sub-menu__item"><a href="../Demo7/index.html"
-                                        class="menu-link menu-link_us-s">Home 7</a></li>
-                                <li class="sub-menu__item"><a href="../Demo8/index.html"
-                                        class="menu-link menu-link_us-s">Home 8</a></li>
-                                <li class="sub-menu__item"><a href="../Demo9/index.html"
-                                        class="menu-link menu-link_us-s">Home 9</a></li>
-                                <li class="sub-menu__item"><a href="../Demo10/index.html"
-                                        class="menu-link menu-link_us-s">Home 10</a></li>
-                                <li class="sub-menu__item"><a href="../Demo11/index.html"
-                                        class="menu-link menu-link_us-s">Home 11</a></li>
-                                <li class="sub-menu__item"><a href="../Demo12/index.html"
-                                        class="menu-link menu-link_us-s">Home 12</a></li>
-                                <li class="sub-menu__item"><a href="../Demo13/index.html"
-                                        class="menu-link menu-link_us-s">Home 13</a></li>
-                                <li class="sub-menu__item"><a href="../Demo14/index.html"
-                                        class="menu-link menu-link_us-s">Home 14</a></li>
-                                <li class="sub-menu__item"><a href="../Demo15/index.html"
-                                        class="menu-link menu-link_us-s">Home 15</a></li>
-                                <li class="sub-menu__item"><a href="../Demo16/index.html"
-                                        class="menu-link menu-link_us-s">Home 16</a></li>
-                                <li class="sub-menu__item"><a href="../Demo17/index.html"
-                                        class="menu-link menu-link_us-s">Home 17</a></li>
-                                <li class="sub-menu__item"><a href="../Demo18/index.html"
-                                        class="menu-link menu-link_us-s">Home 18</a></li>
-                                <li class="sub-menu__item"><a href="../Demo19/index.html"
-                                        class="menu-link menu-link_us-s">Home 19</a></li>
-                                <li class="sub-menu__item"><a href="../Demo20/index.html"
-                                        class="menu-link menu-link_us-s">Home 20</a></li>
-                                <li class="sub-menu__item"><a href="../Demo21/index.html"
-                                        class="menu-link menu-link_us-s">Home 21</a></li>
-                                <li class="sub-menu__item"><a href="../Demo22/index.html"
-                                        class="menu-link menu-link_us-s">Home 22</a></li>
-                                <li class="sub-menu__item"><a href="../Demo23/index.html"
-                                        class="menu-link menu-link_us-s">Home 23</a></li>
+                                <li class="sub-menu__item">
+                                    <a href="../Demo1/index.html" class="menu-link menu-link_us-s">Home 1</a>
+                                </li>
+                               
                             </ul>
                             <!-- /.box-menu -->
                         </div> --}}
@@ -431,7 +389,7 @@
 
             <ul class="navigation__list list-unstyled d-flex">
                 <li class="navigation__item">
-                    <a href="#" class="navigation__link">Home</a>
+                    <a href="{{route('website.home.index')}}" class="navigation__link">Home</a>
                 </li>
                 <li class="navigation__item">
                     <a href="#" class="navigation__link">Shop</a>
@@ -562,7 +520,7 @@
 
         <div class="logo">
             <a href="../index.html">
-                <img src="../images/logo.png" alt="Uomo" class="logo__image d-block">
+                <img src="{{asset('images/logo.png')}}" alt="Uomo" class="logo__image d-block">
             </a>
         </div><!-- /.logo -->
 

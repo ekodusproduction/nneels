@@ -20,6 +20,7 @@
 
       <!-- Stylesheets -->
       <link rel="stylesheet" href="{{ asset('assets/Demo2/css/plugins/swiper.min.css') }}" type="text/css">
+      <link rel="stylesheet" href="{{ asset('assets/Demo2/css/plugins/jquery.fancybox.css') }}" type="text/css">
       <link rel="stylesheet" href="{{ asset('assets/Demo2/css/style.css') }}" type="text/css">
 
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Website\AccountController;
 use App\Http\Controllers\Website\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,10 @@ Route::get('/', function () {
 Route::group(['prefix' => 'website'], function(){
     Route::group(['prefix' => 'home'], function(){
         Route::get('', [HomeController::class, 'index'])->name('website.home.index');
+    });
+
+    Route::group(['prefix' => 'account'], function(){
+        Route::get('signin-signup', [AccountController::class, 'signinSignup'])->name('website.account.signin.signup.page');
     });
 });
 
