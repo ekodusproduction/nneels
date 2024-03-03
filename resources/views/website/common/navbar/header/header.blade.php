@@ -50,7 +50,7 @@
             <div class="overflow-hidden">
                 <ul class="navigation__list list-unstyled position-relative">
                     <li class="navigation__item">
-                        <a href="{{route('website.home.index')}}" class="navigation__link js-nav-right d-flex align-items-center">Home<svg
+                        <a href="{{route('website.nav.home.index')}}" class="navigation__link js-nav-right d-flex align-items-center">Home<svg
                                 class="ms-auto" width="7" height="11" viewBox="0 0 7 11"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use href="#icon_next_sm" />
@@ -231,11 +231,11 @@
                     </li>
 
                     <li class="navigation__item">
-                        <a href="about.html" class="navigation__link">About</a>
+                        <a href="{{route('website.nav.about.index')}}" class="navigation__link">About</a>
                     </li>
 
                     <li class="navigation__item">
-                        <a href="contact.html" class="navigation__link">Contact</a>
+                        <a href="{{route('website.nav.contact.index')}}" class="navigation__link">Contact</a>
                     </li>
                 </ul><!-- /.navigation__list -->
             </div><!-- /.overflow-hidden -->
@@ -326,7 +326,7 @@
         <ul class="list-unstyled d-flex flex-1 gap-3 m-0">
             <li><a href="#" class="menu-link menu-link_us-s color-white">Shipping</a></li>
             <li><a href="#" class="menu-link menu-link_us-s color-white">FAQ</a></li>
-            <li><a href="#" class="menu-link menu-link_us-s color-white">Contact</a></li>
+            <li><a href="{{route('website.nav.contact.index')}}" class="menu-link menu-link_us-s color-white">Contact</a></li>
             <li><a href="#" class="menu-link menu-link_us-s color-white">Track Order</a></li>
         </ul>
         <p class="mx-auto mb-0">FREE SHIPPING WORLDWIDE</p>
@@ -389,7 +389,7 @@
 
             <ul class="navigation__list list-unstyled d-flex">
                 <li class="navigation__item">
-                    <a href="{{route('website.home.index')}}" class="navigation__link">Home</a>
+                    <a href="{{route('website.nav.home.index')}}" class="navigation__link">Home</a>
                 </li>
                 <li class="navigation__item">
                     <a href="#" class="navigation__link">Shop</a>
@@ -508,10 +508,10 @@
                     <!-- /.box-menu -->
                 </li>
                 <li class="navigation__item">
-                    <a href="about.html" class="navigation__link">About</a>
+                    <a href="{{route('website.nav.about.index')}}" class="navigation__link">About</a>
                 </li>
                 <li class="navigation__item">
-                    <a href="contact.html" class="navigation__link">Contact</a>
+                    <a href="{{route('website.nav.contact.index')}}" class="navigation__link">Contact</a>
                 </li>
             </ul>
             <!-- /.navigation__list -->

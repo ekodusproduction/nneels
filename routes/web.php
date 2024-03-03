@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Website\AboutController;
 use App\Http\Controllers\Website\AccountController;
+use App\Http\Controllers\Website\ContactController;
 use App\Http\Controllers\Website\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +22,12 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'website'], function(){
-    Route::group(['prefix' => 'home'], function(){
-        Route::get('', [HomeController::class, 'index'])->name('website.home.index');
+
+
+    Route::group(['prefix' => 'nav'], function(){
+        Route::get('home', [HomeController::class, 'index'])->name('website.nav.home.index');
+        Route::get('about', [AboutController::class, 'index'])->name('website.nav.about.index');
+        Route::get('contact', [ContactController::class, 'index'])->name('website.nav.contact.index');
     });
 
     Route::group(['prefix' => 'account'], function(){

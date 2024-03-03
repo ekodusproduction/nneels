@@ -14,7 +14,7 @@
         <div class="row row-cols-lg-5 row-cols-2">
             <div class="footer-column footer-store-info col-12 mb-4 mb-lg-0">
                 <div class="logo">
-                    <a href="../index.html">
+                    <a href="{{route('website.nav.home.index')}}">
                         <img src="{{asset('images/logo-white.png')}}" alt="Uomo" class="logo__image">
                     </a>
                 </div><!-- /.logo -->
@@ -75,11 +75,11 @@
             <div class="footer-column footer-menu mb-4 mb-lg-0">
                 <h6 class="sub-menu__title text-uppercase">Company</h6>
                 <ul class="sub-menu__list list-unstyled">
-                    <li class="sub-menu__item"><a href="about.html" class="menu-link menu-link_us-s">About Us</a></li>
-                    <li class="sub-menu__item"><a href="about.html" class="menu-link menu-link_us-s">Careers</a></li>
-                    <li class="sub-menu__item"><a href="about.html" class="menu-link menu-link_us-s">Affiliates</a></li>
+                    <li class="sub-menu__item"><a href="{{route('website.nav.about.index')}}" class="menu-link menu-link_us-s">About Us</a></li>
+                    {{-- <li class="sub-menu__item"><a href="about.html" class="menu-link menu-link_us-s">Careers</a></li>
+                    <li class="sub-menu__item"><a href="about.html" class="menu-link menu-link_us-s">Affiliates</a></li> --}}
                     <li class="sub-menu__item"><a href="blog_list1.html" class="menu-link menu-link_us-s">Blog</a></li>
-                    <li class="sub-menu__item"><a href="contact.html" class="menu-link menu-link_us-s">Contact Us</a>
+                    <li class="sub-menu__item"><a href="{{route('website.nav.contact.index')}}" class="menu-link menu-link_us-s">Contact Us</a>
                     </li>
                 </ul>
             </div><!-- /.footer-column -->
@@ -108,7 +108,7 @@
                             Store</a></li>
                     <li class="sub-menu__item"><a href="terms.html" class="menu-link menu-link_us-s">Legal &
                             Privacy</a></li>
-                    <li class="sub-menu__item"><a href="contact.html" class="menu-link menu-link_us-s">Contact</a>
+                    <li class="sub-menu__item"><a href="{{route('website.nav.contact.index')}}" class="menu-link menu-link_us-s">Contact</a>
                     </li>
                     <li class="sub-menu__item"><a href="about.html" class="menu-link menu-link_us-s">Gift Card</a>
                     </li>
@@ -155,7 +155,7 @@
 <footer class="footer-mobile container w-100 px-5 d-md-none bg-body">
     <div class="row text-center">
         <div class="col-4">
-            <a href="../index.html" class="footer-mobile__link d-flex flex-column align-items-center">
+            <a href="{{route('website.nav.home.index')}}" class="footer-mobile__link d-flex flex-column align-items-center">
                 <svg class="d-block" width="18" height="18" viewBox="0 0 18 18" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <use href="#icon_home" />

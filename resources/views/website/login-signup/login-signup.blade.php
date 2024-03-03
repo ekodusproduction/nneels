@@ -8,7 +8,7 @@
 
     <div class="mt-5 pb-4"></div>
     
-    <section class="login-register container">
+    <section class="login-register container mt-5">
         <h2 class="d-none">Login & Register</h2>
         <ul class="nav nav-tabs mb-5" id="login_register" role="tablist">
             <li class="nav-item" role="presentation">

@@ -60,6 +60,8 @@
     <script src="{{ asset('assets/Demo2/js/plugins/swiper.min.js') }}"></script>
     <script src="{{ asset('assets/Demo2/js/plugins/countdown.js') }}"></script>
 
+    <script src="{{ asset('assets/Demo2/js/plugins/jquery.fancybox.js') }}"></script>
+
     <!-- Footer Scripts -->
     <script src="{{ asset('assets/Demo2/js/theme.js') }}"></script>
 
