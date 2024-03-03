@@ -27,7 +27,7 @@
                 <img loading="lazy" class="w-100 h-auto" src="{{asset('images/home/demo2/grid_banner_3.jpg')}}" width="450"
                     height="450" alt="">
                 <div class="content_abs content_center text-center">
-                    <p class="text-white mb-1">Free delivery for Uomo members</p>
+                    <p class="text-white mb-1">Free delivery for Nneels members</p>
                     <h3 class="text-uppercase fw-bold text-white mb-1">Promotions Up</h3>
                     <h3 class="text-uppercase fw-bold text-white mb-1">To 10% Off</h3>
                     <a href="shop1.html" class="btn-link default-underline text-uppercase text-white fw-medium">See

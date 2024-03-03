@@ -13,7 +13,7 @@
                     <div class="block-newsletter w-100">
                         <h3 class="block__title">Sign Up to Our Newsletter</h3>
                         <p>Be the first to get the latest news about trends, promotions, and much more!</p>
-                        <form action="https://uomo-html.flexkitux.com/Demo2/index.html"
+                        <form action="https://Nneels-html.flexkitux.com/Demo2/index.html"
                             class="footer-newsletter__form position-relative bg-body">
                             <input class="form-control border-2" type="email" name="email"
                                 placeholder="Your email address">

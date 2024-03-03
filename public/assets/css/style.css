@@ -3,7 +3,6 @@
 
 /* Reset ================================================================================= */
 .media {
-  // Proper spacing between instances of .media
   margin-top: 15px;
 
   &:first-child {
@@ -36,15 +35,10 @@
   vertical-align: bottom;
 }
 
-// Reset margins on headings for tighter default spacing
 .media-heading {
   margin-top: 0;
   margin-bottom: 5px;
 }
-
-// Media list variation
-//
-// Undo default ul/ol styles
 .media-list {
   padding-left: 0;
   list-style: none;
@@ -196,7 +190,7 @@ a{
   left: 0;
   width: 100%;
     -webkit-transform: translate(0, -50%);
-    -ms-transform: translate(0, -50%); // IE9 only
+    -ms-transform: translate(0, -50%);
      -o-transform: translate(0, -50%);
       transform: translate(0, -50%);
 }

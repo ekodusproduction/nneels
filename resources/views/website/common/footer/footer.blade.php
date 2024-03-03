@@ -3,7 +3,7 @@
         <div class="block-newsletter dark">
             <h3 class="block__title">Get 10% Off</h3>
             <p>Be the first to get the latest news about trends, promotions, and much more!</p>
-            <form action="https://uomo-html.flexkitux.com/Demo2/index.html" class="block-newsletter__form">
+            <form action="https://Nneels-html.flexkitux.com/Demo2/index.html" class="block-newsletter__form">
                 <input class="form-control" type="email" name="email" placeholder="Your email address">
                 <button class="btn btn-secondary fw-medium" type="submit">JOIN</button>
             </form>
@@ -15,13 +15,13 @@
             <div class="footer-column footer-store-info col-12 mb-4 mb-lg-0">
                 <div class="logo">
                     <a href="{{route('website.nav.home.index')}}">
-                        <img src="{{asset('images/logo-white.png')}}" alt="Uomo" class="logo__image">
+                        <img src="{{asset('assets/images/nneels-logo.png')}}" alt="Nneels" class="logo__image">
                     </a>
                 </div><!-- /.logo -->
                 <p class="footer-address">1418 River Drive, Suite 35 Cottonhall, CA 9622 United States</p>
 
                 <p class="m-0">
-                    <strong class="fw-medium">sale@uomo.com</strong>
+                    <strong class="fw-medium">sale@Nneels.com</strong>
                 </p>
                 <p>
                     <strong class="fw-medium">+1 246-345-0695</strong>
@@ -102,7 +102,7 @@
                 <ul class="sub-menu__list list-unstyled">
                     <li class="sub-menu__item"><a href="about.html" class="menu-link menu-link_us-s">Customer
                             Service</a></li>
-                    <li class="sub-menu__item"><a href="account_dashboard.html" class="menu-link menu-link_us-s">My
+                    <li class="sub-menu__item"><a href="{{route('website.account.myaccount')}}" class="menu-link menu-link_us-s">My
                             Account</a></li>
                     <li class="sub-menu__item"><a href="store_location.html" class="menu-link menu-link_us-s">Find a
                             Store</a></li>

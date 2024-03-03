@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-fullscreen">
         <div class="sitemap d-flex">
             <div class="w-50 d-none d-lg-block">
-                <img loading="lazy" src="../images/nav-bg.jpg" alt="Site map" class="sitemap__bg">
+                <img loading="lazy" src="{{asset('images/nav-bg.jpg')}}" alt="Site map" class="sitemap__bg">
             </div><!-- /.sitemap__bg w-50 d-none d-lg-block -->
             <div class="sitemap__links w-50 flex-grow-1">
                 <div class="modal-content">

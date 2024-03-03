@@ -36,6 +36,12 @@ Route::group(['prefix' => 'website'], function(){
 
     Route::group(['prefix' => 'account'], function(){
         Route::get('signin-signup', [AccountController::class, 'signinSignup'])->name('website.account.signin.signup.page');
+        Route::get('my-account', [AccountController::class, 'myAccount'])->name('website.account.myaccount');
+        Route::get('my-orders', [AccountController::class, 'myOrders'])->name('website.account.myorders');
+        Route::get('my-address', [AccountController::class, 'myAddress'])->name('website.account.myAddress');
+        Route::get('details', [AccountController::class, 'accountDetails'])->name('website.account.details');
+        Route::get('wishlist', [AccountController::class, 'wishlist'])->name('website.account.wishlist');
+        Route::get('logout', [AccountController::class, 'logout'])->name('website.account.logout');
     });
 });
 

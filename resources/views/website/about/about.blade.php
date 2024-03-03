@@ -6,8 +6,8 @@
 
 @section('content')
 
-    <div class="mt-5 pb-4"></div>
-    <section class="about-us container mt-5">
+    <div class="mt-2 pb-4"></div>
+    <section class="about-us container">
         <div class="mw-930">
             <h2 class="page-title">ABOUT NNEELS</h2>
         </div>

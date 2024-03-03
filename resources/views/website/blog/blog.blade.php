@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="mt-5 pb-xl-5"></div>
+    <div class="mt-3 pb-xl-5"></div>
     <section class="blog-page-title mb-4 mb-xl-5">
         <div class="title-bg">
             <img loading="lazy" src="{{asset('images/blog_title_bg.jpg')}}" width="1780" height="420" alt="">

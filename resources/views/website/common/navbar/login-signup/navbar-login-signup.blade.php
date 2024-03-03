@@ -6,11 +6,11 @@
                 <button class="btn-close-lg js-close-aside ms-auto"></button>
             </div><!-- /.aside-header -->
 
-            <form action="https://uomo-html.flexkitux.com/Demo2/login_register.html" method="POST" class="aside-content">
+            <form action="https://Nneels-html.flexkitux.com/Demo2/login_register.html" method="POST" class="aside-content">
                 <div class="form-floating mb-3">
                     <input name="email" type="email" class="form-control form-control_gray"
-                        id="customerNameEmailInput" placeholder="name@example.com">
-                    <label for="customerNameEmailInput">Username or email address *</label>
+                        id="customerNameEmailInput" placeholder="name@example.com" autocomplete="off">
+                    <label for="customerNameEmailInput">Email address *</label>
                 </div>
 
                 <div class="pb-3"></div>
@@ -18,15 +18,10 @@
                 <div class="form-label-fixed mb-3">
                     <label for="customerPasswordInput" class="form-label">Password *</label>
                     <input name="password" id="customerPasswordInput" class="form-control form-control_gray"
-                        type="password" placeholder="********">
+                        type="password" placeholder="********" autocomplete="off">
                 </div>
 
                 <div class="d-flex align-items-center mb-3 pb-2">
-                    <div class="form-check mb-0">
-                        <input name="remember" class="form-check-input form-check-input_fill" type="checkbox"
-                            value="" id="flexCheckDefault">
-                        <label class="form-check-label text-secondary" for="flexCheckDefault">Remember me</label>
-                    </div>
                     <a href="reset_password.html" class="btn-text ms-auto">Lost password?</a>
                 </div>
 
@@ -34,7 +29,7 @@
 
                 <div class="customer-option mt-4 text-center">
                     <span class="text-secondary">No account yet?</span>
-                    <a href="{{route('website.account.signin.signup.page')}}" class="btn-text js-show-register">Create Account</a>
+                    <a href="javascript:void(0)" class="btn-text js-show-register">Create Account</a>
                 </div>
             </form>
         </div><!-- /.customer__login -->
@@ -45,20 +40,21 @@
                 <button class="btn-close-lg js-close-aside btn-close-aside ms-auto"></button>
             </div><!-- /.aside-header -->
 
-            <form action="https://uomo-html.flexkitux.com/Demo2/login_register.html" method="POST"
+            <form action="#" method="POST"
                 class="aside-content">
-                <div class="form-floating mb-4">
-                    <input name="username" type="text" class="form-control form-control_gray"
-                        id="registerUserNameInput" placeholder="Username">
-                    <label for="registerUserNameInput">Username</label>
-                </div>
-
-                <div class="pb-1"></div>
 
                 <div class="form-floating mb-4">
                     <input name="email" type="email" class="form-control form-control_gray"
                         id="registerUserEmailInput" placeholder="user@company.com">
                     <label for="registerUserEmailInput">Email address *</label>
+                </div>
+
+                <div class="pb-1"></div>
+
+                <div class="form-floating mb-4">
+                    <input name="phone" type="text" class="form-control form-control_gray"
+                        id="registerPhoneInput" placeholder="+1 XXX XXX-XXXX">
+                    <label for="registerPhoneInput">Phone Number *</label>
                 </div>
 
                 <div class="pb-1"></div>
@@ -80,6 +76,8 @@
                     <a href="#" class="btn-text js-show-login">Login</a>
                 </div>
             </form>
-        </div><!-- /.customer__register -->
+        </div>
+        
+        <!-- /.customer__register -->
     </div><!-- /.customer-forms__wrapper -->
 </div>
