@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Website\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('website.home.home');
+});
+
+Route::group(['prefix' => 'home'], function(){
+    Route::get('', [HomeController::class, 'index'])->name('website.home.index');
 });

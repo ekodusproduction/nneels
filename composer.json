@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "Nneels Ecommerce",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "Nneels is an online ecommerce platform for United States of America",
+    "keywords": ["Nneels", "Ecommerce"],
     "license": "MIT",
     "require": {
         "php": "^8.1",
