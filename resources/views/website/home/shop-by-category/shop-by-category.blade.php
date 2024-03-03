@@ -38,7 +38,7 @@
         }'>
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img loading="lazy" class="w-100 h-auto mb-3" src="../images/home/demo2/category1.jpg" width="258"
+                    <img loading="lazy" class="w-100 h-auto mb-3" src="{{asset('images/home/demo2/category1.jpg')}}" width="258"
                         height="278" alt="">
                     <div class="text-center">
                         <a href="#" class="menu-link menu-link_us-s text-uppercase">Accessories</a>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="swiper-slide">
-                    <img loading="lazy" class="w-100 h-auto mb-3" src="../images/home/demo2/category2.jpg"
+                    <img loading="lazy" class="w-100 h-auto mb-3" src="{{asset('images/home/demo2/category2.jpg')}}"
                         width="258" height="278" alt="">
                     <div class="text-center">
                         <a href="#" class="menu-link menu-link_us-s text-uppercase">Bags</a>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class="swiper-slide">
-                    <img loading="lazy" class="w-100 h-auto mb-3" src="../images/home/demo2/category3.jpg"
+                    <img loading="lazy" class="w-100 h-auto mb-3" src="{{asset('images/home/demo2/category3.jpg')}}"
                         width="258" height="278" alt="">
                     <div class="text-center">
                         <a href="#" class="menu-link menu-link_us-s text-uppercase">Shoes</a>
@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="swiper-slide">
-                    <img loading="lazy" class="w-100 h-auto mb-3" src="../images/home/demo2/category4.jpg"
+                    <img loading="lazy" class="w-100 h-auto mb-3" src="{{asset('images/home/demo2/category4.jpg')}}"
                         width="258" height="278" alt="">
                     <div class="text-center">
                         <a href="#" class="menu-link menu-link_us-s text-uppercase">Outerwear</a>
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="swiper-slide">
-                    <img loading="lazy" class="w-100 h-auto mb-3" src="../images/home/demo2/category5.jpg"
+                    <img loading="lazy" class="w-100 h-auto mb-3" src="{{asset('images/home/demo2/category5.jpg')}}"
                         width="258" height="278" alt="">
                     <div class="text-center">
                         <a href="#" class="menu-link menu-link_us-s text-uppercase">Top</a>

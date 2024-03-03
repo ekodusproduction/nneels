@@ -31,25 +31,25 @@
         }'>
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img loading="lazy" src="../images/brands/brand1.png" width="120" height="20" alt="">
+                    <img loading="lazy" src="{{asset('images/brands/brand1.png')}}" width="120" height="20" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img loading="lazy" src="../images/brands/brand2.png" width="87" height="20" alt="">
+                    <img loading="lazy" src="{{asset('images/brands/brand2.png')}}" width="87" height="20" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img loading="lazy" src="../images/brands/brand3.png" width="132" height="22" alt="">
+                    <img loading="lazy" src="{{asset('images/brands/brand3.png')}}" width="132" height="22" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img loading="lazy" src="../images/brands/brand4.png" width="72" height="21" alt="">
+                    <img loading="lazy" src="{{asset('images/brands/brand4.png')}}" width="72" height="21" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img loading="lazy" src="../images/brands/brand5.png" width="123" height="31" alt="">
+                    <img loading="lazy" src="{{asset('images/brands/brand5.png')}}" width="123" height="31" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img loading="lazy" src="../images/brands/brand6.png" width="137" height="22" alt="">
+                    <img loading="lazy" src="{{asset('images/brands/brand6.png')}}" width="137" height="22" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img loading="lazy" src="../images/brands/brand7.png" width="94" height="21" alt="">
+                    <img loading="lazy" src="{{asset('images/brands/brand7.png')}}" width="94" height="21" alt="">
                 </div>
             </div><!-- /.swiper-wrapper -->
         </div><!-- /.swiper-container js-swiper-slider -->

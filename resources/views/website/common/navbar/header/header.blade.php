@@ -9,7 +9,7 @@
         </a>
 
         <div class="logo">
-            <a href="../index.html">
+            <a href="/">
                 <img src="{{asset('images/logo.png')}}" alt="Uomo" class="logo__image d-block">
             </a>
         </div><!-- /.logo -->
@@ -441,7 +441,7 @@
         <!-- /.navigation -->
 
         <div class="logo">
-            <a href="../index.html">
+            <a href="/">
                 <img src="{{asset('images/logo.png')}}" alt="Uomo" class="logo__image d-block">
             </a>
         </div><!-- /.logo -->

@@ -18,16 +18,16 @@
                 }'>
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide product-single__image-item">
-                                    <img loading="lazy" src="../images/products/quickview_1.jpg" alt="">
+                                    <img loading="lazy" src="{{asset('images/products/quickview_1.jpg')}}" alt="">
                                 </div>
                                 <div class="swiper-slide product-single__image-item">
-                                    <img loading="lazy" src="../images/products/quickview_2.jpg" alt="">
+                                    <img loading="lazy" src="{{asset('images/products/quickview_2.jpg')}}" alt="">
                                 </div>
                                 <div class="swiper-slide product-single__image-item">
-                                    <img loading="lazy" src="../images/products/quickview_3.jpg" alt="">
+                                    <img loading="lazy" src="{{asset('images/products/quickview_3.jpg')}}" alt="">
                                 </div>
                                 <div class="swiper-slide product-single__image-item">
-                                    <img loading="lazy" src="../images/products/quickview_4.jpg" alt="">
+                                    <img loading="lazy" src="{{asset('images/products/quickview_4.jpg')}}" alt="">
                                 </div>
                             </div>
                             <div class="swiper-button-prev"><svg width="7" height="11" viewBox="0 0 7 11"

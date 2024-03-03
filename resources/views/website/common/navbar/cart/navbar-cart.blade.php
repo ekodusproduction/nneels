@@ -7,7 +7,7 @@
     <div class="aside-content cart-drawer-items-list">
         <div class="cart-drawer-item d-flex position-relative">
             <div class="position-relative">
-                <img loading="lazy" class="cart-drawer-item__img" src="../images/cart-item-1.jpg" alt="">
+                <img loading="lazy" class="cart-drawer-item__img" src="{{asset('images/cart-item-1.jpg')}}" alt="">
             </div>
             <div class="cart-drawer-item__info flex-grow-1">
                 <h6 class="cart-drawer-item__title fw-normal">Zessi Dresses</h6>
@@ -31,7 +31,7 @@
 
         <div class="cart-drawer-item d-flex position-relative">
             <div class="position-relative">
-                <img loading="lazy" class="cart-drawer-item__img" src="../images/cart-item-2.jpg" alt="">
+                <img loading="lazy" class="cart-drawer-item__img" src="{{asset('images/cart-item-2.jpg')}}" alt="">
             </div>
             <div class="cart-drawer-item__info flex-grow-1">
                 <h6 class="cart-drawer-item__title fw-normal">Kirby T-Shirt</h6>
@@ -55,7 +55,7 @@
 
         <div class="cart-drawer-item d-flex position-relative">
             <div class="position-relative">
-                <img loading="lazy" class="cart-drawer-item__img" src="../images/cart-item-3.jpg" alt="">
+                <img loading="lazy" class="cart-drawer-item__img" src="{{asset('images/cart-item-3.jpg')}}" alt="">
             </div>
             <div class="cart-drawer-item__info flex-grow-1">
                 <h6 class="cart-drawer-item__title fw-normal">Cableknit Shawl</h6>

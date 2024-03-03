@@ -16,7 +16,7 @@
         <div class="swiper-slide">
             <div class="overflow-hidden position-relative h-100">
                 <div class="slideshow-bg">
-                    <img loading="lazy" src="../images/home/demo2/slider1.jpg" width="1903" height="896" alt="Pattern"
+                    <img loading="lazy" src="{{asset('images/home/demo2/slider1.jpg')}}" width="1903" height="896" alt="Pattern"
                         class="slideshow-bg__img object-fit-cover" style="object-position: 80% center;">
                 </div>
                 <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
@@ -39,7 +39,7 @@
         <div class="swiper-slide">
             <div class="overflow-hidden position-relative h-100">
                 <div class="slideshow-bg">
-                    <img loading="lazy" src="../images/home/demo2/slider2.jpg" width="1903" height="896"
+                    <img loading="lazy" src="{{asset('images/home/demo2/slider2.jpg')}}" width="1903" height="896"
                         alt="Pattern" class="slideshow-bg__img object-fit-cover" style="object-position: 70% center;">
                 </div>
                 <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
@@ -62,7 +62,7 @@
         <div class="swiper-slide">
             <div class="overflow-hidden position-relative h-100">
                 <div class="slideshow-bg">
-                    <img loading="lazy" src="../images/home/demo2/slider3.jpg" width="1903" height="896"
+                    <img loading="lazy" src="{{asset('images/home/demo2/slider3.jpg')}}" width="1903" height="896"
                         alt="Pattern" class="slideshow-bg__img object-fit-cover" style="object-position: 70% center;">
                 </div>
                 <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">

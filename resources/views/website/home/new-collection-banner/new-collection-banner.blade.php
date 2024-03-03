@@ -1,6 +1,6 @@
 <section class="image-banner">
     <div class="background-img"
-        style="background-image: url('../images/home/demo2/image_banner_bg.jpg'); background-position: 20% center;">
+        style="background-image: url({{asset('images/home/demo2/image_banner_bg.jpg')}}); background-position: 20% center;">
     </div>
     <div class="image-banner__content container py-3">
         <h2 class="text-white fw-bold">New Season</h2>

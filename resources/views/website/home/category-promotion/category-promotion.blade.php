@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="grid-banner__item position-relative mb-3">
-                <img loading="lazy" class="w-100 h-auto" src="../images/home/demo2/grid_banner_1.jpg" width="450"
+                <img loading="lazy" class="w-100 h-auto" src="{{asset('images/home/demo2/grid_banner_1.jpg')}}" width="450"
                     height="450" alt="">
                 <div class="content_abs content_center text-center">
                     <h3 class="text-uppercase fw-bold mb-1">New</h3>
@@ -13,7 +13,7 @@
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
             <div class="grid-banner__item position-relative mb-3">
-                <img loading="lazy" class="w-100 h-auto" src="../images/home/demo2/grid_banner_2.jpg" width="450"
+                <img loading="lazy" class="w-100 h-auto" src="{{asset('images/home/demo2/grid_banner_2.jpg')}}" width="450"
                     height="450" alt="">
                 <div class="content_abs content_center text-center">
                     <h3 class="text-uppercase fw-bold mb-1">Summer</h3>
@@ -24,7 +24,7 @@
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
             <div class="grid-banner__item position-relative mb-3">
-                <img loading="lazy" class="w-100 h-auto" src="../images/home/demo2/grid_banner_3.jpg" width="450"
+                <img loading="lazy" class="w-100 h-auto" src="{{asset('images/home/demo2/grid_banner_3.jpg')}}" width="450"
                     height="450" alt="">
                 <div class="content_abs content_center text-center">
                     <p class="text-white mb-1">Free delivery for Uomo members</p>
