@@ -165,29 +165,11 @@
                     </li>
 
                     <li class="navigation__item">
-                        <a href="#" class="navigation__link js-nav-right d-flex align-items-center">Blog<svg
+                        <a href="{{route('website.nav.blog.index')}}" class="navigation__link js-nav-right d-flex align-items-center">Blog<svg
                                 class="ms-auto" width="7" height="11" viewBox="0 0 7 11"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use href="#icon_next_sm" />
                             </svg></a>
-                        {{-- <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
-                            <a href="#"
-                                class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-2"><svg
-                                    class="me-2" width="7" height="11" viewBox="0 0 7 11"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <use href="#icon_prev_sm" />
-                                </svg>Blog</a>
-                            <ul class="list-unstyled">
-                                <li class="sub-menu__item"><a href="blog_list1.html"
-                                        class="menu-link menu-link_us-s">Blog V1</a></li>
-                                <li class="sub-menu__item"><a href="blog_list2.html"
-                                        class="menu-link menu-link_us-s">Blog V2</a></li>
-                                <li class="sub-menu__item"><a href="blog_list3.html"
-                                        class="menu-link menu-link_us-s">Blog V3</a></li>
-                                <li class="sub-menu__item"><a href="blog_single.html"
-                                        class="menu-link menu-link_us-s">Blog Detail</a></li>
-                            </ul>
-                        </div> --}}
                     </li>
 
                     <li class="navigation__item">
@@ -221,16 +203,6 @@
                     <option class="footer-select__option" value="4">Swedish</option> --}}
                 </select>
             </div>
-
-            {{-- <div class="container d-flex align-items-center">
-                <label for="footerSettingsCurrency_mobile" class="me-2 text-secondary">Currency</label>
-                <select id="footerSettingsCurrency_mobile" class="form-select form-select-sm bg-transparent border-0"
-                    aria-label="Default select example" name="store-language">
-                    <option selected>$ USD</option>
-                    <option value="1">£ GBP</option>
-                    <option value="2">€ EURO</option>
-                </select>
-            </div> --}}
 
             <ul class="container social-links list-unstyled d-flex flex-wrap mb-0">
                 <li>
@@ -454,17 +426,7 @@
                     </div> --}}
                 </li>
                 <li class="navigation__item">
-                    <a href="#" class="navigation__link">Blog</a>
-                    {{-- <ul class="default-menu list-unstyled">
-                        <li class="sub-menu__item"><a href="blog_list1.html" class="menu-link menu-link_us-s">Blog
-                                V1</a></li>
-                        <li class="sub-menu__item"><a href="blog_list2.html" class="menu-link menu-link_us-s">Blog
-                                V2</a></li>
-                        <li class="sub-menu__item"><a href="blog_list3.html" class="menu-link menu-link_us-s">Blog
-                                V3</a></li>
-                        <li class="sub-menu__item"><a href="blog_single.html" class="menu-link menu-link_us-s">Blog
-                                Detail</a></li>
-                    </ul> --}}
+                    <a href="{{route('website.nav.blog.index')}}" class="navigation__link">Blog</a>
                     <!-- /.box-menu -->
                 </li>
                 <li class="navigation__item">

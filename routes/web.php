@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Website\AboutController;
 use App\Http\Controllers\Website\AccountController;
+use App\Http\Controllers\Website\BlogController;
 use App\Http\Controllers\Website\ContactController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\ShopController;
@@ -30,6 +31,7 @@ Route::group(['prefix' => 'website'], function(){
         Route::get('about', [AboutController::class, 'index'])->name('website.nav.about.index');
         Route::get('contact', [ContactController::class, 'index'])->name('website.nav.contact.index');
         Route::get('shop', [ShopController::class, 'index'])->name('website.nav.shop.index');
+        Route::get('blog', [BlogController::class, 'index'])->name('website.nav.blog.index');
     });
 
     Route::group(['prefix' => 'account'], function(){
