@@ -13658,7 +13658,7 @@ textarea.form-control-lg {
     height: 26.25rem; }
   @media (min-width: 992px) {
     .slideshow {
-      height: 50rem; }
+      height: auto; }
       .slideshow.type2 {
         height: 56rem; }
       .slideshow.type3 {
@@ -13693,7 +13693,7 @@ textarea.form-control-lg {
 
 .slideshow-bg__img {
   width: 100%;
-  height: 100%; }
+  height: 520px; }
 
 .slideshow-character__img {
   max-height: 555px; }

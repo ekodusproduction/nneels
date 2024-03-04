@@ -2,6 +2,11 @@
 @section('title', 'Home')
 
 @section('custom-styles')
+  <style>
+    .swiper-wrapper{
+      height: auto;
+    }
+  </style>
 @endsection
 
 @section('content') 

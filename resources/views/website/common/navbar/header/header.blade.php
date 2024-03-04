@@ -137,9 +137,9 @@
             <div class="header-search__category-list js-hidden-content mt-2">
             <ul class="search-suggestion list-unstyled">
                 <li class="search-suggestion__item js-search-select">All Category</li>
-                <li class="search-suggestion__item js-search-select">Men</li>
-                <li class="search-suggestion__item js-search-select">Women</li>
-                <li class="search-suggestion__item js-search-select">Kids</li>
+                <li class="search-suggestion__item js-search-select">Clothing</li>
+                <li class="search-suggestion__item js-search-select">Accessories</li>
+                <li class="search-suggestion__item js-search-select">Homeware</li>
             </ul>
             </div>
         </div>
