@@ -14315,7 +14315,8 @@ textarea.form-control-lg {
 
 @media (min-width: 576px) {
   .block-newsletter {
-    padding: 0 1rem; } }
+    padding: 0 1rem; } 
+  }
 .block-newsletter .block__title {
   color: #222222;
   margin-bottom: 1.125rem; }
@@ -16387,3 +16388,8 @@ body.coming-soon-page {
     display: none; }
   .btn-video-player.playing svg.btn-pause {
     display: block; }
+@media (max-width: 500px) {
+  .nneels-instagram-feed{
+    display: none;
+  }
+}

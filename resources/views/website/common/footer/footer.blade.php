@@ -112,7 +112,7 @@
                 </ul>
             </div><!-- /.footer-column -->
 
-            <div class="footer-column mb-4 mb-lg-0">
+            <div class="footer-column mb-4 mb-lg-0 nneels-instagram-feed">
                 <h6 class="sub-menu__title text-uppercase">Nneel's Instagran Feed</h6>
                 <iframe src="https://widget.taggbox.com/151264" style="width:250px;height:250px;border:none;"></iframe>
 
