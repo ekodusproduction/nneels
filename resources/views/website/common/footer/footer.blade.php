@@ -29,7 +29,7 @@
 
                 <ul class="social-links list-unstyled d-flex flex-wrap mb-0">
                     <li>
-                        <a href="https://www.facebook.com/" class="footer__social-link d-block">
+                        <a href="https://www.facebook.com/nneelsfashionandjewelry" class="footer__social-link d-block" target="_blank">
                             <svg class="svg-icon svg-icon_facebook" width="9" height="15" viewBox="0 0 9 15"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use href="#icon_facebook" />
@@ -45,7 +45,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.instagram.com/" class="footer__social-link d-block">
+                        <a href="https://www.instagram.com/nneels777/" class="footer__social-link d-block" target="_blank">
                             <svg class="svg-icon svg-icon_instagram" width="14" height="13" viewBox="0 0 14 13"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use href="#icon_instagram" />
@@ -87,12 +87,14 @@
             <div class="footer-column footer-menu mb-4 mb-lg-0">
                 <h6 class="sub-menu__title text-uppercase">Shop</h6>
                 <ul class="sub-menu__list list-unstyled">
-                    <li class="sub-menu__item"><a href="shop2.html" class="menu-link menu-link_us-s">New Arrivals</a>
+                    <li class="sub-menu__item"><a href="shop2.html" class="menu-link menu-link_us-s">Sleepware</a>
                     </li>
-                    <li class="sub-menu__item"><a href="shop3.html" class="menu-link menu-link_us-s">Accessories</a>
+                    <li class="sub-menu__item"><a href="shop3.html" class="menu-link menu-link_us-s">Womensware</a>
                     </li>
-                    <li class="sub-menu__item"><a href="shop4.html" class="menu-link menu-link_us-s">Men</a></li>
-                    <li class="sub-menu__item"><a href="shop5.html" class="menu-link menu-link_us-s">Women</a></li>
+                    <li class="sub-menu__item"><a href="shop4.html" class="menu-link menu-link_us-s">Mens</a></li>
+                    <li class="sub-menu__item"><a href="shop5.html" class="menu-link menu-link_us-s">Kids</a></li>
+                    <li class="sub-menu__item"><a href="shop5.html" class="menu-link menu-link_us-s">Accessories</a></li>
+                    <li class="sub-menu__item"><a href="shop5.html" class="menu-link menu-link_us-s">Homeware</a></li>
                     <li class="sub-menu__item"><a href="{{route('website.nav.shop.index')}}" class="menu-link menu-link_us-s">Shop All</a></li>
                 </ul>
             </div><!-- /.footer-column -->
@@ -111,12 +113,19 @@
             </div><!-- /.footer-column -->
 
             <div class="footer-column mb-4 mb-lg-0">
-                <h6 class="sub-menu__title text-uppercase">Opening Time</h6>
-                <ul class="list-unstyled">
+                <h6 class="sub-menu__title text-uppercase">Nneel's Instagran Feed</h6>
+                <iframe src="https://widget.taggbox.com/151264" style="width:250px;height:250px;border:none;"></iframe>
+
+
+                {{-- <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+                <div class="elfsight-app-85849fa5-87c0-4536-af1a-195143549e2b" data-elfsight-app-lazy></div> --}}
+
+                
+                {{-- <ul class="list-unstyled">
                     <li><span class="menu-link">Mon - Fri: 8AM - 9PM</span></li>
                     <li><span class="menu-link">Sat: 9AM - 8PM</span></li>
                     <li><span class="menu-link">Sun: Closed</span></li>
-                </ul>
+                </ul> --}}
             </div><!-- /.footer-column -->
         </div><!-- /.row-cols-5 -->
     </div><!-- /.footer-middle container -->

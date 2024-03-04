@@ -86,7 +86,7 @@
 
         <ul class="container social-links list-unstyled d-flex flex-wrap mb-0">
           <li>
-            <a href="https://www.facebook.com/" class="footer__social-link d-block ps-0">
+            <a href="https://www.facebook.com/nneelsfashionandjewelry" class="footer__social-link d-block ps-0" target="_blank">
               <svg class="svg-icon svg-icon_facebook" width="9" height="15" viewBox="0 0 9 15" xmlns="http://www.w3.org/2000/svg"><use href="#icon_facebook" /></svg>
             </a>
           </li>
@@ -96,7 +96,7 @@
             </a>
           </li>
           <li>
-            <a href="https://www.instagram.com/" class="footer__social-link d-block">
+            <a href="https://www.instagram.com/nneels777/" class="footer__social-link d-block" target="_blank">
               <svg class="svg-icon svg-icon_instagram" width="14" height="13" viewBox="0 0 14 13" xmlns="http://www.w3.org/2000/svg"><use href="#icon_instagram" /></svg>
             </a>
           </li>
