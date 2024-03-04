@@ -9,19 +9,19 @@
                     <div class="modal-header">
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active rounded-1 text-uppercase" id="pills-item-1-tab"
-                                    data-bs-toggle="pill" href="#pills-item-1" role="tab"
-                                    aria-controls="pills-item-1" aria-selected="true">WOMEN</a>
+                                <a class="nav-link active rounded-1 text-uppercase" id="clothing-tab"
+                                    data-bs-toggle="pill" href="#clothing-item" role="tab"
+                                    aria-controls="clothing-item" aria-selected="true">CLOTHING</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link rounded-1 text-uppercase" id="pills-item-2-tab" data-bs-toggle="pill"
-                                    href="#pills-item-2" role="tab" aria-controls="pills-item-2"
-                                    aria-selected="false">MEN</a>
+                                <a class="nav-link rounded-1 text-uppercase" id="accessories-tab" data-bs-toggle="pill"
+                                    href="#accessories-item" role="tab" aria-controls="accessories-item"
+                                    aria-selected="false">ACCESSORIES</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link rounded-1 text-uppercase" id="pills-item-3-tab" data-bs-toggle="pill"
-                                    href="#pills-item-3" role="tab" aria-controls="pills-item-3"
-                                    aria-selected="false">KIDS</a>
+                                <a class="nav-link rounded-1 text-uppercase" id="homeware-tab" data-bs-toggle="pill"
+                                    href="#homeware-item" role="tab" aria-controls="homeware-item"
+                                    aria-selected="false">HOMEWARE</a>
                             </li>
                         </ul>
                         <button type="button" class="btn-close-lg" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -29,274 +29,150 @@
 
                     <div class="modal-body">
                         <div class="tab-content col-12" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-item-1" role="tabpanel"
-                                aria-labelledby="pills-item-1-tab">
+                            <div class="tab-pane fade show active" id="clothing-item" role="tabpanel" aria-labelledby="clothing-tab">
                                 <div class="row">
                                     <ul class="nav nav-tabs list-unstyled col-5 d-block" id="myTab" role="tablist">
                                         <li class="nav-item position-relative" role="presentation">
-                                            <a class="nav-link nav-link_rline active" id="tab-item-1-tab"
-                                                data-bs-toggle="tab" href="#tab-item-1" role="tab"
-                                                aria-controls="tab-item-1" aria-selected="true"><span
-                                                    class="rline-content">WOMEN</span></a>
+                                            <a class="nav-link nav-link_rline active" id="sleepware-tab"
+                                                data-bs-toggle="tab" href="#sleepware-item" role="tab"
+                                                aria-controls="sleepware-item" aria-selected="true"><span
+                                                    class="rline-content">SLEEPWEAR</span></a>
                                         </li>
                                         <li class="nav-item position-relative" role="presentation">
-                                            <a class="nav-link nav-link_rline" id="tab-item-2-tab" data-bs-toggle="tab"
-                                                href="#tab-item-2" role="tab" aria-controls="tab-item-2"
-                                                aria-selected="false"><span class="rline-content">MAN</span></a>
+                                            <a class="nav-link nav-link_rline" id="womensware-tab" data-bs-toggle="tab"
+                                                href="#womensware-item" role="tab" aria-controls="womensware-item"
+                                                aria-selected="false"><span class="rline-content">WOMENSWEAR</span></a>
                                         </li>
                                         <li class="nav-item position-relative" role="presentation">
-                                            <a class="nav-link nav-link_rline" id="tab-item-3-tab" data-bs-toggle="tab"
-                                                href="#tab-item-3" role="tab" aria-controls="tab-item-3"
+                                            <a class="nav-link nav-link_rline" id="mens-tab" data-bs-toggle="tab"
+                                                href="#mens-item" role="tab" aria-controls="mens-item"
+                                                aria-selected="false"><span class="rline-content">MENS</span></a>
+                                        </li>
+                                        <li class="nav-item position-relative" role="presentation">
+                                            <a class="nav-link nav-link_rline" id="kids-tab" data-bs-toggle="tab"
+                                                href="#kids-item" role="tab" aria-controls="kids-item"
                                                 aria-selected="false"><span class="rline-content">KIDS</span></a>
-                                        </li>
-                                        <li class="nav-item position-relative" role="presentation">
-                                            <a class="nav-link nav-link_rline" href="#"><span
-                                                    class="rline-content">HOME</span></a>
-                                        </li>
-                                        <li class="nav-item position-relative" role="presentation">
-                                            <a class="nav-link nav-link_rline" href="#"><span
-                                                    class="rline-content">COLLECTION</span></a>
-                                        </li>
-                                        <li class="nav-item position-relative" role="presentation">
-                                            <a class="nav-link nav-link_rline text-red" href="#">SALE UP TO 50%
-                                                OFF</a>
-                                        </li>
-                                        <li class="nav-item position-relative" role="presentation">
-                                            <a class="nav-link nav-link_rline" href="#"><span
-                                                    class="rline-content">NEW</span></a>
-                                        </li>
-                                        <li class="nav-item position-relative" role="presentation">
-                                            <a class="nav-link nav-link_rline" href="#"><span
-                                                    class="rline-content">SHOES</span></a>
-                                        </li>
-                                        <li class="nav-item position-relative" role="presentation">
-                                            <a class="nav-link nav-link_rline" href="#"><span
-                                                    class="rline-content">ACCESSORIES</span></a>
-                                        </li>
-                                        <li class="nav-item position-relative" role="presentation">
-                                            <a class="nav-link nav-link_rline" href="#"><span
-                                                    class="rline-content">JOIN LIFE</span></a>
-                                        </li>
-                                        <li class="nav-item position-relative" role="presentation">
-                                            <a class="nav-link nav-link_rline" href="#"><span
-                                                    class="rline-content">#UOMOSTYLE</span></a>
                                         </li>
                                     </ul>
 
                                     <div class="tab-content col-7" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="tab-item-1" role="tabpanel"
-                                            aria-labelledby="tab-item-1-tab">
+                                        <div class="tab-pane fade show active" id="sleepware-item" role="tabpanel"
+                                            aria-labelledby="sleepware-tab">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">New</a>
+                                                    <a href="#" class="menu-link menu-link_us-s">Long Pyjama Sets</a>
                                                 </li>
                                                 <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Best
-                                                        Sellers</a>
+                                                    <a href="#" class="menu-link menu-link_us-s">Short PJ Sets</a>
                                                 </li>
                                                 <li class="sub-menu__item">
-                                                    <a href="#"
-                                                        class="menu-link menu-link_us-s">Collaborations®</a>
+                                                    <a href="#" class="menu-link menu-link_us-s">Cotton Nightshirts</a>
                                                 </li>
                                                 <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Sets</a>
+                                                    <a href="#" class="menu-link menu-link_us-s">Cotton Robe</a>
                                                 </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Denim</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Jackets &
-                                                        Coats</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Overshirts</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Trousers</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Jeans</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Dresses</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Sweatshirts and
-                                                        Hoodies</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">T-shirts &
-                                                        Tops</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Shirts &
-                                                        Blouses</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Shorts and
-                                                        Bermudas</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Shoes</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="shop3.html"
-                                                        class="menu-link menu-link_us-s">Accessories</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Bags</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="about.html" class="menu-link menu-link_us-s">Gift
-                                                        Card</a>
-                                                </li>
-                                            </ul><!-- /.sub-menu -->
+                                            </ul>
                                         </div>
-                                        <div class="tab-pane fade" id="tab-item-2" role="tabpanel"
+                                        <div class="tab-pane fade" id="womensware-item" role="tabpanel"
                                             aria-labelledby="tab-item-2-tab">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Best
-                                                        Sellers</a>
+                                                    <a href="#" class="menu-link menu-link_us-s">Quilted long Jacket</a>
                                                 </li>
                                                 <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">New</a>
+                                                    <a href="#" class="menu-link menu-link_us-s">Dress</a>
                                                 </li>
                                                 <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Sets</a>
+                                                    <a href="#" class="menu-link menu-link_us-s">Jumpsuit</a>
                                                 </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Denim</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#"
-                                                        class="menu-link menu-link_us-s">Collaborations®</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Trousers</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Jackets &
-                                                        Coats</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Overshirts</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Dresses</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Jeans</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Sweatshirts and
-                                                        Hoodies</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="about.html" class="menu-link menu-link_us-s">Gift
-                                                        Card</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Shirts &
-                                                        Blouses</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">T-shirts &
-                                                        Tops</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Shorts and
-                                                        Bermudas</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="shop3.html"
-                                                        class="menu-link menu-link_us-s">Accessories</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Shoes</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Bags</a>
-                                                </li>
-                                            </ul><!-- /.sub-menu -->
+                                            </ul>
                                         </div>
-                                        <div class="tab-pane fade" id="tab-item-3" role="tabpanel"
+                                        <div class="tab-pane fade" id="mens-item" role="tabpanel"
                                             aria-labelledby="tab-item-3-tab">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sub-menu__item">
-                                                    <a href="about.html" class="menu-link menu-link_us-s">Gift
-                                                        Card</a>
+                                                    <a href="about.html" class="menu-link menu-link_us-s">Long Pyjama Set</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="tab-pane fade" id="kids-item" role="tabpanel"
+                                            aria-labelledby="tab-item-3-tab">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sub-menu__item">
+                                                    <a href="about.html" class="menu-link menu-link_us-s">Kids Pajama Set</a>
                                                 </li>
                                                 <li class="sub-menu__item">
                                                     <a href="#"
-                                                        class="menu-link menu-link_us-s">Collaborations®</a>
+                                                        class="menu-link menu-link_us-s">Quilted Jacket</a>
                                                 </li>
                                                 <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Sets</a>
+                                                    <a href="#" class="menu-link menu-link_us-s">Dress</a>
                                                 </li>
                                                 <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Denim</a>
+                                                    <a href="#" class="menu-link menu-link_us-s">Bathrobe</a>
                                                 </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">New</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Best
-                                                        Sellers</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Overshirts</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Jackets &
-                                                        Coats</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Jeans</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Trousers</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Shorts and
-                                                        Bermudas</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Shoes</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="shop3.html"
-                                                        class="menu-link menu-link_us-s">Accessories</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Dresses</a>
-                                                </li>
-                                                <li class="sub-menu__item">
-                                                    <a href="#" class="menu-link menu-link_us-s">Bags</a>
-                                                </li>
-                                            </ul><!-- /.sub-menu -->
+                                            </ul>
                                         </div>
                                     </div>
                                 </div><!-- /.row -->
                             </div>
-                            <div class="tab-pane fade" id="pills-item-2" role="tabpanel"
-                                aria-labelledby="pills-item-2-tab">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                    pariatur.</p>
-                                Elementum lectus a porta commodo suspendisse arcu, aliquam lectus faucibus.
+                            <div class="tab-pane fade" id="accessories-item" role="tabpanel" aria-labelledby="accessories-tab">
+                                <div class="row">
+                                    <ul class="nav nav-tabs list-unstyled col-5 d-block" id="myAccessoriesTab" role="tablist">
+                                        <li class="nav-item position-relative" role="presentation">
+                                            <a class="nav-link nav-link_rline" id="accessories-inner-tab"
+                                                data-bs-toggle="tab" href="#accessories-inner-item" role="tab"
+                                                aria-controls="accessories-inner-item" aria-selected="true"><span
+                                                    class="rline-content">Accessories</span></a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content col-7" id="myAccessoriesTabContent">
+                                        <div class="tab-pane fade" id="accessories-inner-item" role="tabpanel"
+                                            aria-labelledby="sleepware-tab">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sub-menu__item">
+                                                    <a href="#" class="menu-link menu-link_us-s">Necklace</a>
+                                                </li>
+                                                <li class="sub-menu__item">
+                                                    <a href="#" class="menu-link menu-link_us-s">Bracelets</a>
+                                                </li>
+                                                <li class="sub-menu__item">
+                                                    <a href="#" class="menu-link menu-link_us-s">Bags</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div><!-- /.row -->
                             </div>
-                            <div class="tab-pane fade" id="pills-item-3" role="tabpanel"
-                                aria-labelledby="pills-item-3-tab">
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                                    laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-                                    architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-                                    voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
-                                    qui ratione voluptatem sequi nesciunt.</p>
-                                Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
-                                laboriosam, nisi ut aliquid ex ea commodi consequatur?
+                            <div class="tab-pane fade" id="homeware-item" role="tabpanel" aria-labelledby="homeware-tab">
+                                <div class="row">
+                                    <ul class="nav nav-tabs list-unstyled col-5 d-block" id="myHomewareTab" role="tablist">
+                                        <li class="nav-item position-relative" role="presentation">
+                                            <a class="nav-link nav-link_rline" id="homeware-inner-tab"
+                                                data-bs-toggle="tab" href="#homeware-inner-item" role="tab"
+                                                aria-controls="homeware-inner-item" aria-selected="true"><span
+                                                    class="rline-content">Homeware</span></a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content col-7" id="myHomewareTabContent">
+                                        <div class="tab-pane fade" id="homeware-inner-item" role="tabpanel"
+                                            aria-labelledby="sleepware-tab">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sub-menu__item">
+                                                    <a href="#" class="menu-link menu-link_us-s">Handmade Linen Napkin</a>
+                                                </li>
+                                                <li class="sub-menu__item">
+                                                    <a href="#" class="menu-link menu-link_us-s">Bath Towel</a>
+                                                </li>
+                                                <li class="sub-menu__item">
+                                                    <a href="#" class="menu-link menu-link_us-s">Tea Towel</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div><!-- /.row -->
                             </div>
                         </div>
                     </div><!-- /.modal-body -->
