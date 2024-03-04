@@ -9,7 +9,7 @@
       <meta name="keywords" content="Nneels, Nneels global, GLobal, ecommerce, online shopping, shopping">
       <meta name="robots" content="index, follow">
 
-      <link rel="shortcut icon" href="{{ asset('assets/images/nneels-logo.png') }}" type="image/x-icon">
+      <link rel="shortcut icon" href="{{ asset('assets/images/nneels-favicon.png') }}" type="image/x-icon">
       <link rel="preconnect" href="https://fonts.gstatic.com/">
 
       <!-- Fonts -->
