@@ -43,7 +43,7 @@
               <img loading="lazy" src="{{asset('images/slideshow-character2.png')}}" width="400" height="690" alt="Woman Fashion 2" class="slideshow-character__img animate animate_fade animate_rtl animate_delay-10 h-auto w-auto">
             </div>
             <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
-              <h6 class="text_dash text-uppercase text-red fs-base fw-medium animate animate_fade animate_btt animate_delay-3">Summer 2020</h6>
+              <h6 class="text_dash text-uppercase text-red fs-base fw-medium animate animate_fade animate_btt animate_delay-3">Summer 2024</h6>
               <h2 class="text-uppercase h1 fw-bold animate animate_fade animate_btt animate_delay-3">Hello New Season</h2>
               <h6 class="text-uppercase mb-5 animate animate_fade animate_btt animate_delay-3">Limited Time Offer - Up to 60% off & Free Shipping</h6>
               <a href="shop1.html" class="btn-link btn-link_lg default-underline text-uppercase fw-medium animate animate_fade animate_btt animate_delay-3">Discover More</a>
