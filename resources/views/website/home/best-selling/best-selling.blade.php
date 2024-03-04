@@ -4,21 +4,16 @@
     <ul class="nav nav-tabs mb-3 mb-xl-5 text-uppercase justify-content-center" id="collections-tab" role="tablist">
         <li class="nav-item" role="presentation">
             <a class="nav-link nav-link_underscore active" id="collections-tab-1-trigger" data-bs-toggle="tab"
-                href="#collections-tab-1" role="tab" aria-controls="collections-tab-1" aria-selected="true">Tops</a>
+                href="#collections-tab-1" role="tab" aria-controls="collections-tab-1" aria-selected="true">Mens</a>
         </li>
         <li class="nav-item" role="presentation">
             <a class="nav-link nav-link_underscore" id="collections-tab-2-trigger" data-bs-toggle="tab"
                 href="#collections-tab-2" role="tab" aria-controls="collections-tab-2"
-                aria-selected="true">Jeans</a>
+                aria-selected="true">Kids</a>
         </li>
         <li class="nav-item" role="presentation">
             <a class="nav-link nav-link_underscore" id="collections-tab-3-trigger" data-bs-toggle="tab"
-                href="#collections-tab-3" role="tab" aria-controls="collections-tab-3" aria-selected="true">Bags</a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link nav-link_underscore" id="collections-tab-4-trigger" data-bs-toggle="tab"
-                href="#collections-tab-4" role="tab" aria-controls="collections-tab-4"
-                aria-selected="true">Accessories</a>
+                href="#collections-tab-3" role="tab" aria-controls="collections-tab-3" aria-selected="true">Accessories</a>
         </li>
     </ul>
 
@@ -1120,7 +1115,7 @@
             </div><!-- /.position-relative -->
         </div><!-- /.tab-pane fade show-->
 
-        <div class="tab-pane fade show" id="collections-tab-4" role="tabpanel"
+        {{-- <div class="tab-pane fade show" id="collections-tab-4" role="tabpanel"
             aria-labelledby="collections-tab-4-trigger">
             <div class="position-relative">
                 <div class="swiper-container js-swiper-slider"
@@ -1484,7 +1479,8 @@
                 <div class="products-pagination mt-4 mb-5 d-flex align-items-center justify-content-center"></div>
                 <!-- /.products-pagination -->
             </div><!-- /.position-relative -->
-        </div><!-- /.tab-pane fade show-->
+        </div> --}}
+        <!-- /.tab-pane fade show-->
     </div><!-- /.tab-content pt-2 -->
 </section>
 <div class="mb-1 pb-4"></div>

@@ -1,5 +1,5 @@
 <section class="products-carousel container">
-    <h2 class="section-title text-uppercase fw-bold text-center mb-4 pb-xl-2 mb-xl-4">Latest Products</h2>
+    <h2 class="section-title text-uppercase fw-bold text-center mb-4 pb-xl-2 mb-xl-4">Latest Drops</h2>
 
     <div class="position-relative">
         <div class="swiper-container js-swiper-slider"
