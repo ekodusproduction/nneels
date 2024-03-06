@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('login', function () {
-    return view('admin.index');
+    return view('admin.auth.login');
 });
