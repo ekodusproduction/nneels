@@ -9,7 +9,7 @@
 		<title> Admin Login | Nneels Ecommerce </title>
 
 		<!--- Favicon -->
-		<link rel="icon" href="{{asset('admin/assets/img/brand/favicon.png')}}" type="image/x-icon"/>
+		<link rel="icon" href="{{asset('assets/images/nneels-favicon.png')}}" type="image/x-icon"/>
 
 		<!--- Icons css -->
 		<link href="{{asset('admin/assets/css/icons.css')}}" rel="stylesheet">
@@ -45,7 +45,6 @@
 						<div class="d-flex flex-column justify-content-center align-items-center" style="height:300px;">
 							<img src="{{asset('assets/images/nneels-logo-white.png')}}" class=" m-0 mb-4" alt="logo">
 							<h6 class="mb-4">&copy <?php echo date('Y'); ?>. All rights reserved. </h6>
-							{{-- <p class="mb-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> --}}
 							<a href="https://ekodus.com" class="btn btn-primary" style="background-color: #475aee1c;border-color: #0ba36036;">Design & Maintained by <b>Ekodus Technologies Pvt. Ltd.</b></a>
 						</div>
 					</div>
