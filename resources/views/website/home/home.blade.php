@@ -17,7 +17,7 @@
 
   @include('website.home.best-selling.best-selling')
 
-  @include('website.home.shop-by-category.shop-by-category')
+  {{-- @include('website.home.shop-by-category.shop-by-category') --}}
 
   @include('website.home.new-collection-banner.new-collection-banner')
 
