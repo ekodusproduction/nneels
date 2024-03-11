@@ -60,18 +60,8 @@
             </a>
           </li>
           <li>
-            <a href="https://twitter.com/" class="footer__social-link d-block">
-              <svg class="svg-icon svg-icon_twitter" width="14" height="13" viewBox="0 0 14 13" xmlns="http://www.w3.org/2000/svg"><use href="#icon_twitter" /></svg>
-            </a>
-          </li>
-          <li>
             <a href="https://www.instagram.com/nneels777/" class="footer__social-link d-block" target="_blank">
               <svg class="svg-icon svg-icon_instagram" width="14" height="13" viewBox="0 0 14 13" xmlns="http://www.w3.org/2000/svg"><use href="#icon_instagram" /></svg>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.pinterest.com/" class="footer__social-link d-block">
-              <svg class="svg-icon svg-icon_pinterest" width="14" height="15" viewBox="0 0 14 15" xmlns="http://www.w3.org/2000/svg"><use href="#icon_pinterest" /></svg>
             </a>
           </li>
         </ul><!-- /.social-links list-unstyled mb-0 text-secondary -->
