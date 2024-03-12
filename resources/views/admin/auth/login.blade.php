@@ -158,7 +158,7 @@
 								$('.signInBtn').text(data.message);
 								$('.signInBtn').text('Redirecting...');
 								window.location.replace(data.data)
-							}, 3000);
+							}, 2000);
 						}else{
 							toastr.error(data.message)
 							$('.signInBtn').text('Sign In');
