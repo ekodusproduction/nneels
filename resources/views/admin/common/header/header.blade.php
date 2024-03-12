@@ -207,7 +207,7 @@
                             Logs</a>
                         <a class="dropdown-item" href="#"><i class="fas fa-sliders-h"></i> Account
                             Settings</a>
-                        <a class="dropdown-item" href="page-signin.html"><i class="fas fa-sign-out-alt"></i>
+                        <a class="dropdown-item" href="/admin/logout"><i class="fas fa-sign-out-alt"></i>
                             Sign Out</a>
                     </div>
                 </div>

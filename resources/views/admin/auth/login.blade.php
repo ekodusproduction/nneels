@@ -34,6 +34,8 @@
 		<!--- Switcher css -->
 		<link href="{{asset('admin/assets/switcher/css/switcher.css')}}" rel="stylesheet">
 		<link href="{{asset('admin/assets/switcher/demo.css')}}" rel="stylesheet">
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     </head>
 	
 	<body class="main-body">
@@ -53,18 +55,21 @@
 					<div class="main-signin-header">
 						<h2>Welcome back!</h2>
 						<h4>Please sign in to continue</h4>
-						<form action="https://laravel.spruko.com/azira/leftmenu_light/index">
+						<form id="loginForm">
+							@csrf
 							<div class="form-group">
-								<label>Email</label><input class="form-control" placeholder="Enter your email" type="text" value="info@spruko.com">
+								<label>Email</label>
+								<input class="form-control" name="email" placeholder="Enter your email" type="email" required>
 							</div>
 							<div class="form-group">
-								<label>Password</label> <input class="form-control" placeholder="Enter your password" type="password" value="sprukodemo">
-							</div><button class="btn btn-main-primary btn-block">Sign In</button>
+								<label>Password</label>
+								<input class="form-control" name="password" placeholder="Enter your password" type="password" required>
+							</div>
+							<button class="btn btn-main-primary btn-block signInBtn" type="submit">Sign In</button>
 						</form>
 					</div>
 					<div class="main-signin-footer mt-3 mg-t-5">
 						<p><a href="#">Forgot password?</a></p>
-						<p>Don't have an account? <a href="signup.html">Create an Account</a></p>
 					</div>
 				</div>
 			</div>
@@ -76,27 +81,29 @@
 		<a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
 
 		<!--- JQuery min js -->
-		<script src="assets/plugins/jquery/jquery.min.js"></script>
+		<script src="{{asset('admin/assets/plugins/jquery/jquery.min.js')}}"></script>
+
+		{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> --}}
 
 		<!--- Datepicker js -->
-		<script src="assets/plugins/jquery-ui/ui/widgets/datepicker.js"></script>
+		<script src="{{asset('adminassets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
 
 		<!--- Bootstrap Bundle js -->
-		<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="{{asset('adminassets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
 		<!--- Ionicons js -->
-		<script src="assets/plugins/ionicons/ionicons.js"></script>
+		<script src="{{asset('admin/assets/plugins/ionicons/ionicons.js')}}"></script>
 
 		
 		<!--- Moment js -->
-		<script src="assets/plugins/moment/moment.js"></script>
+		<script src="{{asset('admin/assets/plugins/moment/moment.js')}}"></script>
 
 		<!--- JQuery sparkline js -->
-		<script src="assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+		<script src="{{asset('admin/assets/plugins/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
 
 		<!--- Perfect-scrollbar js -->
-		<script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-		<script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
+		<script src="{{asset('admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+		<script src="{{asset('admin/assets/plugins/perfect-scrollbar/p-scroll.js')}}"></script>
 
 
 		<!--- Rating js -->
@@ -126,6 +133,45 @@
 		
 		<!--- Switcher js -->
 		<script src="assets/switcher/js/switcher.js"></script>
-	
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+		
+		<script>
+			$('#loginForm').on('submit', function(e){
+				e.preventDefault();
+
+				$('.signInBtn').text('Please wait...');
+				$('.signInBtn').attr('disabled', true);
+
+				let formData = new FormData(this);
+
+				$.ajax({
+					url:"{{route('admin.login')}}",
+					type:"POST",
+					contentType:false,
+					processData:false,
+					data:formData,
+					success:function(data){
+						if(data.status == 200){
+							toastr.success(data.message)
+							setTimeout(() => {
+								$('.signInBtn').text(data.message);
+								$('.signInBtn').text('Redirecting...');
+								window.location.replace(data.data)
+							}, 3000);
+						}else{
+							toastr.error(data.message)
+							$('.signInBtn').text('Sign In');
+							$('.signInBtn').attr('disabled', false);
+						}
+					},error:function(err){
+						console.log(err)
+						$('.signInBtn').text('Sign In');
+						$('.signInBtn').attr('disabled', false);
+					}
+
+				});
+			});
+		</script>
 	</body>
 </html>

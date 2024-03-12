@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\Auth\AuthenticationController;
+use App\Http\Controllers\Admin\Dashboard\DashboardController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +17,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('login', function () {
-    return view('admin.auth.login');
+Route::group(['prefix' => 'auth'], function(){
+
+    Route::match(['GET', 'POST'], 'login', [AuthenticationController::class, 'login'])->name('admin.login');
+});
+
+
+
+Route::group(['middleware' => 'auth'], function(){
+    Route::group(['prefix' => 'dashboard'], function(){
+        Route::get('', [DashboardController::class, 'index'])->name('admin.dashboard');
+    });
+
+    Route::get('logout', function(){
+        Session::flush();
+        
+        Auth::logout();
+
+        return redirect()->route('admin.login');
+    });
 });
