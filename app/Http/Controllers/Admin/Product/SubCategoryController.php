@@ -3,39 +3,33 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\SubCategory;
 use App\Traits\AjaxResponser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class CategoryController extends Controller
+class SubCategoryController extends Controller
 {
     use AjaxResponser;
 
-    public function index(){
-        $categories = Category::with('subCategories')->orderBy('created_at', 'desc')->get();
-        return view('admin.product.category.category')->with(['category' => $categories]);
-    }
-
-    public function createCategory(Request $request){
-
+    public function createSubCategory(Request $request){
         $validator = Validator::make($request->all(), [
-            'categoryName' => 'required'
+            'categories_id' => 'required',
+            'subCategoryName' => 'required'
         ]);
 
         if($validator->fails()){
             return $this->error('Oops! '.$validator->errors()->first(), null, 400);
         }else{
             try{
-                Category::create([
-                    'name' => $request->categoryName
+                SubCategory::create([
+                    'categories_id' => $request->categories_id,
+                    'name' => $request->subCategoryName
                 ]);
-                return $this->success('Great! Category added succesfully', null, 200);
+                return $this->success('Great! Sub category created successfully', null, 200);
             }catch(\Exception $e){
                 return $this->error('Oops! Something went wrong', null, 500);
             }
         }
-
     }
 }

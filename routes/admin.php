@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\AuthenticationController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
 use App\Http\Controllers\Admin\Product\CategoryController;
+use App\Http\Controllers\Admin\Product\SubCategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -33,7 +34,12 @@ Route::group(['middleware' => 'auth'], function(){
         Route::group(['prefix' => 'category'], function(){
             Route::get('', [CategoryController::class, 'index'])->name('admin.category');
             Route::post('create', [CategoryController::class, 'createCategory'])->name('admin.create.category');
+
+            Route::group(['prefix' => 'sub-category'], function(){
+                Route::post('create', [SubCategoryController::class, 'createSubCategory'])->name('admin.create.sub.category');
+            });
         });
+        
     });
 
     Route::get('logout', function(){

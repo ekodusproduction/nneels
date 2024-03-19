@@ -35,11 +35,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{-- @dd($category) --}}
                         @forelse ($category as  $key => $item)
                             <tr>
                                 <th scope="row">{{$key + 1 }}</th>
                                 <td>{{$item->name}}</td>
-                                <td>12</td>
+                                <td>{{count($item->subCategories)}}</td>
                                 <td>50</td>
                                 <td>
                                     @if ($item->status == 1)
@@ -106,15 +107,22 @@
                 </div>
                 <div class="modal-body">
                     <form id="addSubCategoryForm">
+                        @csrf
                         <div class="form-group">
                             <label for="">Select Category</label>
-                            <select name="categotry" class="form-control">
+                            <select name="categories_id" class="form-control">
                                 <option value="">- select -</option>
+                                @forelse ($category as $key => $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @empty
+                                    <option value="">No Categories Found!</option>
+                                @endforelse
+                               
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="">Sub-Category Name</label>
-                            <input type="text" class="form-control" name="categoryName" placeholder="e.g Mens Boots">
+                            <input type="text" class="form-control" name="subCategoryName" placeholder="e.g Mens Boots">
                         </div>
                         <div class="form-group">
                             <button class="btn ripple btn-primary sub-category-submit-btn" type="submit">Submit</button>
@@ -155,11 +163,46 @@
                         $('.category-submit-btn').attr('disabled', false)
                     }
                 },error:function(err){
-                    toastr.error(data.message)
+                    toastr.error(err.responseJSON.message)
                     $('.category-submit-btn').text('Submit')
                     $('.category-submit-btn').attr('disabled', false)
                 }
 
+            });
+        });
+    </script>
+
+    <script>
+        $('#addSubCategoryForm').on('submit', function(e){
+            e.preventDefault();
+
+            $('.sub-category-submit-btn').text('Please wait...');
+            $('.sub-category-submit-btn').attr('disabled', true);
+
+            const formData = new FormData(this);
+
+            $.ajax({
+                url:"{{route('admin.create.sub.category')}}",
+                type:"POST",
+                contentType:false,
+                processData:false,
+                data:formData,
+                success:function(data){
+                    if(data.status == 200){
+                        toastr.success(data.message)
+                        $('.sub-category-submit-btn').text('Submit');
+                        $('.sub-category-submit-btn').attr('disabled', false);
+                        window.location.reload(true)
+                    }else{
+                        toastr.error(data.message)
+                        $('.sub-category-submit-btn').text('Submit');
+                        $('.sub-category-submit-btn').attr('disabled', false);
+                    }
+                },error:function(err){
+                    toastr.error(err.responseJSON.message)
+                    $('.sub-category-submit-btn').text('Submit');
+                    $('.sub-category-submit-btn').attr('disabled', false);
+                }
             });
         });
     </script>
