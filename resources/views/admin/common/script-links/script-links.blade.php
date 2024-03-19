@@ -55,5 +55,6 @@
 
 <!--- Switcher js -->
 <script src="{{asset('admin/assets/switcher/js/switcher.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 @yield('custom-scripts')
