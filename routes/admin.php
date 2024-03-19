@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\AuthenticationController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
+use App\Http\Controllers\Admin\Product\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -27,6 +28,12 @@ Route::group(['prefix' => 'auth'], function(){
 Route::group(['middleware' => 'auth'], function(){
     Route::group(['prefix' => 'dashboard'], function(){
         Route::get('', [DashboardController::class, 'index'])->name('admin.dashboard');
+    });
+    Route::group(['prefix' => 'products'], function(){
+        Route::group(['prefix' => 'category'], function(){
+            Route::get('', [CategoryController::class, 'index'])->name('admin.category');
+            Route::post('create', [CategoryController::class, 'createCategory'])->name('admin.create.category');
+        });
     });
 
     Route::get('logout', function(){

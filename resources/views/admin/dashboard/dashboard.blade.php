@@ -896,7 +896,7 @@
                                     <td>
                                         <div class="image-grouped"><img class="profile-img brround" alt="profile image"
                                                 src="assets/img/faces/7.jpg"><img class="profile-img brround "
-                                                alt="profile image" src="assets/img/faces/6.jpg"><img
+                                                alt="profile image" src="{{asset('admin/assets/img/faces/6.jpg')}}"><img
                                                 class="profile-img brround" alt="profile image"
                                                 src="assets/img/faces/16.jpg"></div>
                                     </td>
@@ -1004,7 +1004,7 @@
                 <div class="card-body p-0">
                     <div class="activity Activity-scroll">
                         <div class="activity-list">
-                            <img src="assets/img/faces/6.jpg" alt="" class="img-activity">
+                            <img src="{{asset('admin/assets/img/faces/6.jpg')}}" alt="" class="img-activity">
                             <div class="time-activity ">
                                 <div class="item-activity">
                                     <p class="mb-0"><span class="h6 mr-1">Adam Berry</span><span
@@ -1049,7 +1049,7 @@
                                             Template</span></p><small class="text-muted ">30 mins
                                         ago</small>
                                 </div>
-                            </div> <img src="assets/img/faces/6.jpg" alt="" class="img-activity">
+                            </div> <img src="{{asset('admin/assets/img/faces/6.jpg')}}" alt="" class="img-activity">
                             <div class="time-activity">
                                 <div class="item-activity">
                                     <p class="mb-0"><span class="h6 mr-1">Irene Hunter</span> <span

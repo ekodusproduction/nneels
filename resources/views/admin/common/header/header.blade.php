@@ -6,10 +6,10 @@
                 <a class="close-toggle" href="#"><i class="header-icons" data-eva="close-outline"></i></a>
             </div>
             <div class="responsive-logo">
-                <a href="index.html"><img src="{{asset('assets/images/nneels-logo.png')}}" class="logo-1"></a>
-                <a href="index.html"><img src="{{asset('assets/images/nneels-logo.png')}}" class="logo-11"></a>
-                <a href="index.html"><img src="{{asset('assets/images/nneels-favicon.png')}}" class="logo-2"></a>
-                <a href="index.html"><img src="{{asset('assets/images/nneels-favicon.png')}}" class="logo-12"></a>
+                <a href="#"><img src="{{asset('assets/images/nneels-logo.png')}}" class="logo-1"></a>
+                <a href="#"><img src="{{asset('assets/images/nneels-logo.png')}}" class="logo-11"></a>
+                <a href="#"><img src="{{asset('assets/images/nneels-favicon.png')}}" class="logo-2"></a>
+                <a href="#"><img src="{{asset('assets/images/nneels-favicon.png')}}" class="logo-12"></a>
             </div>
         </div>
         <div class="main-header-right">
@@ -192,12 +192,12 @@
                 </div>
                 <div class="dropdown main-profile-menu nav nav-item nav-link">
 
-                    <a class="profile-user d-flex" href="#"><img src="assets/img/faces/6.jpg" alt="user-img"
+                    <a class="profile-user d-flex" href="#"><img src="{{asset('admin/assets/img/faces/6.jpg')}}" alt="user-img"
                             class="rounded-circle mCS_img_loaded"><span></span></a>
 
                     <div class="dropdown-menu">
                         <div class="main-header-profile header-img">
-                            <div class="main-img-user"><img alt="" src="assets/img/faces/6.jpg">
+                            <div class="main-img-user"><img alt="" src="{{asset('admin/assets/img/faces/6.jpg')}}">
                             </div>
                             <h6>Nneel's</h6><span>Premium Member</span>
                         </div>
