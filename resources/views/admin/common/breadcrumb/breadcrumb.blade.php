@@ -6,7 +6,8 @@
                 <li class="breadcrumb-item" style="text-transform: capitalize;"><a href="#">{{Request::segment(1)}}</a></li>
                 @if (Request::segment(2) != null)
                     <li class="breadcrumb-item active" aria-current="page" style="text-transform: capitalize;">{{Request::segment(2)}}</li>
-                @elseif(Request::segment(3) != null)
+                @endif
+                @if(Request::segment(3) != null)
                     <li class="breadcrumb-item active" aria-current="page" style="text-transform: capitalize;">{{Request::segment(3)}}</li>                    
                 @endif
                 
