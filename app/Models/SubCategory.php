@@ -11,4 +11,8 @@ class SubCategory extends Model
 
     protected $table = 'sub_categories';
     protected $guarded = [];
+
+    public function categories(){
+        return $this->belongsTo(Category::class, 'categories_id', 'id');
+    }
 }

@@ -28,6 +28,7 @@
                         <tr>
                             <th>Sl. No.</th>
                             <th>Category</th>
+                            <th>Sub-Category Name</th>
                             <th>Total Sub-Categories</th>
                             <th>Total Products Linked</th>
                             <th>Status</th>
@@ -35,11 +36,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @dd($category) --}}
+                        
                         @forelse ($category as  $key => $item)
+
                             <tr>
                                 <th scope="row">{{$key + 1 }}</th>
                                 <td>{{$item->name}}</td>
+                                <td>
+                                    @foreach ($item->subCategories as $key2 => $sub_cat_item)
+                                        <span class="badge badge-primary">{{$sub_cat_item->name}}</span> 
+                                    @endforeach
+                                </td>
                                 <td>{{count($item->subCategories)}}</td>
                                 <td>50</td>
                                 <td>

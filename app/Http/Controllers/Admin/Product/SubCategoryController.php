@@ -12,6 +12,26 @@ class SubCategoryController extends Controller
 {
     use AjaxResponser;
 
+    public function fetchSubCategory(Request $request){
+        //Fetch Sub Categories Based on Category Id
+
+        if($request->category_id != null){
+            $category_id = decrypt($request->category_id);
+            try{
+                $sub_categories = SubCategory::where('categories_id',  $category_id)->where('status', 1)->get();
+                return $this->success('Great! Sub categories fetched successfully', $sub_categories, 200);
+            }catch(\Exception $e){
+                return $this->error('Oops! Something went wrong', null, 500);
+            }
+        }else{
+            try{
+                $sub_categories = SubCategory::with('categories')->where('status', 1)->get();
+            }catch(\Exception $e){
+                return $this->error('Oops! Something went wrong', null, 500);
+            }
+        }
+    }
+
     public function createSubCategory(Request $request){
         $validator = Validator::make($request->all(), [
             'categories_id' => 'required',

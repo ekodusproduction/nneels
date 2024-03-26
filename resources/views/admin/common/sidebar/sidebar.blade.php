@@ -69,7 +69,7 @@
                 </a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('admin.category') }}">Category</a></li>
-                    <li><a class="slide-item" href="darggablecards.html">Item</a></li>
+                    <li><a class="slide-item" href="{{route('admin.create.item')}}">Create</a></li>
                 </ul>
             </li>
 
