@@ -3,13 +3,13 @@
 
 @section('custom-styles')
     <style>
-        .input-images{
+        .image-container{
             /* height: 200px; */
             border: 1px dashed #d4d1f7;
-            cursor: pointer;
             padding:10px;
+            margin-bottom:10px;
         }
-        .input-images p{
+        .image-container .choose-image{
             display:flex;
             flex-direction: row;
             justify-content: center;
@@ -20,15 +20,22 @@
             border-radius: 5px;
             font-weight: 600;
             margin-top:20px;
+            cursor: pointer;
         }
-        .input-images img{
-            height: 200px;
-            width:200px;
-            border-radius: 5px;
+        .image-container img{
+            height: 180px;
+            width:180px;
+            border-radius: 50%;
             border: 1px solid #efecec;
             box-shadow: 0px 0px 10px #d9d7d7;
             padding: 4px;
-            margin-right:30px;
+            margin-left:25px;
+        }
+        .remove-image{
+            margin-left:25px;
+            font-weight:600;
+            cursor: pointer;
+            margin-top:3px;
         }
     </style>
 @endsection
@@ -47,19 +54,19 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="">Name</label>
-                            <input type="text" name="title" class="form-control" placeholder="e.g Jacket">
+                            <input type="text" name="name" class="form-control" placeholder="e.g Jacket" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="">Price</label>
-                            <input type="number" name="price" class="form-control" min="0" placeholder="e.g 500">
+                            <input type="text" name="price" class="form-control" min="0" placeholder="e.g 500" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="">Select Size</label>
-                            <select name="size" id="size" class="form-control">
+                            <select name="size" id="size" class="form-control" required>
                                 <option value="">- - Select - -</option>
                                 <option value="XS">XS</option>
                                 <option value="S">S</option>
@@ -75,13 +82,13 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="">Select Color</label>
-                            <input type="text" name="itemColor" class="form-control" placeholder="e.g Green">
+                            <input type="text" name="itemColor" class="form-control" placeholder="e.g Green" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="">Select Category</label>
-                            <select name="category" id="selectCategory" class="form-control">
+                            <select name="category" id="selectCategory" class="form-control" required>
                                 <option value="">- - Select - - </option>
                                 @foreach ($category as $key => $item)
                                     <option value="{{encrypt($item->id)}}">{{$item->name}}</option>
@@ -92,7 +99,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="">Select Sub-Category</label>
-                            <select name="category" id="subCategory" class="form-control">
+                            <select name="sub_category" id="subCategory" class="form-control" required>
                                 <option value="">- - Select - - </option>
                             </select>
                         </div>
@@ -102,16 +109,17 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Short Description</label>
-                            <textarea name="shortDescription" class="form-control" id="shortDescription" cols="30" rows="10" placeholder="e.g Description here...."></textarea>
+                            <textarea name="shortDescription" class="form-control" id="shortDescription" cols="30" rows="10" placeholder="e.g Description here...." required></textarea>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="">Upload Images</label>
-                            <div class="input-images text-center">
-                                <p> <i class="fe fe-upload"></i> &nbsp; Choose File</p>
-                            </div>
-                            <input type="file" id="itemImages" name="itemImages" class="form-control d-none"  multiple accept="image/*" required />
+                            <label for="">Upload Product Cover Image</label>
+                            {{-- <div class="image-container text-center">
+                                <p class="choose-image"> <i class="fe fe-upload"></i> &nbsp; Choose File</p>
+                                <div class="input-images d-flex flex-row justify-content-around align-items-center"></div>
+                            </div> --}}
+                            <input type="file" id="itemImages" name="itemImage" class="form-control" accept="image/*" required />
                         </div>
                     </div>
                 </div>
@@ -125,8 +133,8 @@
 @endsection
 
 @section('custom-scripts')
-    <script>
-        $('.input-images').on('click', function(){
+    {{-- <script>
+        $('.choose-image').on('click', function(){
             $('#itemImages').click();
         });
 
@@ -148,13 +156,36 @@
                 }
                 let reader = new FileReader();
                 reader.onload = function(e) {
-                    $('.input-images').append('<img class="preview-image" src="' + e.target.result + '" alt="' + file.name + '">');
+                    $('.input-images').append(
+
+                        '<div class="d-flex flex-column justify-content-center align-items-center text-center">'+
+                            '<img class="preview-image" src="' + e.target.result + '" alt="' + file.name + '">'+
+                            '<p class="remove-image text-danger mb-0">Remove</p>'+
+                            '<div class="form-group ml-4 mt-3">'+
+                                '<label>Select Image Type</label>'+
+                                '<select name="itemImageType[]" class="form-control itemImageType" required>'+
+                                    '<option value="">- - select - -</option>'+
+                                    '<option value="cover">Cover</option>'+
+                                    '<option value="secondary">Secondary</option>'+
+                                '</select>'+
+                            '</div>'+
+                        '</div>'
+                        
+                    );
                 }
                 reader.readAsDataURL(file);
                 totalFiles++;
             }
         });
-    </script>
+
+        $('.input-images').on('click', '.remove-image', function(){
+            $(this).closest('.d-flex').remove();
+            totalFiles--;
+            console.log('Total Files', totalFiles)
+        }); 
+
+        
+    </script> --}}
 
     <script>
         $('#selectCategory').on('change', function(e){
@@ -190,5 +221,48 @@
 
             });
         });
+    </script>
+
+    <script>
+        $('#createItemForm').on('submit', function(e){
+            e.preventDefault();
+            $('.create-item-form-btn').text('Please wait...');
+            $('.create-item-form-btn').attr('disabled', true);
+
+            const formData = new FormData(this);
+            // let files = $('#itemImages')[0].files;
+            // for (let i = 0; i < files.length; i++) {
+            //     formData.append('itemImages[]', files[i]);
+            //     // console.log('Files ==>', files[i]);
+            // }
+
+            $.ajax({
+                url:"{{route('admin.create.item')}}",
+                type:"POST",
+                data:formData,
+                processData: false,
+                contentType: false,
+                success:function(data){
+                    if(data.status == 200){
+                        toastr.success(data.message)
+                        $('#createItemForm')[0].reset();
+                        $('.create-item-form-btn').text('Submit');
+                        $('.create-item-form-btn').attr('disabled', false);
+                    }else{
+                        toastr.error(data.message)
+                        $('.create-item-form-btn').text('Submit');
+                        $('.create-item-form-btn').attr('disabled', false);
+                    }
+                },error:function(err){
+                    toastr.error(err.responseText)
+                    $('.create-item-form-btn').text('Submit');
+                    $('.create-item-form-btn').attr('disabled', false);
+                }
+                
+            });
+
+
+        });
+        
     </script>
 @endsection
