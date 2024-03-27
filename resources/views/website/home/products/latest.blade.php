@@ -42,7 +42,7 @@
                 <div class="swiper-slide product-card">
                     <div class="pc__img-wrapper">
                         <a href="product1_simple.html">
-                            <img loading="lazy" src="{{asset('assets/images/img-1.jpg')}}" width="330" height="400"
+                            <img loading="lazy" src="{{asset('assets/Accessories/cusion-1.jpeg')}}" width="330" height="400"
                                 alt="Cropped Faux leather Jacket" class="pc__img">
                             <img loading="lazy" src="{{asset('assets/images/img-2.jpg')}}" width="330" height="400"
                                 alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
@@ -78,7 +78,7 @@
                 <div class="swiper-slide product-card">
                     <div class="pc__img-wrapper">
                         <a href="product1_simple.html">
-                            <img loading="lazy" src="{{asset('assets/images/img-3.jpg')}}" width="330" height="400"
+                            <img loading="lazy" src="{{asset('assets/Accessories/cusion-2.jpeg')}}" width="330" height="400"
                                 alt="Cropped Faux leather Jacket" class="pc__img">
                             <img loading="lazy" src="{{asset('assets/images/img-4.jpg')}}" width="330" height="400"
                                 alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
@@ -115,7 +115,7 @@
                 <div class="swiper-slide product-card">
                     <div class="pc__img-wrapper">
                         <a href="product1_simple.html">
-                            <img loading="lazy" src="{{asset('assets/images/img-5.jpg')}}" width="330" height="400"
+                            <img loading="lazy" src="{{asset('assets/Accessories/cusion-3.jpeg')}}" width="330" height="400"
                                 alt="Cropped Faux leather Jacket" class="pc__img">
                             <img loading="lazy" src="{{asset('assets/images/img-6.jpg')}}" width="330" height="400"
                                 alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">

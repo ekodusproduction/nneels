@@ -44,8 +44,8 @@
 				<div class="main-card-signin d-md-flex wd-100p">
 				<div class="wd-md-50p login d-none d-md-block page-signin-style p-5 text-white" >
 					<div class="my-auto authentication-pages">
-						<div class="d-flex flex-column justify-content-center align-items-center" style="height:300px;">
-							<img src="{{asset('assets/images/nneels-updated-logo.jpg')}}" class=" m-0 mb-4" alt="logo">
+						<div class="d-flex flex-column justify-content-center align-items-center" >
+							<img src="{{asset('assets/images/nneels-updated-logo.jpg')}}" class=" m-0 mb-4" alt="logo" height="80px">
 							<h6 class="mb-4">&copy <?php echo date('Y'); ?>. All rights reserved. </h6>
 							<a href="https://ekodus.com" class="btn btn-primary" style="background-color: #475aee1c;border-color: #0ba36036;">Design & Maintained by <b>Ekodus Technologies Pvt. Ltd.</b></a>
 						</div>
