@@ -15,7 +15,7 @@
             <div class="footer-column footer-store-info col-12 mb-4 mb-lg-0">
                 <div class="logo">
                     <a href="{{route('website.nav.home.index')}}">
-                        <img src="{{asset('assets/images/nneels-logo.png')}}" alt="Nneels" class="logo__image">
+                        <img src="{{asset('assets/images/nneels-updated-logo.jpg')}}" alt="Nneels" class="logo__image">
                     </a>
                 </div><!-- /.logo -->
                 <p class="footer-address">1418 River Drive, Suite 35 Cottonhall, CA 9622 United States</p>

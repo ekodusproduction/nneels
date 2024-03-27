@@ -2,13 +2,13 @@
 <aside class="main-sidebar app-sidebar sidebar-scroll">
     <div class="main-sidebar-header">
         <a class="desktop-logo logo-light active" href="#" class="text-center mx-auto">
-            <img src="{{asset('assets/images/nneels-logo.png')}}" class="main-logo">
+            <img src="{{asset('assets/images/nneels-updated-logo.jpg')}}" class="main-logo">
         </a>
         <a class="desktop-logo icon-logo active"href="#">
             <img src="{{asset('assets/images/nneels-favicon.png')}}" class="logo-icon">
         </a>
         <a class="desktop-logo logo-dark active" href="#">
-            <img src="{{asset('assets/images/nneels-logo.png')}}" class="main-logo dark-theme" alt="logo">
+            <img src="{{asset('assets/images/nneels-updated-logo.jpg')}}" class="main-logo dark-theme" alt="logo">
         </a>
         <a class="logo-icon mobile-logo icon-dark active" href="#">
             <img src="{{asset('assets/images/nneels-favicon.png')}}" class="logo-icon dark-theme" alt="logo">

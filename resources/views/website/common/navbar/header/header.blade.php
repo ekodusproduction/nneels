@@ -7,7 +7,7 @@
 
       <div class="logo">
         <a href="/">
-          <img src="{{asset('assets/images/nneels-logo.png')}}" alt="Nneels" class="logo__image d-block">
+          <img src="{{asset('assets/images/nneels-updated-logo.jpg')}}" alt="Nneels" class="logo__image d-block">
         </a>
       </div><!-- /.logo -->
 
@@ -121,7 +121,7 @@
     <div class="header-desk header-desk_type_5">
         <div class="logo">
             <a href="/">
-                <img src="{{asset('assets/images/nneels-logo.png')}}" alt="Nneels" class="logo__image d-block">
+                <img src="{{asset('assets/images/nneels-updated-logo.jpg')}}" alt="Nneels" class="logo__image d-block">
             </a>
         </div><!-- /.logo -->
 

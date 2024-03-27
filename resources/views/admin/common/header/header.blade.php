@@ -6,8 +6,8 @@
                 <a class="close-toggle" href="#"><i class="header-icons" data-eva="close-outline"></i></a>
             </div>
             <div class="responsive-logo">
-                <a href="#"><img src="{{asset('assets/images/nneels-logo.png')}}" class="logo-1"></a>
-                <a href="#"><img src="{{asset('assets/images/nneels-logo.png')}}" class="logo-11"></a>
+                <a href="#"><img src="{{asset('assets/images/nneels-updated-logo.jpg')}}" class="logo-1"></a>
+                <a href="#"><img src="{{asset('assets/images/nneels-updated-logo.jpg')}}" class="logo-11"></a>
                 <a href="#"><img src="{{asset('assets/images/nneels-favicon.png')}}" class="logo-2"></a>
                 <a href="#"><img src="{{asset('assets/images/nneels-favicon.png')}}" class="logo-12"></a>
             </div>
