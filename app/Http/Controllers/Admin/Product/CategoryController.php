@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
     public function index(){
         $categories = Category::with('subCategories')->orderBy('created_at', 'desc')->get();
-        return view('admin.product.category.category')->with(['category' => $categories]);
+        return view('admin.product.category.main-category')->with(['category' => $categories]);
     }
 
     public function createCategory(Request $request){

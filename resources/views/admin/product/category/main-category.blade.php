@@ -1,5 +1,5 @@
 @extends('admin.index')
-@section('title', 'Category')
+@section('title', 'Main Category')
 
 @section('custom-styles')
 @endsection
@@ -8,7 +8,7 @@
     <div class="card mg-b-20">
         <div class="card-header pb-0">
             <div class="d-flex justify-content-between">
-                <h4 class="card-title mg-b-2 mt-2">Category</h4>
+                <h4 class="card-title mg-b-2 mt-2">Main Category</h4>
                 <button class="btn btn-md btn-primary ripple" type="button" data-target="#addCategoryModal" data-toggle="modal">Add Category</button>
             </div>
         </div>
@@ -59,7 +59,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td>No Data found</td>
+                                <td colspan="5" class="text-center"><strong>No Data found!</strong></td>
                             </tr>
                         @endforelse
                        
@@ -80,46 +80,10 @@
                         @csrf
                         <div class="form-group">
                             <label for="">Category Name</label>
-                            <input type="text" class="form-control" name="categoryName" placeholder="e.g Mensware">
+                            <input type="text" class="form-control" name="categoryName" placeholder="e.g Mensware" required>
                         </div>
                         <div class="form-group">
                             <button class="btn ripple btn-success category-submit-btn" type="submit">Submit</button>
-                            <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
-                        </div>
-                    </form>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="addSubCategoryModal">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content modal-content-demo">
-                <div class="modal-header">
-                    <h6 class="modal-title">Add Sub-Category</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <form id="addSubCategoryForm">
-                        @csrf
-                        <div class="form-group">
-                            <label for="">Select Category</label>
-                            <select name="categories_id" class="form-control">
-                                <option value="">- select -</option>
-                                @forelse ($category as $key => $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
-                                @empty
-                                    <option value="">No Categories Found!</option>
-                                @endforelse
-                               
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Sub-Category Name</label>
-                            <input type="text" class="form-control" name="subCategoryName" placeholder="e.g Mens Boots">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn ripple btn-success sub-category-submit-btn" type="submit">Submit</button>
                             <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
                         </div>
                     </form>
@@ -162,41 +126,6 @@
                     $('.category-submit-btn').attr('disabled', false)
                 }
 
-            });
-        });
-    </script>
-
-    <script>
-        $('#addSubCategoryForm').on('submit', function(e){
-            e.preventDefault();
-
-            $('.sub-category-submit-btn').text('Please wait...');
-            $('.sub-category-submit-btn').attr('disabled', true);
-
-            const formData = new FormData(this);
-
-            $.ajax({
-                url:"{{route('admin.create.sub.category')}}",
-                type:"POST",
-                contentType:false,
-                processData:false,
-                data:formData,
-                success:function(data){
-                    if(data.status == 200){
-                        toastr.success(data.message)
-                        $('.sub-category-submit-btn').text('Submit');
-                        $('.sub-category-submit-btn').attr('disabled', false);
-                        window.location.reload(true)
-                    }else{
-                        toastr.error(data.message)
-                        $('.sub-category-submit-btn').text('Submit');
-                        $('.sub-category-submit-btn').attr('disabled', false);
-                    }
-                },error:function(err){
-                    toastr.error(err.responseJSON.message)
-                    $('.sub-category-submit-btn').text('Submit');
-                    $('.sub-category-submit-btn').attr('disabled', false);
-                }
             });
         });
     </script>

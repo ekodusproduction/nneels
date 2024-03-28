@@ -75,7 +75,7 @@
                         </a>
                         <ul class="sub-slide-menu">
                             <li><a class="sub-slide-item" href="{{ route('admin.category') }}">Main Category</a></li>
-                            <li><a class="sub-slide-item" href="{{route('admin.create.item')}}">Sub Category</a></li>
+                            <li><a class="sub-slide-item" href="{{route('admin.fetch.sub.category')}}">Sub Category</a></li>
                         </ul>
                     </li>
                     {{-- <li><a class="slide-item" href="">Category</a></li>

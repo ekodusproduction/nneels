@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\SubCategory;
 use App\Traits\AjaxResponser;
 use Illuminate\Http\Request;
@@ -11,6 +12,8 @@ use Illuminate\Support\Facades\Validator;
 class SubCategoryController extends Controller
 {
     use AjaxResponser;
+
+
 
     public function fetchSubCategory(Request $request){
         //Fetch Sub Categories Based on Category Id
@@ -25,7 +28,9 @@ class SubCategoryController extends Controller
             }
         }else{
             try{
+                $main_categories = Category::where('status',1)->orderBy('created_at', 'DESC')->get();
                 $sub_categories = SubCategory::with('categories')->where('status', 1)->get();
+                return view('admin.product.category.sub-category')->with(['sub_categories' => $sub_categories, 'main_categories' => $main_categories]);
             }catch(\Exception $e){
                 return $this->error('Oops! Something went wrong', null, 500);
             }
