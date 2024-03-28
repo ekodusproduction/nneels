@@ -33,9 +33,12 @@ Route::group(['middleware' => 'auth'], function(){
     });
     Route::group(['prefix' => 'products'], function(){
         Route::group(['prefix' => 'category'], function(){
-            Route::get('', [CategoryController::class, 'index'])->name('admin.category');
-            Route::post('create', [CategoryController::class, 'createCategory'])->name('admin.create.category');
 
+            Route::group(['prefix' => 'main-category'], function(){
+                Route::get('', [CategoryController::class, 'index'])->name('admin.category');
+                Route::post('create', [CategoryController::class, 'createCategory'])->name('admin.create.category');
+            });
+            
             Route::group(['prefix' => 'sub-category'], function(){
                 Route::post('create', [SubCategoryController::class, 'createSubCategory'])->name('admin.create.sub.category');
                 Route::get('fetch', [SubCategoryController::class, 'fetchSubCategory'])->name('admin.fetch.sub.category');

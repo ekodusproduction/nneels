@@ -10,6 +10,9 @@
                 @if(Request::segment(3) != null)
                     <li class="breadcrumb-item active" aria-current="page" style="text-transform: capitalize;">{{Request::segment(3)}}</li>                    
                 @endif
+                @if(Request::segment(4) != null)
+                    <li class="breadcrumb-item active" aria-current="page" style="text-transform: capitalize;">{{Request::segment(4)}}</li>                    
+                @endif
                 
             </ol>
         </nav>

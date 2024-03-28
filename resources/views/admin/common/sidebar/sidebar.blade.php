@@ -62,14 +62,14 @@
                 </a>
             </li>
             <li class="slide">
-                <a class="side-menu__item" data-toggle="slide" href="#">
+                <a class="{{Request::segment(2) == 'product' ? ' side-menu__item active' : 'side-menu__item' }}" data-toggle="slide" href="#">
                     <i class="side-menu__icon fe fe-box"></i>
                     <span class="side-menu__label">Products</span>
                     <i class="angle fe fe-chevron-down"></i>
                 </a>
                 <ul class="slide-menu">
                     <li class="sub-slide">
-                        <a class="sub-side-menu__item" data-toggle="sub-slide" href="index-2.html#">
+                        <a class="{{Request::segment(3) == 'category' ? 'sub-side-menu__item active' : 'sub-side-menu__item' }}" data-toggle="sub-slide" href="index-2.html#">
                             <span class="sub-side-menu__label">Category</span>
                             <i class="sub-angle fe fe-chevron-down"></i>
                         </a>
