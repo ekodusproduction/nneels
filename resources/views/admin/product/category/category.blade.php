@@ -9,16 +9,7 @@
         <div class="card-header pb-0">
             <div class="d-flex justify-content-between">
                 <h4 class="card-title mg-b-2 mt-2">Category</h4>
-                <div class="dropdown dropleft">
-                    <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-success dropdown-toggle"
-                    data-toggle="dropdown" id="dropleftMenuButton" type="button">Add</button>
-                    <div aria-labelledby="dropleftMenuButton" class="dropdown-menu tx-13">
-                        <a class="dropdown-item"  data-target="#addCategoryModal" data-toggle="modal" href="#">Category</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" data-target="#addSubCategoryModal" data-toggle="modal" href="#">Sub-Category</a>
-                    </div>
-                </div>
-                
+                <button class="btn btn-md btn-primary ripple" type="button" data-target="#addCategoryModal" data-toggle="modal">Add Category</button>
             </div>
         </div>
         <div class="card-body">
@@ -28,9 +19,7 @@
                         <tr>
                             <th>Sl. No.</th>
                             <th>Category</th>
-                            <th>Sub-Category Name</th>
-                            <th>Total Sub-Categories</th>
-                            <th>Total Products Linked</th>
+                           <th>Sub-Category Name</th>
                             <th>Status</th>
                             <th>More</th>
                         </tr>
@@ -44,11 +33,9 @@
                                 <td>{{$item->name}}</td>
                                 <td>
                                     @foreach ($item->subCategories as $key2 => $sub_cat_item)
-                                        <span class="badge badge-primary">{{$sub_cat_item->name}}</span> 
+                                        <span class="badge badge-secondary">{{$sub_cat_item->name}}</span> 
                                     @endforeach
                                 </td>
-                                <td>{{count($item->subCategories)}}</td>
-                                <td>50</td>
                                 <td>
                                     @if ($item->status == 1)
                                         <span class="badge badge-success"> Active </span>
@@ -96,7 +83,7 @@
                             <input type="text" class="form-control" name="categoryName" placeholder="e.g Mensware">
                         </div>
                         <div class="form-group">
-                            <button class="btn ripple btn-primary category-submit-btn" type="submit">Submit</button>
+                            <button class="btn ripple btn-success category-submit-btn" type="submit">Submit</button>
                             <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
                         </div>
                     </form>
@@ -132,7 +119,7 @@
                             <input type="text" class="form-control" name="subCategoryName" placeholder="e.g Mens Boots">
                         </div>
                         <div class="form-group">
-                            <button class="btn ripple btn-primary sub-category-submit-btn" type="submit">Submit</button>
+                            <button class="btn ripple btn-success sub-category-submit-btn" type="submit">Submit</button>
                             <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
                         </div>
                     </form>
