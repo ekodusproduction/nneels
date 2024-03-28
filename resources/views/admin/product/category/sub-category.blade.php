@@ -78,7 +78,7 @@
                     <form id="addSubCategoryForm">
                         @csrf
                         <div class="form-group">
-                            <label for="">Select Category</label>
+                            <label for="">Select Parent Category</label>
                             <select name="categories_id" class="form-control" required>
                                 <option value="">- select -</option>
                                 @forelse ($main_categories as $key => $item)
