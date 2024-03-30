@@ -78,6 +78,15 @@
                             <li><a class="sub-slide-item" href="{{route('admin.fetch.sub.category')}}">Sub Category</a></li>
                         </ul>
                     </li>
+                    <li class="sub-slide">
+                        <a class="{{Request::segment(3) == 'category' ? 'sub-side-menu__item active' : 'sub-side-menu__item' }}" data-toggle="sub-slide" href="index-2.html#">
+                            <span class="sub-side-menu__label">Create</span>
+                            <i class="sub-angle fe fe-chevron-down"></i>
+                        </a>
+                        <ul class="sub-slide-menu">
+                            <li><a class="sub-slide-item" href="{{ route('admin.create.product') }}">Product</a></li>
+                        </ul>
+                    </li>
                     {{-- <li><a class="slide-item" href="">Category</a></li>
                     <li><a class="slide-item" href="">Create</a></li> --}}
                 </ul>
