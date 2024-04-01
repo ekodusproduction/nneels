@@ -16,7 +16,7 @@
             width:40px;
             height:40px;
             border:1px solid white;
-            box-shadow:0px 0px 10px rgb(218, 217, 217);
+            box-shadow:0px 2px 10px rgb(199, 199, 199);
             border-radius:5px;
             display:flex;
             flex-direction: row;
@@ -24,6 +24,8 @@
             align-items: center;
             position: absolute;
             right: 30px;
+            cursor: pointer;
+            background: white;
         }
         .browse-image .fe-edit-2{
             font-size:20px;
@@ -38,9 +40,14 @@
             align-items: center;
             height: 100%;
         }
-        .preview-main-product .upload-image-placeholder img{
+        .preview-main-product img{
+            border-radius:5px;
+        }
+        .preview-main-product .upload-main-image-placeholder img{
             height:auto;
             width:200px;
+            object-fit:fill;
+            border-radius:5px;
         }
 
         .product-gallery-image-container{
@@ -77,14 +84,9 @@
             align-items: center;
             height: 100%;
         }
-        .product-gallery-image-container .upload-image-placeholder img{
+        .product-gallery-image-container .upload-gallery-image-placeholder img{
             height:auto;
-            width:100px;
-        }
-        .product-form-container{
-            height:600px;
-            overflow-x: hidden;
-            overflow-y: scroll;
+            width:80px;
         }
     </style>
 @endsection
@@ -102,11 +104,11 @@
                     <label for="">Product Main Image</label>
                     <div class="main-product-image-container">
 
-                        <div class="browse-image">
+                        <div class="browse-image main-product-browse">
                             <i class="fe fe-edit-2" aria-hidden="true"></i>
                         </div>
                         <div class="preview-main-product">
-                            <div class="upload-image-placeholder text-center">
+                            <div class="upload-main-image-placeholder text-center">
                                 <img  src="{{asset('admin/assets/img/upload-image-placeholder.jpg')}}" alt="upload image placeholder">
                                 <p>Choose Image To Upload</p>
                             </div>
@@ -121,7 +123,7 @@
                         <div class="browse-gallery-image">
                             <i class="fe fe-edit-2" aria-hidden="true"></i>
                         </div>
-                        <div class="upload-image-placeholder text-center">
+                        <div class="upload-gallery-image-placeholder text-center">
                             <img  src="{{asset('admin/assets/img/upload-image-placeholder.jpg')}}" alt="upload image placeholder">
                             <p>Choose Image To Upload</p>
                         </div>
@@ -189,12 +191,6 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="">Short Description</label>
-                                        <textarea name="shortDescription" class="form-control" id="shortDescription" cols="30" rows="5" placeholder="e.g Description here...." required></textarea>
-                                    </div>
-                                </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Quantity</label>
@@ -213,8 +209,48 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
+                                        <label for="">Rate of Discount (in %)</label>
+                                        <input type="text" name="discount" class="form-control" placeholder="e.g 20" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Featured Section</label>
+                                        <select name="featuredSection" id="featuredSection" class="form-control">
+                                            <option value="">- -  Select - -</option>
+                                            <option value="bestSelling">Best Selling</option>
+                                            <option value="latestDrop">Latest Drops</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
                                         <label for="">Add Tags Comma ( , ) Separated</label>
                                         <input type="text" name="tags" class="form-control" placeholder="e.g Shirt, Cotton, .." required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Visibility Status</label>
+                                        <select name="visibilityStatus" id="visibilityStatus" class="form-control">
+                                            <option value="">- -  Select - -</option>
+                                            <option value="1">Publish</option>
+                                            <option value="0">Draft</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="">Short Description</label>
+                                        <textarea name="shortDescription" class="form-control" id="shortDescription" cols="30" rows="5" placeholder="e.g Short Description here...." required maxlength="350"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="">Long Description</label>
+                                        <textarea name="longDescription" class="form-control" id="longDescription" cols="30" rows="7" placeholder="e.g Long Description here...." required maxlength="800"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -286,6 +322,35 @@
 
         
     </script> --}}
+
+    <script>
+        $('.main-product-browse').on('click', function(){
+            $('#mainProductImage').click();
+        });
+
+        $('#mainProductImage').on('change', function(){
+            const imageFile = $(this)[0].files;
+            const maxFileSizeAllowed = 2*1024*1024;
+           
+            const mimeType = imageFile[0].type;
+
+            if(imageFile[0].size > maxFileSizeAllowed){
+                toastr.error('Oops! File too large. Maximum allowed size 2 MB');
+            }else if(mimeType.split('/')[0] !== 'image'){
+                toastr.error('Oops! Not a valid image. Please upload image only');
+            }else{
+                const fileReader = new FileReader();
+                fileReader.onload = function(e){
+                    $('.preview-main-product').html(
+                        `
+                            <img src="${e.target.result}" alt="product main image" >
+                        `
+                    )
+                };
+                fileReader.readAsDataURL(imageFile[0]);
+            }
+        });
+    </script>
 
     <script>
         $('#selectCategory').on('change', function(e){
