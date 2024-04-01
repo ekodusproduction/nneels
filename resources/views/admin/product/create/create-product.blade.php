@@ -27,7 +27,7 @@
             cursor: pointer;
             background: white;
         }
-        .browse-image .fe-edit-2{
+        .browse-image .fe-upload-cloud{
             font-size:20px;
         }
         #mainProductImage{
@@ -70,8 +70,9 @@
             align-items: center;
             position: absolute;
             right: 30px;
+            cursor: pointer;
         }
-        .browse-gallery-image .fe-edit-2{
+        .browse-gallery-image .fe-upload-cloud{
             font-size:16px;
         }
         .product-gallery-image{
@@ -84,10 +85,41 @@
             align-items: center;
             height: 100%;
         }
+        .preview-gallery-product .selected-image-container{
+            height:70px;
+            width:auto;
+            border-radius:5px;
+            background-color:white;
+            display: flex;
+            flex-direction: row;
+           
+        }
+
+        .preview-gallery-product .selected-image-container img{
+            height:100%;
+            width:auto;
+            object-fit: fill;
+            border-radius:5px;
+            border:1px solid rgb(201, 201, 201);
+        }
+        .preview-gallery-product .selected-image-container .gallery-image-remove-btn{
+            font-size: 18px;
+            color: white;
+            background: #e90e0e;
+            border-radius: 50%;
+            height: 25px;
+            width: 25px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
         .product-gallery-image-container .upload-gallery-image-placeholder img{
             height:auto;
             width:80px;
         }
+
     </style>
 @endsection
 
@@ -101,11 +133,11 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-3">
-                    <label for="">Product Main Image</label>
+                    <label for="">Main Image</label>
                     <div class="main-product-image-container">
 
                         <div class="browse-image main-product-browse">
-                            <i class="fe fe-edit-2" aria-hidden="true"></i>
+                            <i class="fe fe-upload-cloud" aria-hidden="true"></i>
                         </div>
                         <div class="preview-main-product">
                             <div class="upload-main-image-placeholder text-center">
@@ -117,16 +149,17 @@
                         <input type="file" name="mainProductImage" id="mainProductImage">
                     </div>
 
-                    <label for="" class="mt-3">Product Gallery Images ( Images Limit : 4 )</label>
+                    <label for="" class="mt-3">Gallery Images ( Max Upload Limit : 4 )</label>
                     <div class="product-gallery-image-container">
 
                         <div class="browse-gallery-image">
-                            <i class="fe fe-edit-2" aria-hidden="true"></i>
+                            <i class="fe fe-upload-cloud" aria-hidden="true"></i>
                         </div>
                         <div class="upload-gallery-image-placeholder text-center">
                             <img  src="{{asset('admin/assets/img/upload-image-placeholder.jpg')}}" alt="upload image placeholder">
                             <p>Choose Image To Upload</p>
                         </div>
+                        <hr style="border-top: 1px dashed rgba(0, 0, 0, 0.1);">
                         <div class="preview-gallery-product"></div>
                         <input type="file" name="productGalleryImage" class="product-gallery-image" multiple>
                     </div>
@@ -324,6 +357,9 @@
     </script> --}}
 
     <script>
+        let galleryImages = [];
+        let totalGalleryImages = 0;
+
         $('.main-product-browse').on('click', function(){
             $('#mainProductImage').click();
         });
@@ -350,6 +386,50 @@
                 fileReader.readAsDataURL(imageFile[0]);
             }
         });
+
+        $('.browse-gallery-image').on('click', function(){
+            $('.product-gallery-image').click();
+        });
+
+        $('.product-gallery-image').on('change', function(){
+            const imageFile = $(this)[0].files;
+            
+
+            const maxFileSizeAllowed = 2*1024*1024;
+            const mimeType = imageFile[0].type;
+
+            if(imageFile[0].size > maxFileSizeAllowed){
+                toastr.error('Oops! File too large. Maximum allowed size 2 MB');
+            }else if(mimeType.split('/')[0] !== 'image'){
+                toastr.error('Oops! Not a valid image. Please upload image only');
+            }else{
+                const fileReader = new FileReader();
+                fileReader.onload = function(e){
+                    $('.preview-gallery-product').append(
+                        `
+                            <div class="selected-image-container"  style="margin-top:10px;">
+                                <img src="${e.target.result}" alt="product gallery image">
+                                <div class="gallery-image-remove-btn">
+                                    <i class="fe fe-x-circle"></i>
+                                </div>
+                            </div>
+                        `
+                    )
+                };
+                fileReader.readAsDataURL(imageFile[0]);
+                totalGalleryImages++;
+                galleryImages.push(imageFile[0]);
+
+                console.log('Total Gallery Images --> ', totalGalleryImages);
+
+                console.log('Gallery Images --> ', galleryImages);
+
+
+            }
+
+
+        });
+
     </script>
 
     <script>
