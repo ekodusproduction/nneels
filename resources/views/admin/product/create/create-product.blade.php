@@ -148,7 +148,7 @@
                             </div>
                             
                         </div>
-                        <input type="file" name="mainProductImage" id="mainProductImage">
+                        <input type="file" name="main_product_image" id="mainProductImage">
                     </div>
 
                     <label for="" class="mt-3">Gallery Images ( Max Upload Limit : 4 )</label>
@@ -163,52 +163,44 @@
                         </div>
                         <hr style="border-top: 1px dashed rgba(0, 0, 0, 0.1);">
                         <div class="preview-gallery-product"></div>
-                        <input type="file" name="productGalleryImage" class="product-gallery-image" multiple>
+                        <input type="file" name="product_gallery_image" class="product-gallery-image" multiple>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="product-form-container">
-                        <form id="createItemForm" enctype="multipart/form-data">
+                        <form id="createProductForm" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Name</label>
-                                        <input type="text" name="name" class="form-control" placeholder="e.g Jacket" required>
+                                        <input type="text" name="name" class="form-control" placeholder="e.g Jacket" >
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Price</label>
-                                        <input type="text" name="price" class="form-control" min="0" placeholder="e.g 500" required>
+                                        <input type="text" name="price" class="form-control" min="0" placeholder="e.g 500" >
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="">Select Size</label>
-                                        <select name="size" id="size" class="form-control" required>
-                                            <option value="">- - Select - -</option>
-                                            <option value="XS">XS</option>
-                                            <option value="S">S</option>
-                                            <option value="M">M</option>
-                                            <option value="L">L</option>
-                                            <option value="XL">XL</option>
-                                            <option value="Free Size">Free Size</option>
-                                        </select>
+                                        <label for="">Available Size Comma ( , ) Separated</label>
+                                        <input type="text" name="size" id="size" class="form-control" placeholder="e.g XS, S, M, ... ">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="">Available Color</label>
-                                        <input type="text" name="itemColor" class="form-control" placeholder="e.g Green" required>
+                                        <label for="">Available Color Comma ( , ) Separated</label>
+                                        <input type="text" name="color" class="form-control" placeholder="e.g Green" >
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Select Category</label>
-                                        <select name="category" id="selectCategory" class="form-control" required>
+                                        <select name="category" id="selectCategory" class="form-control" >
                                             <option value="">- - Select - - </option>
                                             @foreach ($category as $key => $item)
                                                 <option value="{{encrypt($item->id)}}">{{$item->name}}</option>
@@ -219,7 +211,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Select Sub-Category</label>
-                                        <select name="sub_category" id="subCategory" class="form-control" required>
+                                        <select name="sub_category" id="subCategory" class="form-control" >
                                             <option value="">- - Select - - </option>
                                         </select>
                                     </div>
@@ -229,29 +221,29 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Quantity</label>
-                                        <input type="number" name="quantity" class="form-control" min="0" placeholder="e.g 300" required>
+                                        <input type="number" name="quantity" class="form-control" min="0" placeholder="e.g 300" >
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Select Stock Availability</label>
-                                        <select name="stock" id="stock" class="form-control">
+                                        <select name="is_stock_available" id="stock" class="form-control">
                                             <option value="">- -  Select - -</option>
-                                            <option value="inStock">In Stock</option>
-                                            <option value="outOfStock">Out of Stock</option>
+                                            <option value="1">In Stock</option>
+                                            <option value="0">Out of Stock</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Rate of Discount (in %)</label>
-                                        <input type="text" name="discount" class="form-control" placeholder="e.g 20" required>
+                                        <input type="text" name="rate_of_discount" class="form-control" placeholder="e.g 20" >
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Featured Section</label>
-                                        <select name="featuredSection" id="featuredSection" class="form-control">
+                                        <select name="featured_section" id="featuredSection" class="form-control">
                                             <option value="">- -  Select - -</option>
                                             <option value="bestSelling">Best Selling</option>
                                             <option value="latestDrop">Latest Drops</option>
@@ -261,13 +253,13 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Add Tags Comma ( , ) Separated</label>
-                                        <input type="text" name="tags" class="form-control" placeholder="e.g Shirt, Cotton, .." required>
+                                        <input type="text" name="tags" class="form-control" placeholder="e.g Shirt, Cotton, .." >
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Visibility Status</label>
-                                        <select name="visibilityStatus" id="visibilityStatus" class="form-control">
+                                        <select name="visibility_status" id="visibilityStatus" class="form-control" >
                                             <option value="">- -  Select - -</option>
                                             <option value="1">Publish</option>
                                             <option value="0">Draft</option>
@@ -278,19 +270,19 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="">Short Description</label>
-                                        <textarea name="shortDescription" class="form-control" id="shortDescription" cols="30" rows="5" placeholder="e.g Short Description here...." required maxlength="350"></textarea>
+                                        <label for="">Short Description (Max Character Allowed : 350)</label>
+                                        <textarea name="short_description" class="form-control" id="shortDescription" cols="30" rows="5" placeholder="e.g Short Description here...."  maxlength="350"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="">Long Description</label>
-                                        <textarea name="longDescription" class="form-control" id="longDescription" cols="30" rows="7" placeholder="e.g Long Description here...." required maxlength="800"></textarea>
+                                        <label for="">Long Description (Max Character Allowed : 800)</label>
+                                        <textarea name="long_description" class="form-control" id="longDescription" cols="30" rows="7" placeholder="e.g Long Description here...."  maxlength="800"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-md btn-success create-item-form-btn">Submit</button>
+                                <button type="submit" class="btn btn-md btn-success create-product-form-btn">Submit</button>
                             </div>
                             
                         </form>
@@ -304,6 +296,41 @@
 @endsection
 
 @section('custom-scripts')
+    
+    <script>
+        $('#selectCategory').on('change', function(e){
+            const category_id = $(this).val();
+            $.ajax({
+                url:"{{route('admin.fetch.sub.category')}}",
+                type:"GET",
+                data:{
+                    'category_id' : category_id
+                },
+                success:function(data){
+                    if(data.status == 200){
+                        $('#subCategory').find('option').remove();
+                        if(data != undefined && data != null && data.data.length > 0){
+                            data.data.forEach(function(subData) {
+                                $('#subCategory').append($('<option>', {
+                                    value: subData.id,
+                                    text: subData.name
+                                }));
+                            });
+                        } else {
+                            $('#subCategory').append($('<option>', {
+                                value: '',
+                                text: 'Not Available'
+                            }));
+                        }
+                        
+                    }
+                },error:function(err){
+                    toastr.error('Oops! Something went wrong');
+                }
+
+            });
+        });
+    </script>
 
     <script>
         let galleryImages = [];
@@ -394,84 +421,64 @@
             // console.log('Gallery Imgages-->', galleryImages)
         });
 
-    </script>
 
-    <script>
-        $('#selectCategory').on('change', function(e){
-            const category_id = $(this).val();
-            $.ajax({
-                url:"{{route('admin.fetch.sub.category')}}",
-                type:"GET",
-                data:{
-                    'category_id' : category_id
-                },
-                success:function(data){
-                    if(data.status == 200){
-                        console.log('Data ==>', data.data)
-                        $('#subCategory').find('option').remove();
-                        if(data != undefined && data != null && data.data.length > 0){
-                            data.data.forEach(function(subData) {
-                                $('#subCategory').append($('<option>', {
-                                    value: subData.id,
-                                    text: subData.name
-                                }));
-                            });
-                        } else {
-                            $('#subCategory').append($('<option>', {
-                                value: '',
-                                text: 'Not Available'
-                            }));
-                        }
-                        
-                    }
-                },error:function(err){
-                    toastr.error('Oops! Something went wrong');
-                }
+        //Submit Product Details
 
-            });
-        });
-    </script>
-
-    <script>
-        $('#createItemForm').on('submit', function(e){
+        $('#createProductForm').on('submit', function(e){
             e.preventDefault();
-            $('.create-item-form-btn').text('Please wait...');
-            $('.create-item-form-btn').attr('disabled', true);
 
-            const formData = new FormData(this);
-            // let files = $('#itemImages')[0].files;
-            // for (let i = 0; i < files.length; i++) {
-            //     formData.append('itemImages[]', files[i]);
-            //     // console.log('Files ==>', files[i]);
-            // }
+            const main_image = $('#mainProductImage')[0].files;
 
-            $.ajax({
-                url:"{{route('admin.create.product')}}",
-                type:"POST",
-                data:formData,
-                processData: false,
-                contentType: false,
-                success:function(data){
-                    if(data.status == 200){
-                        toastr.success(data.message)
-                        $('#createItemForm')[0].reset();
-                        $('.create-item-form-btn').text('Submit');
-                        $('.create-item-form-btn').attr('disabled', false);
-                    }else{
-                        toastr.error(data.message)
-                        $('.create-item-form-btn').text('Submit');
-                        $('.create-item-form-btn').attr('disabled', false);
-                    }
-                },error:function(err){
-                    toastr.error(err.responseText)
-                    $('.create-item-form-btn').text('Submit');
-                    $('.create-item-form-btn').attr('disabled', false);
-                }
+            console.log('Main Image --->', main_image[0]);
+
+            if(main_image.length == 0){
+                toastr.error('Oops! Please add main product image');
+            }else{
+                $('.create-product-form-btn').attr('disabled', true);
+                $('.create-product-form-btn').text('Please wait...');
+
+                let formData = new FormData(this);
+                formData.append('main_product_image', main_image[0]);
                 
-            });
+                console.log('Gallery Images --> ', galleryImages) 
+
+                if(galleryImages.length > 0){
+                    $.each(galleryImages, function(index, image) {
+                        formData.append('product_gallery[]', image);
+                    });
 
 
+                }
+
+                $.ajax({
+                    url:"{{route('admin.create.product')}}",
+                    type:"POST",
+                    contentType:false,
+                    processData:false,
+                    data:formData,
+                    success:function(data){
+                        console.log('Response  data ===>', data)
+                        if(data.status == 200){
+                            toastr.success(data.message)
+                            $('.create-product-form-btn').attr('disabled', false);
+                            $('.create-product-form-btn').text('Submit');
+                        }else{
+                            toastr.error(data.message)
+                            $('.create-product-form-btn').attr('disabled', false);
+                            $('.create-product-form-btn').text('Submit');
+                        }
+                    },error:function(err){
+                        toastr.error('Oops! Something went wrong');
+                        $('.create-product-form-btn').attr('disabled', false);
+                        $('.create-product-form-btn').text('Submit');
+                    }
+                });
+            }
+            
+            
         });
-        
+
     </script>
+
+    
 @endsection

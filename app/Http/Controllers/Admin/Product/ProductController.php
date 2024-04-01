@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin\Product;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductGallery;
 use App\Traits\AjaxResponser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -24,14 +26,21 @@ class ProductController extends Controller
             
         }else{
             $validator = Validator::make($request->all(),[
-                'name' => 'required',
-                'price' => 'required',
-                'size' => 'required',
-                'itemColor' => 'required',
+                'name' => 'required|string',
+                'price' => 'required|numeric',
+                'size' => 'required|string',
+                'color' => 'required|string',
+                'quantity' => 'required|numeric',
+                'is_stock_available' => 'required|numeric',
+                'rate_of_discount' => 'required',
+                'featured_section' => 'required',
+                'tags' => 'required|string',
+                'short_description' => 'required',
+                'long_description' => 'required',
+                'main_product_image' => 'required|image|mimes:jpg,png,jpeg,webp|max:2048',
                 'category' => 'required',
                 'sub_category' => 'required',
-                'shortDescription' => 'required',
-                'itemImage' => 'required'
+                'visibility_status' => 'required',
             ]);
 
             if($validator->fails()){
@@ -39,48 +48,64 @@ class ProductController extends Controller
             }else{
                 try{
 
-                    $image = $request->itemImage;
-                    $file = null;
+                    if($request->hasFile('main_product_image')){
 
-                    if($request->hasFile('itemImage')){
-                        $new_name = uniqid() . '_' . $image->getClientOriginalName();
-                        $image->move(public_path('admin/assets/product/Images/cover/'), $new_name);
-                        $file = 'admin/assets/product/images/cover/' . $new_name;
+                        $file = $request->file('main_product_image');
+                        $name = Str::uuid()->toString().'_'.$file->getClientOriginalName();
+                        
+                        $file->move(public_path('admin/assets/product/main/'), $name);
+                        $path = 'admin/assets/product/main/'.$name;
+
+                        $create_product = Product::create([
+                            'name' => $request->name,
+                            'price' => $request->price,
+                            'size' => $request->size,
+                            'color' => $request->color,
+                            'quantity' => $request->quantity,
+                           'is_stock_available' => $request->is_stock_available,
+                            'rate_of_discount' => $request->rate_of_discount,
+                            'featured_section' => $request->featured_section,
+                            'tags' => $request->tags,
+                            'short_description' => $request->short_description,
+                            'long_description' => $request->long_description,
+                            'main_image' => $path ,
+                            'categories_id' => decrypt($request->category),
+                            'sub_categories_id' => $request->sub_category,
+                            'status' => $request->visibility_status,
+                        ]);
+
+                        if($create_product){
+                            if($request->hasFile('product_gallery')){
+
+                                foreach($request->product_gallery as $image){
+
+                                    $gallery_file = $request->file('product_gallery');
+                                    
+                                    $gallery_image_name = Str::uuid()->toString().'_'.$gallery_file->getClientOriginalName();
+                                    
+                                    $gallery_file->move(public_path('admin/assets/product/gallery/'), $gallery_image_name);
+                                    $gallery_image_path = 'admin/assets/product/gallery/'.$gallery_image_name;
+
+                                    ProductGallery::create([
+                                        'products_id' => $create_product->id,
+                                        'image' => $gallery_image_path
+                                    ]);
+                                }
+                                
+                            }
+
+                            return $this->success('Great! Product created successfully.', null, 200);
+                            
+                        }else{
+                            return $this->error('Oops! Failed to create product.', null, 400);
+                        }
+
+                    }else{
+                        return $this->error('Oops! Product main image not selected', null, 400);
                     }
-
-                    Product::create([
-                        'name' => $request->name,
-                        'price' => $request->price,
-                        'size' => $request->size,
-                        'color' => $request->itemColor,
-                        'categories_id' => decrypt($request->category),
-                        'sub_categories_id' => $request->sub_category,
-                        'short_description' => $request->shortDescription,
-                        'cover_image' => $file
-                    ]);
-
-                    // if($createProduct){
-                    //     $product_id = Product::where('status', 1)->latest();
-                    //     return $this->error('Oops', $product_id, 400);
-                    // }
-
-                        // foreach($request->itemImages as $key => $image){
-                        //     $new_name = uniqid() . '_' . $image->getClientOriginalName();
-                        //     $image->move(public_path('admin/assets/product/Images/'), $new_name);
-                        //     $file = 'admin/assets/product/images/' . $new_name;
-                        
-                        //     // Get the corresponding image type for this image
-                        //     $imageType = $request->itemImageType[$key];
-                        
-                        //     ProductImage::create([
-                        //         // 'products_id' => 
-                        //         'image' => $file,
-                        //         'image_type' => $imageType
-                        //     ]);
-                        // }
-                    return $this->success('Great! Product added successfully', null, 200);
+                    
                 }catch(\Exception $e){
-                    return $this->error('Oops! Something went wrong'.$e->getMessage().' '.$e->getLine(), null, 500);
+                    return $this->error('Oops! Something went wrong'.$e->getMessage().' '.'Line No --> '.$e->getLine(), null, 500);
                 }
             }
         }
