@@ -57,6 +57,7 @@ class ProductController extends Controller
                         $path = 'admin/assets/product/main/'.$name;
 
                         $create_product = Product::create([
+                            'product_id' => Str::uuid(),
                             'name' => $request->name,
                             'price' => $request->price,
                             'size' => $request->size,
@@ -75,19 +76,17 @@ class ProductController extends Controller
                         ]);
 
                         if($create_product){
-                            if($request->hasFile('product_gallery')){
+                            
+                            if($request->hasFile('product_gallery_image')){
+                                foreach($request->product_gallery_image as $image){
 
-                                foreach($request->product_gallery as $image){
-
-                                    $gallery_file = $request->file('product_gallery');
+                                    $gallery_image_name = Str::uuid()->toString().'_'.$image->getClientOriginalName();
                                     
-                                    $gallery_image_name = Str::uuid()->toString().'_'.$gallery_file->getClientOriginalName();
-                                    
-                                    $gallery_file->move(public_path('admin/assets/product/gallery/'), $gallery_image_name);
+                                    $image->move(public_path('admin/assets/product/gallery/'), $gallery_image_name);
                                     $gallery_image_path = 'admin/assets/product/gallery/'.$gallery_image_name;
 
                                     ProductGallery::create([
-                                        'products_id' => $create_product->id,
+                                        'product_id' => $create_product->product_id,
                                         'image' => $gallery_image_path
                                     ]);
                                 }

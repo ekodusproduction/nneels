@@ -429,7 +429,7 @@
 
             const main_image = $('#mainProductImage')[0].files;
 
-            console.log('Main Image --->', main_image[0]);
+            // console.log('Main Image --->', main_image[0]);
 
             if(main_image.length == 0){
                 toastr.error('Oops! Please add main product image');
@@ -444,7 +444,7 @@
 
                 if(galleryImages.length > 0){
                     $.each(galleryImages, function(index, image) {
-                        formData.append('product_gallery[]', image);
+                        formData.append('product_gallery_image[]', image);
                     });
 
 
@@ -457,7 +457,7 @@
                     processData:false,
                     data:formData,
                     success:function(data){
-                        console.log('Response  data ===>', data)
+                        // console.log('Response  data ===>', data)
                         if(data.status == 200){
                             toastr.success(data.message)
                             $('.create-product-form-btn').attr('disabled', false);

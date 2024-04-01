@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('product_galleries', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('products_id');
+            $table->uuid('product_id');
             $table->string('image');
             $table->boolean('status')->default('1');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('products_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 
