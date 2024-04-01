@@ -114,6 +114,8 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            position: absolute;
+            right:10%;
         }
         .product-gallery-image-container .upload-gallery-image-placeholder img{
             height:auto;
@@ -302,59 +304,6 @@
 @endsection
 
 @section('custom-scripts')
-    {{-- <script>
-        $('.choose-image').on('click', function(){
-            $('#itemImages').click();
-        });
-
-        let totalFiles = 0;
-
-        $('#itemImages').change(function(){
-            let files = $(this)[0].files;
-            
-            for (let i = 0; i < files.length; i++) {
-                let file = files[i];
-                if (files.length + totalFiles > 4) {
-                    toastr.error('Maximum 4 images allowed.');
-                    return;
-                }
-
-                if (file.size > 2 * 1024 * 1024) {
-                    toastr.error('File ' + file.name + ' exceeds 2MB limit.');
-                    continue;
-                }
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    $('.input-images').append(
-
-                        '<div class="d-flex flex-column justify-content-center align-items-center text-center">'+
-                            '<img class="preview-image" src="' + e.target.result + '" alt="' + file.name + '">'+
-                            '<p class="remove-image text-danger mb-0">Remove</p>'+
-                            '<div class="form-group ml-4 mt-3">'+
-                                '<label>Select Image Type</label>'+
-                                '<select name="itemImageType[]" class="form-control itemImageType" required>'+
-                                    '<option value="">- - select - -</option>'+
-                                    '<option value="cover">Cover</option>'+
-                                    '<option value="secondary">Secondary</option>'+
-                                '</select>'+
-                            '</div>'+
-                        '</div>'
-                        
-                    );
-                }
-                reader.readAsDataURL(file);
-                totalFiles++;
-            }
-        });
-
-        $('.input-images').on('click', '.remove-image', function(){
-            $(this).closest('.d-flex').remove();
-            totalFiles--;
-            console.log('Total Files', totalFiles)
-        }); 
-
-        
-    </script> --}}
 
     <script>
         let galleryImages = [];
@@ -394,7 +343,6 @@
         $('.product-gallery-image').on('change', function(){
             const imageFile = $(this)[0].files;
             
-
             const maxFileSizeAllowed = 2*1024*1024;
             const mimeType = imageFile[0].type;
 
@@ -403,31 +351,47 @@
             }else if(mimeType.split('/')[0] !== 'image'){
                 toastr.error('Oops! Not a valid image. Please upload image only');
             }else{
-                const fileReader = new FileReader();
-                fileReader.onload = function(e){
-                    $('.preview-gallery-product').append(
-                        `
-                            <div class="selected-image-container"  style="margin-top:10px;">
-                                <img src="${e.target.result}" alt="product gallery image">
-                                <div class="gallery-image-remove-btn">
-                                    <i class="fe fe-x-circle"></i>
+
+                if(totalGalleryImages >= 4){
+                    toastr.error('Oops! Maximum 4 gallery images can be uploaded at a time.');
+                }else{
+                    const fileReader = new FileReader();
+                    fileReader.onload = function(e){
+                        const imageId = 'image_' + Date.now();
+                        $('.preview-gallery-product').append(
+                            `
+                                <div class="selected-image-container"  id="${imageId}" style="margin-top:10px;">
+                                    <img src="${e.target.result}" alt="product gallery image">
+                                    <div class="gallery-image-remove-btn">
+                                        <i class="fe fe-x-circle"></i>
+                                    </div>
                                 </div>
-                            </div>
-                        `
-                    )
-                };
-                fileReader.readAsDataURL(imageFile[0]);
-                totalGalleryImages++;
-                galleryImages.push(imageFile[0]);
-
-                console.log('Total Gallery Images --> ', totalGalleryImages);
-
-                console.log('Gallery Images --> ', galleryImages);
-
-
+                            `
+                        )
+                    };
+                    fileReader.readAsDataURL(imageFile[0]);
+                    totalGalleryImages++;
+                    galleryImages.push(imageFile[0]);
+                    
+                    // console.log('Total Imgages-->', totalGalleryImages)
+                    // console.log('Gallery Imgages-->', galleryImages)
+                }
             }
+        });
 
+        //remove gallery image
+        $(document).on('click', '.gallery-image-remove-btn', function(){
+            let removeImageFromGalleryArray =  $('.selected-image-container').index($(this).closest('.selected-image-container'));
 
+            if (removeImageFromGalleryArray !== -1) {
+                galleryImages.splice(removeImageFromGalleryArray, 1);
+            }
+            totalGalleryImages = totalGalleryImages - 1;
+
+            $(this).closest('.selected-image-container').remove();
+
+            // console.log('Total Imgages-->', totalGalleryImages)
+            // console.log('Gallery Imgages-->', galleryImages)
         });
 
     </script>
