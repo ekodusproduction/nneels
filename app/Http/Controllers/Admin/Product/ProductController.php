@@ -47,6 +47,13 @@ class ProductController extends Controller
                 return $this->error('Oops! '.$validator->errors()->first(), null, 400);
             }else{
                 try{
+                    $categories_id = decrypt($request->category);
+
+                    $check_if_product_with_same_name_exists = Product::where('categories_id', $categories_id)->where('sub_categories_id', $request->sub_category)->where('name', $request->name)->exists();
+
+                    if($check_if_product_with_same_name_exists){
+                        return $this->error('Oops! Product belong to the same category with the same name already exists.', null, 400);
+                    }
 
                     if($request->hasFile('main_product_image')){
 
@@ -70,7 +77,7 @@ class ProductController extends Controller
                             'short_description' => $request->short_description,
                             'long_description' => $request->long_description,
                             'main_image' => $path ,
-                            'categories_id' => decrypt($request->category),
+                            'categories_id' => $categories_id,
                             'sub_categories_id' => $request->sub_category,
                             'status' => $request->visibility_status,
                         ]);
@@ -104,7 +111,7 @@ class ProductController extends Controller
                     }
                     
                 }catch(\Exception $e){
-                    return $this->error('Oops! Something went wrong'.$e->getMessage().' '.'Line No --> '.$e->getLine(), null, 500);
+                    return $this->error('Oops! Something went wrong', null, 500);
                 }
             }
         }

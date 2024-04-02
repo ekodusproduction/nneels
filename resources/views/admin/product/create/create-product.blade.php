@@ -174,19 +174,19 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Name</label>
-                                        <input type="text" name="name" class="form-control" placeholder="e.g Jacket" >
+                                        <input type="text" name="name" class="form-control" placeholder="e.g Jacket" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Price</label>
-                                        <input type="text" name="price" class="form-control" min="0" placeholder="e.g 500" >
+                                        <input type="text" name="price" class="form-control" min="0" placeholder="e.g 500" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Available Size Comma ( , ) Separated</label>
-                                        <input type="text" name="size" id="size" class="form-control" placeholder="e.g XS, S, M, ... ">
+                                        <input type="text" name="size" id="size" class="form-control" placeholder="e.g XS, S, M, ... " required>
                                     </div>
                                 </div>
                             </div>
@@ -194,13 +194,13 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Available Color Comma ( , ) Separated</label>
-                                        <input type="text" name="color" class="form-control" placeholder="e.g Green" >
+                                        <input type="text" name="color" class="form-control" placeholder="e.g Green" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Select Category</label>
-                                        <select name="category" id="selectCategory" class="form-control" >
+                                        <select name="category" id="selectCategory" class="form-control" required>
                                             <option value="">- - Select - - </option>
                                             @foreach ($category as $key => $item)
                                                 <option value="{{encrypt($item->id)}}">{{$item->name}}</option>
@@ -211,7 +211,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Select Sub-Category</label>
-                                        <select name="sub_category" id="subCategory" class="form-control" >
+                                        <select name="sub_category" id="subCategory" class="form-control" required>
                                             <option value="">- - Select - - </option>
                                         </select>
                                     </div>
@@ -221,13 +221,13 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Quantity</label>
-                                        <input type="number" name="quantity" class="form-control" min="0" placeholder="e.g 300" >
+                                        <input type="number" name="quantity" class="form-control" min="0" placeholder="e.g 300" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Select Stock Availability</label>
-                                        <select name="is_stock_available" id="stock" class="form-control">
+                                        <select name="is_stock_available" id="stock" class="form-control" required>
                                             <option value="">- -  Select - -</option>
                                             <option value="1">In Stock</option>
                                             <option value="0">Out of Stock</option>
@@ -237,13 +237,13 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Rate of Discount (in %)</label>
-                                        <input type="text" name="rate_of_discount" class="form-control" placeholder="e.g 20" >
+                                        <input type="text" name="rate_of_discount" class="form-control" placeholder="e.g 20" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Featured Section</label>
-                                        <select name="featured_section" id="featuredSection" class="form-control">
+                                        <select name="featured_section" id="featuredSection" class="form-control" required>
                                             <option value="">- -  Select - -</option>
                                             <option value="bestSelling">Best Selling</option>
                                             <option value="latestDrop">Latest Drops</option>
@@ -253,13 +253,13 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Add Tags Comma ( , ) Separated</label>
-                                        <input type="text" name="tags" class="form-control" placeholder="e.g Shirt, Cotton, .." >
+                                        <input type="text" name="tags" class="form-control" placeholder="e.g Shirt, Cotton, .." required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Visibility Status</label>
-                                        <select name="visibility_status" id="visibilityStatus" class="form-control" >
+                                        <select name="visibility_status" id="visibilityStatus" class="form-control" required>
                                             <option value="">- -  Select - -</option>
                                             <option value="1">Publish</option>
                                             <option value="0">Draft</option>
@@ -271,23 +271,21 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="">Short Description (Max Character Allowed : 350)</label>
-                                        <textarea name="short_description" class="form-control" id="shortDescription" cols="30" rows="5" placeholder="e.g Short Description here...."  maxlength="350"></textarea>
+                                        <textarea name="short_description" class="form-control" id="shortDescription" cols="30" rows="5" placeholder="e.g Short Description here...."  maxlength="350" required></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="">Long Description (Max Character Allowed : 800)</label>
-                                        <textarea name="long_description" class="form-control" id="longDescription" cols="30" rows="7" placeholder="e.g Long Description here...."  maxlength="800"></textarea>
+                                        <textarea name="long_description" class="form-control" id="longDescription" cols="30" rows="7" placeholder="e.g Long Description here...."  maxlength="800" required></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-md btn-success create-product-form-btn">Submit</button>
                             </div>
-                            
                         </form>
                     </div>
-                    
                 </div>
             </div>
            
@@ -440,14 +438,12 @@
                 let formData = new FormData(this);
                 formData.append('main_product_image', main_image[0]);
                 
-                console.log('Gallery Images --> ', galleryImages) 
+                // console.log('Gallery Images --> ', galleryImages) 
 
                 if(galleryImages.length > 0){
                     $.each(galleryImages, function(index, image) {
                         formData.append('product_gallery_image[]', image);
                     });
-
-
                 }
 
                 $.ajax({
@@ -460,6 +456,19 @@
                         // console.log('Response  data ===>', data)
                         if(data.status == 200){
                             toastr.success(data.message)
+
+                            $('#createProductForm')[0].reset();
+                            galleryImages = [];
+                            totalGalleryImages = 0;
+                            $('.preview-gallery-product').html(``);
+                            $('.preview-main-product').html(`
+                            
+                                <div class="upload-main-image-placeholder text-center">
+                                    <img  src="{{asset('admin/assets/img/upload-image-placeholder.jpg')}}" alt="upload image placeholder">
+                                    <p>Choose Image To Upload</p>
+                                </div>
+                            `);
+
                             $('.create-product-form-btn').attr('disabled', false);
                             $('.create-product-form-btn').text('Submit');
                         }else{
