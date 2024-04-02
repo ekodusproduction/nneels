@@ -87,6 +87,11 @@
                             <li><a class="sub-slide-item" href="{{ route('admin.create.product') }}">Product</a></li>
                         </ul>
                     </li>
+                    <li class="sub-slide">
+                        <a class="{{Request::segment(3) == 'view' ? 'sub-side-menu__item active' : 'sub-side-menu__item' }}" href="{{ route('admin.view.product.list') }}">
+                            <span class="sub-side-menu__label">Product List</span>
+                        </a>
+                    </li>
                     {{-- <li><a class="slide-item" href="">Category</a></li>
                     <li><a class="slide-item" href="">Create</a></li> --}}
                 </ul>

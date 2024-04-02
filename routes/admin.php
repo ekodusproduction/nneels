@@ -48,6 +48,12 @@ Route::group(['middleware' => 'auth'], function(){
         Route::group(['prefix' => 'create'], function(){
             Route::match(['get', 'post'], 'product', [ProductController::class, 'create'])->name('admin.create.product');
         });
+
+        Route::group(['prefix' => 'view'], function(){
+            Route::group(['prefix' => 'list'], function(){
+                Route::get('', [ProductController::class, 'productList'])->name('admin.view.product.list');
+            });
+        });
         
     });
 

@@ -116,4 +116,10 @@ class ProductController extends Controller
             }
         }
     }
+
+
+    public function productList(){
+        $product = Product::where('status', 1)->orderBy('created_at', 'Desc')->get();
+        return view('admin.product.view.list')->with(['product ' => $product ]);
+    }
 }
