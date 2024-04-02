@@ -1,3 +1,7 @@
+  @php
+    $category = App\Models\Category::with('subCategories')->where('status', 1)->orderBy('created_at', 'DESC')->get();  
+  @endphp
+  
   <div class="header-mobile header_sticky position-absolute">
     <div class="container d-flex align-items-center h-100">
       <a class="mobile-nav-activator d-block position-relative" href="#">
@@ -37,106 +41,37 @@
       <div class="container">
         <div class="overflow-hidden">
           <ul class="navigation__list list-unstyled position-relative">
-            <li class="navigation__item">
-              <a href="#" class="navigation__link js-nav-right d-flex align-items-center">Women
-                <svg class="ms-auto" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
-                  <use href="#icon_next_sm"></use>
-                </svg>
-              </a>
-              <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
-                <a href="#" class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-2">
-                  <svg class="me-2" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#icon_prev_sm"></use>
-                  </svg>Women
+            @forelse ($category as $key => $item)
+              <li class="navigation__item">
+                <a href="#" class="navigation__link js-nav-right d-flex align-items-center">{{$item->name}}
+                  <svg class="ms-auto" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#icon_next_sm"></use>
+                  </svg>
                 </a>
-                <ul class="list-unstyled">
-                  <li class="sub-menu__item"><a href="../Demo1/index.html" class="menu-link menu-link_us-s">Long Pyjama Sets</a></li>
-                  <li class="sub-menu__item"><a href="../Demo2/index.html" class="menu-link menu-link_us-s">Short Pyjama Sets</a></li>
-                  <li class="sub-menu__item"><a href="../Demo3/index.html" class="menu-link menu-link_us-s">Cotton Night-Shirts</a></li>
-                  <li class="sub-menu__item"><a href="../Demo4/index.html" class="menu-link menu-link_us-s">Quilted Long Jackets</a></li>
-                  <li class="sub-menu__item"><a href="../Demo5/index.html" class="menu-link menu-link_us-s">Dresses</a></li>
-                  <li class="sub-menu__item"><a href="../Demo6/index.html" class="menu-link menu-link_us-s">Jumpsuits</a></li>
-                  <li class="sub-menu__item"><a href="../Demo6/index.html" class="menu-link menu-link_us-s">Cotton Robes</a></li>
-                </ul><!-- /.box-menu -->
-              </div>
-            </li>
-            <li class="navigation__item">
-              <a href="#" class="navigation__link js-nav-right d-flex align-items-center">Men
-                <svg class="ms-auto" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
-                  <use href="#icon_next_sm"></use>
-                </svg>
-              </a>
-              <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
-                <a href="#" class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-2">
-                  <svg class="me-2" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#icon_prev_sm"></use>
-                  </svg>Men
+                <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
+                  <a href="#" class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-2">
+                    <svg class="me-2" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
+                      <use href="#icon_prev_sm"></use>
+                    </svg>{{$item->name}}
+                  </a>
+                  <ul class="list-unstyled">
+                    @forelse ($item->subCategories as $key => $sub_category)
+                      <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">{{$sub_category->name}}</a></li>
+                    @empty
+                      <li class="sub-menu__item"><a href="javascript:void(0);" class="menu-link menu-link_us-s">No Sub-Category Found!</a></li>
+                    @endforelse
+                  </ul><!-- /.box-menu -->
+                </div>
+              </li>
+            @empty
+              <li class="navigation__item">
+                <a href="#" class="navigation__link js-nav-right d-flex align-items-center">No Category Found!
+                  <svg class="ms-auto" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#icon_next_sm"></use>
+                  </svg>
                 </a>
-                <ul class="list-unstyled">
-                  <li class="sub-menu__item"><a href="./blog_list1.html" class="menu-link menu-link_us-s">Long Pyjama Sets</a></li>
-                </ul><!-- /.box-menu -->
-              </div>
-            </li>
-            <li class="navigation__item">
-              <a href="#" class="navigation__link js-nav-right d-flex align-items-center">Kids
-                <svg class="ms-auto" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
-                  <use href="#icon_next_sm"></use>
-                </svg>
-              </a>
-              <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
-                <a href="#" class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-2">
-                  <svg class="me-2" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#icon_prev_sm"></use>
-                  </svg>Kids
-                </a>
-                <ul class="list-unstyled">
-                  <li class="sub-menu__item"><a href="./account_dashboard.html" class="menu-link menu-link_us-s">Kids Pyjama Sets</a></li>
-                  <li class="sub-menu__item"><a href="./login_register.html" class="menu-link menu-link_us-s">Quilted Jackets</a></li>
-                  <li class="sub-menu__item"><a href="./store_location.html" class="menu-link menu-link_us-s">Dresses</a></li>
-                  <li class="sub-menu__item"><a href="./lookbook.html" class="menu-link menu-link_us-s">Bathrobes</a></li>
-                </ul>
-              </div>
-            </li>
-
-            <li class="navigation__item">
-              <a href="#" class="navigation__link js-nav-right d-flex align-items-center">
-                Homeware<svg class="ms-auto" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
-                  <use href="#icon_next_sm"></use>
-                </svg>
-              </a>
-              <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
-                <a href="#" class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-2">
-                  <svg class="me-2" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#icon_prev_sm"></use>
-                  </svg>Homeware
-                </a>
-                <ul class="list-unstyled">
-                  <li class="sub-menu__item"><a href="./account_dashboard.html" class="menu-link menu-link_us-s">Handmade Linen Napkin</a></li>
-                  <li class="sub-menu__item"><a href="./login_register.html" class="menu-link menu-link_us-s">Bath Towel</a></li>
-                  <li class="sub-menu__item"><a href="./store_location.html" class="menu-link menu-link_us-s">Tea Towel</a></li>
-                </ul>
-              </div>
-            </li>
-
-            <li class="navigation__item">
-              <a href="#" class="navigation__link js-nav-right d-flex align-items-center">
-                Accessories<svg class="ms-auto" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
-                  <use href="#icon_next_sm"></use>
-                </svg>
-              </a>
-              <div class="sub-menu position-absolute top-0 start-100 w-100 d-none">
-                <a href="#" class="navigation__link js-nav-left d-flex align-items-center border-bottom mb-2">
-                  <svg class="me-2" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#icon_prev_sm"></use>
-                  </svg>Accessories
-                </a>
-                <ul class="list-unstyled">
-                  <li class="sub-menu__item"><a href="./account_dashboard.html" class="menu-link menu-link_us-s">Necklace</a></li>
-                  <li class="sub-menu__item"><a href="./login_register.html" class="menu-link menu-link_us-s">Bracelets</a></li>
-                  <li class="sub-menu__item"><a href="./store_location.html" class="menu-link menu-link_us-s">Bags</a></li>
-                </ul>
-              </div>
-            </li>
+              </li>
+            @endforelse
           </ul><!-- /.navigation__list -->
         </div><!-- /.overflow-hidden -->
       </div><!-- /.container -->
@@ -174,49 +109,22 @@
 
     <nav class="navigation">
       <ul class="navigation__list list-unstyled d-flex">
+        @forelse ($category as $key => $item)
         <li class="navigation__item">
-          <a href="#" class="navigation__link">Women</a>
+          <a href="#" class="navigation__link">{{$item->name}}</a>
           <ul class="default-menu list-unstyled" style="left: 305px;">
-            <li class="sub-menu__item"><a href="../Demo1/index.html" class="menu-link menu-link_us-s">Long Pyjama Sets</a></li>
-            <li class="sub-menu__item"><a href="../Demo2/index.html" class="menu-link menu-link_us-s">Short Pyjama Sets</a></li>
-            <li class="sub-menu__item"><a href="../Demo3/index.html" class="menu-link menu-link_us-s">Cotton Night-Shirts</a></li>
-            <li class="sub-menu__item"><a href="../Demo4/index.html" class="menu-link menu-link_us-s">Quilted Long Jackets</a></li>
-            <li class="sub-menu__item"><a href="../Demo5/index.html" class="menu-link menu-link_us-s">Dresses</a></li>
-            <li class="sub-menu__item"><a href="../Demo6/index.html" class="menu-link menu-link_us-s">Jumpsuits</a></li>
-            <li class="sub-menu__item"><a href="../Demo6/index.html" class="menu-link menu-link_us-s">Cotton Robes</a></li>
+            @forelse ($item->subCategories as $key2 => $sub_category)
+              <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">{{$sub_category->name}}</a></li>
+            @empty
+              <li class="sub-menu__item"><a href="javascript:void(0)" class="menu-link menu-link_us-s">No Sub-Category Found!</a></li>
+            @endforelse
           </ul>
         </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">Men</a>
-          <ul class="default-menu list-unstyled" style="left: 305px;">
-            <li class="sub-menu__item"><a href="./blog_list1.html" class="menu-link menu-link_us-s">Long Pyjama Sets</a></li>
-          </ul>
-        </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">Kids</a>
-          <ul class="default-menu list-unstyled" style="left: 374px;">
-            <li class="sub-menu__item"><a href="./account_dashboard.html" class="menu-link menu-link_us-s">Kids Pyjama Sets</a></li>
-            <li class="sub-menu__item"><a href="./login_register.html" class="menu-link menu-link_us-s">Quilted Jackets</a></li>
-            <li class="sub-menu__item"><a href="./store_location.html" class="menu-link menu-link_us-s">Dresses</a></li>
-            <li class="sub-menu__item"><a href="./lookbook.html" class="menu-link menu-link_us-s">Bathrobes</a></li>
-          </ul><!-- /.box-menu -->
-        </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">Homeware</a>
-          <ul class="default-menu list-unstyled" style="left: 374px;">
-            <li class="sub-menu__item"><a href="./account_dashboard.html" class="menu-link menu-link_us-s">Handmade Linen Napkin</a></li>
-            <li class="sub-menu__item"><a href="./login_register.html" class="menu-link menu-link_us-s">Bath Towel</a></li>
-            <li class="sub-menu__item"><a href="./store_location.html" class="menu-link menu-link_us-s">Tea Towel</a></li>
-          </ul><!-- /.box-menu -->
-        </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">Accessories</a>
-          <ul class="default-menu list-unstyled" style="left: 374px;">
-            <li class="sub-menu__item"><a href="./account_dashboard.html" class="menu-link menu-link_us-s">Necklace</a></li>
-            <li class="sub-menu__item"><a href="./login_register.html" class="menu-link menu-link_us-s">Bracelets</a></li>
-            <li class="sub-menu__item"><a href="./store_location.html" class="menu-link menu-link_us-s">Bags</a></li>
-          </ul><!-- /.box-menu -->
-        </li>
+        @empty
+          <li class="navigation__item">
+            <a href="#" class="navigation__link">No Category Found!</a>
+          </li>
+        @endforelse
       </ul><!-- /.navigation__list -->
     </nav><!-- /.navigation -->
 
