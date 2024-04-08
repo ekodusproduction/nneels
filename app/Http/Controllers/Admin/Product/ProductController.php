@@ -19,7 +19,7 @@ class ProductController extends Controller
         if($request->isMethod('get')){
             try{
                 $category = Category::with('subCategories')->where('status', 1)->get();
-                return view('admin.product.create.create-product')->with(['category' => $category]);
+                return view('admin.product.create')->with(['category' => $category]);
             }catch(\Exception $e){
                 echo 'Oops! Something went wrong.';
             }

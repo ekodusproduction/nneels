@@ -63,5 +63,5 @@ Route::group(['middleware' => 'auth'], function(){
         Auth::logout();
 
         return redirect()->route('admin.login');
-    });
+    })->name('admin.logout');
 });

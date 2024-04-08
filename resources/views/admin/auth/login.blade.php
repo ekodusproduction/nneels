@@ -1,177 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
-    <head>
-		<meta charset="UTF-8">
-		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<title> Admin Login | Nneels Ecommerce </title>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-		<!--- Favicon -->
-		<link rel="icon" href="{{asset('assets/images/nneels-favicon.png')}}" type="image/x-icon"/>
+    <title>Login | Nneels</title>
 
-		<!--- Icons css -->
-		<link href="{{asset('admin/assets/css/icons.css')}}" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{asset('admin/assets/img/favicon/favicon.ico')}}" />
 
-		
-		<!--- Right-sidemenu css -->
-		<link href="{{asset('admin/assets/plugins/sidebar/sidebar.css')}}" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 
-		<!--- Custom Scroll bar -->
-		<link href="{{asset('admin/assets/plugins/mscrollbar/jquery.mCustomScrollbar.css')}}" rel="stylesheet"/>
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="{{asset('admin/assets/vendor/fonts/boxicons.css')}}" />
 
-		<!--- Style css -->
-		<link href="{{asset('admin/assets/css/style.css')}}" rel="stylesheet">
-		<link href="{{asset('admin/assets/css/skin-modes.css')}}" rel="stylesheet">
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{{asset('admin/assets/vendor/css/core.css')}}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{asset('admin/assets/vendor/css/theme-default.css')}}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{asset('admin/assets/css/demo.css')}}" />
 
-		<!--- Sidemenu css -->
-		<link href="{{asset('admin/assets/css/sidemenu.css')}}" rel="stylesheet">
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="{{asset('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
 
-		<!--- Animations css -->
-		<link href="{{asset('admin/assets/css/animate.css')}}" rel="stylesheet">
-		
-		<!--- Switcher css -->
-		<link href="{{asset('admin/assets/switcher/css/switcher.css')}}" rel="stylesheet">
-		<link href="{{asset('admin/assets/switcher/demo.css')}}" rel="stylesheet">
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="{{asset('admin/assets/vendor/css/pages/page-auth.css')}}" />
+    <!-- Helpers -->
+    <script src="{{asset('admin/assets/vendor/js/helpers.js')}}"></script>
+    <script src="{{asset('admin/assets/js/config.js')}}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+</head>
 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    </head>
-	
-	<body class="main-body">
-		<div class="my-auto page page-h">
-			<div class="main-signin-wrapper">
-				<div class="main-card-signin d-md-flex wd-100p">
-				<div class="wd-md-50p login d-none d-md-block page-signin-style p-5 text-white" >
-					<div class="my-auto authentication-pages">
-						<div class="d-flex flex-column justify-content-center align-items-center" >
-							<img src="{{asset('assets/images/nneels-updated-logo.jpg')}}" class=" m-0 mt-5 mb-4" alt="logo" height="80px">
-							<h6 class="mb-4">&copy <?php echo date('Y'); ?>. All rights reserved. </h6>
-							<a href="https://ekodus.com" class="btn btn-primary" style="background-color: #475aee1c;border-color: #0ba36036;">Design & Maintained by <b>Ekodus Technologies Pvt. Ltd.</b></a>
-						</div>
-					</div>
-				</div>
-				<div class="p-5 wd-md-50p">
-					<div class="main-signin-header">
-						<h2>Welcome back!</h2>
-						<h4>Please sign in to continue</h4>
-						<form id="loginForm">
-							@csrf
-							<div class="form-group">
-								<label>Email</label>
-								<input class="form-control" name="email" placeholder="Enter your email" type="email" required>
-							</div>
-							<div class="form-group">
-								<label>Password</label>
-								<input class="form-control" name="password" placeholder="Enter your password" type="password" required>
-							</div>
-							<button class="btn btn-main-primary btn-block signInBtn" type="submit">Sign In</button>
-						</form>
-					</div>
-					<div class="main-signin-footer mt-3 mg-t-5">
-						<p><a href="#">Forgot password?</a></p>
-					</div>
-				</div>
-			</div>
-			</div>
-		</div>
-		<!-- /main-signin-wrapper -->
-		
-		<!-- Back-to-top -->
-		<a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
+<body>
+    <!-- Content -->
 
-		<!--- JQuery min js -->
-		<script src="{{asset('admin/assets/plugins/jquery/jquery.min.js')}}"></script>
+    <div class="container-xxl">
+        <div class="authentication-wrapper authentication-basic container-p-y">
+            <div class="authentication-inner">
+                <!-- Register -->
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Logo -->
+                        <div class="app-brand justify-content-center">
+                            <a href="index.html" class="app-brand-link gap-2">
+                                <span class="app-brand-logo demo">
+                                    <img src="{{asset('admin/assets/logo/nneels-updated-logo.jpg')}}" alt="Nneels Logo" height="70">
+                                </span>
+                            </a>
+                        </div>
+                        <!-- /Logo -->
+                        <h4 class="mb-2">Welcome Back! 👋</h4>
+                        <p class="mb-4">Please sign-in to your account</p>
 
-		{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> --}}
+                        <form id="loginForm" class="mb-3">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" autofocus />
+                            </div>
+                            <div class="mb-3 form-password-toggle">
+                                <div class="d-flex justify-content-between">
+                                    <label class="form-label" for="password">Password</label>
+                                    <a href="auth-forgot-password-basic.html">
+                                        <small>Forgot Password?</small>
+                                    </a>
+                                </div>
+                                <div class="input-group input-group-merge">
+                                    <input type="password" id="password" class="form-control" name="password"
+                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                        aria-describedby="password" />
+                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary d-grid w-100 sign-in-btn" type="submit">Sign in</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /Register -->
+            </div>
+        </div>
+    </div>
 
-		<!--- Datepicker js -->
-		<script src="{{asset('adminassets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+    <!-- / Content -->
 
-		<!--- Bootstrap Bundle js -->
-		<script src="{{asset('adminassets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{{asset('admin/assets/vendor/libs/jquery/jquery.js')}}"></script>
+    <script src="{{asset('admin/assets/vendor/libs/popper/popper.js')}}"></script>
+    <script src="{{asset('admin/assets/vendor/js/bootstrap.js')}}"></script>
+    <script src="{{asset('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
 
-		<!--- Ionicons js -->
-		<script src="{{asset('admin/assets/plugins/ionicons/ionicons.js')}}"></script>
+    <script src="{{asset('admin/assets/vendor/js/menu.js')}}"></script>
 
-		
-		<!--- Moment js -->
-		<script src="{{asset('admin/assets/plugins/moment/moment.js')}}"></script>
+    <script src="{{asset('admin/assets/js/main.js')}}"></script>
 
-		<!--- JQuery sparkline js -->
-		<script src="{{asset('admin/assets/plugins/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-		<!--- Perfect-scrollbar js -->
-		<script src="{{asset('admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-		<script src="{{asset('admin/assets/plugins/perfect-scrollbar/p-scroll.js')}}"></script>
+    <script>
+        $('#loginForm').on('submit', function(e){
+            e.preventDefault();
 
+            $('.sign-in-btn').text('Please wait...');
+            $('.sign-in-btn').attr('disabled', true);
 
-		<!--- Rating js -->
-		<script src="assets/plugins/rating/jquery.rating-stars.js"></script>
-		<script src="assets/plugins/rating/jquery.barrating.js"></script>
+            let formData = new FormData(this);
 
-		<!--- Custom Scroll bar Js -->
-		<script src="assets/plugins/mscrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+            $.ajax({
+                url:"{{route('admin.login')}}",
+                type:"POST",
+                contentType:false,
+                processData:false,
+                data:formData,
+                success:function(data){
+                    if(data.status == 200){
+                        toastr.success(data.message)
+                        setTimeout(() => {
+                            $('.sign-in-btn').text(data.message);
+                            $('.sign-in-btn').text('Redirecting...');
+                            window.location.replace(data.data)
+                        }, 2000);
+                    }else{
+                        toastr.error(data.message)
+                        $('.sign-in-btn').text('Sign In');
+                        $('.sign-in-btn').attr('disabled', false);
+                    }
+                },error:function(err){
+                    toastr.error('Oops! Something went wrong.');
+                    $('.sign-in-btn').text('Sign In');
+                    $('.sign-in-btn').attr('disabled', false);
+                }
 
+            });
+        });
+    </script>
+</body>
 
-		<!--- Sidebar js -->
-		<script src="assets/plugins/side-menu/sidemenu.js"></script>
-
-
-		<!--- Right-sidebar js -->
-		<script src="assets/plugins/sidebar/sidebar.js"></script>
-		<script src="assets/plugins/sidebar/sidebar-custom.js"></script>
-		
-		<!--- Eva-icons js -->
-		<script src="assets/js/eva-icons.min.js"></script>
-
-		<!--- Scripts js -->
-		<script src="assets/js/script.js"></script>
-
-		<!--- Custom js -->
-		<script src="assets/js/custom.js"></script>
-		
-		<!--- Switcher js -->
-		<script src="assets/switcher/js/switcher.js"></script>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-		
-		<script>
-			$('#loginForm').on('submit', function(e){
-				e.preventDefault();
-
-				$('.signInBtn').text('Please wait...');
-				$('.signInBtn').attr('disabled', true);
-
-				let formData = new FormData(this);
-
-				$.ajax({
-					url:"{{route('admin.login')}}",
-					type:"POST",
-					contentType:false,
-					processData:false,
-					data:formData,
-					success:function(data){
-						if(data.status == 200){
-							toastr.success(data.message)
-							setTimeout(() => {
-								$('.signInBtn').text(data.message);
-								$('.signInBtn').text('Redirecting...');
-								window.location.replace(data.data)
-							}, 2000);
-						}else{
-							toastr.error(data.message)
-							$('.signInBtn').text('Sign In');
-							$('.signInBtn').attr('disabled', false);
-						}
-					},error:function(err){
-						console.log(err)
-						$('.signInBtn').text('Sign In');
-						$('.signInBtn').attr('disabled', false);
-					}
-
-				});
-			});
-		</script>
-	</body>
 </html>
