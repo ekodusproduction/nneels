@@ -35,10 +35,11 @@
               <img loading="lazy" src="{{asset('assets/banner/banner-2.jpg')}}" width="1761" height="778" alt="Pattern" class="slideshow-bg__img object-fit-cover">
             </div>
             <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
-              <h6 class="text_dash text-uppercase text-red fs-base fw-medium animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">New Trend</h6>
-              <h2 class="text-uppercase h1 fw-normal mb-0 animate animate_fade animate_btt animate_delay-5 text-white" style="text-shadow: 0px 5px 10px #686868;">Summer Sale Stylish</h2>
-              <h2 class="text-uppercase h1 fw-bold animate animate_fade animate_btt animate_delay-5 text-white" style="text-shadow: 0px 5px 10px #686868;">Women</h2>
-              <a href="shop1.html" class="btn-link btn-link_lg default-underline text-uppercase fw-medium animate animate_fade animate_btt animate_delay-7 text-white" style="text-shadow: 0px 5px 10px #686868;">Discover More</a>
+              {{-- <h6 class="text_dash text-uppercase text-red fs-base fw-medium animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">New Trend</h6> --}}
+              {{-- <h2 class="text-uppercase h1 fw-normal mb-0 animate animate_fade animate_btt animate_delay-5 text-white" style="text-shadow: 0px 5px 10px #686868;"></h2> --}}
+              <h2 class="text-uppercase h1 fw-bold animate animate_fade animate_btt animate_delay-5 text-white" style="text-shadow: 0px 5px 10px #686868;">Summer Sale Stylish</h2>
+              <h6 class="text-uppercase mb-5 animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">Limited Time Offer - Up to 60% off & Free Shipping</h6>
+              {{-- <a href="shop1.html" class="btn-link btn-link_lg default-underline text-uppercase fw-medium animate animate_fade animate_btt animate_delay-7 text-white" style="text-shadow: 0px 5px 10px #686868;">Discover More</a> --}}
             </div>
           </div>
         </div><!-- /.slideshow-item -->

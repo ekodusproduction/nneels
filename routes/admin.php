@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\AuthenticationController;
+use App\Http\Controllers\Admin\Banner\BannerController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
 use App\Http\Controllers\Admin\Product\CategoryController;
 use App\Http\Controllers\Admin\Product\ItemController;
@@ -29,6 +30,13 @@ Route::group(['prefix' => 'auth'], function(){
 
 
 Route::group(['middleware' => 'auth'], function(){
+
+    Route::group(['prefix' => 'banner'], function(){
+        Route::get('', [BannerController::class, 'index'])->name('admin.get.banner');
+        Route::post('create', [BannerController::class, 'createBanner'])->name('admin.create.banner');
+        Route::get('all', [BannerController::class, 'allBanners'])->name('admin.get.all.banners');
+    });
+
     Route::group(['prefix' => 'dashboard'], function(){
         Route::get('', [DashboardController::class, 'index'])->name('admin.dashboard');
     });

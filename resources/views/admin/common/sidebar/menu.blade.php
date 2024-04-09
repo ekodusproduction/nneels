@@ -23,17 +23,31 @@
             </a>
         </li>
 
-        <!-- Layouts -->
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <i class="menu-icon tf-icons bx bx-carousel"></i>
+                <div data-i18n="product">Banner</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.get.banner') }}" class="menu-link">
+                        <div data-i18n="banner">Create</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="product">Products</div>
             </a>
 
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bx-layout"></i>
+                        <i class="menu-icon tf-icons bx bxl-dropbox"></i>
                         <div data-i18n="product">Category</div>
                     </a>
 
