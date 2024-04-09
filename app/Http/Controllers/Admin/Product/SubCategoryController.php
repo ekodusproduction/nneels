@@ -21,7 +21,7 @@ class SubCategoryController extends Controller
         if($request->category_id != null){
             $category_id = decrypt($request->category_id);
             try{
-                $sub_categories = SubCategory::where('categories_id',  $category_id)->where('status', 1)->get();
+                $sub_categories = SubCategory::where('categories_id',  $category_id)->where('status', 1)->orderBy('created_at', 'DESC')->get();
                 return $this->success('Great! Sub categories fetched successfully', $sub_categories, 200);
             }catch(\Exception $e){
                 return $this->error('Oops! Something went wrong', null, 500);
@@ -29,7 +29,7 @@ class SubCategoryController extends Controller
         }else{
             try{
                 $main_categories = Category::where('status',1)->orderBy('created_at', 'DESC')->get();
-                $sub_categories = SubCategory::with('categories')->where('status', 1)->get();
+                $sub_categories = SubCategory::with('categories')->where('status', 1)->orderBy('created_at', 'DESC')->get();
                 return view('admin.product.category.sub-category')->with(['sub_categories' => $sub_categories, 'main_categories' => $main_categories]);
             }catch(\Exception $e){
                 return $this->error('Oops! Something went wrong', null, 500);
