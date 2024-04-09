@@ -19,13 +19,13 @@
 
   {{-- @include('website.home.shop-by-category.shop-by-category') --}}
 
-  @include('website.home.new-collection-banner.new-collection-banner')
+  {{-- @include('website.home.new-collection-banner.new-collection-banner') --}}
 
   @include('website.home.products.latest')
 
   @include('website.home.products.quick-view')
 
-  @include('website.home.brands.brands')
+  {{-- @include('website.home.brands.brands') --}}
 
   @include('website.common.news-letter.news-letter')
 

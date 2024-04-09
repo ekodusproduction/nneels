@@ -53,7 +53,7 @@
                     <li class="sub-menu__item"><a href="{{route('website.nav.about.index')}}" class="menu-link menu-link_us-s">About Us</a></li>
                     {{-- <li class="sub-menu__item"><a href="about.html" class="menu-link menu-link_us-s">Careers</a></li>
                     <li class="sub-menu__item"><a href="about.html" class="menu-link menu-link_us-s">Affiliates</a></li> --}}
-                    <li class="sub-menu__item"><a href="{{route('website.nav.blog.index')}}" class="menu-link menu-link_us-s">Blog</a></li>
+                    {{-- <li class="sub-menu__item"><a href="{{route('website.nav.blog.index')}}" class="menu-link menu-link_us-s">Blog</a></li> --}}
                     <li class="sub-menu__item"><a href="{{route('website.nav.contact.index')}}" class="menu-link menu-link_us-s">Contact Us</a>
                     </li>
                 </ul>
