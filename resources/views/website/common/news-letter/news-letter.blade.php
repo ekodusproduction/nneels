@@ -26,7 +26,7 @@
                                 <button class="btn btn-sm btn-default text-white">Login</button>
                              </div>
                             <div class="form-group mb-3">
-                                <a href="#">Create Account</a>
+                                Don't have an account? <a href="#" style="color:rgb(1, 1, 148); font-weight:600;">Create Account</a>
                             </div>
                             
                         </form>
