@@ -16,21 +16,21 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item active">
-            <a href="index.html" class="menu-link">
+        <li class="menu-item {{Request::segment(2) == 'dashboard' ? 'active' : ''}}">
+            <a href="{{route('admin.dashboard')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
 
-        <li class="menu-item">
+        <li class="menu-item {{Request::segment(2) == 'banner' ? 'active' : ''}}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-carousel"></i>
                 <div data-i18n="product">Banner</div>
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item">
+                <li class="menu-item {{Request::segment(2) == 'banner' ? 'active' : ''}}">
                     <a href="{{ route('admin.get.banner') }}" class="menu-link">
                         <div data-i18n="banner">Create</div>
                     </a>
