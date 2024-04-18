@@ -38,14 +38,14 @@
             </ul>
         </li>
         
-        <li class="menu-item">
+        <li class="menu-item {{Request::segment(2) == 'products' ? 'active' : ''}}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="product">Products</div>
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item">
+                <li class="menu-item {{Request::segment(3) == 'category' ? 'active' : ''}}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bxl-dropbox"></i>
                         <div data-i18n="product">Category</div>
@@ -65,12 +65,12 @@
                     </ul>
                 </li>
                 
-                <li class="menu-item">
+                <li class="menu-item {{Request::segment(3) == 'create' ? 'active' : ''}}">
                     <a href="{{ route('admin.create.product') }}" class="menu-link">
                         <div data-i18n="Container">Create Product</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{Request::segment(3) == 'view' ? 'active' : ''}}">
                     <a href="{{ route('admin.view.product.list') }}" class="menu-link">
                         <div data-i18n="Fluid">All Products</div>
                     </a>
