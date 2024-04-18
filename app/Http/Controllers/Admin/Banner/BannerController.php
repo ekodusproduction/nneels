@@ -13,7 +13,10 @@ class BannerController extends Controller
 {
     use AjaxResponser;
     public function index(){
-        $all_banners = Banner::orderBy('created_at', 'DESC')->get();
+        
+        // $all_banners = Banner::orderBy('created_at', 'DESC')->get();
+        $all_banners = Banner::orderByRaw("is_default DESC, created_at DESC")
+                ->get();
         return view('admin.banner.banner')->with(['all_banner' => $all_banners]);
     }
 
@@ -35,11 +38,20 @@ class BannerController extends Controller
                     
                     $file->move(public_path('admin/assets/banner/'), $name);
                     $path = 'admin/assets/banner/'.$name;
+
+                    $check_banner_count = Banner::count();
+
+                    $is_default = 0;
+                    if($check_banner_count < 1){
+                        $is_default = 1;
+                    }
     
                     $create_banner = Banner::create([
                         'image' => $path,
                         'main_text' => $request->main_text,
-                        'sub_text' => $request->sub_text
+                        'sub_text' => $request->sub_text,
+                        'is_default' => $is_default
+
                     ]);
     
                     return $this->success('Great! Banner created successfully.', null, 200);

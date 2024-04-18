@@ -137,12 +137,87 @@
             height: auto;
             width: 80px;
         }
+        .banner-card-image{
+            box-sizing: border-box;
+            overflow: hidden;
+            padding:5px;
+            border-radius: 5px;
+            border: 1px solid #dfdfdf;
+        }
+        .banner-card-image img{
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .default-card-bg{
+            background: #030426;
+        }
     </style>
 @endsection
 
 @section('content')
 
-    <div class="card">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex flex-row justify-content-between align-items-center">
+                <h5 class="card-header">All Banners</h5>
+                <button class="btn btn-primary btn-md" type="button" data-bs-target="#createBannerModal"
+                data-bs-toggle="modal">Create Banner</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @forelse ($all_banner as $key => $item)
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class="{{$item->is_default == 1 ? 'card mt-2 mb-3 default-card-bg' : 'card mt-2 mb-3' }}">
+                    <div class="card-header">
+                        <div class="d-flex flex-row  {{$item->is_default == 1 ? 'justify-content-between' : 'justify-content-end'}}">
+                            @if ($item->is_default == 1)
+                               <p class="text-white mb-0">Default Banner</p> 
+                            @endif
+                            <div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow {{$item->is_default == 1 ? 'text-white' : ''}}" data-bs-toggle="dropdown">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-bookmark-alt me-1"></i>
+                                        Mark Default</a>
+                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
+                                        Edit</a>
+                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
+                                        Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="banner-card-image">
+                            <img src="{{asset($item->image)}}" alt="Banner Image">
+                        </div>
+                        <div class="banner-card-content mt-3">
+                            <h6 class=" {{$item->is_default == 1 ? 'text-white mb-1': 'mb-1'}} ">Main Text : {{$item->main_text ?? 'Not Found'}}</h6>
+                            <p class=" {{$item->is_default == 1 ? 'text-white' : ''}} ">Sub Text : {{$item->sub_text ??'Not Found'}} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h6>- - - - - - - - </h6>
+                    </div>
+                    <div class="card-body">
+                        <h5>Oops! No Banners Available</h5>
+                    </div>
+                </div>
+            </div>
+        @endforelse
+        
+    </div>
+
+    {{-- <div class="card">
         <div class="card-header d-flex flex-row justify-content-between align-items-center">
             <h5 class="card-header">All Banners</h5>
             <button class="btn btn-primary btn-md" type="button" data-bs-target="#createBannerModal"
@@ -205,7 +280,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="modal fade" id="createBannerModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
