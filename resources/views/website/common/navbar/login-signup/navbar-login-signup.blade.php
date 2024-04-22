@@ -6,7 +6,8 @@
                 <button class="btn-close-lg js-close-aside ms-auto"></button>
             </div><!-- /.aside-header -->
 
-            <form action="https://Nneels-html.flexkitux.com/Demo2/login_register.html" method="POST" class="aside-content">
+            <form id="userLoginForm" class="aside-content">
+                @csrf
                 <div class="form-floating mb-3">
                     <input name="email" type="email" class="form-control form-control_gray"
                         id="customerNameEmailInput" placeholder="name@example.com" autocomplete="off">
@@ -25,7 +26,7 @@
                     <a href="reset_password.html" class="btn-text ms-auto">Lost password?</a>
                 </div>
 
-                <button class="btn btn-primary w-100 text-uppercase" type="submit">Log In</button>
+                <button class="btn btn-primary w-100 text-uppercase user-login-submit-btn" type="submit">Log In</button>
 
                 <div class="customer-option mt-4 text-center">
                     <span class="text-secondary">No account yet?</span>
@@ -40,36 +41,41 @@
                 <button class="btn-close-lg js-close-aside btn-close-aside ms-auto"></button>
             </div><!-- /.aside-header -->
 
-            <form action="#" method="POST"
-                class="aside-content">
+            <form id="registerUserForm" class="aside-content">
+
+                @csrf
 
                 <div class="form-floating mb-4">
-                    <input name="email" type="email" class="form-control form-control_gray"
-                        id="registerUserEmailInput" placeholder="user@company.com">
+                    <input name="name" type="text" class="form-control form-control_gray" id="registerUserNameInput" placeholder="Jhon Doe">
+                    <label for="registerUserNameInput">Full Name *</label>
+                </div>
+
+                <div class="pb-1"></div>
+
+                <div class="form-floating mb-4">
+                    <input name="email" type="email" class="form-control form-control_gray" id="registerUserEmailInput" placeholder="user@company.com">
                     <label for="registerUserEmailInput">Email address *</label>
                 </div>
 
                 <div class="pb-1"></div>
 
                 <div class="form-floating mb-4">
-                    <input name="phone" type="text" class="form-control form-control_gray"
-                        id="registerPhoneInput" placeholder="+1 XXX XXX-XXXX">
+                    <input name="phone" type="text" class="form-control form-control_gray" id="registerPhoneInput" placeholder="+1 XXX XXX-XXXX">
                     <label for="registerPhoneInput">Phone Number *</label>
                 </div>
 
                 <div class="pb-1"></div>
 
-                <div class="form-label-fixed mb-4">
-                    <label for="registerPasswordInput" class="form-label">Password *</label>
-                    <input name="password" id="registerPasswordInput" class="form-control form-control_gray"
-                        type="password" placeholder="*******">
+                <div class="form-floating mb-4">
+                    <input name="password" type="password" class="form-control form-control_gray" id="registerPasswordInput" placeholder="****************">
+                    <label for="registerPasswordInput">Password *</label>
                 </div>
 
                 <p class="text-secondary mb-4">Your personal data will be used to support your experience throughout
                     this website, to manage access to your account, and for other purposes described in our privacy
                     policy.</p>
 
-                <button class="btn btn-primary w-100 text-uppercase" type="submit">Register</button>
+                <button class="btn btn-primary w-100 text-uppercase user-submit-btn" type="submit">Register</button>
 
                 <div class="customer-option mt-4 text-center">
                     <span class="text-secondary">Already have account?</span>
@@ -81,3 +87,5 @@
         <!-- /.customer__register -->
     </div><!-- /.customer-forms__wrapper -->
 </div>
+
+

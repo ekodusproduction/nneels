@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Website\AboutController;
 use App\Http\Controllers\Website\AccountController;
+use App\Http\Controllers\Website\Auth\AuthenticationController;
 use App\Http\Controllers\Website\BlogController;
 use App\Http\Controllers\Website\ContactController;
 use App\Http\Controllers\Website\HomeController;
@@ -42,6 +43,11 @@ Route::group(['prefix' => 'website'], function(){
         Route::get('details', [AccountController::class, 'accountDetails'])->name('website.account.details');
         Route::get('wishlist', [AccountController::class, 'wishlist'])->name('website.account.wishlist');
         Route::get('logout', [AccountController::class, 'logout'])->name('website.account.logout');
+    });
+
+    Route::group(['prefix' => 'auth'], function(){
+        Route::post('signup', [AuthenticationController::class, 'signup'])->name('website.auth.signup');
+        Route::post('login', [AuthenticationController::class, 'login'])->name('website.auth.login');
     });
 });
 
