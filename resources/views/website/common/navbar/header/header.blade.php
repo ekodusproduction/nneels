@@ -169,7 +169,7 @@
       
       @auth
         <div class="header-tools__item hover-container">
-          <a class="header-tools__item" href="#">
+          <a class="header-tools__item" href="{{route('website.account.myaccount')}}">
             <svg class="d-inline-block align-middle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_user"></use></svg>
             <span class="d-inline-block ms-2 text-uppercase align-middle fw-medium">My Account</span>
           </a>
