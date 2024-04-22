@@ -17,28 +17,22 @@
               <div class="my-account__edit-form">
                 <form name="account_edit_form" class="needs-validation" novalidate>
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <div class="form-floating my-3">
-                        <input type="text" class="form-control" id="account_first_name" placeholder="First Name" required>
-                        <label for="account_first_name">First Name</label>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-floating my-3">
-                        <input type="text" class="form-control" id="account_last_name" placeholder="Last Name" required>
-                        <label for="account_last_name">Last Name</label>
+                        <input type="text" class="form-control" id="account_full_name" placeholder="Full Name" value="{{Auth::user()->name}}" required>
+                        <label for="account_full_name">Full Name</label>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-floating my-3">
-                        <input type="text" class="form-control" id="account_display_name" placeholder="Display Name" required>
-                        <label for="account_display_name">Display Name</label>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-floating my-3">
-                        <input type="email" class="form-control" id="account_email" placeholder="Email Address" required>
+                        <input type="email" class="form-control" id="account_email" placeholder="Email Address" value="{{Auth::user()->email}}" required>
                         <label for="account_email">Email Address</label>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-floating my-3">
+                        <input type="phone" class="form-control" id="account_email" placeholder="Email Address" value="{{Auth::user()->phone}}" required>
+                        <label for="account_email">Phone Number</label>
                       </div>
                     </div>
                     <div class="col-md-12">
