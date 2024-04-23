@@ -17,7 +17,7 @@
         <div class="swiper-slide full-width_border border-1" style="border-color: #f5e6e0;">
           <div class="overflow-hidden position-relative h-100">
             <div class="slideshow-bg" style="background-color: #f5e6e0;">
-              <img loading="lazy" src="{{asset('assets/banner/banner-3.png')}}" width="1761" height="778" alt="Pattern" class="slideshow-bg__img object-fit-cover">
+              <img loading="lazy" src="{{asset('assets/banner/banner-3.jpg')}}" width="1761" height="778" alt="Pattern" class="slideshow-bg__img object-fit-cover">
             </div>
             {{-- <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
               <h6 class="text_dash text-uppercase text-red fs-base fw-medium animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">New Trend</h6>

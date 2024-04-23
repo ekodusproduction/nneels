@@ -50,5 +50,9 @@ Route::group(['prefix' => 'website'], function(){
         Route::post('login', [AuthenticationController::class, 'login'])->name('website.auth.login');
         
     });
+
+    Route::group(['prefix' => 'shop'], function(){
+        Route::get('{main_category}/{sub_category}', [ShopController::class, 'getProduct' ])->name('website.get.product.by.category');
+    });
 });
 
