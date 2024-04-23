@@ -35,36 +35,16 @@
                         aria-labelledby="accordion-heading-11" data-bs-parent="#categories-list">
                         <div class="accordion-body px-0 pb-0 pt-3">
                             <ul class="list list-inline mb-0">
-                                <li class="list-item">
-                                    <a href="#" class="menu-link py-1">Dresses</a>
-                                </li>
-                                <li class="list-item">
-                                    <a href="#" class="menu-link py-1">Shorts</a>
-                                </li>
-                                <li class="list-item">
-                                    <a href="#" class="menu-link py-1">Sweatshirts</a>
-                                </li>
-                                <li class="list-item">
-                                    <a href="#" class="menu-link py-1">Swimwear</a>
-                                </li>
-                                <li class="list-item">
-                                    <a href="#" class="menu-link py-1">Jackets</a>
-                                </li>
-                                <li class="list-item">
-                                    <a href="#" class="menu-link py-1">T-Shirts & Tops</a>
-                                </li>
-                                <li class="list-item">
-                                    <a href="#" class="menu-link py-1">Jeans</a>
-                                </li>
-                                <li class="list-item">
-                                    <a href="#" class="menu-link py-1">Trousers</a>
-                                </li>
-                                <li class="list-item">
-                                    <a href="#" class="menu-link py-1">Men</a>
-                                </li>
-                                <li class="list-item">
-                                    <a href="#" class="menu-link py-1">Jumpers & Cardigans</a>
-                                </li>
+                                @forelse ($get_related_sub_categories as $item)
+                                    <li class="list-item">
+                                        <a href="#" class="menu-link py-1 {{$sub_category == $item->name ? 'fw-medium text-primary' : ''}}">{{$item->name}}</a>
+                                    </li>
+                                @empty
+                                    <li class="list-item">
+                                        <a href="#" class="menu-link py-1">Oops! No Categories Found.</a>
+                                    </li>
+                                @endforelse
+                                
                             </ul>
                         </div>
                     </div>
@@ -358,9 +338,11 @@
 
             <div class="d-flex justify-content-between mb-4 pb-md-2">
                 <div class="breadcrumb mb-0 d-none d-md-block flex-grow-1">
-                    <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium">Home</a>
+                    <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium">SHOP</a>
                     <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
-                    <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium">The Shop</a>
+                    <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium">{{$main_category}}</a>
+                    <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
+                    <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium">{{$sub_category}}</a>
                 </div><!-- /.breadcrumb -->
 
                 <div class="shop-acs d-flex align-items-center justify-content-between justify-content-md-end flex-grow-1">
@@ -369,8 +351,6 @@
                         <option selected>Default Sorting</option>
                         <option value="1">Featured</option>
                         <option value="2">Best selling</option>
-                        <option value="3">Alphabetically, A-Z</option>
-                        <option value="3">Alphabetically, Z-A</option>
                         <option value="3">Price, low to high</option>
                         <option value="3">Price, high to low</option>
                         <option value="3">Date, old to new</option>
