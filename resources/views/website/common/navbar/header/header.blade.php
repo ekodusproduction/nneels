@@ -110,16 +110,16 @@
     <nav class="navigation">
       <ul class="navigation__list list-unstyled d-flex">
         @forelse ($category as $key => $item)
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">{{$item->name}}</a>
-          <ul class="default-menu list-unstyled" style="left: 305px;">
-            @forelse ($item->subCategories as $key2 => $sub_category)
-              <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">{{$sub_category->name}}</a></li>
-            @empty
-              <li class="sub-menu__item"><a href="javascript:void(0)" class="menu-link menu-link_us-s">No Sub-Category Found!</a></li>
-            @endforelse
-          </ul>
-        </li>
+          <li class="navigation__item">
+            <a href="#" class="navigation__link">{{$item->name}}</a>
+            <ul class="default-menu list-unstyled" style="left: 305px;">
+              @forelse ($item->subCategories as $key2 => $sub_category)
+                <li class="sub-menu__item"><a href="{{route('website.get.product.by.category', ['main_category' => urlencode($item->name), 'sub_category' => urlencode($sub_category->name)])}}" class="menu-link menu-link_us-s">{{$sub_category->name}}</a></li>
+              @empty
+                <li class="sub-menu__item"><a href="javascript:void(0)" class="menu-link menu-link_us-s">No Sub-Category Found!</a></li>
+              @endforelse
+            </ul>
+          </li>
         @empty
           <li class="navigation__item">
             <a href="#" class="navigation__link">No Category Found!</a>
