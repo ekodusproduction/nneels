@@ -52,7 +52,7 @@ Route::group(['prefix' => 'website'], function(){
     });
 
     Route::group(['prefix' => 'shop'], function(){
-        Route::get('{main_category}/{sub_category}', [ShopController::class, 'getProduct' ])->name('website.get.product.by.category');
+        Route::get('{main_category}/{sub_category}/{product_id?}', [ShopController::class, 'getProduct' ])->name('website.get.product.by.category');
     });
 });
 

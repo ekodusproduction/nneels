@@ -393,7 +393,7 @@
                                     <div class="swiper-wrapper">
                                         @forelse ($item->product_gallery as $gallery)
                                             <div class="swiper-slide">
-                                                <a href="#">
+                                                <a href="{{route('website.get.product.by.category', ['main_category' => urlencode($main_category), 'sub_category' => urlencode($sub_category), 'product_id' => $item->product_id])}}">
                                                     <img loading="lazy" src="{{ asset($gallery->image) }}" width="330"
                                                         height="400" alt="Cropped Faux leather Jacket" class="pc__img">
                                                 </a>
