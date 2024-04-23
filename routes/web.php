@@ -48,6 +48,7 @@ Route::group(['prefix' => 'website'], function(){
     Route::group(['prefix' => 'auth'], function(){
         Route::post('signup', [AuthenticationController::class, 'signup'])->name('website.auth.signup');
         Route::post('login', [AuthenticationController::class, 'login'])->name('website.auth.login');
+        
     });
 });
 

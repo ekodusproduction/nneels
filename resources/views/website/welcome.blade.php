@@ -129,7 +129,7 @@
                 $('.user-login-submit-btn').text('LOG IN');
                 $('.user-login-submit-btn').attr('Disabled', false);
 
-                window.location.reload();
+                window.location.replace("{{route('website.account.myaccount')}}");
               }else{
                 toastr.error(data.message)
                 $('.user-login-submit-btn').text('LOG IN');

@@ -13,20 +13,21 @@
                     <div class="block-newsletter w-100">
                         <h3 class="block__title">Login Or Create Account</h3>
                         <p>Be the first to get the latest news about trends, promotions, and much more!</p>
-                        <form action="#" class="footer-newsletter__form position-relative bg-body">
+                        <form id="newsletterUserLoginForm" class="footer-newsletter__form position-relative bg-body">
+                            @csrf
                             <div class="form-group mb-3">
                                 <label for="" class="form-label">Email</label>
-                                <input type="text" class="form-control" placeholder="e.g email id">
+                                <input name="email" type="text" class="form-control" placeholder="e.g email id">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="" class="form-label">Password</label>
-                                <input type="password" class="form-control" placeholder="e.g xxxxxxx">
+                                <input name="password" type="password" class="form-control" placeholder="e.g xxxxxxx">
                             </div>
                             <div class="form-group mb-3">
-                                <button class="btn btn-sm btn-default text-white">Login</button>
+                                <button class="btn btn-sm btn-default text-white user-login-submit-btn" type="submit">Login</button>
                              </div>
                             <div class="form-group mb-3">
-                                Don't have an account? <a href="#" style="color:rgb(1, 1, 148); font-weight:600;">Create Account</a>
+                                Don't have an account? <a href="{{route('website.account.signin.signup.page')}}" style="color:rgb(1, 1, 148); font-weight:600;">Create Account</a>
                             </div>
                             
                         </form>
@@ -36,3 +37,4 @@
         </div>
     </div>
 </div>
+
