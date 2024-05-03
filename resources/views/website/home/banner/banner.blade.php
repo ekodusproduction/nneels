@@ -1,3 +1,7 @@
+@php
+    $banner = App\Models\Banner::where('status', 1)->orderBy('created_at', 'DESC')->get();
+@endphp
+
 <section class="swiper-container js-swiper-slider slideshow full-width_padding"
       data-settings='{
         "autoplay": {
@@ -13,55 +17,34 @@
         }
       }'>
       <div class="swiper-wrapper">
-
-        <div class="swiper-slide full-width_border border-1" style="border-color: #f5e6e0;">
-          <div class="overflow-hidden position-relative h-100">
-            <div class="slideshow-bg" style="background-color: #f5e6e0;">
-              <img loading="lazy" src="{{asset('assets/banner/banner-3.jpg')}}" width="1761" height="778" alt="Pattern" class="slideshow-bg__img object-fit-cover">
-            </div>
-            {{-- <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
-              <h6 class="text_dash text-uppercase text-red fs-base fw-medium animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">New Trend</h6>
-              <h2 class="text-uppercase h1 fw-normal mb-0 animate animate_fade animate_btt animate_delay-5 text-white" style="text-shadow: 0px 5px 10px #686868;">Summer Sale Stylish</h2>
-              <h2 class="text-uppercase h1 fw-bold animate animate_fade animate_btt animate_delay-5 text-white" style="text-shadow: 0px 5px 10px #686868;">Cusion Covers</h2>
-              <a href="shop1.html" class="btn-link btn-link_lg default-underline text-uppercase fw-medium animate animate_fade animate_btt animate_delay-7 text-white" style="text-shadow: 0px 5px 10px #686868;">Discover More</a>
-            </div> --}}
-          </div>
-        </div><!-- /.slideshow-item -->
-
-
-        <div class="swiper-slide full-width_border border-1" style="border-color: #f5e6e0;">
-          <div class="overflow-hidden position-relative h-100">
-            <div class="slideshow-bg" style="background-color: #f5e6e0;">
-              <img loading="lazy" src="{{asset('assets/banner/banner-2.jpg')}}" width="1761" height="778" alt="Pattern" class="slideshow-bg__img object-fit-cover">
-            </div>
-            <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
-              {{-- <h6 class="text_dash text-uppercase text-red fs-base fw-medium animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">New Trend</h6> --}}
-              {{-- <h2 class="text-uppercase h1 fw-normal mb-0 animate animate_fade animate_btt animate_delay-5 text-white" style="text-shadow: 0px 5px 10px #686868;"></h2> --}}
-              <h2 class="text-uppercase h1 fw-bold animate animate_fade animate_btt animate_delay-5 text-white" style="text-shadow: 0px 5px 10px #686868;">Summer Sale Stylish</h2>
-              <h6 class="text-uppercase mb-5 animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">Limited Time Offer - Up to 60% off & Free Shipping</h6>
-              {{-- <a href="shop1.html" class="btn-link btn-link_lg default-underline text-uppercase fw-medium animate animate_fade animate_btt animate_delay-7 text-white" style="text-shadow: 0px 5px 10px #686868;">Discover More</a> --}}
+        @forelse ($banner as $item)
+          <div class="swiper-slide full-width_border border-1" style="border-color: #f5e6e0;">
+            <div class="overflow-hidden position-relative h-100">
+              <div class="slideshow-bg" style="background-color: #f5e6e0;">
+                <img loading="lazy" src="{{asset($item->image)}}" width="1761" height="778" alt="Pattern" class="slideshow-bg__img object-fit-cover">
+              </div>
+              {{-- <div class="slideshow-character position-absolute bottom-0 pos_right-center">
+                <img loading="lazy" src="{{asset('images/slideshow-character2.png')}}" width="400" height="690" alt="Woman Fashion 2" class="slideshow-character__img animate animate_fade animate_rtl animate_delay-10 h-auto w-auto">
+              </div> --}}
+              <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
+                {{-- <h6 class="text_dash text-uppercase text-red fs-base fw-medium animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">Summer 2024</h6> --}}
+                <h2 class="text-uppercase h1 fw-bold animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">{{$item->main_text ?? ''}}</h2>
+                <h6 class="text-uppercase mb-5 animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">{{$item->sub_text ?? ''}}</h6>
+                {{-- <a href="shop1.html" class="btn-link btn-link_lg default-underline text-uppercase fw-medium animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">Discover More</a> --}}
+              </div>
             </div>
           </div>
-        </div><!-- /.slideshow-item -->
-
-        <div class="swiper-slide full-width_border border-1" style="border-color: #f5e6e0;">
-          <div class="overflow-hidden position-relative h-100">
-            <div class="slideshow-bg" style="background-color: #f5e6e0;">
-              <img loading="lazy" src="{{asset('assets/banner/banner-1.jpg')}}" width="1761" height="778" alt="Pattern" class="slideshow-bg__img object-fit-cover">
-            </div>
-            {{-- <div class="slideshow-character position-absolute bottom-0 pos_right-center">
-              <img loading="lazy" src="{{asset('images/slideshow-character2.png')}}" width="400" height="690" alt="Woman Fashion 2" class="slideshow-character__img animate animate_fade animate_rtl animate_delay-10 h-auto w-auto">
-            </div> --}}
-            <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
-              <h6 class="text_dash text-uppercase text-red fs-base fw-medium animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">Summer 2024</h6>
-              <h2 class="text-uppercase h1 fw-bold animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">Hello New Season</h2>
-              <h6 class="text-uppercase mb-5 animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">Limited Time Offer - Up to 60% off & Free Shipping</h6>
-              <a href="shop1.html" class="btn-link btn-link_lg default-underline text-uppercase fw-medium animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">Discover More</a>
+        @empty
+          <div class="swiper-slide full-width_border border-1" style="border-color: #f5e6e0;">
+            <div class="overflow-hidden position-relative h-100">
+              <div class="slideshow-bg" style="background-color: #f5e6e0;">
+                <img loading="lazy" src="{{asset('assets/banner/no-banner.png')}}" width="1761" height="778" alt="No banner found !" class="slideshow-bg__img object-fit-cover">
+              </div>
             </div>
           </div>
-        </div>
-        <!-- /.slideshow-item -->
-      </div><!-- /.slideshow-wrapper js-swiper-slider -->
+        @endforelse
+        
+      </div>
 
       <div class="container">
         <div class="slideshow-pagination d-flex align-items-center position-absolute bottom-0 mb-5"></div>

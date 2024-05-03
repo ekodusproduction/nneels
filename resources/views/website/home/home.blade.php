@@ -11,6 +11,7 @@
 
 @section('content') 
 
+
   @include('website.home.banner.banner')
 
   @include('website.home.category-promotion.category-promotion')
