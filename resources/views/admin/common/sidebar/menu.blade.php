@@ -62,6 +62,11 @@
                                 <div data-i18n="Without navbar">Sub Category</div>
                             </a>
                         </li>
+                        <li class="menu-item">
+                            <a href="{{route('admin.top.category')}}" class="menu-link">
+                                <div data-i18n="Without navbar">List Top Categories</div>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 

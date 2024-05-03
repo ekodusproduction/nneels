@@ -58,6 +58,7 @@
                                         <img loading="lazy" src="{{asset($item->product_gallery[0]['image'])}}" width="330"
                                             height="400" alt="best selling product" class="pc__img pc__img-second">
                                     </a>
+                                    <div class="product-label bg-red text-white">67%</div>
                                     <div class="anim_appear-bottom position-absolute bottom-0 start-0 w-100 d-none d-sm-flex align-items-center">
                                         <button
                                             class="btn btn-primary flex-grow-1 fs-base ps-3 ps-xxl-4 pe-0 border-0 text-uppercase fw-medium js-add-cart js-open-aside"

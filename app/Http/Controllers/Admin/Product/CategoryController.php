@@ -38,4 +38,12 @@ class CategoryController extends Controller
         }
 
     }
+
+    public function topCategory(Request $request){
+        if($request->isMethod('get')){
+            return view('admin.product.category.set-top-category');
+        }else{
+
+        }
+    }
 }

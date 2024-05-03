@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function(){
             Route::group(['prefix' => 'main-category'], function(){
                 Route::get('', [CategoryController::class, 'index'])->name('admin.category');
                 Route::post('create', [CategoryController::class, 'createCategory'])->name('admin.create.category');
+                Route::match(['get','post'], 'top-category', [CategoryController::class, 'topCategory'])->name('admin.top.category');
             });
             
             Route::group(['prefix' => 'sub-category'], function(){
