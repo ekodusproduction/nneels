@@ -41,6 +41,7 @@
                         <tr>
                             <th>Sl. No.</th>
                             <th>Category</th>
+                            <th>Image</th>
                             <th>Sub-Category Name</th>
                             <th>Status</th>
                             <th>More</th>
@@ -53,6 +54,9 @@
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
                                 <td>{{ $item->name }}</td>
+                                <td>
+                                    <img src="{{asset($item->default_image)}}" alt="Category default image" style="height:60px; width:60px; border-radius:50px;">
+                                </td>
                                 <td>
                                     @foreach ($item->subCategories as $key2 => $sub_cat_item)
                                         <span class="badge bg-label-secondary mb-2">{{ $sub_cat_item->name }}</span>
