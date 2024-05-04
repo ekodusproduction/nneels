@@ -2,6 +2,27 @@
 @section('title', 'Main Category')
 
 @section('custom-style')
+    <style>
+        .preview-category-image{
+            height: 300px;
+            width: auto;
+            border-radius: 5px;
+            margin-top: 15px;
+            background: aliceblue;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            overflow: hidden;
+            padding:25px;
+        }
+
+        #imagePreview{
+            height:100%;
+            width:auto;
+            border-radius:5px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -99,7 +120,7 @@
     </div> --}}
 
     <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addCategoryModalTitle">Add Category</h5>
@@ -108,9 +129,18 @@
                 <div class="modal-body">
                     <form id="addCategoryForm">
                         @csrf
-                        <div class="form-group">
+                        <div class="form-group mb-2">
                             <label for="" class="form-label">Category Name</label>
                             <input type="text" class="form-control" name="categoryName" placeholder="e.g Mensware" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="" class="form-label">Select Default Category Image</label>
+                            <div class="d-flex flex-column">
+                                <input type="file" class="form-control" name="categoryDefaultImage" id="categoryDefaultImage" required>
+                                <div class="preview-category-image">
+                                    <img src="{{asset('admin/assets/img/backgrounds/no-image.png')}}" alt="No image selected" id="imagePreview">
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group mt-3">
                             <button class="btn ripple btn-success category-submit-btn" type="submit">Submit</button>
@@ -156,6 +186,32 @@
                     $('.category-submit-btn').attr('disabled', false)
                 }
 
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+        // Preview image when file selected
+            $('#categoryDefaultImage').change(function() {
+                const file = this.files[0];
+                if (file) {
+                    const fileType = file['type'];
+                    const validImageTypes = ['image/jpg', 'image/jpeg', 'image/png']; // Add any additional valid image types here
+                    if (validImageTypes.includes(fileType)) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            $('#imagePreview').attr('src', e.target.result);
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        toastr.error('Please select a valid image file (JPEG, PNG, JPG).');
+                        $(this).val(''); // Clear the file input
+                        $('#imagePreview').attr('src', '{{ asset("admin/assets/img/backgrounds/no-image.png") }}'); // Reset preview to default image
+                    }
+                } else {
+                    $('#imagePreview').attr('src', '{{ asset("admin/assets/img/backgrounds/no-image.png") }}');
+                }
             });
         });
     </script>
