@@ -9,6 +9,7 @@
         <div class="card-header pb-0 mb-4">
             <div class="d-flex justify-content-between">
                 <h4 class="card-title mg-b-2 mt-2">Add Top Category</h4>
+                <span>Total 3 categories can be active at a time.</span>
             </div>
         </div>
         <div class="card-body">
