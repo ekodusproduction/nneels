@@ -111,7 +111,7 @@ class ProductController extends Controller
                     }
                     
                 }catch(\Exception $e){
-                    return $this->error('Oops! Something went wrong', null, 500);
+                    return $this->error('Oops! Something went wrong'.$e, null, 500);
                 }
             }
         }
