@@ -48,10 +48,16 @@
                                     <ul class="dropdown-menu" style="">
                                         <li>
                                             @if ($item->status == 1)
-                                                <a class="dropdown-item" href="javascript:void(0);">Deactivate</a>
+                                                <a class="dropdown-item text-secondary" href="javascript:void(0);">Deactivate</a>
                                             @else
-                                                <a class="dropdown-item" href="javascript:void(0);">Activate</a>
+                                                <a class="dropdown-item text-success" href="javascript:void(0);">Activate</a>
                                             @endif
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item text-warning" href="javascript:void(0);">Edit</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item text-danger" href="javascript:void(0);">Delete</a>
                                         </li>
                                     </ul>
                                 </td>

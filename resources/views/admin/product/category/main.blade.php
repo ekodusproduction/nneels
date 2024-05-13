@@ -70,19 +70,24 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <div class="dropdown">
-                                        <button aria-expanded="false" aria-haspopup="true"
-                                            class="btn btn-sm ripple btn-primary" data-toggle="dropdown"
-                                            id="dropdownMenuButton" type="button">Action <i
-                                                class="fas fa-caret-down ml-1"></i></button>
-                                        <div class="dropdown-menu tx-13">
+                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Action
+                                    </button>
+                                    <ul class="dropdown-menu" style="">
+                                        <li>
                                             @if ($item->status == 1)
-                                                <a class="dropdown-item" href="#">Deactivate</a>
+                                                <a class="dropdown-item text-secondary" href="javascript:void(0);">Deactivate</a>
                                             @else
-                                                <a class="dropdown-item" href="#">Activate</a>
+                                                <a class="dropdown-item text-success" href="javascript:void(0);">Activate</a>
                                             @endif
-                                        </div>
-                                    </div>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item text-warning" href="javascript:void(0);">Edit</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item text-danger" href="javascript:void(0);">Delete</a>
+                                        </li>
+                                    </ul>
                                 </td>
                             </tr>
                         @empty
