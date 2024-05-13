@@ -76,16 +76,16 @@
                                     <ul class="dropdown-menu" style="">
                                         <li>
                                             @if ($item->status == 1)
-                                                <a class="dropdown-item text-secondary" href="javascript:void(0);">Deactivate</a>
+                                                <a class="dropdown-item text-secondary" href="javascript:void(0);" data-id="{{$item->id}}">Deactivate</a>
                                             @else
-                                                <a class="dropdown-item text-success" href="javascript:void(0);">Activate</a>
+                                                <a class="dropdown-item text-success" href="javascript:void(0);" data-id="{{$item->id}}">Activate</a>
                                             @endif
                                         </li>
                                         <li>
-                                            <a class="dropdown-item text-warning" href="javascript:void(0);">Edit</a>
+                                            <a class="dropdown-item text-warning cat-edit-btn" href="javascript:void(0);" data-id="{{$item->id}}">Edit</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item text-danger" href="javascript:void(0);">Delete</a>
+                                            <a class="dropdown-item text-danger cat-del-btn" href="javascript:void(0);" data-id="{{$item->id}}">Delete</a>
                                         </li>
                                     </ul>
                                 </td>
@@ -220,6 +220,62 @@
                     }
                 } else {
                     $('#imagePreview').attr('src', '{{ asset("admin/assets/img/backgrounds/no-image.png") }}');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $('.cat-edit-btn').on('click', function(){
+            const category_id = $(this).data('id');
+            $.ajax({
+                url:"{{route('admin.edit.category')}}",
+                type:"POST",
+                data:{
+                    'category_id' : contentType,
+                    '_token' : "{{csrf_token()}}"
+                },
+                success:function(data){
+                    console.log(data)
+                },error:function(error){
+                    swal.fire("Oops! Something went wrong.", '', 'success')
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $('.cat-del-btn').on('click', function(){
+            const category_id = $(this).data('id');
+            
+            Swal.fire({
+                icon:'warning',
+                title:'Are you sure?',
+                text: "Deleting main category will also delete related sub categories.",
+                showCancelButton: true,
+                confirmButtonText: "Delete Anyway",
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        url:"{{route('admin.delete.category')}}",
+                        type:POST,
+                        data:{
+                            'category_id' : category_id,
+                            '_token' : "{{csrf_token()}}"
+                        },
+                        success:function(data){
+                            if(data.status == 200){
+                                Swal.fire(data.message, "", "success");
+                            }else{
+                                Swal.fire(data.message, "", "error");
+                            }
+                            
+                        },error:function(error){
+                            Swal.fire('Oops! Something went wrong.', "", "error");
+                        }
+                    });
+                    
                 }
             });
         });

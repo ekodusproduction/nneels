@@ -74,4 +74,30 @@ class CategoryController extends Controller
             }
         }
     }
+
+    public function editCategory(Request $request){
+
+        if($request->isMethod('get')){
+            $category = Category::where('id', $request->category_id)->get();
+            return $this->success('Great! Category fetched successfully.', $category, 200);
+        }else{
+            
+        }
+    }
+
+    public function deleteCategory(Request $request){
+
+        try{
+            $category_id = Category::where('id', $request->category_id)->exists();
+            if(!$category_id){
+                return $this->error('Oops! Failed to delete. Selected category does not exists.', null, 400);
+            }else{
+                Category::where('id', $request->category_id)->delete();
+
+                return $this->success('Great! Category deleted successfully', null, 200);
+            }
+        }catch(\Exception $e){
+            return $this->error('Oops! Something went wrong', null, 500);
+        }
+    }
 }
