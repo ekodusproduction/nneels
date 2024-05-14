@@ -175,25 +175,37 @@
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group mb-2">
                                         <label for="" class="form-label">Name</label>
                                         <input type="text" name="name" class="form-control" placeholder="e.g Jacket" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Price</label>
-                                        <input type="text" name="price" class="form-control" min="0" placeholder="e.g 500" required>
+                                    <div class="form-group mb-2">
+                                        <label for="" class="form-label">Original Price</label>
+                                        <input type="text" name="originalPrice" class="form-control" min="0" id="originalPrice" placeholder="e.g 500" required>
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mb-2">
+                                        <label for="" class="form-label">Rate of Discount (in %)</label>
+                                        <input type="text" name="rate_of_discount" class="form-control" id="rateOfDiscount" placeholder="e.g 20" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mb-2">
+                                        <label for="" class="form-label">Sale Price</label>
+                                        <input type="text" name="salePrice" class="form-control" min="0" id="salePrice" placeholder="e.g 500" required>
+                                    </div>
+                                </div>
+                                
+                            
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="" class="form-label">Available Size Comma ( , ) Separated</label>
                                         <input type="text" name="size" id="size" class="form-control" placeholder="e.g XS, S, M, ... " required>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="" class="form-label mt-2">Available Color Comma ( , ) Separated</label>
@@ -211,6 +223,8 @@
                                         </select>
                                     </div>
                                 </div>
+                                
+                            
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="" class="form-label mt-2">Select Sub-Category</label>
@@ -219,8 +233,6 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="" class="form-label mt-2">Quantity</label>
@@ -237,12 +249,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="" class="form-label mt-2">Rate of Discount (in %)</label>
-                                        <input type="text" name="rate_of_discount" class="form-control" placeholder="e.g 20" required>
-                                    </div>
-                                </div>
+                                
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="" class="form-label mt-2">Featured Section</label>
@@ -494,5 +501,17 @@
 
     </script>
 
+    <script>
+        $('#originalPrice, #rateOfDiscount').on('input', function() {
+            var originalPrice = parseFloat($('#originalPrice').val());
+            var discountRate = parseFloat($('#rateOfDiscount').val());
+
+            if (!isNaN(originalPrice) && !isNaN(discountRate)) {
+                var discountAmount = (originalPrice * discountRate) / 100;
+                var salePrice = originalPrice - discountAmount;
+                $('#salePrice').val(salePrice.toFixed(2));
+            }
+        });
+    </script>
     
 @endsection

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('product_id');
             $table->string('name');
-            $table->decimal('price',5,2);
+            $table->decimal('original_price',5,2);
             $table->string('size');
             $table->string('color');
             $table->bigInteger('quantity');

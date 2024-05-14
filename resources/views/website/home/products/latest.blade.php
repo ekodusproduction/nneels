@@ -49,11 +49,18 @@
                             <a href="product1_simple.html">
                                 <img loading="lazy" src="{{asset($item->main_image)}}" width="330" height="400"
                                     alt="latest drop" class="pc__img">
+                                @if (!empty($item->product_gallery))
+                                    @foreach ($item->product_gallery as $gallery)
+                                        <img loading="lazy" src="{{asset($gallery->image)}}" width="330" height="400"
+                                        alt="latest drop" class="pc__img pc__img-second">
+                                    @endforeach
+                                @endif
                                 
-                                <img loading="lazy" src="{{asset($item->product_gallery[0]['image'])}}" width="330" height="400"
-                                    alt="latest drop" class="pc__img pc__img-second">
                             </a>
-                            <div class="product-label bg-red text-white">67%</div>
+                            @if ($item->rate_of_discount > 1)
+                                <div class="product-label bg-red text-white">{{$item->rate_of_discount}} %</div>
+                            @endif
+                            
                             <div class="anim_appear-bottom position-absolute bottom-0 start-0 w-100 d-none d-sm-flex align-items-center">
                                 <button
                                     class="btn btn-primary flex-grow-1 fs-base ps-3 ps-xxl-4 pe-0 border-0 text-uppercase fw-medium js-add-cart js-open-aside"
@@ -77,7 +84,7 @@
                             <p class="pc__category third-color">{{$item->name}}</p>
                             <h6 class="pc__title"><a href="product1_simple.html">{{$item->category->name}} - {{$item->subCategory->name}}</a></h6>
                             <div class="product-card__price d-flex">
-                                <span class="money price">${{$item->price}}</span>
+                                <span class="money price">${{$item->sale_price}}</span>
                             </div>
                         </div>
                     </div>

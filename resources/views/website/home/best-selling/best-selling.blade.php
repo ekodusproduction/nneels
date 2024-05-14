@@ -89,7 +89,7 @@
                                     <h6 class="pc__title"><a href="product1_simple.html">{{$item->category->name}} - {{$item->subCategory->name}}</a>
                                     </h6>
                                     <div class="product-card__price d-flex">
-                                        <span class="money price">${{$item->price}}</span>
+                                        <span class="money price">${{$item->sale_price}}</span>
                                     </div>
                                 </div>
                             </div>

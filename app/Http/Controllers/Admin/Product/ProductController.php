@@ -27,7 +27,8 @@ class ProductController extends Controller
         }else{
             $validator = Validator::make($request->all(),[
                 'name' => 'required|string',
-                'price' => 'required|numeric',
+                'originalPrice' => 'required|numeric',
+                'salePrice' => 'required|numeric',
                 'size' => 'required|string',
                 'color' => 'required|string',
                 'quantity' => 'required|numeric',
@@ -66,7 +67,8 @@ class ProductController extends Controller
                         $create_product = Product::create([
                             'product_id' => Str::uuid(),
                             'name' => $request->name,
-                            'price' => $request->price,
+                            'original_price' => $request->originalPrice,
+                            'sale_price' => $request->salePrice,
                             'size' => $request->size,
                             'color' => $request->color,
                             'quantity' => $request->quantity,
