@@ -48,16 +48,16 @@
                                     <ul class="dropdown-menu" style="">
                                         <li>
                                             @if ($item->status == 1)
-                                                <a class="dropdown-item text-secondary" href="javascript:void(0);">Deactivate</a>
+                                                <a class="dropdown-item text-secondary change-status" href="javascript:void(0);" data-id="{{$item->id}}" data-status="0">Deactivate</a>
                                             @else
-                                                <a class="dropdown-item text-success" href="javascript:void(0);">Activate</a>
+                                                <a class="dropdown-item text-success change-status" href="javascript:void(0);" data-id="{{$item->id}}" data-status="1">Activate</a>
                                             @endif
                                         </li>
                                         <li>
-                                            <a class="dropdown-item text-warning" href="javascript:void(0);">Edit</a>
+                                            <a class="dropdown-item text-warning" href="{{route('admin.edit.sub.category', ['id' => encrypt($item->id)] )}}">Edit</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item text-danger" href="javascript:void(0);">Delete</a>
+                                            <a class="dropdown-item text-danger sub-cat-del-btn" href="javascript:void(0);" data-id="{{$item->id}}">Delete</a>
                                         </li>
                                     </ul>
                                 </td>
@@ -145,6 +145,76 @@
                     toastr.error(err.responseJSON.message)
                     $('.sub-category-submit-btn').text('Submit');
                     $('.sub-category-submit-btn').attr('disabled', false);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $('.change-status').on('click', function(){
+            const sub_category_id = $(this).data().id;
+            const status = $(this).data().status;
+
+            $.ajax({
+                url:"{{route('admin.change.sub.category.status')}}",
+                type:"POST",
+                data:{
+                    'sub_category_id' : sub_category_id,
+                    'status' : status,
+                    '_token' : "{{csrf_token()}}"
+                },
+                success:function(data){
+                    swal.fire({
+                        icon:'success',
+                        title:'Great',
+                        text:data.message
+                    })
+                    window.location.reload(true)
+                },error:function(xhr, status, error){
+                    swal.fire({
+                        icon:'error',
+                        title:'Oops!',
+                        text:xhr.responseText
+                    })
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $('.sub-cat-del-btn').on('click', function(){
+            const sub_category_id = $(this).data('id');
+            
+            Swal.fire({
+                icon:'warning',
+                title:'Are you sure?',
+                text: "This process can't be reverted.",
+                showCancelButton: true,
+                confirmButtonText: "Delete Anyway",
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        url:"{{route('admin.delete.sub.category')}}",
+                        type:"POST",
+                        data:{
+                            'sub_category_id' : sub_category_id,
+                            '_token' : "{{csrf_token()}}"
+                        },
+                        success:function(data){
+                            if(data.status == 200){
+                                Swal.fire(data.message, "", "success");
+                            }else{
+                                Swal.fire(data.message, "", "error");
+                            }
+
+                            window.location.reload(true);
+                            
+                        },error:function(error){
+                            Swal.fire('Oops! Something went wrong.', "", "error");
+                        }
+                    });
+                    
                 }
             });
         });

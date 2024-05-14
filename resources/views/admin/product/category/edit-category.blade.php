@@ -1,5 +1,5 @@
 @extends('admin.index')
-@section('title', 'Main Category')
+@section('title', 'Edit Main Category')
 
 @section('custom-style')
     <style>

@@ -1,7 +1,6 @@
   @php
     $category = App\Models\Category::with('subCategories')->where('status', 1)->orderBy('created_at', 'DESC')->get();  
   @endphp
-  
   <div class="header-mobile header_sticky position-absolute">
     <div class="container d-flex align-items-center h-100">
       <a class="mobile-nav-activator d-block position-relative" href="#">
@@ -56,7 +55,9 @@
                   </a>
                   <ul class="list-unstyled">
                     @forelse ($item->subCategories as $key => $sub_category)
-                      <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">{{$sub_category->name}}</a></li>
+                      @if ($sub_category->status == 1)
+                        <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">{{$sub_category->name}}</a></li>
+                      @endif
                     @empty
                       <li class="sub-menu__item"><a href="javascript:void(0);" class="menu-link menu-link_us-s">No Sub-Category Found!</a></li>
                     @endforelse
@@ -114,7 +115,9 @@
             <a href="#" class="navigation__link">{{$item->name}}</a>
             <ul class="default-menu list-unstyled" style="left: 305px;">
               @forelse ($item->subCategories as $key2 => $sub_category)
-                <li class="sub-menu__item"><a href="{{route('website.get.product.by.category', ['main_category' => urlencode($item->name), 'sub_category' => urlencode($sub_category->name)])}}" class="menu-link menu-link_us-s">{{$sub_category->name}}</a></li>
+                @if ($sub_category->status == 1)
+                  <li class="sub-menu__item"><a href="{{route('website.get.product.by.category', ['main_category' => urlencode($item->name), 'sub_category' => urlencode($sub_category->name)])}}" class="menu-link menu-link_us-s">{{$sub_category->name}}</a></li>    
+                @endif
               @empty
                 <li class="sub-menu__item"><a href="javascript:void(0)" class="menu-link menu-link_us-s">No Sub-Category Found!</a></li>
               @endforelse

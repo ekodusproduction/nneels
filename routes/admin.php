@@ -55,6 +55,9 @@ Route::group(['middleware' => 'auth'], function(){
             Route::group(['prefix' => 'sub-category'], function(){
                 Route::post('create', [SubCategoryController::class, 'createSubCategory'])->name('admin.create.sub.category');
                 Route::get('fetch', [SubCategoryController::class, 'fetchSubCategory'])->name('admin.fetch.sub.category');
+                Route::post('change-status', [SubCategoryController::class, 'changeStatus'])->name('admin.change.sub.category.status');
+                Route::match(['get', 'post'], 'edit/{id}', [SubCategoryController::class, 'editCategory'])->name('admin.edit.sub.category');
+                Route::post('delete', [SubCategoryController::class, 'deleteSubCategory'])->name('admin.delete.sub.category');
             });
         });
         Route::group(['prefix' => 'create'], function(){
