@@ -47,7 +47,8 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('', [CategoryController::class, 'index'])->name('admin.category');
                 Route::post('create', [CategoryController::class, 'createCategory'])->name('admin.create.category');
                 Route::match(['get','post'], 'top-category', [CategoryController::class, 'topCategory'])->name('admin.top.category');
-                Route::match(['get','post'], 'edit', [CategoryController::class, 'editCategory'])->name('admin.edit.category');
+                Route::match(['get','post'], 'edit/{id}', [CategoryController::class, 'editCategory'])->name('admin.edit.category');
+                Route::post('change-status', [CategoryController::class, 'changeStatus'])->name('admin.change.category.status');
                 Route::post('delete', [CategoryController::class, 'deleteCategory'])->name('admin.delete.category');
             });
             

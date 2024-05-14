@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Traits\AjaxResponser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -75,13 +76,42 @@ class CategoryController extends Controller
         }
     }
 
-    public function editCategory(Request $request){
-
+    public function editCategory(Request $request, $id){
+        $category_id = decrypt($id);
         if($request->isMethod('get')){
-            $category = Category::where('id', $request->category_id)->first();
-            return $this->success('Great! Category fetched successfully.', $category, 200);
+            $category = Category::where('id', $category_id)->first();
+            return view('admin.product.category.edit-category')->with('category', $category);
         }else{
-            
+            $validator = Validator::make($request->all(), [
+                'categoryName' => 'required',
+                'categoryDefaultImage' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+            ]);
+    
+            if($validator->fails()){
+                return $this->error('Oops! '.$validator->errors()->first(), null, 400);
+            }else{
+                try{
+                    if($request->hasFile('categoryDefaultImage')){
+    
+                        $file = $request->file('categoryDefaultImage');
+                        $name = Str::uuid()->toString().'_'.$file->getClientOriginalName();
+                        
+                        $file->move(public_path('admin/assets/product/category/'), $name);
+                        $path = 'admin/assets/product/category/'.$name;
+    
+                        Category::where('id', $category_id)->update([
+                            'name' => $request->categoryName,
+                            'default_image' => $path
+                        ]);
+                        return $this->success('Great! Category updated succesfully', null, 200);
+                    }else{
+                        return $this->error('Oops! Failed to update category. Default image not selected', null, 400);
+                    }
+                    
+                }catch(\Exception $e){
+                    return $this->error('Oops! Something went wrong', null, 500);
+                }
+            }
         }
     }
 
@@ -92,11 +122,41 @@ class CategoryController extends Controller
             if(!$category_id){
                 return $this->error('Oops! Failed to delete. Selected category does not exists.', null, 400);
             }else{
+
+                DB::beginTransaction();
+
                 Category::where('id', $request->category_id)->delete();
+
+                SubCategory::where('categories_id', $request->category_id)->delete();
+
+                DB::commit();
 
                 return $this->success('Great! Category deleted successfully', null, 200);
             }
         }catch(\Exception $e){
+            DB::rollBack();
+            return $this->error('Oops! Something went wrong', null, 500);
+        }
+    }
+
+    public function changeStatus(Request $request){
+        try{
+            DB::beginTransaction();
+
+            Category::where('id', $request->category_id)->update([
+                'status' => $request->status
+            ]);
+
+            SubCategory::where('categories_id', $request->category_id)->update([
+                'status' => $request->status
+            ]);
+
+            DB::commit();
+
+            return $this->success('Great! Category status updated successfully', null, 200);
+        }catch(\Exception $e){
+            DB::rollBack();
+
             return $this->error('Oops! Something went wrong', null, 500);
         }
     }

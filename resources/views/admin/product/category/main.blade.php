@@ -76,13 +76,13 @@
                                     <ul class="dropdown-menu" style="">
                                         <li>
                                             @if ($item->status == 1)
-                                                <a class="dropdown-item text-secondary" href="javascript:void(0);" data-id="{{$item->id}}">Deactivate</a>
+                                                <a class="dropdown-item text-secondary change-category-status" href="javascript:void(0);" data-id="{{$item->id}}" data-status="0">Deactivate</a>
                                             @else
-                                                <a class="dropdown-item text-success" href="javascript:void(0);" data-id="{{$item->id}}">Activate</a>
+                                                <a class="dropdown-item text-success change-category-status" href="javascript:void(0);" data-id="{{$item->id}}" data-status="1">Activate</a>
                                             @endif
                                         </li>
                                         <li>
-                                            <a class="dropdown-item text-warning cat-edit-btn" href="javascript:void(0);" data-id="{{$item->id}}">Edit</a>
+                                            <a class="dropdown-item text-warning" href="{{route('admin.edit.category', ['id' => encrypt($item->id) ] )}}">Edit</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item text-danger cat-del-btn" href="javascript:void(0);" data-id="{{$item->id}}">Delete</a>
@@ -102,31 +102,7 @@
         </div>
     </div>
 
-    {{-- <div class="modal" id="addCategoryModal">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content modal-content-demo">
-                <div class="modal-header">
-                    <h6 class="modal-title">Add Category</h6><button aria-label="Close" class="close" data-dismiss="modal"
-                        type="button"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <form id="addCategoryForm">
-                        @csrf
-                        <div class="form-group">
-                            <label for="">Category Name</label>
-                            <input type="text" class="form-control" name="categoryName" placeholder="e.g Mensware"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn ripple btn-success category-submit-btn" type="submit">Submit</button>
-                            <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div> --}}
+    
 
     <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -153,40 +129,6 @@
                         </div>
                         <div class="form-group mt-3">
                             <button class="btn ripple btn-success category-submit-btn" type="submit">Submit</button>
-                            <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editCategoryModalTitle">Edit Category</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="editCategoryForm">
-                        @csrf
-                        <div class="form-group mb-2">
-                            <label for="" class="form-label">Category Name</label>
-                            <input type="text" class="form-control" name="categoryName" id="editCategoryName" placeholder="e.g Mensware" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="" class="form-label">Select Default Category Image</label>
-                            <div class="d-flex flex-column">
-                                <input type="file" class="form-control" name="categoryDefaultImage" id="categoryDefaultImage" required>
-                                <div class="preview-category-image">
-                                    {{-- <img src="{{asset('admin/assets/img/backgrounds/no-image.png')}}" alt="No image selected" id="imagePreview"> --}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group mt-3">
-                            <button class="btn ripple btn-success category-submit-btn" type="submit">Submit</button>
-                            <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
                         </div>
                     </form>
                 </div>
@@ -259,42 +201,6 @@
     </script>
 
     <script>
-        $('.cat-edit-btn').on('click', function(){
-            const category_id = $(this).data('id');
-            $.ajax({
-                url:"{{route('admin.edit.category')}}",
-                type:"get",
-                data:{
-                    'category_id' : category_id,
-                },
-                success:function(data){
-                    // 
-                    console.log(data.data.default_image);
-
-                    $('#editCategoryName').val(data.data.name);
-                    
-                    $('#imagePreview').remove();
-                    $('.preview-category-image img').remove();
-            
-                    // Create a new image element
-                    let newImage = $('<img>');
-                    newImage.attr('src', 'http://localhost:8000/' + data.data.default_image);
-                    newImage.attr('alt', 'New image');
-                    newImage.attr('id', 'imagePreview');
-
-                    // Append the new image to the preview container
-                    $('.preview-category-image').append(newImage);
-
-                    $('#editCategoryModal').modal('show');
-
-                },error:function(error){
-                    swal.fire("Oops! Something went wrong.", '', 'success')
-                }
-            });
-        });
-    </script>
-
-    <script>
         $('.cat-del-btn').on('click', function(){
             const category_id = $(this).data('id');
             
@@ -309,7 +215,7 @@
 
                     $.ajax({
                         url:"{{route('admin.delete.category')}}",
-                        type:POST,
+                        type:"POST",
                         data:{
                             'category_id' : category_id,
                             '_token' : "{{csrf_token()}}"
@@ -320,6 +226,8 @@
                             }else{
                                 Swal.fire(data.message, "", "error");
                             }
+
+                            window.location.reload(true);
                             
                         },error:function(error){
                             Swal.fire('Oops! Something went wrong.', "", "error");
@@ -328,6 +236,68 @@
                     
                 }
             });
+        });
+    </script>
+
+    <script>
+        $('.change-category-status').on('click', function(){
+            const category_id = $(this).data('id');
+            const status = $(this).data().status;
+
+            if(status == 0){
+                Swal.fire({
+                    icon:'warning',
+                    title:'Are you sure?',
+                    text: "Deactivating main category will also deactivate related sub categories.",
+                    showCancelButton: true,
+                    confirmButtonText: "Do it Anyway",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        $.ajax({
+                            url:"{{route('admin.change.category.status')}}",
+                            type:"POST",
+                            data:{
+                                'category_id' : category_id,
+                                'status' : status,
+                                '_token' : "{{csrf_token()}}"
+                            },
+                            success:function(data){
+                                if(data.status == 200){
+                                    Swal.fire(data.message, "", "success");
+                                }else{
+                                    Swal.fire(data.message, "", "error");
+                                }
+                                window.location.reload(true);
+                            },error:function(error){
+                                Swal.fire('Oops! Something went wrong.', "", "error");
+                            }
+                        });
+                        
+                    }
+                });
+            }else{
+                $.ajax({
+                    url:"{{route('admin.change.category.status')}}",
+                    type:"POST",
+                    data:{
+                        'category_id' : category_id,
+                        'status' : status,
+                        '_token' : "{{csrf_token()}}"
+                    },
+                    success:function(data){
+                        if(data.status == 200){
+                            Swal.fire(data.message, "", "success");
+                        }else{
+                            Swal.fire(data.message, "", "error");
+                        }
+                        window.location.reload(true);
+                        
+                    },error:function(error){
+                        Swal.fire('Oops! Something went wrong.', "", "error");
+                    }
+                });
+            }
         });
     </script>
 @endsection
