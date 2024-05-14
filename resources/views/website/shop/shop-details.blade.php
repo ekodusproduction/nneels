@@ -85,7 +85,7 @@
                     <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
                 </div>
                 <div class="product-single__price">
-                    <span class="current-price">${{ $product_details->price }}</span>
+                    <span class="current-price">${{ $product_details->sale_price }}</span>
                 </div>
                 <div class="product-single__short-desc">
                     <p>{{ $product_details->short_description }}</p>
