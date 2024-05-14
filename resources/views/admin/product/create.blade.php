@@ -312,10 +312,12 @@
                         $('#subCategory').find('option').remove();
                         if(data != undefined && data != null && data.data.length > 0){
                             data.data.forEach(function(subData) {
-                                $('#subCategory').append($('<option>', {
-                                    value: subData.id,
-                                    text: subData.name
-                                }));
+                                if(subData.status == 1){
+                                    $('#subCategory').append($('<option>', {
+                                        value: subData.id,
+                                        text: subData.name
+                                    }));
+                                }
                             });
                         } else {
                             $('#subCategory').append($('<option>', {

@@ -48,17 +48,23 @@
                     }'>
                     <div class="swiper-wrapper">
                         @forelse ($best_selling as $key => $item)
-
                             <div class="swiper-slide product-card">
                                 <div class="pc__img-wrapper">
                                     <a href="product1_simple.html">
                                         <img loading="lazy" src="{{asset($item->main_image)}}" width="330"
                                             height="400" alt="best selling product" class="pc__img">
+                                        @if (!empty($item->product_gallery))
+                                            @foreach ($item->product_gallery as $gallery)
+                                                <img loading="lazy" src="{{asset($gallery->image)}}" width="330"
+                                                height="400" alt="best selling product" class="pc__img pc__img-second">
+                                            @endforeach
+                                        @endif
                                         
-                                        <img loading="lazy" src="{{asset($item->product_gallery[0]['image'])}}" width="330"
-                                            height="400" alt="best selling product" class="pc__img pc__img-second">
                                     </a>
-                                    <div class="product-label bg-red text-white">67%</div>
+                                    @if ($item->rate_of_discount > 0)
+                                        <div class="product-label bg-red text-white">{{$item->rate_of_discount}} %</div>
+                                    @endif
+                                    
                                     <div class="anim_appear-bottom position-absolute bottom-0 start-0 w-100 d-none d-sm-flex align-items-center">
                                         <button
                                             class="btn btn-primary flex-grow-1 fs-base ps-3 ps-xxl-4 pe-0 border-0 text-uppercase fw-medium js-add-cart js-open-aside"
