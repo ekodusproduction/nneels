@@ -78,7 +78,7 @@ class CategoryController extends Controller
     public function editCategory(Request $request){
 
         if($request->isMethod('get')){
-            $category = Category::where('id', $request->category_id)->get();
+            $category = Category::where('id', $request->category_id)->first();
             return $this->success('Great! Category fetched successfully.', $category, 200);
         }else{
             

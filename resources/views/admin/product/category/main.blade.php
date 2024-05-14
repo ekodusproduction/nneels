@@ -160,6 +160,39 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCategoryModalTitle">Edit Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCategoryForm">
+                        @csrf
+                        <div class="form-group mb-2">
+                            <label for="" class="form-label">Category Name</label>
+                            <input type="text" class="form-control" name="categoryName" id="editCategoryName" placeholder="e.g Mensware" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="" class="form-label">Select Default Category Image</label>
+                            <div class="d-flex flex-column">
+                                <input type="file" class="form-control" name="categoryDefaultImage" id="categoryDefaultImage" required>
+                                <div class="preview-category-image">
+                                    {{-- <img src="{{asset('admin/assets/img/backgrounds/no-image.png')}}" alt="No image selected" id="imagePreview"> --}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <button class="btn ripple btn-success category-submit-btn" type="submit">Submit</button>
+                            <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('custom-scripts')
@@ -230,13 +263,30 @@
             const category_id = $(this).data('id');
             $.ajax({
                 url:"{{route('admin.edit.category')}}",
-                type:"POST",
+                type:"get",
                 data:{
-                    'category_id' : contentType,
-                    '_token' : "{{csrf_token()}}"
+                    'category_id' : category_id,
                 },
                 success:function(data){
-                    console.log(data)
+                    // 
+                    console.log(data.data.default_image);
+
+                    $('#editCategoryName').val(data.data.name);
+                    
+                    $('#imagePreview').remove();
+                    $('.preview-category-image img').remove();
+            
+                    // Create a new image element
+                    let newImage = $('<img>');
+                    newImage.attr('src', 'http://localhost:8000/' + data.data.default_image);
+                    newImage.attr('alt', 'New image');
+                    newImage.attr('id', 'imagePreview');
+
+                    // Append the new image to the preview container
+                    $('.preview-category-image').append(newImage);
+
+                    $('#editCategoryModal').modal('show');
+
                 },error:function(error){
                     swal.fire("Oops! Something went wrong.", '', 'success')
                 }
