@@ -400,7 +400,7 @@
                                             </div>
                                         @empty
                                             <div class="swiper-slide">
-                                                <a href="#">
+                                                <a href="{{route('website.get.product.by.category', ['main_category' => urlencode($main_category), 'sub_category' => urlencode($sub_category), 'product_id' => $item->product_id])}}">
                                                     <img loading="lazy" src="{{ asset($item->main_image) }}" width="330"
                                                         height="400" alt="Cropped Faux leather Jacket" class="pc__img">
                                                 </a>
@@ -428,7 +428,7 @@
                                 <p class="pc__category">{{$main_category}} - {{$sub_category}}</p>
                                 <h6 class="pc__title"><a href="product1_simple.html">{{$item->name}}</a></h6>
                                 <div class="product-card__price d-flex">
-                                    <span class="money price">${{$item->price}}</span>
+                                    <span class="money price">${{$item->sale_price}}</span>
                                 </div>
                                 <div class="product-card__review d-flex align-items-center">
                                     <div class="reviews-group d-flex">

@@ -350,6 +350,9 @@
             $('#mainProductImage').click();
         });
 
+
+        //For selecting main product image
+
         $('#mainProductImage').on('change', function(){
             const imageFile = $(this)[0].files;
             const maxFileSizeAllowed = 2*1024*1024;
@@ -372,6 +375,8 @@
                 fileReader.readAsDataURL(imageFile[0]);
             }
         });
+
+
 
         $('.browse-gallery-image').on('click', function(){
             $('.product-gallery-image').click();
@@ -441,13 +446,15 @@
 
             // console.log('Main Image --->', main_image[0]);
 
-            if(main_image.length == 0){
-                toastr.error('Oops! Please add main product image');
-            }else{
+            // if(main_image.length == 0){
+                
+            //     toastr.error('Oops! Please add main product image');
+            // }else{
                 $('.create-product-form-btn').attr('disabled', true);
                 $('.create-product-form-btn').text('Please wait...');
 
                 let formData = new FormData(this);
+                
                 formData.append('main_product_image', main_image[0]);
                 
                 // console.log('Gallery Images --> ', galleryImages) 
@@ -494,7 +501,7 @@
                         $('.create-product-form-btn').text('Submit');
                     }
                 });
-            }
+            // }
             
             
         });
@@ -503,12 +510,12 @@
 
     <script>
         $('#originalPrice, #rateOfDiscount').on('input', function() {
-            var originalPrice = parseFloat($('#originalPrice').val());
-            var discountRate = parseFloat($('#rateOfDiscount').val());
+            let originalPrice = parseFloat($('#originalPrice').val());
+            let discountRate = parseFloat($('#rateOfDiscount').val());
 
             if (!isNaN(originalPrice) && !isNaN(discountRate)) {
-                var discountAmount = (originalPrice * discountRate) / 100;
-                var salePrice = originalPrice - discountAmount;
+                let discountAmount = (originalPrice * discountRate) / 100;
+                let salePrice = originalPrice - discountAmount;
                 $('#salePrice').val(salePrice.toFixed(2));
             }
         });

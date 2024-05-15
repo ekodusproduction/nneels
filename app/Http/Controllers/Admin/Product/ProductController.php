@@ -38,7 +38,7 @@ class ProductController extends Controller
                 'tags' => 'required|string',
                 'short_description' => 'required',
                 'long_description' => 'required',
-                'main_product_image' => 'required|image|mimes:jpg,png,jpeg,webp|max:2048',
+                // 'main_product_image' => 'required|image|mimes:jpg,png,jpeg,webp|max:2048',
                 'category' => 'required',
                 'sub_category' => 'required',
                 'visibility_status' => 'required',
@@ -56,6 +56,8 @@ class ProductController extends Controller
                         return $this->error('Oops! Product belong to the same category with the same name already exists.', null, 400);
                     }
 
+                    $path = null;
+
                     if($request->hasFile('main_product_image')){
 
                         $file = $request->file('main_product_image');
@@ -63,6 +65,9 @@ class ProductController extends Controller
                         
                         $file->move(public_path('admin/assets/product/main/'), $name);
                         $path = 'admin/assets/product/main/'.$name;
+                    }else{
+                        $path = 'assets/images/img-placeholder.png';
+                    }
 
                         $create_product = Product::create([
                             'product_id' => Str::uuid(),
@@ -108,9 +113,9 @@ class ProductController extends Controller
                             return $this->error('Oops! Failed to create product.', null, 400);
                         }
 
-                    }else{
-                        return $this->error('Oops! Product main image not selected', null, 400);
-                    }
+                    // }else{
+                    //     return $this->error('Oops! Product main image not selected', null, 400);
+                    // }
                     
                 }catch(\Exception $e){
                     return $this->error('Oops! Something went wrong'.$e, null, 500);
