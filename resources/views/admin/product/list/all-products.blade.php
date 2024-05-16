@@ -190,7 +190,7 @@
                                                 Change Visibility </a>
                                         @endif
                                         
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-info-circle me-1"></i>
+                                        <a class="dropdown-item" href="{{route('admin.get.product.details', ['id' => encrypt($item->product_id)])}}"><i class="bx bx-info-circle me-1"></i>
                                             Details</a>
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
                                             Edit</a>

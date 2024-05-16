@@ -69,6 +69,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('', [ProductController::class, 'productList'])->name('admin.view.product.list');
             });
             Route::post('change-status', [ProductController::class, 'changeStatus'])->name('admin.change.product.status');
+            Route::get('details/{id}', [ProductController::class, 'productDetails'])->name('admin.get.product.details');
         });
         
     });

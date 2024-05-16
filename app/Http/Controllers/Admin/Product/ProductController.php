@@ -162,4 +162,15 @@ class ProductController extends Controller
         }
         
     }
+
+    public function productDetails($id){
+        $product_id = decrypt($id);
+        try{
+            $categories = Category::where('status', 1)->get();
+            $product_details = Product::with('product_gallery', 'category', 'subCategory')->where('product_id', $product_id)->where('status', 1)->first();
+            return view('admin.product.product-details')->with(['product_details' => $product_details, 'categories' => $categories]);
+        }catch(\Exception $e){
+            echo 'Oops! Something went wrong';
+        }
+    }
 }
