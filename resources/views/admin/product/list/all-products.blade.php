@@ -102,14 +102,14 @@
     <div class="card">
         <h5 class="card-header">Products List</h5>
         <div class="table-responsive text-nowrap">
-            <table id="allProductsTable" class="table table-bordered table-striped">
+            <table id="allProductsTable" class="table table-bordered table-striped wrap">
                 <thead>
                     <tr>
                         <th>Sl.No.</th>
-                        <th>Product Id</th>
+                        {{-- <th>Product Id</th> --}}
                         <th>Image</th>
                         <th>Name</th>
-                        <th>Price</th>
+                        <th>Sale Price</th>
                         <th>Size</th>
                         <th>Color</th>
                         <th>Qty</th>
@@ -124,23 +124,23 @@
                             <td>
                                 {{ $key + 1 }}
                             </td>
-                            <td>
+                            {{-- <td>
                                 <p>{{ $item->product_id }}</p>
-                            </td>
+                            </td> --}}
                             <td>
-                                <img src="{{ asset($item->main_image) }}" class="avatar-md" alt="Main Image">
+                                <img src="{{ asset($item->main_image) }}" class="avatar-lg" alt="Main Image" style="border-radius:50%;">
                             </td>
                             <td>
                                 <p>{{ $item->name }}</p>
                             </td>
                             <td>
-                                <p>{{ $item->price }}</p>
+                                <p style="font-weight: 600;"><span style="color:rgb(13, 124, 41);">$</span> {{ $item->sale_price }}</p>
                             </td>
                             <td>
                                 <p>{{ $item->size }}</p>
                             </td>
                             <td>
-                                <p>{{ $item->color }}</p>
+                                <p style="text-transform: capitalize;">{{ $item->color }}</p>
                             </td>
                             <td>
                                 <p>{{ $item->quantity }}</p>
@@ -182,7 +182,15 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
+                                        @if ($item->status == 1)
+                                            <a class="dropdown-item change-status" href="javascript:void(0);" data-id="{{$item->product_id}}" data-status="0"><i class="bx bx-low-vision me-1"></i>
+                                               Change Visibility</a>
+                                        @else
+                                            <a class="dropdown-item change-status" href="javascript:void(0);" data-id="{{$item->product_id}}" data-status="1"><i class="bx bx-show me-1"></i>
+                                                Change Visibility </a>
+                                        @endif
+                                        
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-info-circle me-1"></i>
                                             Details</a>
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
                                             Edit</a>
@@ -210,6 +218,39 @@
                     buttons: ['excelHtml5', 'pdfHtml5']
                 }
             }
+        });
+    </script>
+    <script>
+        $('.change-status').on('click', function(){
+            $(this).text('Updating.. Please wait..');
+            $(this).attr('disabled', true);
+
+            const product_id = $(this).data('id');
+            const status = $(this).data().status;
+
+            $.ajax({
+                url:"{{route('admin.change.product.status')}}",
+                type:"POST",
+                data:{
+                    'product_id' : product_id,
+                    'status' : status,
+                    '_token' : "{{csrf_token()}}"
+                },
+                success:function(data){
+                    if(data.status == 200){
+                        toastr.success(data.message)
+                        window.location.reload(true);
+                    }else{
+                        toastr.error(data.message);
+                        $('.change-status').text('Change Visibility');
+                        $('.change-status').attr('disabled', false);
+                    }
+                },error:function(error){
+                    toastr.error('Oops! Something went wrong');
+                    $('.change-status').text('Change Visibility');
+                    $('.change-status').attr('disabled', false);
+                }
+            });
         });
     </script>
 @endsection

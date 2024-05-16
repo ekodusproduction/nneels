@@ -68,6 +68,7 @@ Route::group(['middleware' => 'auth'], function(){
             Route::group(['prefix' => 'list'], function(){
                 Route::get('', [ProductController::class, 'productList'])->name('admin.view.product.list');
             });
+            Route::post('change-status', [ProductController::class, 'changeStatus'])->name('admin.change.product.status');
         });
         
     });

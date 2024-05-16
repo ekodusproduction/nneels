@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\ProductGallery;
 use App\Traits\AjaxResponser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -126,7 +127,39 @@ class ProductController extends Controller
 
 
     public function productList(){
-        $product = Product::with('product_gallery', 'category', 'subCategory')->where('status', 1)->orderBy('created_at', 'Desc')->get();
+        $product = Product::with('product_gallery', 'category', 'subCategory')->orderBy('created_at', 'Desc')->get();
         return view('admin.product.list.all-products')->with(['product' => $product ]);
+    }
+
+    public function changeStatus(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'product_id' => 'required',
+            'status' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return $this->error('Oops! '.$validator->errors()->first(), null, 400);
+        }else{  
+            try{
+                DB::beginTransaction();
+    
+                Product::where('product_id', $request->product_id)->update([
+                    'status' => $request->status
+                ]);
+    
+                ProductGallery::where('product_id', $request->product_id)->update([
+                    'status' => $request->status
+                ]);
+    
+                DB::commit();
+    
+                return $this->success('Great! Visibility updated successfully', null, 200);
+            }catch(\Exception $e){
+                DB::rollBack();
+                return $this->error('Oops! Something went wrong', null, 500);
+            }
+        }
+        
     }
 }
