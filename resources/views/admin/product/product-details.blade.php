@@ -150,9 +150,10 @@
                                     <img  src="{{asset($product_details->main_image)}}" alt="main product image">
                                 @else
                                     <img  src="{{asset('admin/assets/img/upload-image-placeholder.jpg')}}" alt="upload image placeholder">
+                                    <p>Choose Image To Upload</p>
                                 @endif
                                 
-                                <p>Choose Image To Upload</p>
+                                
                             </div>
                             
                         </div>
@@ -170,14 +171,16 @@
                             <p>Choose Image To Upload</p>
                         </div>
                         <hr style="border-top: 1px dashed rgba(0, 0, 0, 0.1);">
+                        
                         <div class="preview-gallery-product"></div>
                         <input type="file" name="product_gallery_image" class="product-gallery-image" multiple>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="product-form-container">
-                        <form id="createProductForm" enctype="multipart/form-data">
+                        <form id="updateProductForm" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" name="product_id" value="{{$product_details->product_id}}">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group mb-2">
@@ -208,13 +211,13 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="" class="form-label">Available Size Comma ( , ) Separated</label>
-                                        <input type="text" name="size" id="size" class="form-control" placeholder="e.g XS, S, M, ... " required>
+                                        <input type="text" name="size" id="size" class="form-control" placeholder="e.g XS, S, M, ... " value="{{$product_details->size}}" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="" class="form-label mt-2">Available Color Comma ( , ) Separated</label>
-                                        <input type="text" name="color" class="form-control" placeholder="e.g Green" required>
+                                        <input type="text" name="color" class="form-control" placeholder="e.g Green" value="{{$product_details->color}}" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -444,10 +447,12 @@
 
         //Submit Product Details
 
-        $('#createProductForm').on('submit', function(e){
+        $('#updateProductForm').on('submit', function(e){
             e.preventDefault();
 
             const main_image = $('#mainProductImage')[0].files;
+
+            console.log(main_image);
 
             // console.log('Main Image --->', main_image[0]);
 
@@ -471,7 +476,7 @@
                 }
 
                 $.ajax({
-                    url:"{{route('admin.create.product')}}",
+                    url:"{{route('admin.update.product.details')}}",
                     type:"POST",
                     contentType:false,
                     processData:false,

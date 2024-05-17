@@ -24,7 +24,7 @@
 
   @include('website.home.products.latest')
 
-  @include('website.home.products.quick-view')
+  {{-- @include('website.home.products.quick-view') --}}
 
   {{-- @include('website.home.brands.brands') --}}
 
