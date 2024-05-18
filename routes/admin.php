@@ -68,6 +68,10 @@ Route::group(['middleware' => 'auth'], function(){
             Route::group(['prefix' => 'list'], function(){
                 Route::get('', [ProductController::class, 'productList'])->name('admin.view.product.list');
             });
+            Route::post('change-status', [ProductController::class, 'changeStatus'])->name('admin.change.product.status');
+            Route::get('details/{id}', [ProductController::class, 'productDetails'])->name('admin.get.product.details');
+            Route::post('update', [ProductController::class, 'updateProductDetails'])->name('admin.update.product.details');
+            Route::post('delete', [ProductController::class, 'deleteProduct'])->name('admin.delete.product');
         });
         
     });

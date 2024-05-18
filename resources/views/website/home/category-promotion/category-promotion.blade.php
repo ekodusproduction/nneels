@@ -12,7 +12,7 @@
                     <div class="content_abs content_center text-center">
                         <h3 class="text-uppercase fw-bold mb-1" style="text-shadow: 0px 0px 10px white;">{{$item->name}}</h3>
                         {{-- <h3 class="text-uppercase fw-bold mb-1">Horizons</h3> --}}
-                        <a href="shop1.html" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
+                        <a href="#" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
                     </div><!-- /.content_abs .content_center -->
                 </div>
             </div>

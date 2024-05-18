@@ -46,7 +46,7 @@
                 @forelse ($latest_drops as $key => $item)
                     <div class="swiper-slide product-card">
                         <div class="pc__img-wrapper">
-                            <a href="product1_simple.html">
+                            <a href="{{route('website.get.product.by.category', ['main_category' => urlencode($item->category->name), 'sub_category' => urlencode($item->subCategory->name), 'product_id' => $item->product_id])}}">
                                 <img loading="lazy" src="{{asset($item->main_image)}}" width="330" height="400"
                                     alt="latest drop" class="pc__img">
                                 @if (!empty($item->product_gallery))
@@ -65,10 +65,10 @@
                                 <button
                                     class="btn btn-primary flex-grow-1 fs-base ps-3 ps-xxl-4 pe-0 border-0 text-uppercase fw-medium js-add-cart js-open-aside"
                                     data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                <button
+                                {{-- <button
                                     class="btn btn-primary flex-grow-1 fs-base ps-0 pe-3 pe-xxl-4 border-0 text-uppercase fw-medium js-quick-view"
                                     data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">Quick
-                                    View</button>
+                                    View</button> --}}
                             </div>
                             <button
                                 class="pc__btn-wl position-absolute bg-body rounded-circle border-0 text-primary js-add-wishlist"
@@ -82,7 +82,7 @@
 
                         <div class="pc__info position-relative">
                             <p class="pc__category third-color">{{$item->name}}</p>
-                            <h6 class="pc__title"><a href="product1_simple.html">{{$item->category->name}} - {{$item->subCategory->name}}</a></h6>
+                            <h6 class="pc__title"><a href="{{route('website.get.product.by.category', ['main_category' => urlencode($item->category->name), 'sub_category' => urlencode($item->subCategory->name), 'product_id' => $item->product_id])}}">{{$item->category->name}} - {{$item->subCategory->name}}</a></h6>
                             <div class="product-card__price d-flex">
                                 <span class="money price">${{$item->sale_price}}</span>
                             </div>
