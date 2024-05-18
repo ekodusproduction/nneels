@@ -1,5 +1,5 @@
 @extends('admin.index')
-@section('title', 'Product Details')
+@section('title', 'Edit Product Details')
 
 @section('custom-style')
     <style>
@@ -132,7 +132,7 @@
     <div class="card mg-b-20">
         <div class="card-header pb-0">
             <div class="d-flex justify-content-between">
-                <h4 class="card-title mg-b-2 mt-2">Create Product</h4>
+                <h4 class="card-title mg-b-2 mt-2">Edit Product</h4>
             </div>
         </div>
         <div class="card-body">
@@ -180,7 +180,7 @@
                     <div class="product-form-container">
                         <form id="updateProductForm" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="product_id" value="{{$product_details->product_id}}">
+                            <input type="hidden" name="product_id" value="{{ encrypt($product_details->product_id) }}">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group mb-2">
@@ -224,7 +224,7 @@
                                     <div class="form-group">
                                         <label for="" class="form-label mt-2">Select Category</label>
                                         <select name="category" id="selectCategory" class="form-control" required>
-                                            <option value="{{$product_details->category->id}}">{{$product_details->category->name}}</option>
+                                            <option value="{{ encrypt($product_details->category->id) }}">{{$product_details->category->name}}</option>
                                             @foreach ($categories as $key => $item)
                                                 <option value="{{encrypt($item->id)}}">{{$item->name}}</option>
                                             @endforeach
@@ -251,7 +251,7 @@
                                     <div class="form-group">
                                         <label for="" class="form-label mt-2">Select Stock Availability</label>
                                         <select name="is_stock_available" id="stock" class="form-control" required>
-                                            <option value="{{$product_details->in_stock}}">{{$product_details->in_stock == 1 ? 'In Stock' : 'Out of Stock'}}</option>
+                                            <option value="{{$product_details->is_stock_available}}">{{$product_details->is_stock_available == 1 ? 'In Stock' : 'Out of Stock'}}</option>
                                             <option value="1">In Stock</option>
                                             <option value="0">Out of Stock</option>
                                         </select>
@@ -452,14 +452,13 @@
 
             const main_image = $('#mainProductImage')[0].files;
 
-            console.log(main_image);
+            console.log('Main Image --->', main_image[0]);
 
-            // console.log('Main Image --->', main_image[0]);
-
-            // if(main_image.length == 0){
+            if(main_image.length == 0){
                 
-            //     toastr.error('Oops! Please add main product image');
-            // }else{
+                toastr.error('Oops! Please add main product image');
+            }
+            //else{
                 $('.create-product-form-btn').attr('disabled', true);
                 $('.create-product-form-btn').text('Please wait...');
 
@@ -482,21 +481,21 @@
                     processData:false,
                     data:formData,
                     success:function(data){
-                        // console.log('Response  data ===>', data)
+                        console.log('Response  data ===>', data)
                         if(data.status == 200){
                             toastr.success(data.message)
 
-                            $('#createProductForm')[0].reset();
-                            galleryImages = [];
-                            totalGalleryImages = 0;
-                            $('.preview-gallery-product').html(``);
-                            $('.preview-main-product').html(`
+                            // $('#createProductForm')[0].reset();
+                            // galleryImages = [];
+                            // totalGalleryImages = 0;
+                            // $('.preview-gallery-product').html(``);
+                            // $('.preview-main-product').html(`
                             
-                                <div class="upload-main-image-placeholder text-center">
-                                    <img  src="{{asset('admin/assets/img/upload-image-placeholder.jpg')}}" alt="upload image placeholder">
-                                    <p>Choose Image To Upload</p>
-                                </div>
-                            `);
+                            //     <div class="upload-main-image-placeholder text-center">
+                            //         <img  src="{{asset('admin/assets/img/upload-image-placeholder.jpg')}}" alt="upload image placeholder">
+                            //         <p>Choose Image To Upload</p>
+                            //     </div>
+                            // `);
 
                             $('.create-product-form-btn').attr('disabled', false);
                             $('.create-product-form-btn').text('Submit');

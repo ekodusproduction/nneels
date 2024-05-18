@@ -196,81 +196,54 @@ class ProductController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->error('Oops! '.$validator->errors()->first(), null, 400);
+            return $this->error('Oops!'.$validator->errors()->first(), null, 400);
         }else{
             try{
+                $product_id = decrypt($request->product_id);
+                $product_details = Product::where('product_id', $product_id)->first();
+                
                 $categories_id = decrypt($request->category);
-
-                $check_if_product_with_same_name_exists = Product::where('categories_id', $categories_id)->where('sub_categories_id', $request->sub_category)->where('name', $request->name)->exists();
-
-                if($check_if_product_with_same_name_exists){
-                    return $this->error('Oops! Product belong to the same category with the same name already exists.', null, 400);
-                }
 
                 $path = null;
 
-                if($request->hasFile('main_product_image')){
+                if($request->main_product_image == 'undefined'){
+                    $path = $product_details->main_image;
+                }else{
 
                     $file = $request->file('main_product_image');
                     $name = Str::uuid()->toString().'_'.$file->getClientOriginalName();
                     
                     $file->move(public_path('admin/assets/product/main/'), $name);
                     $path = 'admin/assets/product/main/'.$name;
-                }else{
-                    $product_details = Product::where('product_id', $request->product_id)->first();
-                    $path = $product_details->main_image;
                 }
 
-                    $update_product = Product::where('product_id', $request->product_id)->update([
-                        'name' => $request->name,
-                        'original_price' => $request->originalPrice,
-                        'sale_price' => $request->salePrice,
-                        'size' => $request->size,
-                        'color' => $request->color,
-                        'quantity' => $request->quantity,
-                        'is_stock_available' => $request->is_stock_available,
-                        'rate_of_discount' => $request->rate_of_discount,
-                        'featured_section' => $request->featured_section,
-                        'tags' => $request->tags,
-                        'short_description' => $request->short_description,
-                        'long_description' => $request->long_description,
-                        'main_image' => $path ,
-                        'categories_id' => $categories_id,
-                        'sub_categories_id' => $request->sub_category,
-                        'status' => $request->visibility_status,
-                    ]);
+                Product::where('product_id', $product_id)->update([
+                    'name' => $request->name,
+                    'original_price' => $request->originalPrice,
+                    'sale_price' => $request->salePrice,
+                    'size' => $request->size,
+                    'color' => $request->color,
+                    'quantity' => $request->quantity,
+                    'is_stock_available' => $request->is_stock_available,
+                    'rate_of_discount' => $request->rate_of_discount,
+                    'featured_section' => $request->featured_section,
+                    'tags' => $request->tags,
+                    'short_description' => $request->short_description,
+                    'long_description' => $request->long_description,
+                    'main_image' => $path ,
+                    'categories_id' => $categories_id,
+                    'sub_categories_id' => $request->sub_category,
+                    'status' => $request->visibility_status,
+                ]);
+                
 
-                    // if($update_product){
-                        
-                    //     if($request->hasFile('product_gallery_image')){
-                    //         foreach($request->product_gallery_image as $image){
-
-                    //             $gallery_image_name = Str::uuid()->toString().'_'.$image->getClientOriginalName();
-                                
-                    //             $image->move(public_path('admin/assets/product/gallery/'), $gallery_image_name);
-                    //             $gallery_image_path = 'admin/assets/product/gallery/'.$gallery_image_name;
-
-                    //             ProductGallery::create([
-                    //                 'product_id' => $create_product->product_id,
-                    //                 'image' => $gallery_image_path
-                    //             ]);
-                    //         }
-                            
-                    //     }
-
-                        return $this->success('Great! Product updated successfully.', null, 200);
-                        
-                    // }else{
-                    //     return $this->error('Oops! Failed to create product.', null, 400);
-                    // }
-
-                // }else{
-                //     return $this->error('Oops! Product main image not selected', null, 400);
-                // }
+                return $this->success('Great! Product updated successfully', null, 200);
                 
             }catch(\Exception $e){
-                return $this->error('Oops! Something went wrong'.$e->getMessage().'----'.$e->getLine(), null, 500);
+                return $this->error('Oops! Something went wrong', $e->getMessage(), 500);
             }
         }
+
+        
     }
 }

@@ -1,9 +1,9 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-    <div class="app-brand demo">
+    <div class="app-brand demo mb-3">
         <a href="{{route('admin.dashboard')}}" class="app-brand-link">
-            {{-- <img src="{{asset('admin/assets/logo/nneels-updated-logo.jpg')}}" alt="Nneels Logo" height="100"> --}}
+            <img src="{{asset('admin/assets/logo/nneels-updated-logo.jpg')}}" alt="Nneels Logo" height="100">
 
-            <span class="app-brand-text demo menu-text fw-bolder ms-2" style="text-transform: capitalize;">NNEEL'S</span>
+            {{-- <span class="app-brand-text demo menu-text fw-bolder ms-2" style="text-transform: capitalize;">NNEEL'S</span> --}}
         </a>
 
         <a href="javascript:void(0);"
