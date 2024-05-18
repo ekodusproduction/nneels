@@ -353,6 +353,7 @@
     <script>
         let galleryImages = [];
         let totalGalleryImages = 0;
+        const maxImagesAllowed = 4;
 
         $('.main-product-browse').on('click', function(){
             $('#mainProductImage').click();
@@ -390,45 +391,75 @@
             $('.product-gallery-image').click();
         });
 
-        $('.product-gallery-image').on('change', function(){
-            const imageFile = $(this)[0].files;
-            
-            const maxFileSizeAllowed = 2*1024*1024;
-            const mimeType = imageFile[0].type;
+        
 
-            if(imageFile[0].size > maxFileSizeAllowed){
-                toastr.error('Oops! File too large. Maximum allowed size 2 MB');
-            }else if(mimeType.split('/')[0] !== 'image'){
-                toastr.error('Oops! Not a valid image. Please upload image only');
-            }else{
+        
 
-                if(totalGalleryImages >= 4){
-                    toastr.error('Oops! Maximum 4 gallery images can be uploaded at a time.');
-                }else{
-                    const fileReader = new FileReader();
-                    fileReader.onload = function(e){
-                        const imageId = 'image_' + Date.now();
-                        $('.preview-gallery-product').append(
-                            `
-                                <div class="selected-image-container"  id="${imageId}" style="margin-top:10px;">
-                                    <img src="${e.target.result}" alt="product gallery image">
-                                    <div class="gallery-image-remove-btn">
-                                        <i class="bx bx-x-circle"></i>
-                                    </div>
-                                </div>
-                            `
-                        )
-                    };
-                    fileReader.readAsDataURL(imageFile[0]);
-                    totalGalleryImages++;
-                    galleryImages.push(imageFile[0]);
-                    
-                    // console.log('Total Imgages-->', totalGalleryImages)
-                    // console.log('Gallery Imgages-->', galleryImages)
-                }
-            }
+
+        function displayExistingImages(images) {
+            images.forEach(image => {
+                totalGalleryImages++;
+                
+                const imageId = 'existing_image_' + image.id;
+                const fetched_gallery_image = window.location.protocol+'//'+window.location.hostname+':'+window.location.port+'/'+image.image
+                galleryImages.push({ id: image.id, url: image.image, isNew: false });
+                $('.preview-gallery-product').append(`
+                    <div class="selected-image-container" id="${imageId}" style="margin-top:10px;">
+                        <img src="${fetched_gallery_image}" alt="product gallery image">
+                        <div class="gallery-image-remove-btn" data-id="${imageId}" data-existing="true">
+                            <i class="bx bx-x-circle"></i>
+                        </div>
+                    </div>
+                `);
+            });
+        }
+
+        $(document).ready(function() {
+            const fetched_gallery_images = `{{$product_details->product_gallery}}`;
+            const existingImages = JSON.parse(fetched_gallery_images.replace(/&quot;/g, '"'));
+
+            displayExistingImages(existingImages);
         });
 
+         // Handle new gallery image selection
+    $('.product-gallery-image').on('change', function() {
+        const imageFiles = $(this)[0].files;
+        const maxFileSizeAllowed = 2 * 1024 * 1024;
+
+        for (let i = 0; i < imageFiles.length; i++) {
+            const imageFile = imageFiles[i];
+            const mimeType = imageFile.type;
+
+            if (totalGalleryImages >= maxImagesAllowed) {
+                toastr.error('Oops! Maximum 4 gallery images can be uploaded at a time.');
+                break;
+            } else if (imageFile.size > maxFileSizeAllowed) {
+                toastr.error('Oops! File too large. Maximum allowed size 2 MB');
+            } else if (mimeType.split('/')[0] !== 'image') {
+                toastr.error('Oops! Not a valid image. Please upload image only');
+            } else {
+                const fileReader = new FileReader();
+                fileReader.onload = function(e) {
+                    const imageId = 'image_' + Date.now();
+                    $('.preview-gallery-product').append(`
+                        <div class="selected-image-container" id="${imageId}" style="margin-top:10px;">
+                            <img src="${e.target.result}" alt="product gallery image" style="width: 100px; height: 100px;">
+                            <div class="gallery-image-remove-btn" data-id="${imageId}" data-existing="false">
+                                <i class="bx bx-x-circle"></i>
+                            </div>
+                        </div>
+                    `);
+                };
+                fileReader.readAsDataURL(imageFile);
+                totalGalleryImages++;
+                galleryImages.push({ file: imageFile, isNew: true });
+            }
+        }
+
+        console.log('Changed ---', galleryImages);
+    });
+
+        
         //remove gallery image
         $(document).on('click', '.gallery-image-remove-btn', function(){
             let removeImageFromGalleryArray =  $('.selected-image-container').index($(this).closest('.selected-image-container'));
@@ -440,81 +471,136 @@
 
             $(this).closest('.selected-image-container').remove();
 
-            // console.log('Total Imgages-->', totalGalleryImages)
-            // console.log('Gallery Imgages-->', galleryImages)
+            console.log('Total Imgages-->', totalGalleryImages)
+            console.log('Gallery Imgages-->', galleryImages)
         });
 
-
         //Submit Product Details
+
+        // $('#updateProductForm').on('submit', function(e){
+        //     e.preventDefault();
+
+        //     const main_image = $('#mainProductImage')[0].files;
+
+        //     console.log('Main Image --->', main_image[0]);
+
+        //     // if(main_image.length == 0){
+                
+        //     //     toastr.error('Oops! Please add main product image');
+        //     // }
+        //     //else{
+        //         $('.create-product-form-btn').attr('disabled', true);
+        //         $('.create-product-form-btn').text('Please wait...');
+
+        //         let formData = new FormData(this);
+                
+        //         formData.append('main_product_image', main_image[0]);
+                
+        //         // console.log('Gallery Images --> ', galleryImages) 
+
+        //         if(galleryImages.length > 0){
+                    
+        //             galleryImages.forEach(image => {
+        //                 console.log('Product Gallery Images ---', image.file);
+        //                 if (image.isNew) {
+        //                     formData.append('product_gallery_image[]', image.file);
+        //                 } else {
+        //                     formData.append('product_gallery_image[]', image.url);
+        //                 }
+        //             });
+        //         }
+
+        //         $.ajax({
+        //             url:"{{route('admin.update.product.details')}}",
+        //             type:"POST",
+        //             contentType:false,
+        //             processData:false,
+        //             data:formData,
+        //             success:function(data){
+        //                 console.log('Response  data ===>', data)
+        //                 if(data.status == 200){
+        //                     toastr.success(data.message)
+
+        //                     // $('#createProductForm')[0].reset();
+        //                     // galleryImages = [];
+        //                     // totalGalleryImages = 0;
+        //                     // $('.preview-gallery-product').html(``);
+        //                     // $('.preview-main-product').html(`
+                            
+        //                     //     <div class="upload-main-image-placeholder text-center">
+        //                     //         <img  src="{{asset('admin/assets/img/upload-image-placeholder.jpg')}}" alt="upload image placeholder">
+        //                     //         <p>Choose Image To Upload</p>
+        //                     //     </div>
+        //                     // `);
+
+        //                     $('.create-product-form-btn').attr('disabled', false);
+        //                     $('.create-product-form-btn').text('Submit');
+        //                 }else{
+        //                     toastr.error(data.message)
+        //                     $('.create-product-form-btn').attr('disabled', false);
+        //                     $('.create-product-form-btn').text('Submit');
+        //                 }
+        //             },error:function(err){
+        //                 toastr.error('Oops! Something went wrong');
+        //                 $('.create-product-form-btn').attr('disabled', false);
+        //                 $('.create-product-form-btn').text('Submit');
+        //             }
+        //         });
+        //     // }
+            
+            
+        // });
 
         $('#updateProductForm').on('submit', function(e){
             e.preventDefault();
 
-            const main_image = $('#mainProductImage')[0].files;
+            const main_image = $('#mainProductImage')[0].files[0];
 
-            console.log('Main Image --->', main_image[0]);
+            console.log('Main Image --->', main_image);
 
-            if(main_image.length == 0){
-                
-                toastr.error('Oops! Please add main product image');
-            }
-            //else{
-                $('.create-product-form-btn').attr('disabled', true);
-                $('.create-product-form-btn').text('Please wait...');
+            // if(!main_image){
+            //     toastr.error('Oops! Please add main product image');
+            //     return;
+            // }
 
-                let formData = new FormData(this);
-                
-                formData.append('main_product_image', main_image[0]);
-                
-                // console.log('Gallery Images --> ', galleryImages) 
+            $('.create-product-form-btn').attr('disabled', true).text('Please wait...');
 
-                if(galleryImages.length > 0){
-                    $.each(galleryImages, function(index, image) {
-                        formData.append('product_gallery_image[]', image);
-                    });
-                }
+            let formData = new FormData(this);
+            formData.append('main_product_image', main_image);
 
-                $.ajax({
-                    url:"{{route('admin.update.product.details')}}",
-                    type:"POST",
-                    contentType:false,
-                    processData:false,
-                    data:formData,
-                    success:function(data){
-                        console.log('Response  data ===>', data)
-                        if(data.status == 200){
-                            toastr.success(data.message)
-
-                            // $('#createProductForm')[0].reset();
-                            // galleryImages = [];
-                            // totalGalleryImages = 0;
-                            // $('.preview-gallery-product').html(``);
-                            // $('.preview-main-product').html(`
-                            
-                            //     <div class="upload-main-image-placeholder text-center">
-                            //         <img  src="{{asset('admin/assets/img/upload-image-placeholder.jpg')}}" alt="upload image placeholder">
-                            //         <p>Choose Image To Upload</p>
-                            //     </div>
-                            // `);
-
-                            $('.create-product-form-btn').attr('disabled', false);
-                            $('.create-product-form-btn').text('Submit');
-                        }else{
-                            toastr.error(data.message)
-                            $('.create-product-form-btn').attr('disabled', false);
-                            $('.create-product-form-btn').text('Submit');
-                        }
-                    },error:function(err){
-                        toastr.error('Oops! Something went wrong');
-                        $('.create-product-form-btn').attr('disabled', false);
-                        $('.create-product-form-btn').text('Submit');
+            if(galleryImages.length > 0){
+                galleryImages.forEach(image => {
+                    if (image.isNew) {
+                        formData.append('new_product_gallery_images[]', image.file);
+                    } else {
+                        formData.append('existing_product_gallery_images[]', image.id);
                     }
                 });
-            // }
-            
-            
-        });
+            }
 
+            $.ajax({
+                url: "{{route('admin.update.product.details')}}",
+                type: "POST",
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function(data){
+                    console.log('Response data ===>', data);
+                    if(data.status === 200){
+                        toastr.success(data.message);
+                        // Optionally reset the form and images here
+                        $('.create-product-form-btn').attr('disabled', false).text('Submit');
+                    } else {
+                        toastr.error(data.message);
+                        $('.create-product-form-btn').attr('disabled', false).text('Submit');
+                    }
+                },
+                error: function(err){
+                    toastr.error('Oops! Something went wrong');
+                    $('.create-product-form-btn').attr('disabled', false).text('Submit');
+                }
+            });
+        });
     </script>
 
     <script>

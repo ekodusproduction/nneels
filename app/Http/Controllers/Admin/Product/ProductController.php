@@ -199,6 +199,8 @@ class ProductController extends Controller
             return $this->error('Oops!'.$validator->errors()->first(), null, 400);
         }else{
             try{
+
+                // return $this->success('Great!', $request->all(), 200);
                 $product_id = decrypt($request->product_id);
                 $product_details = Product::where('product_id', $product_id)->first();
                 
