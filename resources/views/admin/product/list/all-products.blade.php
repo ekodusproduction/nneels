@@ -190,11 +190,9 @@
                                                 Change Visibility </a>
                                         @endif
                                         
-                                        <a class="dropdown-item" href="{{route('admin.get.product.details', ['id' => encrypt($item->product_id)])}}"><i class="bx bx-info-circle me-1"></i>
-                                            Details</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
+                                        <a class="dropdown-item" href="{{route('admin.get.product.details', ['id' => encrypt($item->product_id)])}}"><i class="bx bx-edit-alt me-1"></i>
                                             Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
+                                        <a class="dropdown-item delete-product" href="javascript:void(0);" data-id="{{encrypt($item->product_id)}}"><i class="bx bx-trash me-1"></i>
                                             Delete</a>
                                     </div>
                                 </div>
@@ -249,6 +247,44 @@
                     toastr.error('Oops! Something went wrong');
                     $('.change-status').text('Change Visibility');
                     $('.change-status').attr('disabled', false);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $('.delete-product').on('click', function(){
+            const product_id = $(this).data('id');
+            
+            Swal.fire({
+                icon:'warning',
+                title:'Are you sure?',
+                showCancelButton: true,
+                confirmButtonText: "Delete Anyway",
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        url:"{{route('admin.delete.product')}}",
+                        type:"POST",
+                        data:{
+                            'product_id' : product_id,
+                            '_token' : "{{csrf_token()}}"
+                        },
+                        success:function(data){
+                            if(data.status == 200){
+                                Swal.fire(data.message, "", "success");
+                            }else{
+                                Swal.fire(data.message, "", "error");
+                            }
+
+                            window.location.reload(true);
+                            
+                        },error:function(error){
+                            Swal.fire('Oops! Something went wrong.', "", "error");
+                        }
+                    });
+                    
                 }
             });
         });

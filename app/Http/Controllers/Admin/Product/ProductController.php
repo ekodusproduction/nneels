@@ -248,4 +248,18 @@ class ProductController extends Controller
 
         
     }
+
+    public function deleteProduct(Request $request){
+        try{
+            $product_id = decrypt($request->product_id);
+            DB::beginTransaction();
+            Product::where('product_id', $product_id)->delete();
+            ProductGallery::where('product_id', $product_id)->delete();
+            DB::commit();
+            return $this->success('Great! Product deleted successfully', null, 200);
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $this->error('Oops! Something went wrong', null, 500);
+        }
+    }
 }
