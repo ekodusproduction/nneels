@@ -189,7 +189,6 @@ class ProductController extends Controller
             'tags' => 'required|string',
             'short_description' => 'required',
             'long_description' => 'required',
-            // 'main_product_image' => 'required|image|mimes:jpg,png,jpeg,webp|max:2048',
             'category' => 'required',
             'sub_category' => 'required',
             'visibility_status' => 'required',
@@ -199,10 +198,9 @@ class ProductController extends Controller
             return $this->error('Oops!'.$validator->errors()->first(), null, 400);
         }else{
             try{
-
-                // return $this->success('Great!', $request->all(), 200);
+                // return $this->success('Great! Gallery image', $request->all(), 200);
                 $product_id = decrypt($request->product_id);
-                $product_details = Product::where('product_id', $product_id)->first();
+                $product_details = Product::with('product_gallery')->where('product_id', $product_id)->first();
                 
                 $categories_id = decrypt($request->category);
 
@@ -219,7 +217,9 @@ class ProductController extends Controller
                     $path = 'admin/assets/product/main/'.$name;
                 }
 
-                Product::where('product_id', $product_id)->update([
+
+
+                $update = Product::where('product_id', $product_id)->update([
                     'name' => $request->name,
                     'original_price' => $request->originalPrice,
                     'sale_price' => $request->salePrice,
@@ -237,9 +237,38 @@ class ProductController extends Controller
                     'sub_categories_id' => $request->sub_category,
                     'status' => $request->visibility_status,
                 ]);
-                
 
-                return $this->success('Great! Product updated successfully', null, 200);
+                if($update){
+                    if ($request->has('product_gallery_images')) {
+                        foreach ($request->product_gallery_images as $index => $gallery) {
+                            $galleryId = $gallery['id'];
+                            $galleryImage = $gallery['image'];
+        
+                            if (is_file($galleryImage)) {
+                                $gallery_image_name = Str::uuid()->toString() . '_' . $galleryImage->getClientOriginalName();
+                                $galleryImage->move(public_path('admin/assets/product/gallery/'), $gallery_image_name);
+                                $gallery_image_path = 'admin/assets/product/gallery/' . $gallery_image_name;
+                                
+                                $check_if_gallery_images_exists = ProductGallery::where('product_id', $product_id)->where('id', $galleryId)->exists();
+                                if($check_if_gallery_images_exists){
+                                    ProductGallery::where('product_id', $product_id)->where('id', $galleryId)->update([
+                                        'image' => $gallery_image_path
+                                    ]);
+                                }else{
+                                    ProductGallery::create([
+                                        'product_id' => $product_id,
+                                        'image' => $gallery_image_path
+                                    ]);
+                                }
+                                
+                            }
+                        }
+                    }
+
+                    return $this->success('Great! Product updated successfully', null, 200);
+                }else{
+                    return $this->error('Oops! Failed to update product', null, 400);
+                }
                 
             }catch(\Exception $e){
                 return $this->error('Oops! Something went wrong', $e->getMessage(), 500);
