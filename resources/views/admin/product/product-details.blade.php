@@ -48,7 +48,7 @@
             object-fit: cover;
         }
         .preview-main-product .upload-main-image-placeholder img{
-            height:auto;
+            max-height:300px;
             width:200px;
             object-fit:fill;
             border-radius:5px;
