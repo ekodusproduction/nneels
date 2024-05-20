@@ -405,10 +405,6 @@
                 toastr.error('Oops! Not a valid image. Please upload image only');
             }else{
 
-                // if(selected_gallery_image.length > 0){
-
-                
-                // }
                 let reader = new FileReader();
                 reader.onload = function(e) {
                     $('.preview-gallery-image-'+gallery_image_id).attr('src', e.target.result);
@@ -429,7 +425,6 @@
                     });
                 }
             }
-
             
         });
 
