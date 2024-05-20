@@ -28,7 +28,7 @@
 @endsection
 
 @section('content')
-    <div class="card mb-4">
+    {{-- <div class="card mb-4">
         <div class="card-widget-separator-wrapper">
             <div class="card-body card-widget-separator">
                 <div class="row gy-4 gy-sm-1">
@@ -96,7 +96,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Product List Table -->
     <div class="card">
