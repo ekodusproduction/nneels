@@ -395,8 +395,20 @@
             const gallery_image_id = $(this).data('id');
             const selected_gallery_image = $(this)[0].files;
 
-            if(selected_gallery_image.length > 0){
+            const maxFileSizeAllowed = 2*1024*1024;
+           
+            const mimeType = selected_gallery_image[0].type;
 
+            if(selected_gallery_image[0].size > maxFileSizeAllowed){
+                toastr.error('Oops! File too large. Maximum allowed size 2 MB');
+            }else if(mimeType.split('/')[0] !== 'image'){
+                toastr.error('Oops! Not a valid image. Please upload image only');
+            }else{
+
+                // if(selected_gallery_image.length > 0){
+
+                
+                // }
                 let reader = new FileReader();
                 reader.onload = function(e) {
                     $('.preview-gallery-image-'+gallery_image_id).attr('src', e.target.result);
@@ -418,7 +430,7 @@
                 }
             }
 
-            console.log('Gallery Images Array ===> ', galleryImages)
+            
         });
 
 
