@@ -109,9 +109,9 @@
                         {{-- <th>Product Id</th> --}}
                         <th>Image</th>
                         <th>Name</th>
+                        <th>Category</th>
                         <th>Sale Price</th>
                         <th>Size</th>
-                        <th>Color</th>
                         <th>Qty</th>
                         <th>In Stock</th>
                         <th>Visibility</th>
@@ -124,9 +124,6 @@
                             <td>
                                 {{ $key + 1 }}
                             </td>
-                            {{-- <td>
-                                <p>{{ $item->product_id }}</p>
-                            </td> --}}
                             <td>
                                 <img src="{{ asset($item->main_image) }}" class="avatar-lg" alt="Main Image" style="border-radius:50%;">
                             </td>
@@ -134,13 +131,13 @@
                                 <p>{{ $item->name }}</p>
                             </td>
                             <td>
+                                <p>{{$item->category->name}}</p>
+                            </td>
+                            <td>
                                 <p style="font-weight: 600;"><span style="color:rgb(13, 124, 41);">$</span> {{ $item->sale_price }}</p>
                             </td>
                             <td>
                                 <p>{{ $item->size }}</p>
-                            </td>
-                            <td>
-                                <p style="text-transform: capitalize;">{{ $item->color }}</p>
                             </td>
                             <td>
                                 <p>{{ $item->quantity }}</p>
