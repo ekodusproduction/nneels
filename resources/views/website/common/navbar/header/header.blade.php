@@ -111,7 +111,7 @@
     <nav class="navigation">
       <ul class="navigation__list list-unstyled d-flex">
         <li class="navigation__item">
-          <a href="#" class="navigation__link" style="font-size:20px; color:#0e2872;"><i class="fa fa-home"></i></a>
+          <a href="/" class="navigation__link" style="font-size:20px; color:#0e2872;"><i class="fa fa-home"></i></a>
         </li>
         @forelse ($category as $key => $item)
           <li class="navigation__item">
