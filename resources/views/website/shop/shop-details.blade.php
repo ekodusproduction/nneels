@@ -101,8 +101,16 @@
                     </div>
                     <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
                 </div>
+                
                 <div class="product-single__price">
+                    {{-- @dd(gettype($product_details->rate_of_discount)) --}}
+                   
                     <span class="current-price">${{ $product_details->sale_price }}</span>
+                    @if ($product_details->rate_of_discount > 0)
+                        <p class="current-price" style="font-size: 14px; color: #727272; margin-bottom: 0px;">Discount applied {{$product_details->rate_of_discount}} %
+                            <img src="{{asset('assets/images/price-tag.png')}}" alt="price tag" style="height:30px;">
+                        </p>
+                    @endif
                 </div>
                 <div class="product-single__short-desc">
                     <p>{{ $product_details->short_description }} <span id="readMore" class="d-block">Read More....</span></p>
