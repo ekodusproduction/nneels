@@ -31,7 +31,6 @@ class ProductController extends Controller
                 'originalPrice' => 'required|numeric',
                 'salePrice' => 'required|numeric',
                 'size' => 'required|string',
-                'color' => 'required|string',
                 'quantity' => 'required|numeric',
                 'is_stock_available' => 'required|numeric',
                 'rate_of_discount' => 'required',
@@ -76,7 +75,6 @@ class ProductController extends Controller
                             'original_price' => $request->originalPrice,
                             'sale_price' => $request->salePrice,
                             'size' => $request->size,
-                            'color' => $request->color,
                             'quantity' => $request->quantity,
                            'is_stock_available' => $request->is_stock_available,
                             'rate_of_discount' => $request->rate_of_discount,
@@ -128,7 +126,8 @@ class ProductController extends Controller
 
     public function productList(){
         $product = Product::with('product_gallery', 'category', 'subCategory')->orderBy('created_at', 'Desc')->get();
-        return view('admin.product.list.all-products')->with(['product' => $product ]);
+
+        return view('admin.product.list.all-products')->with(['product' => $product]);
     }
 
     public function changeStatus(Request $request){
@@ -181,7 +180,6 @@ class ProductController extends Controller
             'originalPrice' => 'required|numeric',
             'salePrice' => 'required|numeric',
             'size' => 'required|string',
-            'color' => 'required|string',
             'quantity' => 'required|numeric',
             'is_stock_available' => 'required|numeric',
             'rate_of_discount' => 'required',
@@ -224,7 +222,6 @@ class ProductController extends Controller
                     'original_price' => $request->originalPrice,
                     'sale_price' => $request->salePrice,
                     'size' => $request->size,
-                    'color' => $request->color,
                     'quantity' => $request->quantity,
                     'is_stock_available' => $request->is_stock_available,
                     'rate_of_discount' => $request->rate_of_discount,

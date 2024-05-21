@@ -223,12 +223,6 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="" class="form-label mt-2">Available Color Comma ( , ) Separated</label>
-                                        <input type="text" name="color" class="form-control" placeholder="e.g Green" value="{{$product_details->color}}" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
                                         <label for="" class="form-label mt-2">Select Category</label>
                                         <select name="category" id="selectCategory" class="form-control" required>
                                             <option value="{{ encrypt($product_details->category->id) }}">{{$product_details->category->name}}</option>

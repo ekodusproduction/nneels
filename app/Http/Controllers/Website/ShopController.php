@@ -22,8 +22,15 @@ class ShopController extends Controller
 
             if($product_id != null){
 
-                $get_product_details = Product::with('product_gallery', 'subCategory')->where('categories_id', $get_selected_product_category->id)->where('sub_categories_id', $get_selected_product_sub_category->id)->where('product_id', $product_id)->first();   
-                return view('website.shop.shop-details')->with(['product_details' => $get_product_details, 'main_category' => urldecode($main_category), 'sub_category' => urldecode($sub_category),]);
+                $get_product_details = Product::with('product_gallery', 'subCategory')->where('categories_id', $get_selected_product_category->id)->where('sub_categories_id', $get_selected_product_sub_category->id)->where('product_id', $product_id)->first();
+                
+                $gallery_array = [];
+                array_unshift($gallery_array, $get_product_details->main_image);
+
+                foreach ($get_product_details->product_gallery as $gallery_image) {
+                    $gallery_array[] = $gallery_image->image;
+                }  
+                return view('website.shop.shop-details')->with(['product_details' => $get_product_details, 'main_category' => urldecode($main_category), 'sub_category' => urldecode($sub_category), 'gallery_array' => $gallery_array]);
 
             }else{
                 

@@ -208,12 +208,6 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="" class="form-label mt-2">Available Color Comma ( , ) Separated</label>
-                                        <input type="text" name="color" class="form-control" placeholder="e.g Green" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
                                         <label for="" class="form-label mt-2">Select Category</label>
                                         <select name="category" id="selectCategory" class="form-control" required>
                                             <option value="">- - Select - - </option>
