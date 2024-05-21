@@ -24,4 +24,14 @@ class Product extends Model
     public function subCategory(){
         return $this->belongsTo(SubCategory::class, 'sub_categories_id', 'id');
     }
+
+    public function getRateOfDiscountAttribute($value)
+    {
+        if (intval($value) == $value) {
+            // If it is a whole number, cast it to an integer to remove the decimal part
+            return $value = intval($value);
+        }else{
+            return $value;
+        }
+    }
 }
