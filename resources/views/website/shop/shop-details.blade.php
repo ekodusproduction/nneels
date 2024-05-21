@@ -26,13 +26,15 @@
         <div class="row">
             <div class="col-lg-7">
                 <div class="product-single__media" data-media-type="horizontal-thumbnail">
-                    @if (count($product_details->product_gallery) == 0)
-                        <div class="product-single__image">
-                            <div class="swiper-container">
-                                <div class="swiper-wrapper">
+                    
+                    <div class="product-single__image">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                @foreach ($gallery_array as $image)
                                     <div class="swiper-slide product-single__image-item" style="text-align:center;">
-                                        <img loading="lazy" class="h-100" src="{{ asset($product_details->main_image) }}" alt="" style="height:100%;">
-                                        <a data-fancybox="gallery" href="{{ asset($product_details->main_image) }}"
+                                        <img loading="lazy" class="h-60" src="{{ asset($image) }}" width="788"
+                                            height="788" alt="">
+                                        <a data-fancybox="gallery" href="{{ asset($image) }}"
                                             data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -40,60 +42,31 @@
                                             </svg>
                                         </a>
                                     </div>
-                                </div>
-                                <div class="swiper-button-prev"><svg width="7" height="11" viewBox="0 0 7 11"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_prev_sm" />
-                                    </svg></div>
-                                <div class="swiper-button-next"><svg width="7" height="11" viewBox="0 0 7 11"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_next_sm" />
-                                    </svg></div>
-                            </div>
-                        </div>
-                    @else
-                        <div class="product-single__image">
-                            <div class="swiper-container">
-                                <div class="swiper-wrapper">
-                                    @foreach ($product_details->product_gallery as $gallery)
-                                        <div class="swiper-slide product-single__image-item" style="text-align:center;">
-                                            <img loading="lazy" class="h-60" src="{{ asset($gallery->image) }}" width="788"
-                                                height="788" alt="">
-                                            <a data-fancybox="gallery" href="{{ asset($gallery->image) }}"
-                                                data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <use href="#icon_zoom" />
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    @endforeach
+                                @endforeach
 
-                                </div>
-                                <div class="swiper-button-prev"><svg width="7" height="11" viewBox="0 0 7 11"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_prev_sm" />
-                                    </svg></div>
-                                <div class="swiper-button-next"><svg width="7" height="11" viewBox="0 0 7 11"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_next_sm" />
-                                    </svg></div>
                             </div>
+                            <div class="swiper-button-prev"><svg width="7" height="11" viewBox="0 0 7 11"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <use href="#icon_prev_sm" />
+                                </svg></div>
+                            <div class="swiper-button-next"><svg width="7" height="11" viewBox="0 0 7 11"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <use href="#icon_next_sm" />
+                                </svg></div>
                         </div>
-                        <div class="product-single__thumbnail">
-                            <div class="swiper-container">
-                                <div class="swiper-wrapper">
-                                    @foreach ($product_details->product_gallery as $gallery)
-                                        <div class="swiper-slide product-single__image-item">
-                                            <img loading="lazy" class="h-70" src="{{ asset($gallery->image) }}" width="104" height="104" alt="">
-                                        </div>
-                                    @endforeach
+                    </div>
+                    <div class="product-single__thumbnail">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                @foreach ($gallery_array as $image)
+                                    <div class="swiper-slide product-single__image-item">
+                                        <img loading="lazy" class="h-70" src="{{ asset($image) }}" width="104" height="104" alt="">
+                                    </div>
+                                @endforeach
 
-                                </div>
                             </div>
                         </div>
-                    @endif
-                    
+                    </div>
                     
                 </div>
             </div>
