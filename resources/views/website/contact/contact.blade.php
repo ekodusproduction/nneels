@@ -23,14 +23,9 @@
         <div class="mw-930">
             <div class="row mb-5">
                 <div class="col-lg-6">
-                    <h3 class="mb-4">Store in London</h3>
-                    <p class="mb-4">1418 River Drive, Suite 35 Cottonhall, CA 9622<br>United Kingdom</p>
-                    <p class="mb-4">sale@Nneels.com<br>+44 20 7123 4567</p>
-                </div>
-                <div class="col-lg-6">
-                    <h3 class="mb-4">Store in Istanbul</h3>
-                    <p class="mb-4">1418 River Drive, Suite 35 Cottonhall, CA 9622<br>Turky</p>
-                    <p class="mb-4">sale@Nneels.com<br>+90 212 555 1212</p>
+                    <h3 class="mb-4">Location</h3>
+                    <p class="mb-2">Virginia, Washington D.C.</p>
+                    <p class="mb-4">sales@nneelsglobal.com<br>nneels777@gmail.com</p>
                 </div>
             </div>
             <div class="contact-us__form">
@@ -61,7 +56,4 @@
 @endsection
 
 @section('custom-scripts')
-    {{-- <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-        ({key: "AIzaSyAnKJxI0i5KGFgD3QTSg_aXbQk_Ze2kNAw", v: "beta"});</script>
-    <script src="{{asset('assets/Demo2/js/googlemap-setting.js')}}"></script> --}}
 @endsection

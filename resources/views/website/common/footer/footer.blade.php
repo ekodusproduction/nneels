@@ -18,14 +18,14 @@
                     <a href="{{route('website.nav.home.index')}}">
                         <img src="{{asset('assets/images/nneels-updated-logo.jpg')}}" alt="Nneels" class="logo__image">
                     </a>
-                </div><!-- /.logo -->
-                <p class="footer-address">1418 River Drive, Suite 35 Cottonhall, CA 9622 United States</p>
+                </div>
+                <p class="footer-address">Virginia, Washington, D.C.</p>
 
                 <p class="m-0">
-                    <strong class="fw-medium">sale@Nneels.com</strong>
+                    <strong class="fw-medium">sales@nneelsglobal.com</strong>
                 </p>
-                <p>
-                    <strong class="fw-medium">+1 246-345-0695</strong>
+                <p class="m-0">
+                    <strong class="fw-medium">nneels777@gmail.com</strong>
                 </p>
 
                 <ul class="social-links list-unstyled d-flex flex-wrap mb-0">
@@ -49,7 +49,7 @@
             </div><!-- /.footer-column -->
 
             <div class="footer-column footer-menu mb-4 mb-lg-0">
-                <h6 class="sub-menu__title text-uppercase">Company</h6>
+                <h6 class="sub-menu__title text-uppercase">Quick Links</h6>
                 <ul class="sub-menu__list list-unstyled">
                     <li class="sub-menu__item"><a href="{{route('website.nav.about.index')}}" class="menu-link menu-link_us-s">About Us</a></li>
                     {{-- <li class="sub-menu__item"><a href="about.html" class="menu-link menu-link_us-s">Careers</a></li>
