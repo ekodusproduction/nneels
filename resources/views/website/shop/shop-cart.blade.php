@@ -8,7 +8,7 @@
     <div class="mb-4 pb-4"></div>
     <section class="shop-checkout container">
     <h2 class="page-title">Cart</h2>
-    {{-- <div class="checkout-steps">
+    <div class="checkout-steps">
         <a href="shop_cart.html" class="checkout-steps__item active">
         <span class="checkout-steps__item-number">01</span>
         <span class="checkout-steps__item-title">
@@ -30,7 +30,7 @@
             <em>Review And Submit Your Order</em>
         </span>
         </a>
-    </div> --}}
+    </div>
     <div class="shopping-cart">
         <div class="cart-table__wrapper">
         <table class="cart-table">
