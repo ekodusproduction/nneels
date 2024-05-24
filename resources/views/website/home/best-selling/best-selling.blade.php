@@ -66,8 +66,10 @@
                                     @endif
                                     
                                     <div class="anim_appear-bottom position-absolute bottom-0 start-0 w-100 d-none d-sm-flex align-items-center">
-                                        <button class="btn btn-primary flex-grow-1 fs-base ps-3 ps-xxl-4 pe-0 border-0 text-uppercase fw-medium js-add-cart js-open-aside"
-                                            data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
+                                        {{-- <button class="btn btn-primary flex-grow-1 fs-base ps-3 ps-xxl-4 pe-0 border-0 text-uppercase fw-medium js-add-cart js-open-aside"
+                                            data-aside="cartDrawer" title="Add To Cart">Add To Cart</button> --}}
+
+                                        <button class="btn btn-primary flex-grow-1 fs-base ps-3 ps-xxl-4 pe-0 border-0 text-uppercase fw-medium add-to-cart-btn" data-id="{{$item->product_id}}"  title="Add To Cart">Add To Cart</button>
                                         {{-- <button
                                             class="btn btn-primary flex-grow-1 fs-base ps-0 pe-3 pe-xxl-4 border-0 text-uppercase fw-medium js-quick-view"
                                             data-bs-toggle="modal" data-bs-target="#bestSellingQuickView" title="Quick view">Quick

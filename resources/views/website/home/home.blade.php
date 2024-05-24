@@ -73,6 +73,30 @@
         });
     });
 </script>
+
+<script>
+  $('.add-to-cart-btn').on('click', function(){
+    const product_id = $(this).data().id;
+
+    $.ajax({
+      url:"{{route('website.add.to.cart')}}",
+      type:"POST",
+      data:{
+        'product_id' : product_id,
+        '_token' : "{{csrf_token()}}"
+      },
+      success:function(data){
+        if(data.status == 200){
+          toastr.success(data.message);
+        }else{
+          toastr.error(data.message);
+        }
+      },error:function(error){
+        toastr.error('Oops! Something went wrong');
+      }
+    });
+  });
+</script>
 @endsection
 
  
