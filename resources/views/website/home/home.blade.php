@@ -88,10 +88,10 @@
         '_token' : "{{csrf_token()}}"
       },
       success:function(data){
-        console.log(data)
         if(data.status == 200){
           toastr.success(data.message);
           $('.add-to-cart-btn').text('Add To Cart').attr('disabled', false)
+          $('#cartDrawer').addClass('aside_visible');
         }else{
           toastr.error(data.message);
           $('.add-to-cart-btn').text('Add To Cart').attr('disabled', false)
