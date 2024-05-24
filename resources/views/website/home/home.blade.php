@@ -78,6 +78,8 @@
   $('.add-to-cart-btn').on('click', function(){
     const product_id = $(this).data().id;
 
+    $(this).text('Please wait...').attr('disabled', true)
+
     $.ajax({
       url:"{{route('website.add.to.cart')}}",
       type:"POST",
@@ -86,13 +88,17 @@
         '_token' : "{{csrf_token()}}"
       },
       success:function(data){
+        console.log(data)
         if(data.status == 200){
           toastr.success(data.message);
+          $('.add-to-cart-btn').text('Add To Cart').attr('disabled', false)
         }else{
           toastr.error(data.message);
+          $('.add-to-cart-btn').text('Add To Cart').attr('disabled', false)
         }
       },error:function(error){
         toastr.error('Oops! Something went wrong');
+        $('.add-to-cart-btn').text('Add To Cart').attr('disabled', false)
       }
     });
   });
