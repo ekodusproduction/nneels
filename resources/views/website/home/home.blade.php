@@ -91,7 +91,21 @@
         if(data.status == 200){
           toastr.success(data.message);
           $('.add-to-cart-btn').text('Add To Cart').attr('disabled', false)
-          $('#cartDrawer').addClass('aside_visible');
+          Swal.fire({
+            title: "Product added successfully",
+            text:'Go To Cart Page ',
+            showCancelButton: true,
+            confirmButtonText: "Proceed",
+            imageUrl: "{{asset('assets/images/cart.png')}}",
+            imageWidth: 150,
+            imageHeight: 150,
+            imageAlt: "Custom image"
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              Swal.fire("Saved!", "", "success");
+            }
+          });
         }else{
           toastr.error(data.message);
           $('.add-to-cart-btn').text('Add To Cart').attr('disabled', false)

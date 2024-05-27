@@ -112,7 +112,7 @@
         <div class="pb-2 mb-2 mb-xl-4"></div>
 
         <!-- scrollbar -->
-        <div class="products-carousel__scrollbar swiper-scrollbar"></div>
+        {{-- <div class="products-carousel__scrollbar swiper-scrollbar"></div> --}}
     </div>
 
 </section>

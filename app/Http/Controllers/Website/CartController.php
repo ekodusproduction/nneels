@@ -7,10 +7,12 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Traits\AjaxResponser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
     use AjaxResponser;
+
     public function getCartPage(){
         return view('website.shop.shop-cart');
     }
@@ -25,7 +27,8 @@ class CartController extends Controller
                 }else{
     
                     Cart::create([
-                        'product_id' => $request->product_id
+                        'product_id' => $request->product_id,
+                        'user_id' => 0
                     ]);
     
                     return $this->success('Great! Product added to cart successfully', null, 200);
@@ -35,8 +38,12 @@ class CartController extends Controller
             }
             
         }catch(\Exception $e){
-            return $this->error('Oops! Something went wrong', null, 500);
+            return $this->error('Oops! Something went wrong'.$e->getMessage(), null, 500);
         }
+    }
+
+    public function getCartItems(){
+        return $this->success('Great! Working ', null, 200);
     }
 }
 
