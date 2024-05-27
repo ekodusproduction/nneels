@@ -14,7 +14,8 @@ class CartController extends Controller
     use AjaxResponser;
 
     public function getCartPage(){
-        return view('website.shop.shop-cart');
+        $cart_items = Cart::with('product')->where('status', 1)->orderBy('created_at', 'DESC')->get();
+        return view('website.shop.shop-cart')->with(['cart_items' => $cart_items]);
     }
 
     public function addToCart(Request $request){
@@ -43,7 +44,6 @@ class CartController extends Controller
     }
 
     public function getCartItems(){
-        return $this->success('Great! Working ', null, 200);
     }
 }
 

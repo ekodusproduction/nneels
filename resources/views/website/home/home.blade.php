@@ -99,11 +99,11 @@
             imageUrl: "{{asset('assets/images/cart.png')}}",
             imageWidth: 150,
             imageHeight: 150,
-            imageAlt: "Custom image"
+            imageAlt: "Cart image"
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-              Swal.fire("Saved!", "", "success");
+              window.location.href = "{{route('website.get.cart.page')}}"
             }
           });
         }else{
