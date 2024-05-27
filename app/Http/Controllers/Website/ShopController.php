@@ -35,14 +35,14 @@ class ShopController extends Controller
             }else if($sub_category == null && $product_id == null){
 
                 $get_selected_product = Product::with('product_gallery', 'subCategory')->where('categories_id', $get_selected_product_category->id)->get();   
-                $get_all_sub_categories_of_selected_category = SubCategory::where('categories_id', $get_selected_product_category->id)->get();
+                $get_all_sub_categories_of_selected_category = SubCategory::where('categories_id', $get_selected_product_category->id)->where('status', 1)->get();
     
                 return view('website.shop.shop')->with(['product' => $get_selected_product, 'main_category' => urldecode($main_category), 'sub_category' => null, 'get_related_sub_categories' => $get_all_sub_categories_of_selected_category]);
 
             }else{
                 
                 $get_selected_product = Product::with('product_gallery', 'subCategory')->where('categories_id', $get_selected_product_category->id)->where('sub_categories_id', $get_selected_product_sub_category->id)->get();   
-                $get_all_sub_categories_of_selected_category = SubCategory::where('categories_id', $get_selected_product_category->id)->get();
+                $get_all_sub_categories_of_selected_category = SubCategory::where('categories_id', $get_selected_product_category->id)->where('status', 1)->get();
     
                 return view('website.shop.shop')->with(['product' => $get_selected_product, 'main_category' => urldecode($main_category), 'sub_category' => urldecode($sub_category), 'get_related_sub_categories' => $get_all_sub_categories_of_selected_category]);
             }
