@@ -4,8 +4,11 @@ use App\Http\Controllers\Website\AboutController;
 use App\Http\Controllers\Website\AccountController;
 use App\Http\Controllers\Website\Auth\AuthenticationController;
 use App\Http\Controllers\Website\BlogController;
+use App\Http\Controllers\Website\CartController;
+use App\Http\Controllers\Website\CheckoutController;
 use App\Http\Controllers\Website\ContactController;
 use App\Http\Controllers\Website\HomeController;
+use App\Http\Controllers\Website\OrderController;
 use App\Http\Controllers\Website\ShopController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,7 +55,15 @@ Route::group(['prefix' => 'website'], function(){
     });
 
     Route::group(['prefix' => 'shop'], function(){
-        Route::get('{main_category}/{sub_category}/{product_id?}', [ShopController::class, 'getProduct' ])->name('website.get.product.by.category');
+        Route::get('{main_category}/{sub_category?}/{product_id?}', [ShopController::class, 'getProduct' ])->name('website.get.product.by.category');
+        
+        Route::get('checkout', [CheckoutController::class, 'getCheckoutPage'])->name('website.get.checkout.page');
+        Route::get('order-confirmation', [OrderController::class, 'getOrderConfirmationPage'])->name('website.get.order.confirmation.page');
+
+        Route::group(['prefix' => 'cart'], function(){
+            Route::get('', [CartController::class, 'getCartPage'])->name('website.get.cart.page');
+            Route::post('add', [CartController::class, 'addToCart'])->name('website.add.to.cart');
+        });
     });
 });
 

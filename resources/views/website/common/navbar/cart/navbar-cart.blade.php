@@ -83,7 +83,7 @@
             <h6 class="fs-base fw-medium">SUBTOTAL:</h6>
             <span class="cart-subtotal fw-medium">$176.00</span>
         </div><!-- /.d-flex justify-content-between -->
-        <a href="shop_cart.html" class="btn btn-light mt-3 d-block">View Cart</a>
-        <a href="shop_checkout.html" class="btn btn-primary mt-3 d-block">Checkout</a>
+        <a href="{{route('website.get.cart.page')}}" class="btn btn-light mt-3 d-block">View Cart</a>
+        <a href="{{route('website.get.checkout.page')}}" class="btn btn-primary mt-3 d-block">Checkout</a>
     </div><!-- /.aside-content -->
 </div>

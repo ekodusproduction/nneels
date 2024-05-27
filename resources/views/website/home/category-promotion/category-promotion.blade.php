@@ -12,7 +12,7 @@
                     <div class="content_abs content_center text-center">
                         <h3 class="text-uppercase fw-bold mb-1" style="text-shadow: 0px 0px 10px white;">{{$item->name}}</h3>
                         {{-- <h3 class="text-uppercase fw-bold mb-1">Horizons</h3> --}}
-                        <a href="#" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
+                        <a href="{{route('website.get.product.by.category', ['main_category' => urlencode($item->name)])}}" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
                     </div><!-- /.content_abs .content_center -->
                 </div>
             </div>
