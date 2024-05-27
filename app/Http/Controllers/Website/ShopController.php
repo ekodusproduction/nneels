@@ -14,7 +14,7 @@ class ShopController extends Controller
         return view('website.shop.shop');
     }
 
-    public function getProduct(Request $request, $main_category, $sub_category, $product_id = null){
+    public function getProduct(Request $request, $main_category, $sub_category = null, $product_id = null){
         try{
 
             $get_selected_product_category = Category::where('name', urldecode($main_category))->first();
@@ -31,6 +31,13 @@ class ShopController extends Controller
                     $gallery_array[] = $gallery_image->image;
                 }  
                 return view('website.shop.shop-details')->with(['product_details' => $get_product_details, 'main_category' => urldecode($main_category), 'sub_category' => urldecode($sub_category), 'gallery_array' => $gallery_array]);
+
+            }else if($sub_category == null && $product_id == null){
+
+                $get_selected_product = Product::with('product_gallery', 'subCategory')->where('categories_id', $get_selected_product_category->id)->get();   
+                $get_all_sub_categories_of_selected_category = SubCategory::where('categories_id', $get_selected_product_category->id)->get();
+    
+                return view('website.shop.shop')->with(['product' => $get_selected_product, 'main_category' => urldecode($main_category), 'sub_category' => null, 'get_related_sub_categories' => $get_all_sub_categories_of_selected_category]);
 
             }else{
                 
