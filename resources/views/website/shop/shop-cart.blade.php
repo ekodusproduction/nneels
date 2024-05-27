@@ -11,25 +11,25 @@
     <h2 class="page-title">Cart</h2>
     <div class="checkout-steps">
         <a href="shop_cart.html" class="checkout-steps__item active">
-        <span class="checkout-steps__item-number">01</span>
-        <span class="checkout-steps__item-title">
-            <span>Shopping Bag</span>
-            <em>Manage Your Items List</em>
-        </span>
+            <span class="checkout-steps__item-number">01</span>
+            <span class="checkout-steps__item-title">
+                <span>Shopping Bag</span>
+                <em>Manage Your Items List</em>
+            </span>
         </a>
-        <a href="shop_checkout.html" class="checkout-steps__item">
-        <span class="checkout-steps__item-number">02</span>
-        <span class="checkout-steps__item-title">
-            <span>Shipping and Checkout</span>
-            <em>Checkout Your Items List</em>
-        </span>
+        <a href="#" class="checkout-steps__item">
+            <span class="checkout-steps__item-number">02</span>
+            <span class="checkout-steps__item-title">
+                <span>Shipping and Checkout</span>
+                <em>Checkout Your Items List</em>
+            </span>
         </a>
-        <a href="shop_order_complete.html" class="checkout-steps__item">
-        <span class="checkout-steps__item-number">03</span>
-        <span class="checkout-steps__item-title">
-            <span>Confirmation</span>
-            <em>Review And Submit Your Order</em>
-        </span>
+        <a href="#" class="checkout-steps__item">
+            <span class="checkout-steps__item-number">03</span>
+            <span class="checkout-steps__item-title">
+                <span>Confirmation</span>
+                <em>Review And Submit Your Order</em>
+            </span>
         </a>
     </div>
     <div class="shopping-cart">
@@ -67,7 +67,7 @@
                         </td>
                         <td>
                             <div class="qty-control position-relative">
-                                <input type="number" name="quantity" value="3" min="1" class="qty-control__number text-center">
+                                <input type="number" name="quantity" value="1" min="1" class="qty-control__number text-center cart-item-qty">
                                 <div class="qty-control__reduce">-</div>
                                 <div class="qty-control__increase">+</div>
                             </div>
@@ -97,53 +97,39 @@
         </div> --}}
         </div>
         <div class="shopping-cart__totals-wrapper">
-        <div class="sticky-content">
-            <div class="shopping-cart__totals">
-            <h3>Cart Totals</h3>
-            <table class="cart-totals">
-                <tbody>
-                <tr>
-                    <th>Subtotal</th>
-                    <td>$1300</td>
-                </tr>
-                <tr>
-                    <th>Shipping</th>
-                    <td>
-                    <div class="form-check">
-                        <input class="form-check-input form-check-input_fill" type="checkbox" value="" id="free_shipping">
-                        <label class="form-check-label" for="free_shipping">Free shipping</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input form-check-input_fill" type="checkbox" value="" id="flat_rate">
-                        <label class="form-check-label" for="flat_rate">Flat rate: $49</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input form-check-input_fill" type="checkbox" value="" id="local_pickup">
-                        <label class="form-check-label" for="local_pickup">Local pickup: $8</label>
-                    </div>
-                    <div>Shipping to AL.</div>
-                    <div>
-                        <a href="#" class="menu-link menu-link_us-s">CHANGE ADDRESS</a>
-                    </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>VAT</th>
-                    <td>$19</td>
-                </tr>
-                <tr>
-                    <th>Total</th>
-                    <td>$1319</td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="sticky-content">
+                <div class="shopping-cart__totals">
+                <h3>Cart Totals</h3>
+                <table class="cart-totals">
+                    <tbody>
+                    <tr>
+                        <th>Subtotal</th>
+                        <td class="cart-totals-sub">$1300</td>
+                    </tr>
+                    <tr>
+                        <th>Shipping</th>
+                        <td class="shipping-charges">$19</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                                <a href="#" class="menu-link menu-link_us-s">CHANGE ADDRESS</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Total</th>
+                        <td class="cart-totals-final">$1319</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+                <div class="mobile_fixed-btn_wrapper">
+                <div class="button-wrapper container">
+                    <button class="btn btn-primary btn-checkout">PROCEED TO CHECKOUT</button>
+                </div>
+                </div>
             </div>
-            <div class="mobile_fixed-btn_wrapper">
-            <div class="button-wrapper container">
-                <button class="btn btn-primary btn-checkout">PROCEED TO CHECKOUT</button>
-            </div>
-            </div>
-        </div>
         </div>
     </div>
     </section>
@@ -152,5 +138,69 @@
 @endsection
 
 @section('custom-scripts')
-    
+    <script>
+
+        $(document).ready(function() {
+            function updateSubtotal(row) {
+                const quantity = row.find('.cart-item-qty').val();
+                const price = row.find('.shopping-cart__product-price').text();
+                const parsedPrice = parseFloat(price.replace('$', ''));
+                const newSubtotal = (parsedPrice * quantity).toFixed(2);
+                row.find('.shopping-cart__subtotal').text('$' + newSubtotal);
+            }
+
+            function updateCartTotals() {
+                let subtotal = 0;
+                $('.shopping-cart__subtotal').each(function() {
+                    subtotal += parseFloat($(this).text().replace('$', ''));
+                });
+
+                const shipping = 19;
+
+                const total = subtotal + shipping + shipping;
+
+                $('.cart-totals-sub').text('$' + subtotal.toFixed(2));
+                $('.cart-totals-final').text('$' + total.toFixed(2));
+            }
+
+            // Initialize subtotal for each row on page load
+            $('.cart-item-qty').each(function() {
+                const row = $(this).closest('tr');
+                updateSubtotal(row);
+            });
+
+            updateCartTotals();
+
+            // Attach the event listener to each quantity input
+            $('.cart-item-qty').on('input change', function() {
+                const row = $(this).closest('tr');
+                updateSubtotal(row);
+                updateCartTotals();
+            });
+
+            $(document).on('click', '.qty-control__increase', function() {
+                const row = $(this).closest('tr');
+                const qtyInput = row.find('.cart-item-qty');
+                
+                qtyInput.val(parseInt(qtyInput.val()));
+                qtyInput.trigger('change'); // Trigger change event to update subtotal
+            });
+
+            // Event delegation for minus icon
+            $(document).on('click', '.qty-control__reduce', function() {
+                const row = $(this).closest('tr');
+                const qtyInput = row.find('.cart-item-qty');
+                const currentQty = parseInt(qtyInput.val());
+                if (currentQty > 0) { // Ensure quantity does not go below 1
+                    qtyInput.val(currentQty);
+                    qtyInput.trigger('change'); // Trigger change event to update subtotal
+                }
+            });
+
+            $('.form-check-input').on('change', function() {
+                $('.form-check-input').not(this).prop('checked', false);
+                updateCartTotals();
+            });
+        });
+    </script>
 @endsection
