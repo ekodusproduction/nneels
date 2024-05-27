@@ -42,7 +42,7 @@
                                         </li>
                                     @else
                                         <li class="list-item">
-                                            <a href="{{route('website.get.product.by.category', ['main_category' => urlencode($main_category), 'sub_category' => urlencode($sub_category)])}}" class="menu-link py-1 {{$sub_category == $item->name ? 'fw-medium text-primary' : ''}}">{{$item->name}}</a>
+                                            <a href="{{route('website.get.product.by.category', ['main_category' => urlencode($main_category), 'sub_category' => urlencode($item->name)])}}" class="menu-link py-1 {{$sub_category == $item->name ? 'fw-medium text-primary' : ''}}">{{$item->name}}</a>
                                         </li>
                                     @endif
                                     
