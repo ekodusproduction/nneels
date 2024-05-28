@@ -97,6 +97,10 @@
             padding: 5px;
             border-radius: 5px;
         }
+
+        .ck-editor__editable{
+            height: 200px;
+        }
     </style>
 @endsection
 
@@ -198,7 +202,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group mb-2">
                                         <label for="" class="form-label">Original Price</label>
-                                        <input type="text" name="originalPrice" class="form-control" min="0" id="originalPrice" placeholder="e.g 500" value="{{$product_details->original_price}}" required>
+                                        <input type="text" name="originalPrice" class="form-control" min="0" id="originalPrice" placeholder="e.g 500" maxlength="3" value="{{$product_details->original_price}}" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -296,7 +300,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="" class="form-label mt-2">Long Description (Max Character Allowed : 800)</label>
-                                        <textarea name="long_description" class="form-control" id="longDescription" cols="30" rows="7" placeholder="e.g Long Description here...."  maxlength="800" required>{{$product_details->long_description}}</textarea>
+                                        {{-- <textarea name="long_description" class="form-control" id="longDescription" cols="30" rows="7" placeholder="e.g Long Description here...."  maxlength="800" required>{{$product_details->long_description}}</textarea> --}}
+                                        <div id="editor"></div>
                                     </div>
                                 </div>
                             </div>
@@ -349,6 +354,61 @@
 
             });
         });
+    </script>
+
+    <script>
+        let editorInstance;
+
+        $(document).ready(function(){
+            ClassicEditor
+            .create( document.querySelector( '#editor' ),{
+                toolbar: {
+                    items: [
+                        'undo', 'redo',
+                        '|', 'heading',
+                        '|', 'bold', 'italic',
+                        '|', 'link', 'blockQuote',
+                        '|', 'bulletedList', 'numberedList', 'outdent', 'indent'
+                    ],
+                    shouldNotGroupWhenFull: false,
+                },
+                heading: {
+                    options: [
+                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                        { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+                        { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
+                        { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
+                        { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
+                    ]
+                },
+                placeholder: 'e.g Type full description here ....',
+            })
+            .then(editor => {
+
+                editorInstance = editor;
+                const charLimit = 800; 
+
+                editor.setData(`{!!$product_details->long_description!!}`);
+
+                editor.model.document.on('change:data', () => {
+                    const content = editor.getData();
+                    const charCount = content.replace(/<[^>]*>/g, '').length;
+                    console.log('Count ', charCount)
+
+                    if (charCount > charLimit) {
+                        alert('Character limit exceeded! Please type within 800 characters.');
+                        editor.execute('undo');
+                    }
+                });
+            })
+            .catch( error => {
+                console.error( error );
+            } );
+        });
+
+        
     </script>
 
     <script>
@@ -441,6 +501,10 @@
                     formData.append(`product_gallery_images[${index}][image]`, image.image);
                 });
             }
+
+            const long_description = editorInstance.getData();
+
+            formData.append('long_description', long_description);
 
             $.ajax({
                 url: "{{route('admin.update.product.details')}}",

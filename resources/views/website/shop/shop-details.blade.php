@@ -16,6 +16,15 @@
             cursor: pointer;
             color:gray;
         }
+        h2{
+            font-size:20px;
+        }
+        h3{
+            font-size:18px;
+        }
+        .product-single__short-desc a{
+            color:blue;
+        }
     </style>
 @endsection
 
@@ -115,7 +124,10 @@
                 <div class="product-single__short-desc">
                     <p>{{ $product_details->short_description }} <span id="readMore" class="d-block">Read More....</span></p>
                     
-                    <p class="d-none" id="longDescription">{{ $product_details->long_description }} <span id="readLess" class="d-none">Read Less</span></p>
+                    <div class="d-none" id="longDescription">
+                        {!! $product_details->long_description !!} 
+                        <span id="readLess" class="d-none">Read Less</span>
+                    </div>
                 </div>
                 <form name="addtocart-form" method="post">
                     <div class="product-single__swatches">
