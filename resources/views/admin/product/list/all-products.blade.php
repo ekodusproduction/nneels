@@ -101,21 +101,21 @@
     <!-- Product List Table -->
     <div class="card">
         <h5 class="card-header">Products List</h5>
-        <div class="table-responsive text-nowrap">
-            <table id="allProductsTable" class="table table-bordered table-striped wrap">
+        <div class="table-responsive text-wrap">
+            <table id="allProductsTable" class="table table-bordered table-striped wrap dt-responsive" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Sl.No.</th>
+                        <th style="width: 2%;">Sl.No.</th>
                         {{-- <th>Product Id</th> --}}
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Sale Price</th>
-                        <th>Size</th>
-                        <th>Qty</th>
-                        <th>In Stock</th>
-                        <th>Visibility</th>
-                        <th>Action</th>
+                        <th style="width: 3%;">Image</th>
+                        <th style="width: 10%;">Name</th>
+                        <th style="width: 5%;">Category</th>
+                        <th style="width: 10%;">Sale Price</th>
+                        <th style="width: 10%;">Size</th>
+                        <th style="width: 5%;">Qty</th>
+                        <th style="width: 5%;">In Stock</th>
+                        <th style="width: 5%;">Visibility</th>
+                        <th style="width: 5%;">Action</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -212,7 +212,8 @@
                 topStart: {
                     buttons: ['excelHtml5', 'pdfHtml5']
                 }
-            }
+            },
+            responsive: true
         });
     </script>
     <script>
