@@ -125,6 +125,10 @@
             width:80px;
         }
 
+        .ck-editor__editable{
+            height: 200px;
+        }
+
     </style>
 @endsection
 
@@ -183,7 +187,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group mb-2">
                                         <label for="" class="form-label">Original Price</label>
-                                        <input type="text" name="originalPrice" class="form-control" min="0" id="originalPrice" placeholder="e.g 500" required>
+                                        <input type="text" name="originalPrice" class="form-control" min="0" id="originalPrice" placeholder="e.g 500"  maxlength="3" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -281,7 +285,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="" class="form-label mt-2">Long Description (Max Character Allowed : 800)</label>
-                                        <textarea name="long_description" class="form-control" id="longDescription" cols="30" rows="7" placeholder="e.g Long Description here...."  maxlength="800" required></textarea>
+                                        <div id="editor"></div>
+                                        {{-- <textarea name="long_description" class="form-control" id="longDescription" cols="30" rows="7" placeholder="e.g Long Description here...."  maxlength="800" required></textarea> --}}
                                     </div>
                                 </div>
                             </div>
@@ -337,8 +342,61 @@
     </script>
 
     <script>
+        let editorInstance;
+
+        $(document).ready(function(){
+            ClassicEditor
+            .create( document.querySelector( '#editor' ),{
+                toolbar: {
+                    items: [
+                        'undo', 'redo',
+                        '|', 'heading',
+                        '|', 'bold', 'italic',
+                        '|', 'link', 'blockQuote',
+                        '|', 'bulletedList', 'numberedList', 'outdent', 'indent'
+                    ],
+                    shouldNotGroupWhenFull: false,
+                },
+                heading: {
+                    options: [
+                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                        { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+                        { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
+                        { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
+                        { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
+                    ]
+                },
+                placeholder: 'e.g Type full description here ....',
+            })
+            .then(editor => {
+
+                editorInstance = editor;
+                const charLimit = 800;  // Set your character limit here
+
+                editor.model.document.on('change:data', () => {
+                    const content = editor.getData();
+                    const charCount = content.replace(/<[^>]*>/g, '').length;
+
+                    if (charCount > charLimit) {
+                        alert('Character limit exceeded! Please type within 800 characters.');
+                        editor.execute('undo');
+                    }
+                });
+            })
+            .catch( error => {
+                console.error( error );
+            } );
+        });
+
+        
+    </script>
+
+    <script>
         let galleryImages = [];
         let totalGalleryImages = 0;
+        
 
         $('.main-product-browse').on('click', function(){
             $('#mainProductImage').click();
@@ -459,6 +517,10 @@
                     });
                 }
 
+                const long_description = editorInstance.getData();
+
+                formData.append('long_description', long_description);
+
                 $.ajax({
                     url:"{{route('admin.create.product')}}",
                     type:"POST",
@@ -469,6 +531,7 @@
                         // console.log('Response  data ===>', data)
                         if(data.status == 200){
                             toastr.success(data.message)
+                            editorInstance.setData('');
 
                             $('#createProductForm')[0].reset();
                             galleryImages = [];
@@ -514,5 +577,5 @@
             }
         });
     </script>
-    
+
 @endsection
