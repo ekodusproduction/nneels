@@ -128,7 +128,7 @@
                                 <img src="{{ asset($item->main_image) }}" class="avatar-lg" alt="Main Image" style="border-radius:50%;">
                             </td>
                             <td>
-                                <p>{{ $item->name }}</p>
+                                <p>{{ \Str::limit($item->name, 25) }}</p>
                             </td>
                             <td>
                                 <p>{{$item->category->name}}</p>
