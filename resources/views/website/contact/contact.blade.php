@@ -29,22 +29,22 @@
                 </div>
             </div>
             <div class="contact-us__form">
-                <form name="contact-us-form" class="needs-validation" novalidate>
+                <form id="contactForm" class="needs-validation" novalidate>
+                    @csrf
                     <h3 class="mb-5">Get In Touch</h3>
                     <div class="form-floating my-4">
-                        <input type="text" class="form-control" id="contact_us_name" placeholder="Name *" required>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Name *" required>
                         <label for="contact_us_name">Name *</label>
                     </div>
                     <div class="form-floating my-4">
-                        <input type="email" class="form-control" id="contact_us_email" placeholder="Email address *"
-                            required>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email address *" required>
                         <label for="contact_us_name">Email address *</label>
                     </div>
                     <div class="my-4">
-                        <textarea class="form-control form-control_gray" placeholder="Your Message" cols="30" rows="8" required></textarea>
+                        <textarea class="form-control form-control_gray" name="message" id="message" placeholder="Your Message" cols="30" rows="8" required></textarea>
                     </div>
                     <div class="my-4">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary contact-submit-btn">Submit</button>
                     </div>
                 </form>
             </div>
@@ -56,4 +56,33 @@
 @endsection
 
 @section('custom-scripts')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+           emailjs.init({
+             publicKey: "{{env('EMAIL_JS_PUBLIC_KEY')}}",
+           });
+        })();
+     </script>
+    <script>
+        $('#contactForm').on('submit', function(e){
+            e.preventDefault();
+
+            $('.contact-submit-btn').attr('disabled', true).text('Please wait...');
+            const formData = new FormData(this);
+
+            emailjs.sendForm('service_3vg2wto', 'template_i4hgf77', '#contactForm').then(
+                (response) => {
+                    toastr.success('Great! Mail sent successfully');
+                    $('.contact-submit-btn').attr('disabled', false).text('Submit');
+                    $('#contactForm')[0].reset();
+                },
+                (error) => {
+                    toastr.error("Oops! Something went wrong. Failed to send mail");
+                    $('.contact-submit-btn').attr('disabled', false).text('Submit');
+                },
+            );
+            
+        });
+    </script>
 @endsection
