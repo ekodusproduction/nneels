@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-
     <div class="mb-4 pb-4"></div>
     <section class="shop-checkout container">
     <h2 class="page-title">Cart</h2>
@@ -57,7 +56,6 @@
                             <div class="shopping-cart__product-item__detail">
                                 <h4>{{$item->product->name}}</h4>
                                 <ul class="shopping-cart__product-item__options">
-                                    {{-- <li>Color: Yellow</li> --}}
                                     <li>Size: {{$item->product->size}}</li>
                                 </ul>
                             </div>
@@ -107,7 +105,7 @@
                         <td class="cart-totals-sub">$1300</td>
                     </tr>
                     <tr>
-                        <th>Shipping</th>
+                        <th>Shipping (Flat)</th>
                         <td class="shipping-charges">$19</td>
                     </tr>
                     <tr>
@@ -157,7 +155,7 @@
 
                 const shipping = 19;
 
-                const total = subtotal + shipping + shipping;
+                const total = subtotal + shipping ;
 
                 $('.cart-totals-sub').text('$' + subtotal.toFixed(2));
                 $('.cart-totals-final').text('$' + total.toFixed(2));
@@ -201,6 +199,11 @@
                 $('.form-check-input').not(this).prop('checked', false);
                 updateCartTotals();
             });
+        });
+    </script>
+    <script>
+        $('.btn-checkout').on('click', function(){
+            window.location.href = "{{route('website.get.checkout.page')}}"
         });
     </script>
 @endsection

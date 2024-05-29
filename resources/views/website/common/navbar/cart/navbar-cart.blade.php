@@ -4,7 +4,7 @@
         <button class="btn-close-lg js-close-aside btn-close-aside ms-auto"></button>
     </div><!-- /.aside-header -->
 
-    <div class="aside-content cart-drawer-items-list">
+    {{-- <div class="aside-content cart-drawer-items-list">
         <div class="cart-drawer-item d-flex position-relative">
             <div class="position-relative">
                 <img loading="lazy" class="cart-drawer-item__img" src="{{asset('images/cart-item-1.jpg')}}" alt="">
@@ -75,15 +75,15 @@
             <button class="btn-close-xs position-absolute top-0 end-0 js-cart-item-remove"></button>
         </div><!-- /.cart-drawer-item d-flex -->
 
-    </div><!-- /.aside-content -->
+    </div> --}}
 
     <div class="cart-drawer-actions position-absolute start-0 bottom-0 w-100">
         <hr class="cart-drawer-divider">
-        <div class="d-flex justify-content-between">
+        {{-- <div class="d-flex justify-content-between">
             <h6 class="fs-base fw-medium">SUBTOTAL:</h6>
             <span class="cart-subtotal fw-medium">$176.00</span>
-        </div><!-- /.d-flex justify-content-between -->
-        <a href="{{route('website.get.cart.page')}}" class="btn btn-light mt-3 d-block">View Cart</a>
-        <a href="{{route('website.get.checkout.page')}}" class="btn btn-primary mt-3 d-block">Checkout</a>
+        </div> --}}
+        <a href="{{route('website.get.cart.items')}}" class="btn btn-light mt-3 d-block">View Cart</a>
+        {{-- <a href="{{route('website.get.checkout.page')}}" class="btn btn-primary mt-3 d-block">Checkout</a> --}}
     </div><!-- /.aside-content -->
 </div>
