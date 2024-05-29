@@ -75,7 +75,7 @@
                 (response) => {
                     toastr.success('Great! Mail sent successfully');
                     $('.contact-submit-btn').attr('disabled', false).text('Submit');
-
+                    $('#contactForm')[0].reset();
                 },
                 (error) => {
                     toastr.error("Oops! Something went wrong. Failed to send mail");
