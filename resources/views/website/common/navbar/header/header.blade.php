@@ -1,5 +1,11 @@
   @php
-    $category = App\Models\Category::with('subCategories')->where('status', 1)->orderBy('created_at', 'DESC')->get();  
+    $category = App\Models\Category::with('subCategories')->where('status', 1)->orderBy('created_at', 'DESC')->get();
+    if (Auth::user() != null) {
+      $cart_count = App\Models\Cart::where('status', 1)->where('user_id', Auth::user()->id)->count();
+    }else{
+      $cart_count = 0;
+    }
+    
   @endphp
   <div class="header-mobile header_sticky position-absolute">
     <div class="container d-flex align-items-center h-100">
@@ -182,11 +188,20 @@
         </div>
       @endauth
       
+      @auth
+        <a href="#" class="header-tools__item header-tools__cart js-open-aside" data-aside="cartDrawer">
+          <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart"></use></svg>
+          <span class="cart-amount d-block position-absolute js-cart-items-count">{{$cart_count}}</span>
+        </a>
+      @endauth
 
-      <a href="#" class="header-tools__item header-tools__cart js-open-aside" data-aside="cartDrawer">
-        <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart"></use></svg>
-        <span class="cart-amount d-block position-absolute js-cart-items-count">3</span>
-      </a>
+      @guest
+        <a href="#" class="header-tools__item header-tools__cart js-open-aside" data-aside="customerForms">
+          <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart"></use></svg>
+          <span class="cart-amount d-block position-absolute js-cart-items-count">{{$cart_count}}</span>
+        </a>
+      @endguest
+      
     </div>
   </div>
 </header>

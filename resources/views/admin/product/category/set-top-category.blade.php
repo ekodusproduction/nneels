@@ -68,6 +68,8 @@
             const category_id = $(this).data().id;
             const is_top_category = $(this).data().value;
 
+            // console.log(`Category Id --> ${category_id} xxxxxxxxxx  Is Top Category ---> ${is_top_category}`)
+
             $.ajax({
                 url: "{{ route('admin.top.category') }}",
                 type: "POST",

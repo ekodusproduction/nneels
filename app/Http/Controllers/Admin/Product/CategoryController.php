@@ -62,7 +62,7 @@ class CategoryController extends Controller
         }else{
             try{
                 $count_top_category = Category::where('status', 1)->where('is_top_category', 1)->count();
-                if($count_top_category == 3){
+                if($count_top_category == 3 && $request->is_top_category == 1){
                     return $this->error('Oops! Top categories cannot be set more than 3', null, 400);
                 }else{
                     Category::where('id', $request->category_id)->update([

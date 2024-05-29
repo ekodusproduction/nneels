@@ -103,7 +103,8 @@
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-              window.location.href = "{{route('website.get.cart.page')}}"
+              window.location.href = "{{route('website.get.cart.items')}}";
+              // window.location.href = "http://locahost:8000/website/shop/cart"
             }
           });
         }else{
