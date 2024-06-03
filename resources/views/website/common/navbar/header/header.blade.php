@@ -19,26 +19,6 @@
           <img src="{{asset('assets/images/nneels-updated-logo.jpg')}}" alt="Nneels" class="logo__image d-block">
         </a>
       </div><!-- /.logo -->
-      {{-- @guest
-        <div class="header-tools__item hover-container">
-          <a class="header-tools__item js-open-aside" href="#" data-aside="customerForms">
-            <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_user"></use></svg>
-          </a>
-        </div>
-      @endguest
-
-      @auth
-        <div class="header-tools__item hover-container">
-          <a class="header-tools__item" href="{{route('website.account.myaccount')}}">
-            <svg class="d-inline-block align-middle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_user"></use></svg>
-            <span class="d-inline-block ms-2 text-uppercase align-middle fw-medium">My Account</span>
-          </a>
-        </div>
-      @endauth --}}
-      {{-- <a href="#" class="header-tools__item header-tools__cart js-open-aside" data-aside="cartDrawer">
-        <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart"></use></svg>
-        <span class="cart-amount d-block position-absolute js-cart-items-count">3</span>
-      </a> --}}
       @auth
         <a href="#" class="header-tools__item header-tools__cart js-open-aside" data-aside="cartDrawer">
           <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart"></use></svg>
