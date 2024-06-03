@@ -19,11 +19,39 @@
           <img src="{{asset('assets/images/nneels-updated-logo.jpg')}}" alt="Nneels" class="logo__image d-block">
         </a>
       </div><!-- /.logo -->
+      {{-- @guest
+        <div class="header-tools__item hover-container">
+          <a class="header-tools__item js-open-aside" href="#" data-aside="customerForms">
+            <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_user"></use></svg>
+          </a>
+        </div>
+      @endguest
 
-      <a href="#" class="header-tools__item header-tools__cart js-open-aside" data-aside="cartDrawer">
+      @auth
+        <div class="header-tools__item hover-container">
+          <a class="header-tools__item" href="{{route('website.account.myaccount')}}">
+            <svg class="d-inline-block align-middle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_user"></use></svg>
+            <span class="d-inline-block ms-2 text-uppercase align-middle fw-medium">My Account</span>
+          </a>
+        </div>
+      @endauth --}}
+      {{-- <a href="#" class="header-tools__item header-tools__cart js-open-aside" data-aside="cartDrawer">
         <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart"></use></svg>
         <span class="cart-amount d-block position-absolute js-cart-items-count">3</span>
-      </a>
+      </a> --}}
+      @auth
+        <a href="#" class="header-tools__item header-tools__cart js-open-aside" data-aside="cartDrawer">
+          <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart"></use></svg>
+          <span class="cart-amount d-block position-absolute js-cart-items-count">{{$cart_count}}</span>
+        </a>
+      @endauth
+
+      @guest
+        <a href="#" class="header-tools__item header-tools__cart js-open-aside" data-aside="customerForms">
+          <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart"></use></svg>
+          <span class="cart-amount d-block position-absolute js-cart-items-count">{{$cart_count}}</span>
+        </a>
+      @endguest
     </div><!-- /.container -->
 
     <nav class="header-mobile__navigation navigation d-flex flex-column w-100 position-absolute top-100 bg-body overflow-auto">
@@ -62,7 +90,7 @@
                   <ul class="list-unstyled">
                     @forelse ($item->subCategories as $key => $sub_category)
                       @if ($sub_category->status == 1)
-                        <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">{{$sub_category->name}}</a></li>
+                        <li class="sub-menu__item"><a href="{{route('website.get.product.by.category', ['main_category' => urlencode($item->name), 'sub_category' => urlencode($sub_category->name)])}}" class="menu-link menu-link_us-s">{{$sub_category->name}}</a></li>
                       @endif
                     @empty
                       <li class="sub-menu__item"><a href="javascript:void(0);" class="menu-link menu-link_us-s">No Sub-Category Found!</a></li>
@@ -84,10 +112,12 @@
       </div><!-- /.container -->
 
       <div class="border-top mt-auto pb-2">
-        <div class="customer-links container mt-4 mb-2 pb-1">
+        
+        
+        {{-- <div class="customer-links container mt-4 mb-2 pb-1">
           <svg class="d-inline-block align-middle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_user"></use></svg>
           <span class="d-inline-block ms-2 text-uppercase align-middle fw-medium">My Account</span>
-        </div>
+        </div> --}}
 
         <ul class="container social-links list-unstyled d-flex flex-wrap mb-0">
           <li>
