@@ -176,17 +176,24 @@
           success:function(data){
 
             console.log('data --->', data)
-
+            let link;
+            let category;
+            let sub_category;
             if(data != null){
               let resultHtml = '<ul style="list-style: none;">';
               
               data.data.map( (item) => {
+                
                 console.log('Sub Cat---', item.sub_category.name)
+                category = item.category.name;
+                sub_category = item.sub_category.name;
+                
+
                 
                 resultHtml += `
                   <li>
                     <img src="${item.main_image}" alt="product-image">
-                    <a href="#" class="mx-3">
+                    <a href="website/shop/${encodeURIComponent(category)}/${encodeURIComponent(sub_category)}" class="mx-3">
                       ${item.name}
                     </a>
                   </li>
