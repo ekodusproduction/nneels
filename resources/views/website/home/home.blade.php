@@ -6,45 +6,7 @@
     .swiper-wrapper{
       height: auto;
     }
-    .search-results-tray{
-      background:white;
-      border-radius: 0px 0px 10px 10px;
-      border:1px solid rgb(224, 224, 224);
-      position: absolute;
-      top:80%;
-      margin-left:25px;
-    }
-
-    .search-results-tray .result{
-      height: auto;
-      width:505px;
-      overflow:scroll;
-    }
-
-    .search-results-tray .result ul li{
-      display: flex;
-      justify-content: start;
-      align-items: center;
-      margin-bottom:10px;
-    }
-
-    .search-results-tray .result img{
-      height:50px;
-      width:50px;
-      border-radius:50%;
-      padding:2px;
-      border:1px solid rgb(226, 226, 226);
-    }
-    .search-results-tray .result a{
-      font-size:14px;
-      color: rgb(9, 9, 156);
-    }
-
-    @media only screen and (max-width: 1499px) {
-      .search-results-tray{
-        display: none;
-      }
-    }
+    
 
   </style>
 @endsection
@@ -159,81 +121,7 @@
     });
   });
 </script>
-<script>
-  const getSearchResult = (value) => {
 
-    const searchKeyword = value;
-
-    if(searchKeyword != ''){
-
-        $('.search-results-tray').removeClass('d-none');
-        $('.search-results-tray').addClass('d-block');
-
-        $.ajax({
-          url:"{{route('website.search.product')}}",
-          type:"GET",
-          data:searchKeyword,
-          success:function(data){
-
-            console.log('data --->', data)
-            let link;
-            let category;
-            let sub_category;
-            if(data != null){
-              let resultHtml = '<ul style="list-style: none;">';
-              
-              data.data.map( (item) => {
-                
-                console.log('Sub Cat---', item.sub_category.name)
-                category = item.category.name;
-                sub_category = item.sub_category.name;
-                
-
-                
-                resultHtml += `
-                  <li>
-                    <img src="${item.main_image}" alt="product-image">
-                    <a href="website/shop/${encodeURIComponent(category)}/${encodeURIComponent(sub_category)}" class="mx-3">
-                      ${item.name}
-                    </a>
-                  </li>
-                `;
-              });
-
-              resultHtml += '</ul>';
-              $('.search-results-tray .result').html(resultHtml);
-            } else {
-              $('.search-results-tray .result').html('<p class="text-center">No results found</p>');
-            }
-          },error:function(error){
-            console.log('Oops! Something went wrong');
-          }
-      });
-    }else{
-      $('.search-results-tray').removeClass('d-block');
-      $('.search-results-tray').addClass('d-none');
-      $('.search-results-tray .result').html('');
-    }
-  }
-
-  debounce = (fn, delay) => {
-    let timer;
-    return function () {
-      let context = this;
-      let args = arguments;
-
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        fn.apply(context, args)
-      }, delay);
-    }
-  }
-
-  $('#searchKeyword').on('keyup', debounce( (event) => {
-      getSearchResult(event.target.value)
-    }, 800)
-  );
-</script>
 @endsection
 
  

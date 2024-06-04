@@ -14,7 +14,7 @@ class SearchController extends Controller
     public function getSearchResult(Request $request){
         try{
             $search_query = $request->searchKeyword;
-            $products = Product::with('category', 'subCategory')->where('name', 'LIKE', '%'.$search_query.'%')->get();
+            $products = Product::with('category', 'subCategory')->where('name', 'LIKE', '%'.$search_query)->get();
             
             if($products != null){
                 return $this->success('Great! Products fetched successfully', $products, 200);
