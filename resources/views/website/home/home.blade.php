@@ -177,25 +177,27 @@
 
             console.log('data --->', data)
 
-            // if(data != null){
-            //   let resultHtml = '<ul style="list-style: none;">';
+            if(data != null){
+              let resultHtml = '<ul style="list-style: none;">';
               
-            //   data.data.map( (item) => {
-            //     resultHtml += `
-            //       <li>
-            //         <img src="${item.main_image}" alt="product-image">
-            //         <a href="#" class="mx-3">
-            //           ${item.name}
-            //         </a>
-            //       </li>
-            //     `;
-            //   });
+              data.data.map( (item) => {
+                console.log('Sub Cat---', item.sub_category.name)
+                
+                resultHtml += `
+                  <li>
+                    <img src="${item.main_image}" alt="product-image">
+                    <a href="#" class="mx-3">
+                      ${item.name}
+                    </a>
+                  </li>
+                `;
+              });
 
-            //   resultHtml += '</ul>';
-            //   $('.search-results-tray .result').html(resultHtml);
-            // } else {
-            //   $('.search-results-tray .result').html('<p class="text-center">No results found</p>');
-            // }
+              resultHtml += '</ul>';
+              $('.search-results-tray .result').html(resultHtml);
+            } else {
+              $('.search-results-tray .result').html('<p class="text-center">No results found</p>');
+            }
           },error:function(error){
             console.log('Oops! Something went wrong');
           }

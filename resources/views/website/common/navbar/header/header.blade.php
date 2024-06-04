@@ -161,32 +161,6 @@
       <div class="search-results-tray d-none">
         <p class="m-3">Search Result ....</p>
         <div class="result">
-          {{-- <ul style="list-style: none;">
-            <li>
-              <img src="{{asset('assets/Womensware/printed-dress-3.jpg')}}" alt="product-image">
-              <a href="#" class="mx-3">
-                Quilted Jacket
-              </a>
-            </li>
-            <li>
-              <img src="{{asset('assets/Womensware/printed-dress-4.jpg')}}" alt="product-image">
-              <a href="#" class="mx-3">
-                Quilted Jacket
-              </a>
-            </li>
-            <li>
-              <img src="{{asset('assets/Womensware/printed-dress-2.jpg')}}" alt="product-image">
-              <a href="#" class="mx-3">
-                Quilted Jacket
-              </a>
-            </li>
-            <li>
-              <img src="{{asset('assets/Womensware/printed-dress-5.jpg')}}" alt="product-image">
-              <a href="#" class="mx-3">
-                Quilted Jacket
-              </a>
-            </li>
-          </ul> --}}
         </div>
       </div>
 
