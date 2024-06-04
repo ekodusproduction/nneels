@@ -152,12 +152,43 @@
 
     <div class="header-tools d-flex align-items-center">
 
-      <form action="./" method="GET" class="header-search search-field d-none d-xxl-flex mx-4">
-        <input class="header-search__input w-100" type="text" name="search-keyword" placeholder="Search products...">
-        <button class="btn header-search__btn" type="submit">
+      <form class="header-search search-field d-none d-xxl-flex mx-4" id="searchForm">
+        <input class="header-search__input w-100" type="text" name="searchKeyword" placeholder="Search products..." id="searchKeyword">
+        {{-- <button class="btn header-search__btn" type="submit">
           <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_search"></use></svg>
-        </button>
+        </button> --}}
       </form><!-- /.header-search -->
+      <div class="search-results-tray d-none">
+        <p class="m-3">Search Result ....</p>
+        <div class="result">
+          {{-- <ul style="list-style: none;">
+            <li>
+              <img src="{{asset('assets/Womensware/printed-dress-3.jpg')}}" alt="product-image">
+              <a href="#" class="mx-3">
+                Quilted Jacket
+              </a>
+            </li>
+            <li>
+              <img src="{{asset('assets/Womensware/printed-dress-4.jpg')}}" alt="product-image">
+              <a href="#" class="mx-3">
+                Quilted Jacket
+              </a>
+            </li>
+            <li>
+              <img src="{{asset('assets/Womensware/printed-dress-2.jpg')}}" alt="product-image">
+              <a href="#" class="mx-3">
+                Quilted Jacket
+              </a>
+            </li>
+            <li>
+              <img src="{{asset('assets/Womensware/printed-dress-5.jpg')}}" alt="product-image">
+              <a href="#" class="mx-3">
+                Quilted Jacket
+              </a>
+            </li>
+          </ul> --}}
+        </div>
+      </div>
 
       <div class="header-tools__item hover-container d-block d-xxl-none">
         <div class="js-hover__open position-relative">

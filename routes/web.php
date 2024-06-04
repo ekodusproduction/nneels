@@ -9,6 +9,7 @@ use App\Http\Controllers\Website\ContactController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\ManageCartController;
 use App\Http\Controllers\Website\OrderController;
+use App\Http\Controllers\Website\SearchController;
 use App\Http\Controllers\Website\ShopController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,6 +65,8 @@ Route::group(['prefix' => 'website'], function(){
         Route::get('checkout', [CheckoutController::class, 'getCheckoutPage'])->name('website.get.checkout.page');
         Route::get('order-confirmation', [OrderController::class, 'getOrderConfirmationPage'])->name('website.get.order.confirmation.page');
     });
+
+    Route::get('search-product', [SearchController::class, 'getSearchResult'])->name('website.search.product');
 
     
 });
