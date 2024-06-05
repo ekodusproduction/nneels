@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('website.home.home');
-});
+})->name('website.home');
 
 Route::group(['prefix' => 'website'], function(){
 
