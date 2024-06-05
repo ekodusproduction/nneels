@@ -210,13 +210,13 @@
               data:{'searchKeyword' : searchKeyword},
               success:function(data){
 
-                console.log('data --->', data)
+                // console.log('data --->', data)
                 let link;
                 let category;
                 let sub_category;
                 let image;
 
-                if(data != null){
+                if(data.data.length > 0){
                   let resultHtml = '<ul style="list-style: none;">';
                   
                   data.data.map( (item) => {
@@ -242,7 +242,7 @@
                   resultHtml += '</ul>';
                   $('.search-results-tray .result').html(resultHtml);
                 } else {
-                  $('.search-results-tray .result').html('<p class="text-center">No results found</p>');
+                  $('.search-results-tray .result').html('<p class="text-center">Oops! No matching products found.</p>');
                 }
               },error:function(error){
                 console.log('Oops! Something went wrong');
