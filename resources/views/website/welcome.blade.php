@@ -159,6 +159,10 @@
           e.preventDefault();
 
           const formData = new FormData(this);
+          const location = window.location.href;
+
+          formData.append('coming_from', location);
+
           $('.user-login-submit-btn').text('Please wait....');
           $('.user-login-submit-btn').attr('Disabled', true);
 
@@ -177,7 +181,7 @@
                 $('.user-login-submit-btn').text('LOG IN');
                 $('.user-login-submit-btn').attr('Disabled', false);
 
-                window.location.replace("{{route('website.account.myaccount')}}");
+                window.location.replace(data.data);
               }else{
                 toastr.error(data.message)
                 $('.user-login-submit-btn').text('LOG IN');
@@ -272,6 +276,52 @@
           getSearchResult(event.target.value)
         }, 400)
       );
+    </script>
+
+    <script>
+      $('.add-to-cart-btn').on('click', function(){
+        const product_id = $(this).data().id;
+
+        $(this).text('Please wait...').attr('disabled', true)
+
+        $.ajax({
+          url:"{{route('website.add.to.cart')}}",
+          type:"POST",
+          data:{
+            'product_id' : product_id,
+            '_token' : "{{csrf_token()}}"
+          },
+          success:function(data){
+            if(data.status == 200){
+              toastr.success(data.message);
+              $('.add-to-cart-btn').text('Add To Cart').attr('disabled', false)
+              Swal.fire({
+                title: "Product added successfully",
+                text:'Go To Cart Page ',
+                showCancelButton: true,
+                confirmButtonText: "Proceed",
+                imageUrl: "{{asset('assets/images/cart.png')}}",
+                imageWidth: 150,
+                imageHeight: 150,
+                imageAlt: "Cart image"
+              }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                  window.location.href = "{{route('website.get.cart.items')}}";
+                }else{
+                  window.location.reload(true);
+                }
+              });
+            }else{
+              toastr.error(data.message);
+              $('.add-to-cart-btn').text('Add To Cart').attr('disabled', false)
+            }
+          },error:function(error){
+            toastr.error('Oops! Something went wrong');
+            $('.add-to-cart-btn').text('Add To Cart').attr('disabled', false)
+          }
+        });
+      });
     </script>
 
     @yield('custom-scripts')
