@@ -30,6 +30,11 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'website'], function(){
 
+    Route::group(['prefix' => 'auth'], function(){
+        Route::post('signup', [AuthenticationController::class, 'signup'])->name('website.auth.signup');
+        Route::post('login', [AuthenticationController::class, 'login'])->name('website.auth.login');
+        
+    });
 
     Route::group(['prefix' => 'nav'], function(){
         Route::get('home', [HomeController::class, 'index'])->name('website.nav.home.index');
@@ -39,35 +44,34 @@ Route::group(['prefix' => 'website'], function(){
         Route::get('blog', [BlogController::class, 'index'])->name('website.nav.blog.index');
     });
 
-    Route::group(['prefix' => 'account'], function(){
-        Route::get('signin-signup', [AccountController::class, 'signinSignup'])->name('website.account.signin.signup.page');
-        Route::get('my-account', [AccountController::class, 'myAccount'])->name('website.account.myaccount');
-        Route::get('my-orders', [AccountController::class, 'myOrders'])->name('website.account.myorders');
-        Route::get('my-address', [AccountController::class, 'myAddress'])->name('website.account.myAddress');
-        Route::get('details', [AccountController::class, 'accountDetails'])->name('website.account.details');
-        Route::get('wishlist', [AccountController::class, 'wishlist'])->name('website.account.wishlist');
-        Route::get('logout', [AccountController::class, 'logout'])->name('website.account.logout');
-    });
-
-    Route::group(['prefix' => 'auth'], function(){
-        Route::post('signup', [AuthenticationController::class, 'signup'])->name('website.auth.signup');
-        Route::post('login', [AuthenticationController::class, 'login'])->name('website.auth.login');
-        
-    });
-
     Route::group(['prefix' => 'shop'], function(){
         Route::get('{main_category}/{sub_category?}/{product_id?}', [ShopController::class, 'getProduct' ])->name('website.get.product.by.category'); 
     });
 
-    Route::group(['prefix' => 'cart' ], function(){
-        Route::get('product', [ManageCartController::class, 'getCartItems'])->name('website.get.cart.items');
-        Route::post('add', [ManageCartController::class, 'addToCart'])->name('website.add.to.cart');
-        Route::get('checkout', [CheckoutController::class, 'getCheckoutPage'])->name('website.get.checkout.page');
-        Route::get('order-confirmation', [OrderController::class, 'getOrderConfirmationPage'])->name('website.get.order.confirmation.page');
-        Route::post('remove-item', [ManageCartController::class, 'removeCartItem'])->name('website.remove.cart.item');
+    Route::get('search-product', [SearchController::class, 'getSearchResult'])->name('website.search.product');
+
+    Route::group(['middleware' => 'auth'], function(){
+        Route::group(['prefix' => 'account'], function(){
+            Route::get('signin-signup', [AccountController::class, 'signinSignup'])->name('website.account.signin.signup.page');
+            Route::get('my-account', [AccountController::class, 'myAccount'])->name('website.account.myaccount');
+            Route::get('my-orders', [AccountController::class, 'myOrders'])->name('website.account.myorders');
+            Route::get('my-address', [AccountController::class, 'myAddress'])->name('website.account.myAddress');
+            Route::get('details', [AccountController::class, 'accountDetails'])->name('website.account.details');
+            Route::get('wishlist', [AccountController::class, 'wishlist'])->name('website.account.wishlist');
+            Route::get('logout', [AccountController::class, 'logout'])->name('website.account.logout');
+        });
+    
+        Route::group(['prefix' => 'cart' ], function(){
+            Route::get('product', [ManageCartController::class, 'getCartItems'])->name('website.get.cart.items');
+            Route::post('add', [ManageCartController::class, 'addToCart'])->name('website.add.to.cart');
+            Route::get('checkout', [CheckoutController::class, 'getCheckoutPage'])->name('website.get.checkout.page');
+            Route::get('order-confirmation', [OrderController::class, 'getOrderConfirmationPage'])->name('website.get.order.confirmation.page');
+            Route::post('remove-item', [ManageCartController::class, 'removeCartItem'])->name('website.remove.cart.item');
+        });
     });
 
-    Route::get('search-product', [SearchController::class, 'getSearchResult'])->name('website.search.product');
+    
+
 
     
 });
