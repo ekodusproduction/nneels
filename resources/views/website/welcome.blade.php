@@ -195,6 +195,8 @@
 
         const searchKeyword = value;
 
+        // console.log('Search Key word', searchKeyword);
+
         if(searchKeyword != ''){
 
             $('.search-results-tray').removeClass('d-none');
@@ -203,7 +205,7 @@
             $.ajax({
               url:"{{route('website.search.product')}}",
               type:"GET",
-              data:searchKeyword,
+              data:{'searchKeyword' : searchKeyword},
               success:function(data){
 
                 console.log('data --->', data)
@@ -217,7 +219,7 @@
                   
                   data.data.map( (item) => {
                     
-                    console.log('Sub Cat---', item.sub_category.name)
+                    // console.log('Sub Cat---', item.sub_category.name)
                     
                     category = item.category.name;
                     sub_category = item.sub_category.name;
@@ -266,7 +268,7 @@
 
       $('#searchKeyword').on('keyup', debounce( (event) => {
           getSearchResult(event.target.value)
-        }, 800)
+        }, 400)
       );
     </script>
 
