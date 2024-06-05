@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Traits\AjaxResponser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ManageCartController extends Controller
 {
@@ -44,6 +45,23 @@ class ManageCartController extends Controller
             
         }catch(\Exception $e){
             return $this->error('Oops! Something went wrong'.$e->getMessage(), null, 500);
+        }
+    }
+
+    public function removeCartItem(Request $request){
+        $validator = Validator::make($request->all(), [
+            'product_id' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return $this->error('Oops! Failed to remove item', null, 400);
+        }else{
+            try{
+                Cart::where('product_id', $request->product_id)->where('user_id', Auth::user()->id)->delete();
+                return $this->success('Great! Item removed successfully', null, 200);
+            }catch(\Exception $e){
+                return $this->error('Oops! Something went wrong', null, 500);
+            }
         }
     }
 

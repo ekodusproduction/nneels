@@ -64,6 +64,7 @@ Route::group(['prefix' => 'website'], function(){
         Route::post('add', [ManageCartController::class, 'addToCart'])->name('website.add.to.cart');
         Route::get('checkout', [CheckoutController::class, 'getCheckoutPage'])->name('website.get.checkout.page');
         Route::get('order-confirmation', [OrderController::class, 'getOrderConfirmationPage'])->name('website.get.order.confirmation.page');
+        Route::post('remove-item', [ManageCartController::class, 'removeCartItem'])->name('website.remove.cart.item');
     });
 
     Route::get('search-product', [SearchController::class, 'getSearchResult'])->name('website.search.product');
