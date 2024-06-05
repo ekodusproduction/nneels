@@ -148,8 +148,14 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside"
-                                    data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
+                                {{-- <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium add-to-cart-btn" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button> --}}
+                                @auth
+                                    <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium add-to-cart-btn" data-id="{{$item->product_id}}"  title="Add To Cart">Add To Cart</button>
+                                @endauth
+
+                                @guest
+                                    <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-open-aside" data-aside="customerForms" title="Add To Cart">Add To Cart</button>
+                                @endguest
                             </div>
 
                             <div class="pc__info position-relative">

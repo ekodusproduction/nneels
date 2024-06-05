@@ -36,7 +36,7 @@ class AuthenticationController extends Controller
 
                 return $this->success('Great! Signup successful', null, 200);
             }catch(\Exception $e){
-                return $this->error('Oops! Something went wrong.'.$e->getMessage(), null, 500);
+                return $this->error('Oops! Something went wrong.', null, 500);
             }
         }
     }
@@ -52,7 +52,7 @@ class AuthenticationController extends Controller
         }else{
             try{
                 if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'role' => 2])){
-                    return $this->success('Great! Login successful', null, 200);
+                    return $this->success('Great! Login successful', $request->coming_from, 200);
                 }else{
                     return $this->error('Oops! Invalid credentials', null, 400);
                 }

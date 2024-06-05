@@ -151,8 +151,15 @@
                             <div class="qty-control__reduce">-</div>
                             <div class="qty-control__increase">+</div>
                         </div><!-- .qty-control -->
-                        <button type="submit" class="btn btn-primary btn-addtocart js-open-aside"
-                            data-aside="cartDrawer">Add to Cart</button>
+                        {{-- <button type="submit" class="btn btn-primary btn-addtocart js-open-aside" data-aside="cartDrawer">Add to Cart</button> --}}
+
+                        @auth
+                            <button class="btn btn-primary btn-addtocart add-to-cart-btn" data-id="{{$product_details->product_id}}"  title="Add To Cart">Add To Cart</button>
+                        @endauth
+
+                        @guest
+                            <button class="btn btn-primary btn-addtocart js-open-aside" data-aside="customerForms" title="Add To Cart">Add To Cart</button>
+                        @endguest
                     </div>
                 </form>
                 <div class="product-single__addtolinks">

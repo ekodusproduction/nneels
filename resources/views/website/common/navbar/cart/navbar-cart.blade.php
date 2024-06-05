@@ -29,7 +29,7 @@
                         </div>
                     </div>
 
-                    <button class="btn-close-xs position-absolute top-0 end-0 js-cart-item-remove"></button>
+                    <button class="btn-close-xs position-absolute top-0 end-0 js-cart-item-remove remv-cart-btn" data-id="{{$item->product_id}}"></button>
                 </div>
                 <hr class="cart-drawer-divider">
             @empty
