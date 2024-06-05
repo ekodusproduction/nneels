@@ -40,12 +40,14 @@
           position: absolute;
           top:80%;
           margin-left:25px;
+          max-height:350px;
+          width:505px;
+          overflow:scroll;
+
         }
 
         .search-results-tray .result{
           height: auto;
-          width:505px;
-          overflow:scroll;
         }
 
         .search-results-tray .result ul li{
