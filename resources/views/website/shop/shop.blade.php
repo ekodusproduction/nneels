@@ -158,7 +158,7 @@
                                         <span> - {{$sub_category}}</span>
                                     @endif
                                 </p>
-                                <h6 class="pc__title"><a href="product1_simple.html">{{$item->name}}</a></h6>
+                                <h6 class="pc__title"><a href="{{route('website.get.product.by.category', ['main_category' => urlencode($main_category), 'sub_category' => urlencode($sub_category), 'product_id' => $item->product_id])}}">{{$item->name}}</a></h6>
                                 <div class="product-card__price d-flex">
                                     <span class="money price">${{$item->sale_price}}</span>
                                 </div>

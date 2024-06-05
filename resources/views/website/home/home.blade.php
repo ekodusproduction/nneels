@@ -6,6 +6,8 @@
     .swiper-wrapper{
       height: auto;
     }
+    
+
   </style>
 @endsection
 
@@ -119,6 +121,7 @@
     });
   });
 </script>
+
 @endsection
 
  
