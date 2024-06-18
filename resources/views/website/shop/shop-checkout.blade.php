@@ -5,9 +5,6 @@
 @endsection
 
 @section('content')
-  @php
-    $country_list = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];    
-  @endphp
     <div class="mb-4 pb-4"></div>
     <section class="shop-checkout container">
         <h2 class="page-title">Shipping and Checkout</h2>
@@ -48,7 +45,7 @@
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" id="checkout_company_name" name="company_name" placeholder="Company Name (optional)">
+                    <input type="text" class="form-control" id="checkout_company_name" name="company_name" placeholder="Company Name (optional)" value="{{$get_shipping_details != null ? $get_shipping_details->company_name : ''}}">
                     <label for="checkout_company_name">Company Name (optional)</label>
                   </div>
                 </div>
@@ -57,7 +54,7 @@
                     <div class="form-label-fixed hover-container">
                       <label for="search-dropdown" class="form-label">Country / Region*</label>
                       <div class="js-hover__open">
-                        <input type="text" class="form-control form-control-lg search-field__actor search-field__arrow-down" id="search-dropdown" name="country" readonly placeholder="Choose a location...">
+                        <input type="text" class="form-control form-control-lg search-field__actor search-field__arrow-down" id="search-dropdown" name="country" readonly placeholder="Choose a location..." value="{{$get_shipping_details != null ? $get_shipping_details->country : ''}}">
                       </div>
                       <div class="filters-container js-hidden-content mt-2">
                         <ul class="search-suggestion list-unstyled overflow-scroll" style="max-height:270px;">
@@ -71,41 +68,41 @@
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating mt-3 mb-3">
-                    <input type="text" class="form-control" id="checkout_street_address" name="street_address_1" placeholder="Street Address 1">
+                    <input type="text" class="form-control" id="checkout_street_address" name="street_address_1" placeholder="Street Address 1" value="{{$get_shipping_details != null ? $get_shipping_details->address_1 : ''}}">
                     <label for="checkout_company_name">Street Address 1*</label>
                   </div>
                   <div class="form-floating mt-3 mb-3">
-                    <input type="text" class="form-control" id="checkout_street_address_2"  name="street_address_2" placeholder="Street Address 2">
+                    <input type="text" class="form-control" id="checkout_street_address_2"  name="street_address_2" placeholder="Street Address 2" value="{{$get_shipping_details != null ? $get_shipping_details->address_2 : ''}}">
                     <label for="checkout_company_name">Street Address 2</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" name="town_or_city" id="checkout_city" placeholder="Town / City *">
+                    <input type="text" class="form-control" name="town_or_city" id="checkout_city" placeholder="Town / City *" value="{{$get_shipping_details != null ? $get_shipping_details->town_or_city : ''}}">
                     <label for="checkout_city">Town / City *</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" id="checkout_zipcode" name="zip_code" placeholder="Postcode / ZIP *">
+                    <input type="text" class="form-control" id="checkout_zipcode" name="zip_code" placeholder="Postcode / ZIP *" value="{{$get_shipping_details != null ? $get_shipping_details->zip_code : ''}}">
                     <label for="checkout_zipcode">Postcode / ZIP *</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" id="checkout_province" name="province" placeholder="Province">
+                    <input type="text" class="form-control" id="checkout_province" name="province" placeholder="Province" value="{{$get_shipping_details != null ? $get_shipping_details->province : ''}}">
                     <label for="checkout_province">Province</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone *" value={{Auth::user()->phone}}>
+                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone *" value={{Auth::user()->phone}} >
                     <label for="checkout_phone">Phone *</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Mail *" value={{Auth::user()->email}}>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Mail *" value={{Auth::user()->email}} >
                     <label for="checkout_email">Your Mail *</label>
                   </div>
                 </div>
@@ -234,7 +231,11 @@
         e.preventDefault();
 
         let formData = new FormData(this);
+        let total_amount = $('#checkout_total_price').text().trim().replace('$', '');
         
+        total_amount = (total_amount * 100);
+        formData.append('total_amount', total_amount);
+
         $('.place-order-btn').attr('disabled', true).text('Please wait....');
 
         $.ajax({
@@ -248,7 +249,7 @@
               toastr.success(data.message);
               $('.place-order-btn').attr('disabled', false).text('Place Order');
               console.log(data)
-              window.location.href = data.data.url
+              window.location.replace(data.data.url, '_blank');
               // Swal.fire({
               //   title: "Product added successfully",
               //   text:'Go To Cart Page ',

@@ -32,47 +32,54 @@ class OrderController extends Controller
             return $this->error('Oops! '.$validator->errors()->first(), null, 400);
         }else{
             try{
+                $check_user_address_exists = ShippingAdress::where('user_id', Auth::user()->id)->exists();
 
-                $created = ShippingAdress::create([
-                    'user_id' => Auth::user()->id,
-                    'fullname' => $request->fullname,            
-                    'company_name' => $request->company_name,
-                    'country' => $request->country,
-                    'address_1' => $request->street_address_1,
-                    'address_2' => $request->street_address_2,
-                    'town_or_city' => $request->town_or_city,
-                    'zip_code' => $request->zip_code,
-                    'province' => $request->province,
-                    'phone' => $request->phone,
-                    'email' => $request->email
-                ]);
-
-                if($created){
+                if(!$check_user_address_exists){
+                    ShippingAdress::create([
+                        'user_id' => Auth::user()->id,
+                        'fullname' => $request->fullname,            
+                        'company_name' => $request->company_name,
+                        'country' => $request->country,
+                        'address_1' => $request->street_address_1,
+                        'address_2' => $request->street_address_2,
+                        'town_or_city' => $request->town_or_city,
+                        'zip_code' => $request->zip_code,
+                        'province' => $request->province,
+                        'phone' => $request->phone,
+                        'email' => $request->email
+                    ]);
+                }
+                
                     \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-                    header('Content-Type: application/json');
+                    // header('Content-Type: application/json');
 
                     $YOUR_DOMAIN = 'http://localhost:8000';
 
                     $checkout_session = \Stripe\Checkout\Session::create([
-                    'line_items' => [[
-                        # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-                        'price_data' => [
-                            'currency' => 'usd',
-                            'product_data' => [
-                                'name' => 'Alcazar', // Replace with actual product name
+                        'customer_email' => Auth::user()->email, // Add customer email address here
+                        
+                         // Add customer name here
+                        
+                        'line_items' => [[
+                            # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
+                            'price_data' => [
+                                'product_data' => [
+                                    'name' => 'My Products'
+                                ],
+                                'currency' => 'usd',
+                                'unit_amount' => $request->total_amount,// Replace with actual amount in cents (e.g., $32.00)
                             ],
-                            'unit_amount' => 3200, // Replace with actual amount in cents (e.g., $32.00)
-                        ],
-                        'quantity' => 1,
-                    ]],
-                    'mode' => 'payment',
-                    'success_url' => $YOUR_DOMAIN . '/website/order/success-payment',
-                    'cancel_url' => $YOUR_DOMAIN . '/website/order/cancel-payment',
+                            'quantity' => 1,
+                        ]],
+                        'mode' => 'payment',
+                        'success_url' => $YOUR_DOMAIN . '/website/order/success-payment',
+                        'cancel_url' => $YOUR_DOMAIN . '/website/order/cancel-payment',
+                        
                     ]);
 
-                    header("HTTP/1.1 303 See Other");
-                    header("Location: " . $checkout_session->url);
-                }
+                    // header("HTTP/1.1 303 See Other");
+                    // header("Location: " . $checkout_session->url);
+                
                 
                 return $this->success('Great! Address saved successfully', $checkout_session, 200);
             }catch(\Exception $e){
