@@ -76,7 +76,7 @@
     });
 </script>
 
-<script>
+{{-- <script>
   $('.add-to-cart-btn').on('click', function(){
     const product_id = $(this).data().id;
 
@@ -120,7 +120,7 @@
       }
     });
   });
-</script>
+</script> --}}
 
 @endsection
 
