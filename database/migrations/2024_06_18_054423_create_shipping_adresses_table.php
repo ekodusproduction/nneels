@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('shipping_adresses', function (Blueprint $table) {
             $table->id();
-            $table->string('order_id')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->string('fullname');            
             $table->string('company_name')->nullable();
             $table->string('country');
@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('phone');
             $table->string('email');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

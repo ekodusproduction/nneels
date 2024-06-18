@@ -34,20 +34,21 @@
             </span>
           </a>
         </div>
-        <form name="checkout-form" action="https://uomo-html.flexkitux.com/Demo2/shop_order_complete.html">
+        <form id="placeOrderForm">
+          @csrf
           <div class="checkout-form">
             <div class="billing-info__wrapper">
               <h4>DETAILS</h4>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Full Name" value={{Auth::user()->name}}>
+                    <input type="text" class="form-control" name="fullname" id="full_name" placeholder="Full Name" value={{Auth::user()->name}}>
                     <label for="checkout_first_name">Full Name</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" id="checkout_company_name" placeholder="Company Name (optional)">
+                    <input type="text" class="form-control" id="checkout_company_name" name="company_name" placeholder="Company Name (optional)">
                     <label for="checkout_company_name">Company Name (optional)</label>
                   </div>
                 </div>
@@ -56,12 +57,12 @@
                     <div class="form-label-fixed hover-container">
                       <label for="search-dropdown" class="form-label">Country / Region*</label>
                       <div class="js-hover__open">
-                        <input type="text" class="form-control form-control-lg search-field__actor search-field__arrow-down" id="search-dropdown" name="search-keyword" readonly placeholder="Choose a location...">
+                        <input type="text" class="form-control form-control-lg search-field__actor search-field__arrow-down" id="search-dropdown" name="country" readonly placeholder="Choose a location...">
                       </div>
                       <div class="filters-container js-hidden-content mt-2">
                         <ul class="search-suggestion list-unstyled overflow-scroll" style="max-height:270px;">
-                          @foreach ($country_list as $name)
-                            <li class="search-suggestion__item js-search-select">{{$name}}</li>
+                          @foreach ($country_list as $country)
+                            <li class="search-suggestion__item js-search-select">{{$country}}</li>
                           @endforeach
                         </ul>
                       </div>
@@ -70,30 +71,30 @@
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating mt-3 mb-3">
-                    <input type="text" class="form-control" id="checkout_street_address" placeholder="Street Address 1">
+                    <input type="text" class="form-control" id="checkout_street_address" name="street_address_1" placeholder="Street Address 1">
                     <label for="checkout_company_name">Street Address 1*</label>
                   </div>
                   <div class="form-floating mt-3 mb-3">
-                    <input type="text" class="form-control" id="checkout_street_address_2" placeholder="Street Address 2">
+                    <input type="text" class="form-control" id="checkout_street_address_2"  name="street_address_2" placeholder="Street Address 2">
                     <label for="checkout_company_name">Street Address 2</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" id="checkout_city" placeholder="Town / City *">
+                    <input type="text" class="form-control" name="town_or_city" id="checkout_city" placeholder="Town / City *">
                     <label for="checkout_city">Town / City *</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" id="checkout_zipcode" placeholder="Postcode / ZIP *">
+                    <input type="text" class="form-control" id="checkout_zipcode" name="zip_code" placeholder="Postcode / ZIP *">
                     <label for="checkout_zipcode">Postcode / ZIP *</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" id="checkout_province" placeholder="Province *">
-                    <label for="checkout_province">Province *</label>
+                    <input type="text" class="form-control" id="checkout_province" name="province" placeholder="Province">
+                    <label for="checkout_province">Province</label>
                   </div>
                 </div>
                 <div class="col-md-12">
@@ -193,7 +194,7 @@
                     Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="terms.html" target="_blank">privacy policy</a>.
                   </div>
                 </div> --}}
-                <button class="btn btn-primary btn-checkout">PLACE ORDER</button>
+                <button type="submit"  class="btn btn-primary place-order-btn" id="checkout-button" style="width:100%;height:50px;">PLACE ORDER</button>
               </div>
             </div>
           </div>
@@ -225,6 +226,56 @@
         // Update the subtotal element with the computed total
         $("#checkout_sub_total").text("$" + sub_total.toFixed(2)); // Ensure two decimal places
         $("#checkout_total_price").text("$" + total_price);
+      });
+    </script>
+
+    <script>
+      $('#placeOrderForm').on('submit', function(e){
+        e.preventDefault();
+
+        let formData = new FormData(this);
+        
+        $('.place-order-btn').attr('disabled', true).text('Please wait....');
+
+        $.ajax({
+          url:"{{route('website.save.billing.address')}}",
+          type:"POST",
+          data:formData,
+          contentType: false,
+          processData: false,
+          success:function(data){
+            if(data.status == 200){
+              toastr.success(data.message);
+              $('.place-order-btn').attr('disabled', false).text('Place Order');
+              console.log(data)
+              window.location.href = data.data.url
+              // Swal.fire({
+              //   title: "Product added successfully",
+              //   text:'Go To Cart Page ',
+              //   showCancelButton: true,
+              //   confirmButtonText: "Proceed",
+              //   imageUrl: "{{asset('assets/images/cart.png')}}",
+              //   imageWidth: 150,
+              //   imageHeight: 150,
+              //   imageAlt: "Cart image"
+              // }).then((result) => {
+              //   /* Read more about isConfirmed, isDenied below */
+              //   if (result.isConfirmed) {
+              //     window.location.href = "{{route('website.get.cart.items')}}";
+              //   }else{
+              //     window.location.reload(true);
+              //   }
+              // });
+            }else{
+              toastr.error(data.message);
+              $('.place-order-btn').attr('disabled', false).text('Place Order');
+            }
+          },error:function(error){
+            toastr.error('Oops! Something went wrong');
+            $('.place-order-btn').attr('disabled', false).text('Place Order');
+            console.log(error)
+          }
+        });
       });
     </script>
 @endsection
