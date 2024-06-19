@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
+use App\Models\Product;
 use App\Models\ShippingAdress;
 use App\Traits\AjaxResponser;
 use Illuminate\Http\Request;
@@ -33,6 +35,7 @@ class OrderController extends Controller
         }else{
             try{
                 $check_user_address_exists = ShippingAdress::where('user_id', Auth::user()->id)->exists();
+                $cartItems = Cart::with('product')->where('user_id', Auth::user()->id)->get();
 
                 if(!$check_user_address_exists){
                     ShippingAdress::create([
@@ -55,22 +58,38 @@ class OrderController extends Controller
 
                     $YOUR_DOMAIN = 'http://localhost:8000';
 
-                    $checkout_session = \Stripe\Checkout\Session::create([
-                        'customer_email' => Auth::user()->email, // Add customer email address here
+                    $line_items = [];
+
+                    foreach ($cartItems as $item) {
                         
-                         // Add customer name here
-                        
-                        'line_items' => [[
-                            # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
+                        $line_items[] = [
                             'price_data' => [
-                                'product_data' => [
-                                    'name' => 'My Products'
-                                ],
                                 'currency' => 'usd',
-                                'unit_amount' => $request->total_amount,// Replace with actual amount in cents (e.g., $32.00)
+                                'product_data' => [
+                                    'name' => $item->product->name,
+                                ],
+                                'unit_amount' =>  $request->total_amount, // Amount in cents
                             ],
                             'quantity' => 1,
-                        ]],
+                        ];
+                    }
+
+                    $checkout_session = \Stripe\Checkout\Session::create([
+                        'customer_email' => Auth::user()->email, // Add customer email address here
+                        'line_items' => $line_items,
+                         // Add customer name here
+                        
+                        // 'line_items' => [[
+                        //     # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
+                        //     'price_data' => [
+                        //         'product_data' => [
+                        //             'name' => 'My Products'
+                        //         ],
+                        //         'currency' => 'usd',
+                        //         'unit_amount' => $request->total_amount,// Replace with actual amount in cents (e.g., $32.00)
+                        //     ],
+                        //     'quantity' => 1,
+                        // ]],
                         'mode' => 'payment',
                         'success_url' => $YOUR_DOMAIN . '/website/order/success-payment',
                         'cancel_url' => $YOUR_DOMAIN . '/website/order/cancel-payment',
