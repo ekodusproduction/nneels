@@ -10,6 +10,9 @@ use App\Traits\AjaxResponser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Stripe\Webhook;
+use App\Models\Order;
+use Stripe\Event;
 
 class OrderController extends Controller
 {
@@ -105,5 +108,65 @@ class OrderController extends Controller
                 return $this->error('Oops! Something went wrong', $e->getMessage(), 500);
             }
         }
+    }
+
+    public function handleWebhook(Request $request){
+        try{
+            $endpoint_secret = env('STRIPE_WEBHOOK_SECRET');
+        
+            $payload = $request->getContent();
+            $sig_header = $request->header('Stripe-Signature');
+
+            try {
+                $event = Webhook::constructEvent($payload, $sig_header, $endpoint_secret);
+            } catch (\UnexpectedValueException $e) {
+                // Invalid payload
+                return response()->json(['error' => 'Invalid payload'], 400);
+            } catch (\Stripe\Exception\SignatureVerificationException $e) {
+                // Invalid signature
+                return response()->json(['error' => 'Invalid signature'], 400);
+            }
+
+            switch ($event->type) {
+                case 'checkout.session.completed':
+                    $session = $event->data->object;
+                    // Fulfill the purchase...
+                    $this->handleCheckoutSessionCompleted($session);
+                    break;
+                // ... handle other event types
+                default:
+                    return response()->json(['error' => 'Unhandled event type'], 400);
+            }
+    
+            return response()->json(['status' => 'success'], 200);
+
+        }catch(\Exception $e){
+            return $this->error('Oops! Something went wrong', null, 500);
+        }
+
+
+        
+    }
+
+    protected function handleCheckoutSessionCompleted($session)
+    {
+        // Retrieve customer details
+        $customer_email = $session->customer_details->email;
+
+        dd($session);
+
+        // Find the order by session ID or another identifier
+        // $order = Order::where('stripe_session_id', $session->id)->first();
+
+        // if ($order) {
+        //     // Update order status to 'paid'
+        //     $order->status = 'paid';
+        //     // Save customer details
+        //     $order->customer_email = $customer_email;
+        //     // You can save other details as needed
+        //     $order->save();
+        // }
+
+        // Send a confirmation email to the customer, etc.
     }
 }

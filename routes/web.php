@@ -71,6 +71,7 @@ Route::group(['prefix' => 'website'], function(){
 
         Route::group(['prefix' => 'order'], function(){
             Route::post('billing', [OrderController::class, 'saveBillingAddress'])->name('website.save.billing.address');
+            Route::post('stripe-order-complete-webhook', [OrderController::class, 'handleWebhook'])->name('website.handle.stripe.webhook');
             Route::get('success-payment', function(){
                 return view('website.payment.success');
             });
