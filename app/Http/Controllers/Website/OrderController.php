@@ -71,7 +71,7 @@ class OrderController extends Controller
                                 'product_data' => [
                                     'name' => $item->product->name,
                                 ],
-                                'unit_amount' =>  $request->total_amount, // Amount in cents
+                                'unit_amount' =>  ($item->product->sale_price) * 100, // Amount in cents
                             ],
                             'quantity' => 1,
                         ];
