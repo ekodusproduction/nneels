@@ -68,6 +68,18 @@ Route::group(['prefix' => 'website'], function(){
             Route::get('order-confirmation', [OrderController::class, 'getOrderConfirmationPage'])->name('website.get.order.confirmation.page');
             Route::post('remove-item', [ManageCartController::class, 'removeCartItem'])->name('website.remove.cart.item');
         });
+
+        Route::group(['prefix' => 'order'], function(){
+            Route::post('billing', [OrderController::class, 'saveBillingAddress'])->name('website.save.billing.address');
+            Route::post('stripe-order-complete-webhook', [OrderController::class, 'handleWebhook'])->name('website.handle.stripe.webhook');
+            Route::get('success-payment', function(){
+                return view('website.payment.success');
+            });
+
+            Route::get('cancel-payment', function(){
+                return view('website.payment.cancel');
+            });
+        });
     });
 
     

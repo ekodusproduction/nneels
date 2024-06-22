@@ -9,21 +9,21 @@
     <section class="shop-checkout container">
         <h2 class="page-title">Shipping and Checkout</h2>
         <div class="checkout-steps">
-          <a href="shop_cart.html" class="checkout-steps__item active">
+          <a href="javascript:void(0)" class="checkout-steps__item active">
             <span class="checkout-steps__item-number">01</span>
             <span class="checkout-steps__item-title">
               <span>Shopping Bag</span>
               <em>Manage Your Items List</em>
             </span>
           </a>
-          <a href="shop_checkout.html" class="checkout-steps__item active">
+          <a href="javascript:void(0)" class="checkout-steps__item active">
             <span class="checkout-steps__item-number">02</span>
             <span class="checkout-steps__item-title">
-              <span>Shipping and Checkout</span>
-              <em>Checkout Your Items List</em>
+              <span>Billing and Shipping</span>
+              <em>Enter the billing and shipping address of the customer</em>
             </span>
           </a>
-          <a href="shop_order_complete.html" class="checkout-steps__item">
+          <a href="javascript:void(0)" class="checkout-steps__item">
             <span class="checkout-steps__item-number">03</span>
             <span class="checkout-steps__item-title">
               <span>Confirmation</span>
@@ -31,26 +31,21 @@
             </span>
           </a>
         </div>
-        <form name="checkout-form" action="https://uomo-html.flexkitux.com/Demo2/shop_order_complete.html">
+        <form id="placeOrderForm">
+          @csrf
           <div class="checkout-form">
             <div class="billing-info__wrapper">
-              <h4>BILLING DETAILS</h4>
+              <h4>DETAILS</h4>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" id="checkout_first_name" placeholder="First Name">
-                    <label for="checkout_first_name">First Name</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-floating my-3">
-                    <input type="text" class="form-control" id="checkout_last_name" placeholder="Last Name">
-                    <label for="checkout_last_name">Last Name</label>
+                    <input type="text" class="form-control" name="fullname" id="full_name" placeholder="Full Name" value={{Auth::user()->name}}>
+                    <label for="checkout_first_name">Full Name</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" id="checkout_company_name" placeholder="Company Name (optional)">
+                    <input type="text" class="form-control" id="checkout_company_name" name="company_name" placeholder="Company Name (optional)" value="{{$get_shipping_details != null ? $get_shipping_details->company_name : ''}}">
                     <label for="checkout_company_name">Company Name (optional)</label>
                   </div>
                 </div>
@@ -59,18 +54,13 @@
                     <div class="form-label-fixed hover-container">
                       <label for="search-dropdown" class="form-label">Country / Region*</label>
                       <div class="js-hover__open">
-                        <input type="text" class="form-control form-control-lg search-field__actor search-field__arrow-down" id="search-dropdown" name="search-keyword" readonly placeholder="Choose a location...">
+                        <input type="text" class="form-control form-control-lg search-field__actor search-field__arrow-down" id="search-dropdown" name="country" readonly placeholder="Choose a location..." value="{{$get_shipping_details != null ? $get_shipping_details->country : ''}}">
                       </div>
                       <div class="filters-container js-hidden-content mt-2">
-                        <div class="search-field__input-wrapper">
-                          <input type="text" class="search-field__input form-control form-control-sm bg-lighter border-lighter" placeholder="Search">
-                        </div>
-                        <ul class="search-suggestion list-unstyled">
-                          <li class="search-suggestion__item js-search-select">Australia</li>
-                          <li class="search-suggestion__item js-search-select">Canada</li>
-                          <li class="search-suggestion__item js-search-select">United Kingdom</li>
-                          <li class="search-suggestion__item js-search-select">United States</li>
-                          <li class="search-suggestion__item js-search-select">Turkey</li>
+                        <ul class="search-suggestion list-unstyled overflow-scroll" style="max-height:270px;">
+                          @foreach ($country_list as $country)
+                            <li class="search-suggestion__item js-search-select">{{$country}}</li>
+                          @endforeach
                         </ul>
                       </div>
                     </div>
@@ -78,57 +68,43 @@
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating mt-3 mb-3">
-                    <input type="text" class="form-control" id="checkout_street_address" placeholder="Street Address *">
-                    <label for="checkout_company_name">Street Address *</label>
+                    <input type="text" class="form-control" id="checkout_street_address" name="street_address_1" placeholder="Street Address 1" value="{{$get_shipping_details != null ? $get_shipping_details->address_1 : ''}}">
+                    <label for="checkout_company_name">Street Address 1*</label>
                   </div>
                   <div class="form-floating mt-3 mb-3">
-                    <input type="text" class="form-control" id="checkout_street_address_2">
+                    <input type="text" class="form-control" id="checkout_street_address_2"  name="street_address_2" placeholder="Street Address 2" value="{{$get_shipping_details != null ? $get_shipping_details->address_2 : ''}}">
+                    <label for="checkout_company_name">Street Address 2</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" id="checkout_city" placeholder="Town / City *">
+                    <input type="text" class="form-control" name="town_or_city" id="checkout_city" placeholder="Town / City *" value="{{$get_shipping_details != null ? $get_shipping_details->town_or_city : ''}}">
                     <label for="checkout_city">Town / City *</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" id="checkout_zipcode" placeholder="Postcode / ZIP *">
+                    <input type="text" class="form-control" id="checkout_zipcode" name="zip_code" placeholder="Postcode / ZIP *" value="{{$get_shipping_details != null ? $get_shipping_details->zip_code : ''}}">
                     <label for="checkout_zipcode">Postcode / ZIP *</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" id="checkout_province" placeholder="Province *">
-                    <label for="checkout_province">Province *</label>
+                    <input type="text" class="form-control" id="checkout_province" name="province" placeholder="Province" value="{{$get_shipping_details != null ? $get_shipping_details->province : ''}}">
+                    <label for="checkout_province">Province</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="text" class="form-control" id="checkout_phone" placeholder="Phone *">
+                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone *" value={{Auth::user()->phone}} >
                     <label for="checkout_phone">Phone *</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating my-3">
-                    <input type="email" class="form-control" id="checkout_email" placeholder="Your Mail *">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Mail *" value={{Auth::user()->email}} >
                     <label for="checkout_email">Your Mail *</label>
                   </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-check mt-3">
-                    <input class="form-check-input form-check-input_fill" type="checkbox" value="" id="create_account">
-                    <label class="form-check-label" for="create_account">CREATE AN ACCOUNT?</label>
-                  </div>
-                  <div class="form-check mb-3">
-                    <input class="form-check-input form-check-input_fill" type="checkbox" value="" id="ship_different_address">
-                    <label class="form-check-label" for="ship_different_address">SHIP TO A DIFFERENT ADDRESS?</label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="mt-3">
-                  <textarea class="form-control form-control_gray" placeholder="Order Notes (optional)" cols="30" rows="8"></textarea>
                 </div>
               </div>
             </div>
@@ -144,46 +120,37 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>
-                          Zessi Dresses x 2
-                        </td>
-                        <td>
-                          $32.50
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Kirby T-Shirt
-                        </td>
-                        <td>
-                          $29.90
-                        </td>
-                      </tr>
+                      @foreach ($cart_details as $item)
+                        <tr>
+                          <td>
+                            {{$item->product->name}}
+                          </td>
+                          <td class="sale_price">
+                            ${{$item->product->sale_price}}
+                          </td>
+                        </tr>
+                      @endforeach
+                      
                     </tbody>
                   </table>
                   <table class="checkout-totals">
                     <tbody>
                       <tr>
                         <th>SUBTOTAL</th>
-                        <td>$62.40</td>
+                        <td id="checkout_sub_total">$</td>
                       </tr>
                       <tr>
-                        <th>SHIPPING</th>
-                        <td>Free shipping</td>
-                      </tr>
-                      <tr>
-                        <th>VAT</th>
+                        <th>SHIPPING (FLAT)</th>
                         <td>$19</td>
                       </tr>
                       <tr>
                         <th>TOTAL</th>
-                        <td>$81.40</td>
+                        <td id="checkout_total_price">$81.40</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <div class="checkout__payment-methods">
+                {{-- <div class="checkout__payment-methods">
                   <div class="form-check">
                     <input class="form-check-input form-check-input_fill" type="radio" name="checkout_payment_method" id="checkout_payment_method_1" checked>
                     <label class="form-check-label" for="checkout_payment_method_1">
@@ -223,8 +190,8 @@
                   <div class="policy-text">
                     Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="terms.html" target="_blank">privacy policy</a>.
                   </div>
-                </div>
-                <button class="btn btn-primary btn-checkout">PLACE ORDER</button>
+                </div> --}}
+                <button type="submit"  class="btn btn-primary place-order-btn" id="checkout-button" style="width:100%;height:50px;">PLACE ORDER</button>
               </div>
             </div>
           </div>
@@ -235,5 +202,81 @@
 @endsection
 
 @section('custom-scripts')
-    
+    <script>
+      $(document).ready(function() {
+        // Initialize total variable
+        let sub_total = 0;
+        let total_price = 0;
+
+        // Iterate through each sale_price element
+        $(".sale_price").each(function() {
+          // Get the text content and remove the '$' sign
+          let priceText = $(this).text().trim().replace('$', '');
+
+          // Convert to number and add to total
+          let price = parseFloat(priceText);
+          
+          sub_total += price;
+          total_price = (19 + sub_total);
+        });
+
+        // Update the subtotal element with the computed total
+        $("#checkout_sub_total").text("$" + sub_total.toFixed(2)); // Ensure two decimal places
+        $("#checkout_total_price").text("$" + total_price);
+      });
+    </script>
+
+    <script>
+      $('#placeOrderForm').on('submit', function(e){
+        e.preventDefault();
+
+        let formData = new FormData(this);
+        let total_amount = $('#checkout_total_price').text().trim().replace('$', '');
+        
+        total_amount = (total_amount * 100);
+        formData.append('total_amount', total_amount);
+
+        $('.place-order-btn').attr('disabled', true).text('Please wait....');
+
+        $.ajax({
+          url:"{{route('website.save.billing.address')}}",
+          type:"POST",
+          data:formData,
+          contentType: false,
+          processData: false,
+          success:function(data){
+            if(data.status == 200){
+              toastr.success(data.message);
+              $('.place-order-btn').attr('disabled', false).text('Place Order');
+              console.log(data)
+              window.location.replace(data.data.url, '_blank');
+              // Swal.fire({
+              //   title: "Product added successfully",
+              //   text:'Go To Cart Page ',
+              //   showCancelButton: true,
+              //   confirmButtonText: "Proceed",
+              //   imageUrl: "{{asset('assets/images/cart.png')}}",
+              //   imageWidth: 150,
+              //   imageHeight: 150,
+              //   imageAlt: "Cart image"
+              // }).then((result) => {
+              //   /* Read more about isConfirmed, isDenied below */
+              //   if (result.isConfirmed) {
+              //     window.location.href = "{{route('website.get.cart.items')}}";
+              //   }else{
+              //     window.location.reload(true);
+              //   }
+              // });
+            }else{
+              toastr.error(data.message);
+              $('.place-order-btn').attr('disabled', false).text('Place Order');
+            }
+          },error:function(error){
+            toastr.error('Oops! Something went wrong');
+            $('.place-order-btn').attr('disabled', false).text('Place Order');
+            console.log(error)
+          }
+        });
+      });
+    </script>
 @endsection
