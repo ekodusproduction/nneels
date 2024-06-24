@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductGallery;
+use App\Models\SubCategory;
 use App\Traits\AjaxResponser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -76,7 +77,7 @@ class ProductController extends Controller
                             'sale_price' => $request->salePrice,
                             'size' => $request->size,
                             'quantity' => $request->quantity,
-                           'is_stock_available' => $request->is_stock_available,
+                            'is_stock_available' => $request->is_stock_available,
                             'rate_of_discount' => $request->rate_of_discount,
                             'featured_section' => $request->featured_section,
                             'tags' => $request->tags,

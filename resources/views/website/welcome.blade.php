@@ -283,12 +283,14 @@
         const product_id = $(this).data().id;
 
         $(this).text('Please wait...').attr('disabled', true)
+        const cart_item_qty = $('.cart-item-qty').val();
 
         $.ajax({
           url:"{{route('website.add.to.cart')}}",
           type:"POST",
           data:{
             'product_id' : product_id,
+            'cart_item_qty' : cart_item_qty,
             '_token' : "{{csrf_token()}}"
           },
           success:function(data){
@@ -305,7 +307,6 @@
                 imageHeight: 150,
                 imageAlt: "Cart image"
               }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                   window.location.href = "{{route('website.get.cart.items')}}";
                 }else{

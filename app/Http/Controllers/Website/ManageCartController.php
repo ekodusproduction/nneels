@@ -34,6 +34,7 @@ class ManageCartController extends Controller
     
                     Cart::create([
                         'product_id' => $request->product_id,
+                        'items_qty' => $request->cart_item_qty,
                         'user_id' => Auth::user()->id
                     ]);
     
