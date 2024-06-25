@@ -66,4 +66,26 @@ class ManageCartController extends Controller
         }
     }
 
+    public function updateCartItems(Request $request){
+        $validator = Validator::make($request->all(), [
+            'product_id' => 'required',
+            'quantity' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return $this->error('Oops! '.$validator->errors()->first(), null, 400);
+        }else{
+            try{
+                Cart::where('product_id', $request->product_id)->update([
+                    'items_qty' => $request->quantity
+                ]);
+    
+                return $this->success('Great! Quantity count updated.', null, 200);
+            }catch(\Exception $e){
+                return $this->error('Oops! Something went wrong.', null, 500);
+            }
+            
+        }
+    }
+
 }

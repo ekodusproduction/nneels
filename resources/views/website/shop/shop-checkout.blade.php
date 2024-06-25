@@ -222,7 +222,7 @@
 
         // Update the subtotal element with the computed total
         $("#checkout_sub_total").text("$" + sub_total.toFixed(2)); // Ensure two decimal places
-        $("#checkout_total_price").text("$" + total_price);
+        $("#checkout_total_price").text("$" + total_price.toFixed(2));
       });
     </script>
 
