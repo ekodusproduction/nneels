@@ -99,7 +99,7 @@ class OrderController extends Controller
                             'product_id' => $item->product_id,
                             'product_qty' => $item->items_qty,
                             'checkout_session_id' => $checkout_session->id,
-                            'amount' => ($checkout_session->amount_total) / 100,
+                            'amount' => $item->product->sale_price,
                             'currency' => $checkout_session->currency,
                             'payment_status' => $checkout_session->payment_status
                         ]);
