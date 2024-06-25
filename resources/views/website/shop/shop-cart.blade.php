@@ -65,7 +65,7 @@
                         </td>
                         <td>
                             <div class="qty-control position-relative">
-                                <input type="number" name="quantity" value="1" min="1" class="qty-control__number text-center cart-item-qty">
+                                <input type="number" name="quantity" value="{{$item->items_qty}}" min="1" class="qty-control__number text-center cart-item-qty">
                                 <div class="qty-control__reduce">-</div>
                                 <div class="qty-control__increase">+</div>
                             </div>
