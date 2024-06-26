@@ -78,11 +78,22 @@ class OrderController extends Controller
                                 'product_data' => [
                                     'name' => $item->product->name,
                                 ],
-                                'unit_amount' =>  ($item->product->sale_price) * 100, // Amount in cents
+                                'unit_amount' =>   ($item->product->sale_price) * 100, // Amount in cents
                             ],
                             'quantity' => $item->items_qty,
                         ];
                     }
+
+                    $line_items[] = [
+                        'price_data' => [
+                            'currency' => 'usd',
+                            'product_data' => [
+                                'name' => 'Flat Shipping Charge',
+                            ],
+                            'unit_amount' => 1900, // $19 in cents
+                        ],
+                        'quantity' => 1,
+                    ];
 
                     $checkout_session = \Stripe\Checkout\Session::create([
                         'customer_email' => Auth::user()->email, // Add customer email address here
@@ -92,17 +103,22 @@ class OrderController extends Controller
                         'cancel_url' => $YOUR_DOMAIN . '/website/order/cancel-payment',
                         
                     ]);
+
                     foreach($cartItems as $item){
-                        Order::create([
-                            'user_id' => Auth::user()->id,
-                            'customer_email' => Auth::user()->email,
-                            'product_id' => $item->product_id,
-                            'product_qty' => $item->items_qty,
-                            'checkout_session_id' => $checkout_session->id,
-                            'amount' => $item->product->sale_price,
-                            'currency' => $checkout_session->currency,
-                            'payment_status' => $checkout_session->payment_status
-                        ]);
+                        $is_order_already_created = Order::where('product_id', $item->product_id)->where('user_id', Auth::user()->id)->where('payment_status', 'unpaid')->exists();
+                        if(!$is_order_already_created){
+                            Order::create([
+                                'user_id' => Auth::user()->id,
+                                'customer_email' => Auth::user()->email,
+                                'product_id' => $item->product_id,
+                                'product_qty' => $item->items_qty,
+                                'checkout_session_id' => $checkout_session->id,
+                                'amount' => $item->product->sale_price,
+                                'currency' => $checkout_session->currency,
+                                'payment_status' => $checkout_session->payment_status
+                            ]);
+                        }
+                        
                     }
                     
 
@@ -153,23 +169,12 @@ class OrderController extends Controller
 
     protected function handleCheckoutSessionCompleted($session)
     {
-        // Retrieve customer details
-        $customer_email = $session->customer_details->email;
-
-        dd($session);
-
-        // Find the order by session ID or another identifier
-        // $order = Order::where('stripe_session_id', $session->id)->first();
-
-        // if ($order) {
-        //     // Update order status to 'paid'
-        //     $order->status = 'paid';
-        //     // Save customer details
-        //     $order->customer_email = $customer_email;
-        //     // You can save other details as needed
-        //     $order->save();
-        // }
-
-        // Send a confirmation email to the customer, etc.
+        try{
+            Order::where('checkout_session_id', $session->id)->update([
+                'payment_status' => 'paid'
+            ]);
+        }catch(\Exception $e){
+            echo 'Oops! Something went wrong in completing the payment.';
+        }
     }
 }
