@@ -9,6 +9,7 @@ use App\Models\ShippingAdress;
 use App\Traits\AjaxResponser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Stripe\Webhook;
@@ -131,7 +132,6 @@ class OrderController extends Controller
     }
 
     public function handleWebhook(Request $request){
-        Log::info('Webhook called.');
         try{
             
             $endpoint_secret = env('STRIPE_WEBHOOK_SECRET');
@@ -172,20 +172,24 @@ class OrderController extends Controller
 
     protected function handleCheckoutSessionCompleted($session)
     {
-        Log::info('Handling checkout session completed for session: ' . $session->id);
         try{
-            $order = Order::where('checkout_session_id', $session->id)->first();
+            $order = Order::where('checkout_session_id', $session->id)->get();
+            if(!empty($order)){
+                foreach($order as $item){
+                    DB::beginTransaction();
 
-            if ($order) {
-                // Update order status to 'paid'
-                $order->payment_status = 'paid';
-                // You can save other details as needed
-                $order->save();
+                    Order::where('checkout_session_id', $session->id)->update([
+                        'payment_status' => 'paid'
+                    ]);
 
-                Cart::where('product_id', $order->product_id)->delete();
+                    Cart::where('product_id', $item->product_id)->delete();
+
+                    DB::commit();
+                }
             }
         }catch(\Exception $e){
-            echo 'Oops! Something went wrong in completing the payment.';
+            DB::rollBack();
+            Log::info('Something went wrong while updating payment status');
         }
     }
 }

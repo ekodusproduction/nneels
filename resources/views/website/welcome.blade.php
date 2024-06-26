@@ -283,7 +283,10 @@
         const product_id = $(this).data().id;
 
         $(this).text('Please wait...').attr('disabled', true)
-        const cart_item_qty = $('.cart-item-qty').val();
+        let cart_item_qty = $('.cart-item-qty').val();
+        if(cart_item_qty == null || cart_item_qty == 'undefined'){
+          cart_item_qty = 1;
+        }
 
         $.ajax({
           url:"{{route('website.add.to.cart')}}",
