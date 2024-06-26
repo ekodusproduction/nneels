@@ -132,7 +132,6 @@ class OrderController extends Controller
     }
 
     public function handleWebhook(Request $request){
-        Log::info('Webhook called.');
         try{
             
             $endpoint_secret = env('STRIPE_WEBHOOK_SECRET');
@@ -173,7 +172,6 @@ class OrderController extends Controller
 
     protected function handleCheckoutSessionCompleted($session)
     {
-        Log::info('Handling checkout session completed for session: ' . $session->id);
         try{
             $order = Order::where('checkout_session_id', $session->id)->get();
             if(!empty($order)){
@@ -184,7 +182,7 @@ class OrderController extends Controller
                         'payment_status' => 'paid'
                     ]);
 
-                    Cart::where('product_id', $order->product_id)->delete();
+                    Cart::where('product_id', $item->product_id)->delete();
 
                     DB::commit();
                 }
