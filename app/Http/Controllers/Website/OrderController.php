@@ -174,7 +174,7 @@ class OrderController extends Controller
 
             if ($order) {
                 // Update order status to 'paid'
-                $order->status = 'paid';
+                $order->payment_status = 'paid';
                 // You can save other details as needed
                 $order->save();
 
