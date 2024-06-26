@@ -65,9 +65,9 @@
                         </td>
                         <td>
                             <div class="qty-control position-relative">
-                                <input type="number" name="quantity" value="1" min="1" class="qty-control__number text-center cart-item-qty">
-                                <div class="qty-control__reduce">-</div>
-                                <div class="qty-control__increase">+</div>
+                                <input type="number" name="quantity" value="{{$item->items_qty}}" min="1" class="qty-control__number text-center cart-item-qty">
+                                <div class="qty-control__reduce" data-product-id="{{$item->product_id}}">-</div>
+                                <div class="qty-control__increase" data-product-id="{{$item->product_id}}">+</div>
                             </div>
                         </td>
                         <td>
@@ -182,6 +182,29 @@
                 
                 qtyInput.val(parseInt(qtyInput.val()));
                 qtyInput.trigger('change'); // Trigger change event to update subtotal
+
+                const product_id =  $(this).data().productId;
+                const quantity = qtyInput.val();
+
+                $.ajax({
+                    url:"{{route('website.update.cart.items')}}",
+                    type:"POST",
+                    data:{
+                        'product_id' : product_id,
+                        'quantity' : quantity,
+                        '_token' : "{{csrf_token()}}"
+                    },
+                    success:function(data){
+                        if(data.status == 200){
+                            toastr.success(data.message);
+                        }else{
+                            toastr.error(data.message);
+                        }
+                    },error:function(error){
+                        toastr.error('Oops! Something went wrong.');
+                    }
+
+                });
             });
 
             // Event delegation for minus icon
@@ -192,6 +215,29 @@
                 if (currentQty > 0) { // Ensure quantity does not go below 1
                     qtyInput.val(currentQty);
                     qtyInput.trigger('change'); // Trigger change event to update subtotal
+
+                    const product_id =  $(this).data().productId;
+                    const quantity = qtyInput.val();
+
+                    $.ajax({
+                        url:"{{route('website.update.cart.items')}}",
+                        type:"POST",
+                        data:{
+                            'product_id' : product_id,
+                            'quantity' : quantity,
+                            '_token' : "{{csrf_token()}}"
+                        },
+                        success:function(data){
+                            if(data.status == 200){
+                                toastr.success(data.message);
+                            }else{
+                                toastr.error(data.message);
+                            }
+                        },error:function(error){
+                            toastr.error('Oops! Something went wrong.');
+                        }
+
+                    });
                 }
             });
 

@@ -123,10 +123,10 @@
                       @foreach ($cart_details as $item)
                         <tr>
                           <td>
-                            {{$item->product->name}}
+                            {{\Str::limit($item->product->name, 20)}} x <span class="product_qty">{{$item->items_qty}}</span>
                           </td>
                           <td class="sale_price">
-                            ${{$item->product->sale_price}}
+                            ${{($item->product->sale_price * $item->items_qty )}}
                           </td>
                         </tr>
                       @endforeach
@@ -145,7 +145,7 @@
                       </tr>
                       <tr>
                         <th>TOTAL</th>
-                        <td id="checkout_total_price">$81.40</td>
+                        <td id="checkout_total_price"></td>
                       </tr>
                     </tbody>
                   </table>
@@ -222,7 +222,7 @@
 
         // Update the subtotal element with the computed total
         $("#checkout_sub_total").text("$" + sub_total.toFixed(2)); // Ensure two decimal places
-        $("#checkout_total_price").text("$" + total_price);
+        $("#checkout_total_price").text("$" + total_price.toFixed(2));
       });
     </script>
 
