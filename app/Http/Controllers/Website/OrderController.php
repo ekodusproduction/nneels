@@ -9,6 +9,7 @@ use App\Models\ShippingAdress;
 use App\Traits\AjaxResponser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Stripe\Webhook;
 use App\Models\Order;
@@ -130,7 +131,9 @@ class OrderController extends Controller
     }
 
     public function handleWebhook(Request $request){
+        Log::info('Webhook called.');
         try{
+            
             $endpoint_secret = env('STRIPE_WEBHOOK_SECRET');
         
             $payload = $request->getContent();
@@ -169,6 +172,7 @@ class OrderController extends Controller
 
     protected function handleCheckoutSessionCompleted($session)
     {
+        Log::info('Handling checkout session completed for session: ' . $session->id);
         try{
             $order = Order::where('checkout_session_id', $session->id)->first();
 
