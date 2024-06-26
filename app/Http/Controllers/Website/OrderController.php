@@ -170,9 +170,16 @@ class OrderController extends Controller
     protected function handleCheckoutSessionCompleted($session)
     {
         try{
-            Order::where('checkout_session_id', $session->id)->update([
-                'payment_status' => 'paid'
-            ]);
+            $order = Order::where('checkout_session_id', $session->id)->first();
+
+            if ($order) {
+                // Update order status to 'paid'
+                $order->status = 'paid';
+                // You can save other details as needed
+                $order->save();
+
+                Cart::where('product_id', $order->product_id)->delete();
+            }
         }catch(\Exception $e){
             echo 'Oops! Something went wrong in completing the payment.';
         }
