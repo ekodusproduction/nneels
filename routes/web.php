@@ -28,6 +28,8 @@ Route::get('/', function () {
     return view('website.home.home');
 })->name('website.home');
 
+Route::post('stripe-order-complete-webhook', [OrderController::class, 'handleWebhook'])->name('website.handle.stripe.webhook');
+
 Route::group(['prefix' => 'website'], function(){
 
     Route::group(['prefix' => 'auth'], function(){
@@ -81,10 +83,5 @@ Route::group(['prefix' => 'website'], function(){
             });
         });
     });
-
-    Route::post('stripe-order-complete-webhook', [OrderController::class, 'handleWebhook'])->name('website.handle.stripe.webhook');
-
-
-    
 });
 
