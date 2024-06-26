@@ -50,6 +50,10 @@ Route::group(['prefix' => 'website'], function(){
 
     Route::get('search-product', [SearchController::class, 'getSearchResult'])->name('website.search.product');
 
+    Route::group(['prefix' => 'order'], function(){
+        Route::post('stripe-order-complete-webhook', [OrderController::class, 'handleWebhook'])->name('website.handle.stripe.webhook');
+    });
+
     Route::group(['middleware' => 'auth'], function(){
         Route::group(['prefix' => 'account'], function(){
             Route::get('signin-signup', [AccountController::class, 'signinSignup'])->name('website.account.signin.signup.page');
