@@ -63,14 +63,14 @@
             <div class="footer-column footer-menu mb-4 mb-lg-0">
                 <h6 class="sub-menu__title text-uppercase">Shop</h6>
                 <ul class="sub-menu__list list-unstyled">
-                    <li class="sub-menu__item"><a href="shop2.html" class="menu-link menu-link_us-s">Sleepware</a>
+                    <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Sleepware</a>
                     </li>
-                    <li class="sub-menu__item"><a href="shop3.html" class="menu-link menu-link_us-s">Womensware</a>
+                    <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Womensware</a>
                     </li>
-                    <li class="sub-menu__item"><a href="shop4.html" class="menu-link menu-link_us-s">Mens</a></li>
-                    <li class="sub-menu__item"><a href="shop5.html" class="menu-link menu-link_us-s">Kids</a></li>
-                    <li class="sub-menu__item"><a href="shop5.html" class="menu-link menu-link_us-s">Accessories</a></li>
-                    <li class="sub-menu__item"><a href="shop5.html" class="menu-link menu-link_us-s">Homeware</a></li>
+                    <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Mens</a></li>
+                    <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Kids</a></li>
+                    <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Accessories</a></li>
+                    <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Homeware</a></li>
                     <li class="sub-menu__item"><a href="{{route('website.nav.shop.index')}}" class="menu-link menu-link_us-s">Shop All</a></li>
                 </ul>
             </div><!-- /.footer-column -->
@@ -98,7 +98,10 @@
                         <a href="terms.html" class="menu-link menu-link_us-s">Terms & Conditions</a>
                     </li>
                     <li class="sub-menu__item">
-                        <a href="{{route('website.nav.contact.index')}}" class="menu-link menu-link_us-s">Privacy Policy</a>
+                        <a href="{{route('website.privacy.ploicy')}}" class="menu-link menu-link_us-s">Privacy Policy</a>
+                    </li>
+                    <li class="sub-menu__item">
+                        <a href="{{route('website.return.ploicy')}}" class="menu-link menu-link_us-s">Return Policy</a>
                     </li>
                 </ul>
             </div><!-- /.footer-column -->
