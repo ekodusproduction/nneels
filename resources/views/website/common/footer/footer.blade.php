@@ -95,13 +95,13 @@
                     @endguest
                     
                     <li class="sub-menu__item">
-                        <a href="terms.html" class="menu-link menu-link_us-s">Terms & Conditions</a>
+                        <a href="{{route('website.shipping.policy')}}" target="_blank" class="menu-link menu-link_us-s">Shipping Terms and Conditions</a>
                     </li>
                     <li class="sub-menu__item">
-                        <a href="{{route('website.privacy.ploicy')}}" class="menu-link menu-link_us-s">Privacy Policy</a>
+                        <a href="{{route('website.privacy.policy')}}" target="_blank" class="menu-link menu-link_us-s">Privacy Policy</a>
                     </li>
                     <li class="sub-menu__item">
-                        <a href="{{route('website.return.ploicy')}}" class="menu-link menu-link_us-s">Return Policy</a>
+                        <a href="{{route('website.return.policy')}}" target="_blank" class="menu-link menu-link_us-s">Return Policy</a>
                     </li>
                 </ul>
             </div><!-- /.footer-column -->

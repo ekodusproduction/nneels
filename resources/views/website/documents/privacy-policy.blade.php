@@ -3,19 +3,19 @@
 
 @section('custom-styles')
     <style>
-        p{
+        .privacy p{
             font-size:16px;
             padding-top:5px;
             margin-bottom:5px;
             color:rgb(71, 71, 71);
         }
-        a{
+        .privacy a{
             color:blue;
         }
-        ul{
+        .privacy ul{
             list-style-type: lower-roman;
         }
-        ul li{
+        .privacy ul li{
             font-size:18px;
         }
     </style>
@@ -30,7 +30,7 @@
 
     <hr class="mx-5">
 
-    <section class="contact-us container">
+    <section class="privacy container">
         <p>
             [Nneel’s LLC] ("we", "our", or "us") is committed to protecting the privacy and security of your personal information. 
             This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website 

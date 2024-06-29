@@ -3,13 +3,13 @@
 
 @section('custom-styles')
     <style>
-        p{
+        .return p{
             font-size:18px;
         }
-        a{
+        .return a{
             color:blue;
         }
-        ul li{
+        .return ul li{
             font-size:16px;
         }
     </style>
@@ -24,7 +24,7 @@
 
     <hr class="mx-5">
 
-    <section class="contact-us container">
+    <section class="return container">
         <p>
             At our store, we always make sure that our products are of good quality and are carefully inspected before shipping.
             If you do receive a defective product, don't worry, we have a very easy return process. We apologize for any inconvenience
