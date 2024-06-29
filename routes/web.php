@@ -83,5 +83,17 @@ Route::group(['prefix' => 'website'], function(){
             });
         });
     });
+
+    Route::get('return-policy', function(){
+        return view('website.documents.return-policy');
+    })->name('website.return.policy');
+
+    Route::get('privacy-policy', function(){
+        return view('website.documents.privacy-policy');
+    })->name('website.privacy.policy');
+
+    Route::get('shipping-policy', function(){
+        return view('website.documents.shipping-policy');
+    })->name('website.shipping.policy');
 });
 
