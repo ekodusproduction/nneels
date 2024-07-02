@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\ShippingAdress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -22,7 +23,8 @@ class AccountController extends Controller
     }
 
     public function myAddress(){
-        return view('website.account.address.myaddress');
+        $shipping_address = ShippingAdress::where('user_id', Auth::user()->id)->first();
+        return view('website.account.address.myaddress')->with(['shipping_address' => $shipping_address]);
     }
 
     public function accountDetails(){
