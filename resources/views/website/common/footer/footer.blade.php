@@ -1,16 +1,8 @@
-<footer class="footer footer_type_2 dark">
-    {{-- <div class="footer-top container">
-        <div class="block-newsletter dark">
-            <h3 class="block__title">Get 10% Off</h3>
-            <p>Be the first to get the latest news about trends, promotions, and much more!</p>
-            <form action="https://Nneels-html.flexkitux.com/Demo2/index.html" class="block-newsletter__form">
-                <input class="form-control" type="email" name="email" placeholder="Your email address">
-                <button class="btn btn-secondary fw-medium" type="submit">JOIN</button>
-            </form>
-        </div>
-    </div> --}}
-    <!-- /.footer-top container -->
+@php
+    $category = App\Models\Category::where('status', 1)->get();
+@endphp
 
+<footer class="footer footer_type_2 dark">
     <div class="footer-middle container">
         <div class="row row-cols-lg-5 row-cols-2">
             <div class="footer-column footer-store-info col-12 mb-4 mb-lg-0">
@@ -51,40 +43,11 @@
             <div class="footer-column footer-menu mb-4 mb-lg-0">
                 <h6 class="sub-menu__title text-uppercase">Quick Links</h6>
                 <ul class="sub-menu__list list-unstyled">
-                    <li class="sub-menu__item"><a href="{{route('website.nav.about.index')}}" class="menu-link menu-link_us-s">About Us</a></li>
-                    {{-- <li class="sub-menu__item"><a href="about.html" class="menu-link menu-link_us-s">Careers</a></li>
-                    <li class="sub-menu__item"><a href="about.html" class="menu-link menu-link_us-s">Affiliates</a></li> --}}
-                    {{-- <li class="sub-menu__item"><a href="{{route('website.nav.blog.index')}}" class="menu-link menu-link_us-s">Blog</a></li> --}}
-                    <li class="sub-menu__item"><a href="{{route('website.nav.contact.index')}}" class="menu-link menu-link_us-s">Contact Us</a>
-                    </li>
-                </ul>
-            </div><!-- /.footer-column -->
-
-            <div class="footer-column footer-menu mb-4 mb-lg-0">
-                <h6 class="sub-menu__title text-uppercase">Shop</h6>
-                <ul class="sub-menu__list list-unstyled">
-                    <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Sleepware</a>
-                    </li>
-                    <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Womensware</a>
-                    </li>
-                    <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Mens</a></li>
-                    <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Kids</a></li>
-                    <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Accessories</a></li>
-                    <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Homeware</a></li>
-                    <li class="sub-menu__item"><a href="{{route('website.nav.shop.index')}}" class="menu-link menu-link_us-s">Shop All</a></li>
-                </ul>
-            </div><!-- /.footer-column -->
-
-            <div class="footer-column footer-menu mb-4 mb-lg-0">
-                <h6 class="sub-menu__title text-uppercase">Help</h6>
-                <ul class="sub-menu__list list-unstyled">
-                    <li class="sub-menu__item">
-                        <a href="about.html" class="menu-link menu-link_us-s">Customer Service</a>
-                    </li>
-                    
+                    <li class="sub-menu__item"><a href="{{route('website.nav.about.index')}}" target="_blank" class="menu-link menu-link_us-s">About Us</a></li>
+                    <li class="sub-menu__item"><a href="{{route('website.nav.contact.index')}}" target="_blank" class="menu-link menu-link_us-s">Contact Us</a></li>
                     @auth
                         <li class="sub-menu__item">
-                            <a href="{{route('website.account.myaccount')}}" class="menu-link menu-link_us-s">My Account</a>
+                            <a href="{{route('website.account.myaccount')}}" target="_blank" class="menu-link menu-link_us-s">My Account</a>
                         </li>
                     @endauth
 
@@ -93,7 +56,21 @@
                             <a href="#" data-aside="customerForms" style="color:white;" class="menu-link menu-link_us-s js-open-aside">Login</a>
                         </li>
                     @endguest
-                    
+                </ul>
+            </div><!-- /.footer-column -->
+
+            <div class="footer-column footer-menu mb-4 mb-lg-0">
+                <h6 class="sub-menu__title text-uppercase">Categories</h6>
+                <ul class="sub-menu__list list-unstyled">
+                    @foreach ($category as $item)
+                        <li class="sub-menu__item"><a href="{{route('website.get.product.by.category', ['main_category' => urlencode($item->name)])}}" class="menu-link menu-link_us-s">{{$item->name}}</a></li>
+                    @endforeach
+                </ul>
+            </div><!-- /.footer-column -->
+
+            <div class="footer-column footer-menu mb-4 mb-lg-0">
+                <h6 class="sub-menu__title text-uppercase">Policies</h6>
+                <ul class="sub-menu__list list-unstyled">
                     <li class="sub-menu__item">
                         <a href="{{route('website.shipping.policy')}}" target="_blank" class="menu-link menu-link_us-s">Shipping Terms and Conditions</a>
                     </li>
@@ -109,17 +86,6 @@
             <div class="footer-column mb-4 mb-lg-0 nneels-instagram-feed">
                 <h6 class="sub-menu__title text-uppercase">Nneel's Instagran Feed</h6>
                 <iframe src="https://widget.taggbox.com/151264" style="width:250px;height:250px;border:none;"></iframe>
-
-
-                {{-- <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-                <div class="elfsight-app-85849fa5-87c0-4536-af1a-195143549e2b" data-elfsight-app-lazy></div> --}}
-
-                
-                {{-- <ul class="list-unstyled">
-                    <li><span class="menu-link">Mon - Fri: 8AM - 9PM</span></li>
-                    <li><span class="menu-link">Sat: 9AM - 8PM</span></li>
-                    <li><span class="menu-link">Sun: Closed</span></li>
-                </ul> --}}
             </div><!-- /.footer-column -->
         </div><!-- /.row-cols-5 -->
     </div><!-- /.footer-middle container -->
