@@ -16,20 +16,15 @@
                         <img loading="lazy" class="cart-drawer-item__img" src="{{asset($item->product->main_image)}}" alt="">
                     </div>
                     <div class="cart-drawer-item__info flex-grow-1">
-                        <h6 class="cart-drawer-item__title fw-normal">{{\Str::limit($item->product->name, 20)}}</h6>
-                        <p class="cart-drawer-item__option text-secondary">Size: {{\Str::limit($item->product->size, 10)}}</p>
+                        <h6 class="cart-drawer-item__title fw-normal">{{\Str::limit($item->product->name, 40)}}</h6>
+                        <p class="cart-drawer-item__option text-secondary">Size: {{\Str::limit($item->product->size, 20)}}</p>
                         <div class="d-flex align-items-center justify-content-between mt-1">
-                            {{-- <div class="qty-control position-relative">
-                                <input type="number" name="quantity" value="1" min="1"
-                                    class="qty-control__number border-0 text-center">
-                                <div class="qty-control__reduce text-start">-</div>
-                                <div class="qty-control__increase text-end">+</div>
-                            </div> --}}
-                            <span class="cart-drawer-item__price money price">${{$item->product->sale_price}}</span>
+                            <p class="cart-drawer-item__option text-secondary">Qty x {{$item->items_qty}}</p>
+                            <span class="cart-drawer-item__price money price">${{$item->product->sale_price * $item->items_qty}}</span>
                         </div>
                     </div>
 
-                    <button class="btn-close-xs position-absolute top-0 end-0 js-cart-item-remove remv-cart-btn" data-id="{{$item->product_id}}"></button>
+                    {{-- <button class="btn-close-xs position-absolute top-0 end-0 js-cart-item-remove remv-cart-btn" data-id="{{$item->product_id}}"></button> --}}
                 </div>
                 <hr class="cart-drawer-divider">
             @empty
@@ -43,11 +38,6 @@
 
         @if (count($cart_items) > 0)
             <div class="cart-drawer-actions position-absolute start-0 bottom-0 w-100">
-                {{-- <hr class="cart-drawer-divider">
-                <div class="d-flex justify-content-between">
-                    <h6 class="fs-base fw-medium">SUBTOTAL:</h6>
-                    <span class="cart-subtotal fw-medium">$0</span>
-                </div> --}}
                 <a href="{{route('website.get.cart.items')}}" class="btn btn-light mt-3 d-block">View Cart</a>
                 <a href="{{route('website.get.checkout.page')}}" class="btn btn-primary mt-3 d-block">Checkout</a>
             </div>

@@ -71,7 +71,7 @@
                             </div>
                         </td>
                         <td>
-                            <span class="shopping-cart__subtotal">$297</span>
+                            <span class="shopping-cart__subtotal"></span>
                         </td>
                         <td>
                             <a href="#" class="remove-cart remv-cart-btn" data-id="{{$item->product_id}}">
