@@ -36,9 +36,14 @@
                             <a href="#">Edit</a>
                         </div>
                         <div class="my-account__address-item__detail">
-                            <p>{{$shipping_address->fullname}}</p>
-                            <p>{{$shipping_address->address_1}}, {{$shipping_address->address_2}}, {{$shipping_address->province}}, {{$shipping_address->zip_code}}</p>
-                            <p>{{$shipping_address->town_or_city}}, {{$shipping_address->country}}</p>
+                            @if ($shipping_address != null)
+                                <p>{{$shipping_address->fullname ?? ''}}</p>
+                                <p>{{$shipping_address->address_1 ?? ''}}, {{$shipping_address->address_2 ?? ''}}, {{$shipping_address->province ?? ''}}, {{$shipping_address->zip_code ?? ''}}</p>
+                                <p>{{$shipping_address->town_or_city ?? ''}}, {{$shipping_address->country ?? ''}}</p>
+                            @else
+                                <h6>Oops! No Address Found.</h6>
+                            @endif
+                            
                         </div>
                     </div>
                 </div>
