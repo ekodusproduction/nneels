@@ -76,8 +76,7 @@
         <div class="body">
             <h2 class="title mt-5 mb-5" style="color: #3cdb04 !important; font-weight: 600 !important;">Payment Successful</h2>
             <img class="main-img" src="https://img.freepik.com/free-vector/concept-landing-page-credit-card-payment_52683-25532.jpg?t=st=1718706722~exp=1718710322~hmac=8513ab49088a7e15df823d30356ddd149356acb8fff0eae67b6c43d35a20336c&w=900" alt="">
-            <p>Your payment was successful! You can <br>
-                now continue using NNEELS.</p>
+            <p>Enjoying Nneels!</p>
             <a href="/" class="btn btn-primary">Continue Shopping</a>
         </div>
     </div>

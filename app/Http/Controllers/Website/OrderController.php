@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Stripe\Webhook;
 use App\Models\Order;
+use Illuminate\Support\Str;
 use Stripe\Event;
 
 class OrderController extends Controller
@@ -110,6 +111,7 @@ class OrderController extends Controller
                         $is_order_already_created = Order::where('product_id', $item->product_id)->where('user_id', Auth::user()->id)->where('payment_status', 'unpaid')->exists();
                         if(!$is_order_already_created){
                             Order::create([
+                                'order_id' => Str::uuid(),
                                 'user_id' => Auth::user()->id,
                                 'customer_email' => Auth::user()->email,
                                 'product_id' => $item->product_id,

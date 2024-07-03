@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\ShippingAdress;
 use App\Models\User;
 use App\Traits\AjaxResponser;
@@ -24,7 +25,8 @@ class AccountController extends Controller
     }
 
     public function myOrders(){
-        return view('website.account.orders.myorders');
+        $orders = Order::with('product')->where('user_id', Auth::user()->id)->get();
+        return view('website.account.orders.myorders')->with(['orders' => $orders]);
     }
 
     public function myAddress(){
