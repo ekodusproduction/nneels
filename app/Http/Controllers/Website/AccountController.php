@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use App\Models\ShippingAdress;
+use App\Models\User;
 use App\Traits\AjaxResponser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -71,12 +73,50 @@ class AccountController extends Controller
         
     }
 
-    public function accountDetails(){
-        return view('website.account.details.details');
+    public function accountDetails(Request $request){
+        if($request->isMethod('get')){
+            return view('website.account.details.details');
+        }else{
+            try{
+                User::where('id', Auth::user()->id)->update([
+                    'name' => $request->full_name,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                ]);
+                return $this->success('Great! Account details updated successfully', null, 200);
+            }catch(\Exception $e){
+                return $this->error('Oops! Something went wrong', null, 500);
+            }
+        }
+        
     }
 
     public function wishlist(){
         return view('website.account.wishlist.wishlist');
+    }
+
+    public function updatePassword(Request $request){
+        $validator = Validator::make($request->all(), [
+            'current_password' => 'required',
+            'new_password' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return $this->error('Oops! '.$validator->errors()->first(), null, 400);
+        }else{
+            try{
+                if(!Hash::check($request->current_password, Auth::user()->password)){
+                    return $this->error('Oops! Invalid current password', null, 400);
+                }else{
+                    User::where('id', Auth::user()->id)->update([
+                        'password' => Hash::make($request->new_password)
+                    ]);
+                    return $this->success('Great! Password updated successfully', null, 200);
+                }
+            }catch(\Exception $e){
+                return $this->error('Oops! Something went wrong', null, 500);
+            }
+        }
     }
 
     public function logout(){
