@@ -58,9 +58,12 @@ Route::group(['prefix' => 'website'], function(){
             Route::get('my-account', [AccountController::class, 'myAccount'])->name('website.account.myaccount');
             Route::get('my-orders', [AccountController::class, 'myOrders'])->name('website.account.myorders');
             Route::get('my-address', [AccountController::class, 'myAddress'])->name('website.account.myAddress');
-            Route::get('details', [AccountController::class, 'accountDetails'])->name('website.account.details');
+            Route::match(['get', 'post'],'edit-address', [AccountController::class, 'editAddress'])->name('website.account.edit.address');
+            Route::match(['get', 'post'], 'details', [AccountController::class, 'accountDetails'])->name('website.account.details');
             Route::get('wishlist', [AccountController::class, 'wishlist'])->name('website.account.wishlist');
+            Route::post('update-password', [AccountController::class, 'updatePassword'])->name('website.account.update.password');
             Route::get('logout', [AccountController::class, 'logout'])->name('website.account.logout');
+            
         });
     
         Route::group(['prefix' => 'cart' ], function(){
