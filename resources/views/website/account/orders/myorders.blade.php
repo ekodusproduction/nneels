@@ -11,7 +11,9 @@
       font-weight: 500;
     }
     tr td{
+      width:30px;
       font-size:14px;
+      text-wrap:pretty;
     }
   </style>
 @endsection
@@ -87,7 +89,7 @@
                 @endphp
                 <tr>
                     <td>{{$key + 1}}</td>
-                    <td>{{\Str::limit($item->order_id, 20)}}</td>
+                    <td>{{$item->order_id}}</td>
                     <td>{{\Str::limit($item->product->name, 20)}}</td>
                     <td>{{$item->product_qty}}</td>
                     <td>${{$item->amount}}</td>
