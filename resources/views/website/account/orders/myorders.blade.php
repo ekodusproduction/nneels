@@ -2,6 +2,18 @@
 @section('title', 'My Orders')
 
 @section('custom-styles')
+  <style>
+    #orderTable_wrapper{
+      padding-bottom:10px;
+    }
+    tr th{
+      font-size:14px !important;
+      font-weight: 500;
+    }
+    tr td{
+      font-size:14px;
+    }
+  </style>
 @endsection
 
 @section('content')
@@ -14,7 +26,7 @@
     </div>
     <div class="col-lg-10">
       <div class="page-content my-account__orders-list">
-        <table class="orders-table">
+        {{-- <table class="orders-table">
           <thead>
             <tr>
               <th>Order</th>
@@ -54,6 +66,47 @@
               <td><button class="btn btn-primary">VIEW</button></td>
             </tr>
           </tbody>
+        </table> --}}
+        <table id="orderTable" class="table table-striped" style="width:100%">
+          <thead>
+              <tr>
+                  <th>Sl.No.</th>
+                  <th>Order Id</th>
+                  <th>Item</th>
+                  <th>Qty</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Purchase Date</th>
+                  <th>Action</th>
+              </tr>
+          </thead>
+          <tbody>
+              @forelse ($orders as $key => $item)
+                <tr>
+                    <td>{{$key + 1}}</td>
+                    <td>{{\Str::limit($item->order_id, 20)}}</td>
+                    <td>{{\Str::limit($item->product->name, 20)}}</td>
+                    <td>{{$item->product_qty}}</td>
+                    <td>${{$item->amount}}</td>
+                    <td>
+                      @if ($item->payment_status == 'paid')
+                          <h6 style="color:green;">PAID</h6>
+                      @else
+                        <h6 style="color:crimson;">Pending</h6>
+                      @endif
+                    </td>
+                    <td>{{\Carbon\Carbon::parse($item->created)->diffForHumans()}}</td>
+                    <td>
+                      <a href="">View Product</a>
+                    </td>
+                </tr>
+              @empty
+                  <tr>
+                    <td>Oops! Orders Found.</td>
+                  </tr>
+              @endforelse
+              
+          </tbody>
         </table>
       </div>
     </div>
@@ -63,4 +116,7 @@
 @endsection
 
 @section('custom-scripts')
+  <script>
+    $('#orderTable').DataTable();
+  </script>
 @endsection
