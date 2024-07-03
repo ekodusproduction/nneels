@@ -67,7 +67,7 @@
             </tr>
           </tbody>
         </table> --}}
-        <table id="orderTable" class="table table-striped" style="width:100%">
+        <table id="orderTable" class="table table-striped wrap" style="width:100%">
           <thead>
               <tr>
                   <th>Sl.No.</th>
@@ -82,6 +82,9 @@
           </thead>
           <tbody>
               @forelse ($orders as $key => $item)
+                @php
+                    $product = \App\Models\Product::where('product_id', $item->product_id)->first();
+                @endphp
                 <tr>
                     <td>{{$key + 1}}</td>
                     <td>{{\Str::limit($item->order_id, 20)}}</td>
@@ -97,7 +100,7 @@
                     </td>
                     <td>{{\Carbon\Carbon::parse($item->created)->diffForHumans()}}</td>
                     <td>
-                      <a href="">View Product</a>
+                      <a href="{{route('website.get.product.by.category', ['main_category' => urlencode($product->category->name), 'sub_category' => urlencode($product->subCategory->name), 'product_id' => $item->product_id])}}">View Product</a>
                     </td>
                 </tr>
               @empty
