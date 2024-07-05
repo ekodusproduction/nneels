@@ -18,14 +18,14 @@
         <!-- Dashboard -->
         <li class="menu-item {{Request::segment(2) == 'dashboard' ? 'active' : ''}}">
             <a href="{{route('admin.dashboard')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <i class="menu-icon tf-icons bx bx-grid-alt"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
 
         <li class="menu-item {{Request::segment(2) == 'banner' ? 'active' : ''}}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-carousel"></i>
+                <i class="menu-icon tf-icons bx bx-photo-album"></i>
                 <div data-i18n="product">Banner</div>
             </a>
 
@@ -40,7 +40,7 @@
         
         <li class="menu-item {{Request::segment(2) == 'products' ? 'active' : ''}}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+                <i class="menu-icon tf-icons bx bx-shopping-bag"></i>
                 <div data-i18n="product">Products</div>
             </a>
 
@@ -81,6 +81,51 @@
                     </a>
                 </li>
             </ul>
+        </li>
+
+        <li class="menu-item {{Request::segment(2) == 'products' ? 'active' : ''}}">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-package"></i>
+                <div data-i18n="product">Orders</div>
+            </a>
+
+            {{-- <ul class="menu-sub">
+                <li class="menu-item {{Request::segment(3) == 'category' ? 'active' : ''}}">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bxl-dropbox"></i>
+                        <div data-i18n="product">Category</div>
+                    </a>
+
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="{{ route('admin.category') }}" class="menu-link">
+                                <div data-i18n="Without navbar">Main Category</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{route('admin.fetch.sub.category')}}" class="menu-link">
+                                <div data-i18n="Without navbar">Sub Category</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{route('admin.top.category')}}" class="menu-link">
+                                <div data-i18n="Without navbar">List Top Categories</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="menu-item {{Request::segment(3) == 'create' ? 'active' : ''}}">
+                    <a href="{{ route('admin.create.product') }}" class="menu-link">
+                        <div data-i18n="Container">Create Product</div>
+                    </a>
+                </li>
+                <li class="menu-item {{Request::segment(3) == 'view' ? 'active' : ''}}">
+                    <a href="{{ route('admin.view.product.list') }}" class="menu-link">
+                        <div data-i18n="Fluid">All Products</div>
+                    </a>
+                </li>
+            </ul> --}}
         </li>
     </ul>
 </aside>
