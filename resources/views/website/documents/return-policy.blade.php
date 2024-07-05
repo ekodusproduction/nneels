@@ -3,14 +3,21 @@
 
 @section('custom-styles')
     <style>
+        .return h5{
+            margin-top:25px;
+        }
         .return p{
             font-size:18px;
+            text-align: justify;
+            color:rgb(71, 71, 71);
         }
         .return a{
             color:blue;
         }
         .return ul li{
+            text-align: justify;
             font-size:16px;
+            color:rgb(71, 71, 71);
         }
     </style>
 @endsection
@@ -46,7 +53,7 @@
             </li>
         </ul>
         <h5>Can I return or cancel my order if it is not a quality issue?</h5>
-        <p class="mx-3">Order Changes and Cancellations:</p>
+        <p class="mx-3 mb-1">Order Changes and Cancellations:</p>
         <ul>
             <li>
                 Once an order has been placed, it may not be possible to make changes or cancellations. 
