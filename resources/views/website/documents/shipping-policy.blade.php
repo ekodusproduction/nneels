@@ -3,11 +3,17 @@
 
 @section('custom-styles')
     <style>
+        .shipping h5{
+            margin-top:25px;
+        }
         .shipping p{
             font-size:16px;
-            padding-top:5px;
             margin-bottom:5px;
             color:rgb(71, 71, 71);
+            text-align: justify;
+        }
+        .shipping p span{
+            font-weight:500; 
         }
         .shipping a{
             color:blue;
@@ -38,8 +44,8 @@
         </p>
         <h5>Shipping Costs</h5>
         <p>
-            We offer free shipping over $195 domestically (United States), flat rate shipping of $14 on orders between 
-            $75-$195 and $12 on orders less than $75. Expedited shipping is available. 
+            We offer free shipping over <span>$195</span> domestically (United States), flat rate shipping of <span>$14</span> on orders between 
+            <span>$75 - $195</span> and <span>$12</span> on orders less than <span>$75</span>.
         </p>
         <h5>Estimated Delivery Time:</h5>
         <p>

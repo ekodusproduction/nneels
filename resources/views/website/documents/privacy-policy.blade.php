@@ -5,9 +5,9 @@
     <style>
         .privacy p{
             font-size:16px;
-            padding-top:5px;
-            margin-bottom:5px;
             color:rgb(71, 71, 71);
+            text-align: justify;
+            margin-bottom:2px;
         }
         .privacy a{
             color:blue;
@@ -17,6 +17,8 @@
         }
         .privacy ul li{
             font-size:18px;
+            text-align: justify;
+            margin-top:25px;
         }
     </style>
 @endsection
@@ -114,7 +116,7 @@
                 </p>
             </li>
         </ul>
-        <h6>Last Updated: [May 2024]</h6>
+        <h6 style="color:blue;">Last Updated: [May 2024]</h6>
     </section>
 
     <div class="mb-5 pb-xl-5"></div>
