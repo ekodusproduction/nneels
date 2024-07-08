@@ -74,11 +74,12 @@
               <tr>
                   <th>Sl.No.</th>
                   <th>Order Id</th>
-                  <th>Item</th>
+                  <th>Name</th>
+                  <th>Price</th>
                   <th>Qty</th>
-                  <th>Amount</th>
+                  <th>Total Price</th>
                   <th>Status</th>
-                  <th>Purchase Date</th>
+                  <th>D.O.P</th>
                   <th>Action</th>
               </tr>
           </thead>
@@ -91,8 +92,9 @@
                     <td>{{$key + 1}}</td>
                     <td>{{$item->order_id}}</td>
                     <td>{{\Str::limit($item->product->name, 20)}}</td>
+                    <td>{{$item->product->sale_price}}</td>
                     <td>{{$item->product_qty}}</td>
-                    <td>${{$item->amount}}</td>
+                    <td>${{$item->amount * $item->product_qty}}</td>
                     <td>
                       @if ($item->payment_status == 'paid')
                           <h6 style="color:green;">PAID</h6>
@@ -102,7 +104,7 @@
                     </td>
                     <td>{{\Carbon\Carbon::parse($item->created)->diffForHumans()}}</td>
                     <td>
-                      <a href="{{route('website.account.track.order', ['id' => encrypt($item->order_id) ])}}">Track Order</a>
+                      <a href="{{route('website.account.track.order', ['id' => encrypt($item->order_id) ])}}" style="color:blue;">Track Order</a>
                       <a href="{{route('website.get.product.by.category', ['main_category' => urlencode($product->category->name), 'sub_category' => urlencode($product->subCategory->name), 'product_id' => $item->product_id])}}">View Product</a>
                     </td>
                 </tr>
