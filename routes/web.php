@@ -57,6 +57,7 @@ Route::group(['prefix' => 'website'], function(){
             Route::get('signin-signup', [AccountController::class, 'signinSignup'])->name('website.account.signin.signup.page');
             Route::get('my-account', [AccountController::class, 'myAccount'])->name('website.account.myaccount');
             Route::get('my-orders', [AccountController::class, 'myOrders'])->name('website.account.myorders');
+            Route::get('track-order/{id}', [AccountController::class, 'trackOrder'])->name('website.account.track.order');
             Route::get('my-address', [AccountController::class, 'myAddress'])->name('website.account.myAddress');
             Route::match(['get', 'post'],'edit-address', [AccountController::class, 'editAddress'])->name('website.account.edit.address');
             Route::match(['get', 'post'], 'details', [AccountController::class, 'accountDetails'])->name('website.account.details');

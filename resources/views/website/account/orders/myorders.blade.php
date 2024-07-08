@@ -102,6 +102,7 @@
                     </td>
                     <td>{{\Carbon\Carbon::parse($item->created)->diffForHumans()}}</td>
                     <td>
+                      <a href="{{route('website.account.track.order', ['id' => encrypt($item->order_id) ])}}">Track Order</a>
                       <a href="{{route('website.get.product.by.category', ['main_category' => urlencode($product->category->name), 'sub_category' => urlencode($product->subCategory->name), 'product_id' => $item->product_id])}}">View Product</a>
                     </td>
                 </tr>

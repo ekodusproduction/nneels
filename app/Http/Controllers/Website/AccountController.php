@@ -29,6 +29,10 @@ class AccountController extends Controller
         return view('website.account.orders.myorders')->with(['orders' => $orders]);
     }
 
+    public function trackOrder(Request $request, $id){
+        return view('website.account.orders.track-order');
+    }
+
     public function myAddress(){
         $shipping_address = ShippingAdress::where('user_id', Auth::user()->id)->first();
         return view('website.account.address.myaddress')->with(['shipping_address' => $shipping_address]);
