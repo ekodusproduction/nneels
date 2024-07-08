@@ -142,51 +142,107 @@
             <div class="order-track">
               <div class="order-track-step">
                 <div class="order-track-status">
-                  <span class="order-track-status-dot">
-                    <i class="fa fa-check text-white"></i>
-                  </span>
-                  <span class="order-track-status-line"></span>
+                    @if ($product_details->payment_status == 'unpaid')
+                        <span class="order-track-status-dot-pending">
+                            <i class="fa fa-exclamation-circle" style="color:yellow;"></i>
+                        </span>
+                        <span class="order-track-status-line-pending"></span>
+                    @else
+                        <span class="order-track-status-dot">
+                            <i class="fa fa-check text-white"></i>
+                        </span>
+                        <span class="order-track-status-line"></span>
+                    @endif
                 </div>
                 <div class="order-track-text">
-                  <p class="order-track-text-stat">Order Received</p>
-                  <span class="order-track-text-sub">21st November, 2019</span>
+                    @if ($product_details->payment_status == 'unpaid')
+                        <p class="order-track-text-stat">Order Payment Pending</p>
+                        <span class="order-track-text-sub">Last updated : {{\Carbon\Carbon::parse($product_details->updated_at)->format('d F, Y')}}</span>
+                    @else
+                        <p class="order-track-text-stat">Order Received</p>
+                        <span class="order-track-text-sub">Last updated : {{\Carbon\Carbon::parse($product_details->updated_at)->format('d F, Y')}}</span>
+                    @endif
+                    
                 </div>
+                
               </div>
               <div class="order-track-step">
-                <div class="order-track-status">
-                  <span class="order-track-status-dot-pending">
-                    <i class="fa fa-exclamation-circle" style="color:yellow;"></i>
-                  </span>
-                  <span class="order-track-status-line-pending"></span>
-                </div>
-                <div class="order-track-text">
-                  <p class="order-track-text-stat">Order Processed</p>
-                  <span class="order-track-text-sub">21st November, 2019</span>
-                </div>
+                @if ($product_details->is_order_processed != 0)
+                    <div class="order-track-status">
+                        <span class="order-track-status-dot">
+                        <i class="fa fa-check text-white"></i>
+                        </span>
+                        <span class="order-track-status-line"></span>
+                    </div>
+                    <div class="order-track-text">
+                        <p class="order-track-text-stat">Order Processed</p>
+                        <span class="order-track-text-sub">Last updated : {{\Carbon\Carbon::parse($product_details->updated_at)->format('d F, Y')}}</span>
+                    </div>
+                @else
+                    <div class="order-track-status">
+                        <span class="order-track-status-dot-pending">
+                        <i class="fa fa-exclamation-circle" style="color:yellow;"></i>
+                        </span>
+                        <span class="order-track-status-line-pending"></span>
+                    </div>
+                    <div class="order-track-text">
+                        <p class="order-track-text-stat">Order Processed</p>
+                        <span class="order-track-text-sub">- - - - -</span>
+                    </div>
+                @endif
+                
               </div>
               <div class="order-track-step">
-                <div class="order-track-status">
-                  <span class="order-track-status-dot-pending">
-                    <i class="fa fa-exclamation-circle" style="color:yellow;"></i>
-                  </span>
-                  <span class="order-track-status-line-pending"></span>
-                </div>
-                <div class="order-track-text">
-                  <p class="order-track-text-stat">Order Dispatched</p>
-                  <span class="order-track-text-sub">21st November, 2019</span>
-                </div>
+                @if ($product_details->is_order_dispatched != 0)
+                    <div class="order-track-status">
+                        <span class="order-track-status-dot">
+                        <i class="fa fa-check text-white"></i>
+                        </span>
+                        <span class="order-track-status-line"></span>
+                    </div>
+                    <div class="order-track-text">
+                        <p class="order-track-text-stat">Order Dispatched</p>
+                        <span class="order-track-text-sub">Last updated : {{\Carbon\Carbon::parse($product_details->updated_at)->format('d F, Y')}}</span>
+                    </div>
+                @else
+                    <div class="order-track-status">
+                        <span class="order-track-status-dot-pending">
+                        <i class="fa fa-exclamation-circle" style="color:yellow;"></i>
+                        </span>
+                        <span class="order-track-status-line-pending"></span>
+                    </div>
+                    <div class="order-track-text">
+                        <p class="order-track-text-stat">Order Dispatched</p>
+                        <span class="order-track-text-sub">- - - - -</span>
+                    </div>
+                @endif
+                
               </div>
               <div class="order-track-step">
-                <div class="order-track-status">
-                  <span class="order-track-status-dot-pending">
-                    <i class="fa fa-exclamation-circle" style="color:yellow;"></i>
-                  </span>
-                  <span class="order-track-status-line-pending"></span>
-                </div>
-                <div class="order-track-text">
-                  <p class="order-track-text-stat">Order Delivered</p>
-                  <span class="order-track-text-sub">21st November, 2019</span>
-                </div>
+                @if ($product_details->is_order_delivered != 0)
+                    <div class="order-track-status">
+                        <span class="order-track-status-dot">
+                        <i class="fa fa-check text-white"></i>
+                        </span>
+                        <span class="order-track-status-line"></span>
+                    </div>
+                    <div class="order-track-text">
+                        <p class="order-track-text-stat">Order Delivered</p>
+                        <span class="order-track-text-sub">Last updated : {{\Carbon\Carbon::parse($product_details->updated_at)->format('d F, Y')}}</span>
+                    </div>
+                @else
+                    <div class="order-track-status">
+                        <span class="order-track-status-dot-pending">
+                        <i class="fa fa-exclamation-circle" style="color:yellow;"></i>
+                        </span>
+                        <span class="order-track-status-line-pending"></span>
+                    </div>
+                    <div class="order-track-text">
+                        <p class="order-track-text-stat">Order Delivered</p>
+                        <span class="order-track-text-sub">- - - - -</span>
+                    </div>
+                @endif
+                
               </div>
             </div>
           </section>
