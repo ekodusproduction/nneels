@@ -133,7 +133,7 @@
               <img src="{{asset($product_details->product->main_image)}}" alt="Product Image">
               <figcaption>
                 <h2>{{$product_details->product->name}}</h2>
-                <h5><sapn style="color:green;">$</sapn> {{$product_details->product->sale_price * $product_details->product_qty}}</h5>
+                <h5>Price : <sapn style="color:green;">$</sapn> {{$product_details->product->sale_price}}</h5>
                 <p class="mb-0">Quatity : {{$product_details->product_qty}}</p>
                 <p class="mb-0">Size : {{$product_details->product->size}}</p>
                 
