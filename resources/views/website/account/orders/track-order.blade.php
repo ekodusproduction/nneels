@@ -10,8 +10,10 @@
             width: 8rem;
             height: 8rem;
             border-radius: 50%;
-            border: 1px solid #f05a00;
+            border: 1px dashed #7e7e7e;
             margin-right: 1.5rem;
+            object-fit: cover;
+            padding:2px;
         }
         figure figcaption {
             display: flex;
@@ -33,7 +35,7 @@
         .order-track {
             margin-top: 2rem;
             padding: 0 1rem;
-            border-top: 1px dashed #2c3e50;
+            border-top: 1px dashed #cecdcd;
             padding-top: 2.5rem;
             display: flex;
             flex-direction: column;
@@ -128,11 +130,13 @@
       <div class="page-content my-account__orders-list">
         <section class="root">
             <figure>
-              <img src="https://photos.melorra.com/fit-in/1024x1024/dev/catalogue/images/ET/OPT/580/C16PET09F_P_580.jpg" alt="">
+              <img src="{{asset($product_details->product->main_image)}}" alt="Product Image">
               <figcaption>
-                <h4>Some Jewellery Name</h4>
-                <h6>Category</h6>
-                <h2>₹ 23,456</h2>
+                <h2>{{$product_details->product->name}}</h2>
+                <h5><sapn style="color:green;">$</sapn> {{$product_details->product->sale_price * $product_details->product_qty}}</h5>
+                <p class="mb-0">Quatity : {{$product_details->product_qty}}</p>
+                <p class="mb-0">Size : {{$product_details->product->size}}</p>
+                
               </figcaption>
             </figure>
             <div class="order-track">

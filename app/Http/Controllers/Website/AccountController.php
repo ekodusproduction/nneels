@@ -30,7 +30,9 @@ class AccountController extends Controller
     }
 
     public function trackOrder(Request $request, $id){
-        return view('website.account.orders.track-order');
+        $order_id = decrypt($id);
+        $product_details = Order::with('product')->where('order_id', $order_id)->first();
+        return view('website.account.orders.track-order')->with(['product_details' => $product_details]);
     }
 
     public function myAddress(){
