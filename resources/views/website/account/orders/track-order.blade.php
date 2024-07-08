@@ -68,7 +68,7 @@
             width: 1.8rem;
             height: 1.8rem;
             border-radius: 50%;
-            background: #919090;
+            background: #858484;
             justify-content: center;
             align-items: center;
         }
@@ -81,7 +81,17 @@
         }
         .order-track-status-line {
 
-            border-left: 2px dashed rgba(3, 80, 3, 0.267);
+            border-left: 2px dashed rgba(8, 214, 8, 0.747);
+            height: 65px;
+            position: absolute;
+            left: 50%;
+            margin-left: 0px;
+            top: 35%;
+        }
+
+        .order-track-status-line-pending {
+
+            border-left: 2px dashed rgba(95, 95, 95, 0.267);
             height: 65px;
             position: absolute;
             left: 50%;
@@ -143,7 +153,7 @@
                   <span class="order-track-status-dot-pending">
                     <i class="fa fa-exclamation-circle" style="color:yellow;"></i>
                   </span>
-                  <span class="order-track-status-line"></span>
+                  <span class="order-track-status-line-pending"></span>
                 </div>
                 <div class="order-track-text">
                   <p class="order-track-text-stat">Order Processed</p>
@@ -155,7 +165,7 @@
                   <span class="order-track-status-dot-pending">
                     <i class="fa fa-exclamation-circle" style="color:yellow;"></i>
                   </span>
-                  <span class="order-track-status-line"></span>
+                  <span class="order-track-status-line-pending"></span>
                 </div>
                 <div class="order-track-text">
                   <p class="order-track-text-stat">Order Dispatched</p>
@@ -167,7 +177,7 @@
                   <span class="order-track-status-dot-pending">
                     <i class="fa fa-exclamation-circle" style="color:yellow;"></i>
                   </span>
-                  <span class="order-track-status-line"></span>
+                  <span class="order-track-status-line-pending"></span>
                 </div>
                 <div class="order-track-text">
                   <p class="order-track-text-stat">Order Delivered</p>
