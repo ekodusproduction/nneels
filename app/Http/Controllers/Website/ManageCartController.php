@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\ShippingAdress;
 use App\Traits\AjaxResponser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,8 +16,9 @@ class ManageCartController extends Controller
     use AjaxResponser;
     public function getCartItems(){
         try{
+            $get_shipping_details = ShippingAdress::where('user_id', Auth::user()->id)->first();
             $cart_items = Cart::with('product')->where('status', 1)->orderBy('created_at', 'DESC')->get();
-            return view('website.shop.shop-cart')->with(['cart_items' => $cart_items]);
+            return view('website.shop.shop-cart')->with(['cart_items' => $cart_items, 'get_shipping_details' => $get_shipping_details]);
         }catch(\Exception $e){
             echo 'Oops! This page has encountered an error';
         }

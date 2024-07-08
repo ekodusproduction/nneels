@@ -140,7 +140,7 @@
                         <td id="checkout_sub_total">$</td>
                       </tr>
                       <tr>
-                        <th>SHIPPING CHARGES<br> <span class="text-secondary wrap" style="font-weight:400;width:20px;">Free Shipping (United States) on orders above $195</span> </th>
+                        <th>SHIPPING CHARGES<br> <span class="text-secondary wrap" style="font-weight:400;">Free Shipping (United States) on orders above $195</span> </th>
                         <td id="checkout_shipping_rate" class="px-3">$19</td>
                       </tr>
                       <tr>

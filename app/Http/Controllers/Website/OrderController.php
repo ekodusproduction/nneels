@@ -97,6 +97,10 @@ class OrderController extends Controller
                     if($shipping_address->country == 'United States'){
                         if($total_cart_amount > 195){
                             $shipping_rate = 0;
+                        }else if( $total_cart_amount <= 195 && $total_cart_amount >= 75){
+                            $shipping_rate = 14;
+                        }else if($total_cart_amount < 75){
+                            $shipping_rate = 12;
                         }
                     }else{
                         if( $total_cart_amount <= 195 && $total_cart_amount >= 75){
@@ -114,7 +118,7 @@ class OrderController extends Controller
                             'product_data' => [
                                 'name' => 'Shipping Charge',
                             ],
-                            'unit_amount' => $shipping_rate, // $19 in cents
+                            'unit_amount' => $shipping_rate * 100, // $19 in cents
                         ],
                         'quantity' => 1,
                     ];
