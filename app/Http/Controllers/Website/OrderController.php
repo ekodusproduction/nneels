@@ -50,6 +50,9 @@ class OrderController extends Controller
             try{
                 $check_user_address_exists = ShippingAdress::where('user_id', Auth::user()->id)->exists();
                 $cartItems = Cart::with('product')->where('user_id', Auth::user()->id)->get();
+                
+                $total_cart_amount = 0;
+                $shipping_rate = 0;
 
                 if(!$check_user_address_exists){
                     ShippingAdress::create([
@@ -85,15 +88,37 @@ class OrderController extends Controller
                             ],
                             'quantity' => $item->items_qty,
                         ];
+
+                        $total_cart_amount = $total_cart_amount + ($item->items_qty * $item->product->sale_price);
+
+                    }
+
+                    $shipping_address = ShippingAdress::where('user_id', Auth::user()->id)->first('country');
+                    if($shipping_address->country == 'United States'){
+                        if($total_cart_amount > 195){
+                            $shipping_rate = 0;
+                        }else if( $total_cart_amount <= 195 && $total_cart_amount >= 75){
+                            $shipping_rate = 14;
+                        }else if($total_cart_amount < 75){
+                            $shipping_rate = 12;
+                        }
+                    }else{
+                        if( $total_cart_amount <= 195 && $total_cart_amount >= 75){
+                            $shipping_rate = 14;
+                        }
+
+                        if($total_cart_amount < 75){
+                            $shipping_rate = 12;
+                        }
                     }
 
                     $line_items[] = [
                         'price_data' => [
                             'currency' => 'usd',
                             'product_data' => [
-                                'name' => 'Flat Shipping Charge',
+                                'name' => 'Shipping Charge',
                             ],
-                            'unit_amount' => 1900, // $19 in cents
+                            'unit_amount' => $shipping_rate * 100, // $19 in cents
                         ],
                         'quantity' => 1,
                     ];

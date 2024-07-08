@@ -83,7 +83,7 @@
               </tr>
           </thead>
           <tbody>
-              @forelse ($orders as $key => $item)
+              @foreach ($orders as $key => $item)
                 @php
                     $product = \App\Models\Product::where('product_id', $item->product_id)->first();
                 @endphp
@@ -102,14 +102,11 @@
                     </td>
                     <td>{{\Carbon\Carbon::parse($item->created)->diffForHumans()}}</td>
                     <td>
+                      <a href="{{route('website.account.track.order', ['id' => encrypt($item->order_id) ])}}">Track Order</a>
                       <a href="{{route('website.get.product.by.category', ['main_category' => urlencode($product->category->name), 'sub_category' => urlencode($product->subCategory->name), 'product_id' => $item->product_id])}}">View Product</a>
                     </td>
                 </tr>
-              @empty
-                  <tr>
-                    <td>Oops! Orders Found.</td>
-                  </tr>
-              @endforelse
+              @endforeach
               
           </tbody>
         </table>
@@ -122,6 +119,11 @@
 
 @section('custom-scripts')
   <script>
-    $('#orderTable').DataTable();
+    $('#orderTable').DataTable({
+      paging: false,
+      searching: true,
+      ordering: false,
+      info: true
+    });
   </script>
 @endsection

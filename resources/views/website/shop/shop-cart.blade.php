@@ -86,13 +86,6 @@
                 
             </tbody>
         </table>
-        {{-- <div class="cart-table-footer">
-            <form action="https://uomo-html.flexkitux.com/Demo2/" class="position-relative bg-body">
-            <input class="form-control" type="text" name="coupon_code" placeholder="Coupon Code">
-            <input class="btn-link fw-medium position-absolute top-0 end-0 h-100 px-4" type="submit" value="APPLY COUPON">
-            </form>
-            <button class="btn btn-light">UPDATE CART</button>
-        </div> --}}
         </div>
         <div class="shopping-cart__totals-wrapper">
             <div class="sticky-content">
@@ -105,8 +98,8 @@
                         <td class="cart-totals-sub">$1300</td>
                     </tr>
                     <tr>
-                        <th>Shipping (Flat)</th>
-                        <td class="shipping-charges">$19</td>
+                        <th>Shipping Charges <br> <span class="text-secondary wrap" style="font-weight:400; font-size:13px; text-transform:capitalize;">Free Shipping (United States) on orders above $195</span></th>
+                        <td id="cart_shipping_rate" class="px-3">$19</td>
                     </tr>
                     <tr>
                         <td>
@@ -153,10 +146,27 @@
                     subtotal += parseFloat($(this).text().replace('$', ''));
                 });
 
-                const shipping = 19;
+                let shipping_rate = 0;
 
-                const total = subtotal + shipping ;
+                if({{$get_shipping_details->country == 'United States' }}){
+                    if(subtotal > 195){
+                        shipping_rate = 0;
+                    }else if( subtotal <= 195 || subtotal >= 75){
+                        shipping_rate = 14;
+                    }else if(subtotal < 75){
+                        shipping_rate = 12;
+                    }
+                }else{
+                    if( subtotal <= 195 && subtotal >= 75){
+                        shipping_rate = 14;
+                    }else if(subtotal < 75){
+                        shipping_rate = 12;
+                    }
+                }
 
+                const total = subtotal + shipping_rate ;
+
+                $('#cart_shipping_rate').text('$' + shipping_rate);
                 $('.cart-totals-sub').text('$' + subtotal.toFixed(2));
                 $('.cart-totals-final').text('$' + total.toFixed(2));
             }

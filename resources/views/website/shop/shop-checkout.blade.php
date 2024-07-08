@@ -140,8 +140,8 @@
                         <td id="checkout_sub_total">$</td>
                       </tr>
                       <tr>
-                        <th>SHIPPING (FLAT)</th>
-                        <td>$19</td>
+                        <th>SHIPPING CHARGES<br> <span class="text-secondary wrap" style="font-weight:400;">Free Shipping (United States) on orders above $195</span> </th>
+                        <td id="checkout_shipping_rate" class="px-3">$19</td>
                       </tr>
                       <tr>
                         <th>TOTAL</th>
@@ -207,6 +207,23 @@
         // Initialize total variable
         let sub_total = 0;
         let total_price = 0;
+        let shipping_rate = 0;
+
+        if({{$get_shipping_details->country == 'United States' }}){
+            if(sub_total > 195){
+              shipping_rate = 0;
+            }else if( sub_total <= 195 || sub_total >= 75){
+                shipping_rate = 14;
+            }else if(sub_total < 75){
+                shipping_rate = 12;
+            }
+        }else{
+          if( sub_total <= 195 && sub_total >= 75){
+              shipping_rate = 14;
+          }else if(sub_total < 75){
+              shipping_rate = 12;
+          }
+        }
 
         // Iterate through each sale_price element
         $(".sale_price").each(function() {
@@ -217,10 +234,13 @@
           let price = parseFloat(priceText);
           
           sub_total += price;
-          total_price = (19 + sub_total);
+          total_price = (shipping_rate + sub_total);
         });
 
+        
+
         // Update the subtotal element with the computed total
+        $('#checkout_shipping_rate').text("$" + shipping_rate);
         $("#checkout_sub_total").text("$" + sub_total.toFixed(2)); // Ensure two decimal places
         $("#checkout_total_price").text("$" + total_price.toFixed(2));
       });
@@ -248,25 +268,7 @@
             if(data.status == 200){
               toastr.success(data.message);
               $('.place-order-btn').attr('disabled', false).text('Place Order');
-              console.log(data)
               window.location.replace(data.data.url, '_blank');
-              // Swal.fire({
-              //   title: "Product added successfully",
-              //   text:'Go To Cart Page ',
-              //   showCancelButton: true,
-              //   confirmButtonText: "Proceed",
-              //   imageUrl: "{{asset('assets/images/cart.png')}}",
-              //   imageWidth: 150,
-              //   imageHeight: 150,
-              //   imageAlt: "Cart image"
-              // }).then((result) => {
-              //   /* Read more about isConfirmed, isDenied below */
-              //   if (result.isConfirmed) {
-              //     window.location.href = "{{route('website.get.cart.items')}}";
-              //   }else{
-              //     window.location.reload(true);
-              //   }
-              // });
             }else{
               toastr.error(data.message);
               $('.place-order-btn').attr('disabled', false).text('Place Order');
@@ -274,7 +276,6 @@
           },error:function(error){
             toastr.error('Oops! Something went wrong');
             $('.place-order-btn').attr('disabled', false).text('Place Order');
-            console.log(error)
           }
         });
       });
