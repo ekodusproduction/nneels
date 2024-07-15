@@ -58,11 +58,17 @@
             Once your order has been shipped, you will receive a shipping confirmation email containing tracking information. 
             You can use this information to track the status of your package and monitor its delivery progress.
         </p>
-        <h5>Delivery Issues:</h5>
+        <h5>Delayed or Lost Orders:</h5>
         <p>
-            If you encounter any issues with the delivery of your package, such as delays or damages, please contact 
-            our customer service team as soon as possible. We will work with our shipping partners to resolve any issues 
-            and ensure that your order arrives safely and on time.
+            A parcel is considered lost after it has been in the postal system for a period of 55 business days for US orders and 
+            75 business days for international orders. We cannot take responsibility for delays caused by the courier. 
+            Although orders normally take much less than that, we are unable to dispatch a replacement until this period of time has elapsed.
+        </p>
+        <h5>Successful Delivery Confirmation:</h5>
+        <p>
+            Once a package is marked as 'delivered' by the designated courier service, we consider the item successfully delivered. 
+            In the event of concerns or issues with a delivered package, customers are encouraged to contact the courier service 
+            directly for assistance.
         </p>
         <h5>Shipping Terms Acceptance:</h5>
         <p>
