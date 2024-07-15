@@ -132,11 +132,12 @@ class OrderController extends Controller
                         
                     ]);
 
+                    $order_id = Str::uuid();
                     foreach($cartItems as $item){
                         $is_order_already_created = Order::where('product_id', $item->product_id)->where('user_id', Auth::user()->id)->where('payment_status', 'unpaid')->exists();
                         if(!$is_order_already_created){
                             Order::create([
-                                'order_id' => Str::uuid(),
+                                'order_id' => $order_id,
                                 'user_id' => Auth::user()->id,
                                 'customer_email' => Auth::user()->email,
                                 'product_id' => $item->product_id,

@@ -89,35 +89,10 @@
                 <div data-i18n="product">Orders</div>
             </a>
 
-            {{-- <ul class="menu-sub">
-                <li class="menu-item {{Request::segment(3) == 'category' ? 'active' : ''}}">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bxl-dropbox"></i>
-                        <div data-i18n="product">Category</div>
-                    </a>
-
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="{{ route('admin.category') }}" class="menu-link">
-                                <div data-i18n="Without navbar">Main Category</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="{{route('admin.fetch.sub.category')}}" class="menu-link">
-                                <div data-i18n="Without navbar">Sub Category</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="{{route('admin.top.category')}}" class="menu-link">
-                                <div data-i18n="Without navbar">List Top Categories</div>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                
+            <ul class="menu-sub">
                 <li class="menu-item {{Request::segment(3) == 'create' ? 'active' : ''}}">
                     <a href="{{ route('admin.create.product') }}" class="menu-link">
-                        <div data-i18n="Container">Create Product</div>
+                        <div data-i18n="Container">List</div>
                     </a>
                 </li>
                 <li class="menu-item {{Request::segment(3) == 'view' ? 'active' : ''}}">
@@ -125,7 +100,7 @@
                         <div data-i18n="Fluid">All Products</div>
                     </a>
                 </li>
-            </ul> --}}
+            </ul>
         </li>
     </ul>
 </aside>
