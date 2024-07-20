@@ -15,8 +15,7 @@ class BannerController extends Controller
     public function index(){
         
         // $all_banners = Banner::orderBy('created_at', 'DESC')->get();
-        $all_banners = Banner::orderByRaw("is_default DESC, created_at DESC")
-                ->get();
+        $all_banners = Banner::orderByRaw("is_default DESC, created_at DESC")->get();
         return view('admin.banner.banner')->with(['all_banner' => $all_banners]);
     }
 
@@ -67,5 +66,41 @@ class BannerController extends Controller
 
     public function allBanners(){
         
+    }
+
+    public function editBanner(Request $request, $id){
+        $banner_id = decrypt($id);
+        $get_details = Banner::where('id', $banner_id)->first();
+        return view('admin.banner.edit-banner')->with(['details' => $get_details]);
+    }
+
+    public function saveEditedBanner(Request $request){
+        // return $this->success('Great! Banner updated successfully.', $request->banner_image, 200);
+        try{
+            $banner_id = decrypt($request->banner_id);
+            $get_details = Banner::where('id', $banner_id)->first();
+            $image_path = null;
+
+            if($request->hasFile('banner_image')){
+
+                $file = $request->file('banner_image');
+                $name = Str::uuid()->toString().'_'.$file->getClientOriginalName();
+                
+                $file->move(public_path('admin/assets/banner/'), $name);
+                $image_path = 'admin/assets/banner/'.$name;
+            }else{
+                $image_path = $get_details->image;
+            }
+
+            $update_banner = Banner::where('id', $banner_id)->update([
+                'image' => $image_path,
+                'main_text' => $request->main_text,
+                'sub_text' => $request->sub_text,
+            ]);
+
+            return $this->success('Great! Banner updated successfully.', null, 200);
+        }catch(\Exception $e){
+            return $this->error('Oops! Something went wrong', null, 500);
+        }
     }
 }

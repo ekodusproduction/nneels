@@ -28,7 +28,7 @@
               </div> --}}
               <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
                 {{-- <h6 class="text_dash text-uppercase text-red fs-base fw-medium animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">Summer 2024</h6> --}}
-                <h2 class="text-uppercase h1 fw-bold animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">{{$item->main_text ?? ''}}</h2>
+                <h2 class="text-uppercase fw-bold animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868; font-size:35px;">{{$item->main_text ?? ''}}</h2>
                 <h6 class="text-uppercase mb-5 animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">{{$item->sub_text ?? ''}}</h6>
                 {{-- <a href="shop1.html" class="btn-link btn-link_lg default-underline text-uppercase fw-medium animate animate_fade animate_btt animate_delay-3 text-white" style="text-shadow: 0px 5px 10px #686868;">Discover More</a> --}}
               </div>
