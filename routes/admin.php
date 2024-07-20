@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('all', [BannerController::class, 'allBanners'])->name('admin.get.all.banners');
         Route::get('edit/{id}', [BannerController::class, 'editBanner'])->name('admin.edit.banner');
         Route::post('saveEditedBaner', [BannerController::class, 'saveEditedBanner'])->name('admin.save.edited.banner');
+        Route::post('change-status', [BannerController::class, 'changeBannerStatus'])->name('admin.change.banner.status');
     });
 
     Route::group(['prefix' => 'dashboard'], function(){

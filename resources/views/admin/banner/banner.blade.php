@@ -181,12 +181,18 @@
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-bookmark-alt me-1"></i>
-                                        Mark Default</a>
+                                    {{-- <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-bookmark-alt me-1"></i>
+                                        Mark Default</a> --}}
                                     <a class="dropdown-item" href="{{route('admin.edit.banner', ['id' => encrypt($item->id)])}}"><i class="bx bx-edit-alt me-1"></i>
                                         Edit</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
-                                        Delete</a>
+                                    @if ($item->status == 1)
+                                        <a class="dropdown-item change-banner-visibility" href="javascript:void(0);" data-id="{{encrypt($item->id)}}" data-status="0"><i class="bx bx-low-vision me-1"></i>
+                                            Deactivate</a>
+                                    @else
+                                        <a class="dropdown-item change-banner-visibility" href="javascript:void(0);" data-id="{{encrypt($item->id)}}" data-status="1"><i class="bx bx-show me-1"></i>
+                                            Activate</a>
+                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>
@@ -217,70 +223,6 @@
         
     </div>
 
-    {{-- <div class="card">
-        <div class="card-header d-flex flex-row justify-content-between align-items-center">
-            <h5 class="card-header">All Banners</h5>
-            <button class="btn btn-primary btn-md" type="button" data-bs-target="#createBannerModal"
-            data-bs-toggle="modal">Create Banner</button>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive text-nowrap">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Sl.No.</th>
-                            <th>Image</th>
-                            <th>Main Text</th>
-                            <th>Sub Text</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($all_banner as $key => $item)
-                            <tr>
-                                <td>{{$key + 1}}</td>
-                                <td>
-                                    <img src="{{asset($item->image)}}" alt="Banner Image" height="60" width="60" style="border-radius:50%; object-fit:cover;">
-                                </td>
-                                <td>
-                                    {{$item->main_text ?? 'Not Found'}}
-                                </td>
-                                <td>
-                                    {{$item->sub_text ??'Not Found'}}
-                                </td>
-                                <td>
-                                    @if ($item->status == 1)
-                                        <span class="badge bg-label-success">Active</span>
-                                    @else
-                                        <span class="badge bg-label-danger">Deactive</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
-                                                View</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
-                                                Edit</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
-                                                Delete</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            
-                        @endforelse
-                        
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div> --}}
 
     <div class="modal fade" id="createBannerModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -374,63 +316,6 @@
             }
         });
 
-        // $('.browse-gallery-image').on('click', function(){
-        //     $('.product-gallery-image').click();
-        // });
-
-        // $('.product-gallery-image').on('change', function(){
-        //     const imageFile = $(this)[0].files;
-
-        //     const maxFileSizeAllowed = 2*1024*1024;
-        //     const mimeType = imageFile[0].type;
-
-        //     if(imageFile[0].size > maxFileSizeAllowed){
-        //         toastr.error('Oops! File too large. Maximum allowed size 2 MB');
-        //     }else if(mimeType.split('/')[0] !== 'image'){
-        //         toastr.error('Oops! Not a valid image. Please upload image only');
-        //     }else{
-
-        //         if(totalGalleryImages >= 4){
-        //             toastr.error('Oops! Maximum 4 gallery images can be uploaded at a time.');
-        //         }else{
-        //             const fileReader = new FileReader();
-        //             fileReader.onload = function(e){
-        //                 const imageId = 'image_' + Date.now();
-        //                 $('.preview-gallery-product').append(
-        //                     `
-    //                         <div class="selected-image-container"  id="${imageId}" style="margin-top:10px;">
-    //                             <img src="${e.target.result}" alt="product gallery image">
-    //                             <div class="gallery-image-remove-btn">
-    //                                 <i class="bx bx-x-circle"></i>
-    //                             </div>
-    //                         </div>
-    //                     `
-        //                 )
-        //             };
-        //             fileReader.readAsDataURL(imageFile[0]);
-        //             totalGalleryImages++;
-        //             galleryImages.push(imageFile[0]);
-
-        //             // console.log('Total Imgages-->', totalGalleryImages)
-        //             // console.log('Gallery Imgages-->', galleryImages)
-        //         }
-        //     }
-        // });
-
-        //remove gallery image
-        // $(document).on('click', '.gallery-image-remove-btn', function(){
-        //     let removeImageFromGalleryArray =  $('.selected-image-container').index($(this).closest('.selected-image-container'));
-
-        //     if (removeImageFromGalleryArray !== -1) {
-        //         galleryImages.splice(removeImageFromGalleryArray, 1);
-        //     }
-        //     totalGalleryImages = totalGalleryImages - 1;
-
-        //     $(this).closest('.selected-image-container').remove();
-
-        //     // console.log('Total Imgages-->', totalGalleryImages)
-        //     // console.log('Gallery Imgages-->', galleryImages)
-        // });
 
 
         //Submit Product Details
@@ -494,5 +379,31 @@
         });
     </script>
 
+    <script>
+        $('.change-banner-visibility').on('click', function(){
+            const banner_id = $(this).data().id;
+            const status = $(this).data().status;
+
+            $.ajax({
+                url:"{{route('admin.change.banner.status')}}",
+                type:"POST",
+                data:{
+                    '_token' : "{{csrf_token()}}",
+                    'banner_id' : banner_id,
+                    'status' : status
+                },
+                success:function(data){
+                    if(data.status == 200){
+                        toastr.success(data.message);
+                        window.location.reload(true);
+                    }else{
+                        toastr.error(data.message);
+                    }
+                },error:function(error){
+                    toastr.error('Oops! Something went wrong');
+                }
+            });
+        });
+    </script>
 
 @endsection

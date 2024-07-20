@@ -103,4 +103,17 @@ class BannerController extends Controller
             return $this->error('Oops! Something went wrong', null, 500);
         }
     }
+
+    public function changeBannerStatus(Request $request){
+        $banner_id = decrypt($request->banner_id);
+        try{
+            Banner::where('id', $banner_id)->update([
+                'status' => $request->status
+            ]);
+
+            return $this->success('Great! Banner visibility status updated successfully', null, 200);
+        }catch(\Exception $e){
+            return $this->error('Oops! Something went wrong', null, 500);
+        }
+    }
 }
