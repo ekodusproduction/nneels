@@ -35,6 +35,8 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('', [BannerController::class, 'index'])->name('admin.get.banner');
         Route::post('create', [BannerController::class, 'createBanner'])->name('admin.create.banner');
         Route::get('all', [BannerController::class, 'allBanners'])->name('admin.get.all.banners');
+        Route::get('edit/{id}', [BannerController::class, 'editBanner'])->name('admin.edit.banner');
+        Route::post('saveEditedBaner', [BannerController::class, 'saveEditedBanner'])->name('admin.save.edited.banner');
     });
 
     Route::group(['prefix' => 'dashboard'], function(){
