@@ -89,7 +89,7 @@
                 <div data-i18n="product">Orders</div>
             </a>
 
-            <ul class="menu-sub">
+            {{-- <ul class="menu-sub">
                 <li class="menu-item {{Request::segment(3) == 'create' ? 'active' : ''}}">
                     <a href="{{ route('admin.create.product') }}" class="menu-link">
                         <div data-i18n="Container">List</div>
@@ -100,7 +100,7 @@
                         <div data-i18n="Fluid">All Products</div>
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
         </li>
     </ul>
 </aside>
