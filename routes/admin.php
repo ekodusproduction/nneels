@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\AuthenticationController;
 use App\Http\Controllers\Admin\Banner\BannerController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
+use App\Http\Controllers\Admin\Orders\OrdersController;
 use App\Http\Controllers\Admin\Product\CategoryController;
 use App\Http\Controllers\Admin\Product\ItemController;
 use App\Http\Controllers\Admin\Product\ProductController;
@@ -77,6 +78,10 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('delete', [ProductController::class, 'deleteProduct'])->name('admin.delete.product');
         });
         
+    });
+
+    Route::group(['prefix' => 'orders'], function(){
+        Route::get('list', [OrdersController::class, 'getOrdersList'])->name('admin.orders.list');
     });
 
     Route::get('logout', function(){

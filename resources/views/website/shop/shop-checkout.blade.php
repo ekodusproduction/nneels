@@ -209,6 +209,20 @@
         let total_price = 0;
         let shipping_rate = 0;
 
+        
+
+        // Iterate through each sale_price element
+        $(".sale_price").each(function() {
+          // Get the text content and remove the '$' sign
+          let priceText = $(this).text().trim().replace('$', '');
+
+          // Convert to number and add to total
+          let price = parseFloat(priceText);
+          
+          sub_total += price;
+          total_price = (shipping_rate + sub_total);
+        });
+
         if({{$get_shipping_details->country == 'United States' }}){
             if(sub_total > 195){
               shipping_rate = 0;
@@ -224,26 +238,17 @@
               shipping_rate = 12;
           }
         }
-
-        // Iterate through each sale_price element
-        $(".sale_price").each(function() {
-          // Get the text content and remove the '$' sign
-          let priceText = $(this).text().trim().replace('$', '');
-
-          // Convert to number and add to total
-          let price = parseFloat(priceText);
-          
-          sub_total += price;
-          total_price = (shipping_rate + sub_total);
-        });
-
         
 
         // Update the subtotal element with the computed total
         $('#checkout_shipping_rate').text("$" + shipping_rate);
         $("#checkout_sub_total").text("$" + sub_total.toFixed(2)); // Ensure two decimal places
         $("#checkout_total_price").text("$" + total_price.toFixed(2));
+
+      
       });
+
+      
     </script>
 
     <script>
