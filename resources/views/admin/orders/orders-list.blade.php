@@ -63,7 +63,7 @@
                                         <p>{{ \Carbon\Carbon::parse($item->updated_at)->format('M d, Y') }}</p>
                                     </td>
                                     <td>
-                                        <p>{{$item->total_amount}}</p>
+                                        <p>${{$item->total_amount}}</p>
                                     </td>
                                     <td>
                                         <p>{{$item->payment_status}}</p>

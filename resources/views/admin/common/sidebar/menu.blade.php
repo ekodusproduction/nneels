@@ -95,11 +95,11 @@
                         <div data-i18n="Container">List</div>
                     </a>
                 </li>
-                <li class="menu-item {{Request::segment(3) == 'view' ? 'active' : ''}}">
+                {{-- <li class="menu-item {{Request::segment(3) == 'view' ? 'active' : ''}}">
                     <a href="{{ route('admin.view.product.list') }}" class="menu-link">
                         <div data-i18n="Fluid">All Products</div>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </li>
     </ul>
