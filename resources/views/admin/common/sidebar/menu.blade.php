@@ -83,15 +83,15 @@
             </ul>
         </li>
 
-        <li class="menu-item {{Request::segment(2) == 'products' ? 'active' : ''}}">
+        <li class="menu-item {{Request::segment(2) == 'orders' ? 'active' : ''}}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-package"></i>
                 <div data-i18n="product">Orders</div>
             </a>
 
-            {{-- <ul class="menu-sub">
-                <li class="menu-item {{Request::segment(3) == 'create' ? 'active' : ''}}">
-                    <a href="{{ route('admin.create.product') }}" class="menu-link">
+            <ul class="menu-sub">
+                <li class="menu-item {{Request::segment(3) == 'list' ? 'active' : ''}}">
+                    <a href="{{ route('admin.orders.list') }}" class="menu-link">
                         <div data-i18n="Container">List</div>
                     </a>
                 </li>
@@ -100,7 +100,7 @@
                         <div data-i18n="Fluid">All Products</div>
                     </a>
                 </li>
-            </ul> --}}
+            </ul>
         </li>
     </ul>
 </aside>
