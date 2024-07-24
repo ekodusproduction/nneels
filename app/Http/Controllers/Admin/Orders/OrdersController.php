@@ -19,4 +19,10 @@ class OrdersController extends Controller
             echo 'Oops! Something went wrong'.$e->getMessage();
         }
     }
+
+    public function getOrdersDetails(Request $request, $id){
+        $order_id = decrypt($id);
+        $get_order_details = Order::where('order_id', $order_id)->get();
+        return view('admin.orders.order-details')->with(['get_order_details' => $get_order_details]);
+    }
 }

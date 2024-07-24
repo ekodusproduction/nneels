@@ -77,10 +77,10 @@
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{route('admin.get.product.details', ['id' => encrypt($item->product_id)])}}"><i class="bx bx-edit-alt me-1"></i>
-                                                    Edit</a>
-                                                <a class="dropdown-item delete-product" href="javascript:void(0);" data-id="{{encrypt($item->product_id)}}"><i class="bx bx-trash me-1"></i>
-                                                    Delete</a>
+                                                <a class="dropdown-item" href="{{route('admin.orders.details', ['id' => encrypt($item->order_id)])}}"><i class="bx bx-detail me-1"></i>
+                                                    Order Details</a>
+                                                {{-- <a class="dropdown-item delete-product" href="javascript:void(0);" data-id="{{encrypt($item->product_id)}}"><i class="bx bx-trash me-1"></i>
+                                                    Delete</a> --}}
                                             </div>
                                         </div>
                                     </td>
