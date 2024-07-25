@@ -134,15 +134,15 @@
                             <div class="tax-cal">
                                 <div class="sub-total">
                                     <p>Sub Total : </p>
-                                    <h6>$300</h6>
+                                    <h6 class="mb-0">$300</h6>
                                 </div>
                                 <div class="shipping-total">
                                     <p>Shipping Charges : </p>
-                                    <h6>$300</h6>
+                                    <h6 class="mb-0">$300</h6>
                                 </div>
                             </div>
                             <hr>
-                            <div class="total-price">
+                            <div class="total-price mb-4">
                                 <h4>Total Price : </h4>
                                 <h4>$4000</h4>
                             </div>
