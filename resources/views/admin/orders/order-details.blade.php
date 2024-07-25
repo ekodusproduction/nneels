@@ -50,6 +50,17 @@
         align-items: center;
     }
 
+    .order-summary, .shipping-address{
+        background-color: #fbfbfb;
+        color: #3f3e3e;
+        padding: 20px 0px 10px 20px;
+        border-radius: 10px;
+        outline: 1px dashed #838181;
+    }
+    .order-summary p{
+        margin-bottom:4px;
+    }
+
   </style>
 @endsection
 
@@ -137,7 +148,17 @@
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12">
+                            <div class="order-summary">
+                                <h5>Order Summary : </h5>
+                                <p>Order ID : 12345678</p>
+                                <p>Order Date : Jul 2, 2024</p>
+                                <p>Total Amount : $9000</p>
+                            </div>
 
+                            <div class="shipping-address mt-4">
+                                <h5>Shipping Address : </h5>
+                                <p>1C, Ashi Grande, Kahilipara Road, Near Ganesh Mandir, Opp. Blue Moon Guest House, Guwahati, Assam, India - 781006</p>
+                            </div>
                         </div>
                     </div>
                     
