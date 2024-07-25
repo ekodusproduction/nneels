@@ -144,7 +144,6 @@ class OrderController extends Controller
                                 'product_qty' => $item->items_qty,
                                 'checkout_session_id' => $checkout_session->id,
                                 'amount' => $item->product->sale_price * $item->items_qty,
-                                'shipping_rate' => $shipping_rate,
                                 'currency' => $checkout_session->currency,
                                 'payment_status' => $checkout_session->payment_status
                             ]);
