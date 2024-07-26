@@ -32,48 +32,6 @@
     .product-price, .sub-total, .shipping-charge, .sub-total-value, .shipping-charge-value{
         font-size:16px;
     }
-    
-    /* .order-items{
-        display:flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .order-items .item-img{
-        margin-top:10px;
-    }
-    .order-items .item-img img{
-        border-radius:10px;
-        max-height:100px;
-        width:auto;
-    }
-    .order-items .item-name{
-        width:200px;
-        word-wrap: break-word;
-    }
-
-    .order-items .item-qty{
-        width:200px;
-        word-wrap: break-word;
-    }
-
-    .order-items .item-price{
-        width:200px;
-        word-wrap: break-word;
-    }
-
-    .tax-cal .sub-total, .shipping-total{
-        display:flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .total-price{
-        display:flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }*/
 
     .order-summary, .shipping-address{
         background-color: #fbfbfb;
@@ -96,6 +54,26 @@
         border-bottom: 1px solid #cfcfcf !important;
     } 
 
+    .cart-section .cart-table thead tr th {
+        font-weight: bolder;
+        text-transform: uppercase;
+        font-size: 15px;
+        padding: 0.75rem 1.25rem;
+        color: #232323;
+        border-top: 1px solid #232323;
+        border-bottom: 1px solid #2c2c2c !important;
+    }
+
+    .table tbody tr td {
+        padding: 10px;
+        border-bottom: none !important;
+        color: #7e7e7e;
+    }
+
+    .table tfoot tr.table-order:last-child td {
+        padding: 20px 15px;
+    }
+
   </style>
 @endsection
 
@@ -112,7 +90,7 @@
                     <div class="row">
                         <div class="col-md-8 col-sm-12">
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table cart-section cart-table">
                                     <thead class="order-details-thead">
                                         <tr>
                                             <th colspan="2">Items</th>
@@ -142,12 +120,12 @@
                                         @endforeach
                                     </tbody>
                                     <tfoot>
-                                        <tr class="table-order">
+                                        <tr class="table-order" style="border-bottom: 1px solid white !important;">
                                             <td colspan="3">
-                                                <h5 class="sub-total">Subtotal :</h5>
+                                                <h5 class="sub-total mb-0 mt-2">Subtotal :</h5>
                                             </td>
                                             <td>
-                                                <h4 id="sub-total" class="sub-total-value">$00.00</h4>
+                                                <h4 id="sub-total" class="sub-total-value mb-0 mt-2">$00.00</h4>
                                             </td>
                                         </tr>
 
@@ -162,10 +140,10 @@
 
                                         <tr class="table-order">
                                             <td colspan="3">
-                                                <h4 class="theme-color fw-bold">Total Price :</h4>
+                                                <h4 class="theme-color fw-bold mb-0">Total Price :</h4>
                                             </td>
                                             <td>
-                                                <h4 id="total_amount">$00.00</h4>
+                                                <h4 id="total_amount" class="mb-0">$00.00</h4>
                                             </td>
                                         </tr>
                                     </tfoot>
