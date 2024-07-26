@@ -82,6 +82,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::group(['prefix' => 'orders'], function(){
         Route::get('list', [OrdersController::class, 'getOrdersList'])->name('admin.orders.list');
+        Route::get('details/{id}', [OrdersController::class, 'getOrdersDetails'])->name('admin.orders.details');
     });
 
     Route::get('logout', function(){
