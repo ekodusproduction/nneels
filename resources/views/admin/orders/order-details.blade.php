@@ -29,7 +29,7 @@
         line-height: 25px;
     }
 
-    .product-price{
+    .product-price, .sub-total, .shipping-charge, .sub-total-value, .shipping-charge-value{
         font-size:16px;
     }
     
@@ -118,7 +118,7 @@
                                             <th colspan="2">Items</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="order-items">
                                         @foreach ($get_order_details as $item)
                                             <tr class="table-order">
                                                 <td>
@@ -132,7 +132,7 @@
                                                 </td>
                                                 <td>
                                                     <p>Quantity</p>
-                                                    <h5>{{$item->product_qty}}</h5>
+                                                    <h5 class="product-quantity">{{$item->product_qty}}</h5>
                                                 </td>
                                                 <td>
                                                     <p>Price</p>
@@ -141,57 +141,44 @@
                                             </tr>
                                         @endforeach
                                     </tbody>
+                                    <tfoot>
+                                        <tr class="table-order">
+                                            <td colspan="3">
+                                                <h5 class="sub-total">Subtotal :</h5>
+                                            </td>
+                                            <td>
+                                                <h4 id="sub-total" class="sub-total-value">$00.00</h4>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="table-order">
+                                            <td colspan="3">
+                                                <h5 class="shipping-charge">Shipping <span style="font-size:12px;">(Free shipping on orders above $195) </span> :</h5>
+                                            </td>
+                                            <td>
+                                                <h4 id="shipping-charge" class="shipping-charge-value">$00.00</h4>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="table-order">
+                                            <td colspan="3">
+                                                <h4 class="theme-color fw-bold">Total Price :</h4>
+                                            </td>
+                                            <td>
+                                                <h4 id="total_amount">$00.00</h4>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                             
                         </div>
-                        {{-- <div class="col-md-8 col-sm-12">
-                            <div class="header-nav">
-                                <h6>ITEMS</h6>
-                            </div>
-                            @foreach ($get_order_details as $item)
-                                <div class="order-items">
-                                    <div class="item-img">
-                                        <img src="{{asset($item->product->main_image)}}" alt="order-item-image">
-                                    </div>
-                                    <div class="item-name">
-                                        <p>Product Name</p>
-                                        <h6>{{$item->product->name}}</h6>
-                                    </div>
-                                    <div class="item-qty">
-                                        <p>Quantity</p>
-                                        <h6>{{$item->product_qty}}</h6>
-                                    </div>
-                                    <div class="item-price">
-                                        <p>Price</p>
-                                        <h6>${{$item->amount}}</h6>
-                                    </div>
-                                </div>
-                            @endforeach
-                            
-                            <hr>
-                            <div class="tax-cal">
-                                <div class="sub-total">
-                                    <p>Sub Total : </p>
-                                    <h6 class="mb-0">$300</h6>
-                                </div>
-                                <div class="shipping-total">
-                                    <p>Shipping Charges : </p>
-                                    <h6 class="mb-0">$300</h6>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="total-price mb-4">
-                                <h4>Total Price : </h4>
-                                <h4 id="total_amount">$4000</h4>
-                            </div>
-                        </div> --}}
                         <div class="col-md-4 col-sm-12">
                             <div class="order-summary">
                                 <h5>Order Summary : </h5>
                                 <p>Order ID : {{$get_order_details[0]->order_id}}</p>
                                 <p>Order Date : {{\Carbon\Carbon::parse($get_order_details[0]->created_at)->format('M d, Y')}}</p>
-                                <p id="total_amount">Total Amount : $9000</p>
+                                <p id="order-summary-total">Total Amount : $0</p>
                             </div> 
 
                             <div class="shipping-address mt-4">
@@ -208,4 +195,83 @@
 @endsection
 
 @section('custom-scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Get the necessary elements
+        const subTotalElement = document.getElementById('sub-total');
+        const shippingChargeElement = document.getElementById('shipping-charge');
+        const totalAmountElement = document.getElementById('total_amount');
+        const orderSummaryTotalElement = document.getElementById('order-summary-total');
+
+        // console.log('subTotalElement:', subTotalElement);
+        // console.log('shippingChargeElement:', shippingChargeElement);
+        // console.log('totalAmountElement:', totalAmountElement);
+
+        // Check if these elements exist
+        if (!subTotalElement || !shippingChargeElement || !totalAmountElement) {
+            console.error('One or more of the required elements are missing.');
+            return;
+        }
+
+        // Get all product rows
+        const rows = document.querySelectorAll('#order-items .table-order');
+
+        if (rows.length === 0) {
+            console.error('No product rows found.');
+            return;
+        }
+
+        let subTotal = 0;
+
+        rows.forEach(row => {
+            const quantityElement = row.querySelector('.product-quantity');
+            const priceElement = row.querySelector('.product-price');
+
+            if (!quantityElement || !priceElement) {
+                console.error('Quantity or Price element missing in a row.');
+                return;
+            }
+
+            const quantity = parseInt(quantityElement.textContent.trim());
+            const pricePerUnit = parseFloat(priceElement.textContent.split(' ')[0].replace('$', '').trim());
+
+            if (isNaN(quantity) || isNaN(pricePerUnit)) {
+                console.error('Invalid quantity or price values.');
+                return;
+            }
+
+            subTotal += pricePerUnit;
+        });
+
+        // Calculate shipping charge
+        let shippingCharge = 0;
+        const country = 'United States'; // Replace this with the actual country variable
+        const totalCartAmount = subTotal;
+
+        if (country === 'United States') {
+            if (totalCartAmount > 195) {
+                shippingCharge = 0;
+            } else if (totalCartAmount <= 195 && totalCartAmount >= 75) {
+                shippingCharge = 14;
+            } else if (totalCartAmount < 75) {
+                shippingCharge = 12;
+            }
+        } else {
+            if (totalCartAmount <= 195 && totalCartAmount >= 75) {
+                shippingCharge = 14;
+            } else if (totalCartAmount < 75) {
+                shippingCharge = 12;
+            }
+        }
+
+        // Calculate total amount
+        const totalAmount = subTotal + shippingCharge;
+
+        // Update the HTML
+        subTotalElement.textContent = `$${subTotal.toFixed(2)}`;
+        shippingChargeElement.textContent = `$${shippingCharge.toFixed(2)}`;
+        totalAmountElement.textContent = `$${totalAmount.toFixed(2)}`;
+        orderSummaryTotalElement.textContent = `Total Amount : $${totalAmount.toFixed(2)}`;
+    });
+</script>
 @endsection
