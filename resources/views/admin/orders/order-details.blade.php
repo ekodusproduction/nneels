@@ -33,7 +33,7 @@
         font-size:16px;
     }
 
-    .order-summary, .shipping-address{
+    .order-summary, .shipping-address, .update-product-status{
         background-color: #fbfbfb;
         color: #3f3e3e;
         padding: 20px 5px 10px 10px;
@@ -85,8 +85,6 @@
                     <h4 class="header-color">Orders ID  :  <span style="color:rgb(102, 3, 102);">#{{$order_id}}</span></h4>
                 </div>
                 <div class="card-body">
-                    
-
                     <div class="row">
                         <div class="col-md-8 col-sm-12">
                             <div class="table-responsive">
@@ -162,6 +160,16 @@
                             <div class="shipping-address mt-4">
                                 <h5>Shipping Address : </h5>
                                 <p>{{$shipping_details->address_1}}, {{$shipping_details->address_2}}, {{$shipping_details->town_or_city}}, {{$shipping_details->province}}, {{$shipping_details->country}} - {{$shipping_details->zip_code}}</p>
+                            </div>
+
+                            <div class="update-product-status mt-4">
+                                <h5>Update Product Delivery Status : </h5>
+                                <select name="updateProductDeliveryStatus" id="update-product-delivery-status" class="form-control">
+                                    <option value="" disabled selected> -- Select status --</option>
+                                    <option value="processed">Order Processed</option>
+                                    <option value="dispatched">Order Dispatched</option>
+                                    <option value="delivered">Order Delivered</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -249,7 +257,7 @@
         subTotalElement.textContent = `$${subTotal.toFixed(2)}`;
         shippingChargeElement.textContent = `$${shippingCharge.toFixed(2)}`;
         totalAmountElement.textContent = `$${totalAmount.toFixed(2)}`;
-        orderSummaryTotalElement.textContent = `Total Amount : $${totalAmount.toFixed(2)}`;
+        orderSummaryTotalElement.textContent = `Total Amount :$${totalAmount.toFixed(2)}`;
     });
 </script>
 @endsection
