@@ -40,7 +40,7 @@
         </div>
         <div class="col-lg-4">
             <div class="grid-banner__item position-relative mb-3">
-                <img loading="lazy" class="w-100" src="{{asset('assets/Homeware/bedsheet-5.jpeg')}}" width="450"
+                <img loading="lazy" class="w-100" src="{{asset('assets/Homeware/serving-platters.jpeg')}}" width="450"
                     height="450" style="object-fit:cover;object-position:top;" alt="Homeware Cover Image">
                 <div class="content_abs content_center text-center">
                     <h3 class="text-uppercase fw-bold mb-1" style="text-shadow: 0px 0px 10px white;">Homeware</h3>
