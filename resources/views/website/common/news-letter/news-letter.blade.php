@@ -5,7 +5,7 @@
             <div class="row p-0 m-0">
                 <div class="col-md-6 p-0 d-none d-md-block">
                     <div class="newsletter-popup__bg h-100 w-100">
-                        <img loading="lazy" src="{{asset('assets/Womensware/login-modal-avacado.jpg')}}"
+                        <img loading="lazy" src="{{asset('assets/Womensware/login-modal-avacado.jpeg')}}"
                             class="h-100 w-100 object-fit-cover d-block" alt="" style="max-height:500px; max-width:500px; object-position:top;">
                     </div>
                 </div>
